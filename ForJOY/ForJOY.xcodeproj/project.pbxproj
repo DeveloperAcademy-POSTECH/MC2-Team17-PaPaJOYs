@@ -13,6 +13,7 @@
 		30E4E2D929FFA42800A7103B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30E4E2D829FFA42800A7103B /* Preview Assets.xcassets */; };
 		30E4E2DB29FFA42800A7103B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E4E2DA29FFA42800A7103B /* Persistence.swift */; };
 		30E4E2DE29FFA42800A7103B /* ForJOY.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30E4E2DC29FFA42800A7103B /* ForJOY.xcdatamodeld */; };
+		AAC7FF4029FFAB2900D0F17C /* joytest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7FF3F29FFAB2900D0F17C /* joytest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		30E4E2D829FFA42800A7103B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		30E4E2DA29FFA42800A7103B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		30E4E2DD29FFA42800A7103B /* ForJOY.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ForJOY.xcdatamodel; sourceTree = "<group>"; };
+		AAC7FF3F29FFAB2900D0F17C /* joytest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = joytest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				30E4E2D329FFA42700A7103B /* ContentView.swift */,
 				30E4E2D529FFA42800A7103B /* Assets.xcassets */,
 				30E4E2DA29FFA42800A7103B /* Persistence.swift */,
+				AAC7FF3F29FFAB2900D0F17C /* joytest.swift */,
 				30E4E2DC29FFA42800A7103B /* ForJOY.xcdatamodeld */,
 				30E4E2D729FFA42800A7103B /* Preview Content */,
 			);
@@ -145,6 +148,7 @@
 			files = (
 				30E4E2DE29FFA42800A7103B /* ForJOY.xcdatamodeld in Sources */,
 				30E4E2DB29FFA42800A7103B /* Persistence.swift in Sources */,
+				AAC7FF4029FFAB2900D0F17C /* joytest.swift in Sources */,
 				30E4E2D429FFA42700A7103B /* ContentView.swift in Sources */,
 				30E4E2D229FFA42700A7103B /* ForJOYApp.swift in Sources */,
 			);
