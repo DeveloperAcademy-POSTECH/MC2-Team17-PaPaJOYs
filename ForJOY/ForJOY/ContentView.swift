@@ -10,6 +10,7 @@
 
 // ash - test
 
+// sun - test임당
 
 import SwiftUI
 import CoreData
