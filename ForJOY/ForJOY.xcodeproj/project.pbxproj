@@ -7,22 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		30E4E2F12A00A13D00A7103B /* ForJOYApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E4E2F02A00A13D00A7103B /* ForJOYApp.swift */; };
-		30E4E2F32A00A13D00A7103B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E4E2F22A00A13D00A7103B /* ContentView.swift */; };
-		30E4E2F52A00A13E00A7103B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30E4E2F42A00A13E00A7103B /* Assets.xcassets */; };
-		30E4E2F82A00A13E00A7103B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30E4E2F72A00A13E00A7103B /* Preview Assets.xcassets */; };
+		30E4E30B2A00A2F900A7103B /* ForJOYApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E4E30A2A00A2F900A7103B /* ForJOYApp.swift */; };
+		30E4E30D2A00A2F900A7103B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E4E30C2A00A2F900A7103B /* ContentView.swift */; };
+		30E4E30F2A00A2FA00A7103B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30E4E30E2A00A2FA00A7103B /* Assets.xcassets */; };
+		30E4E3122A00A2FA00A7103B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30E4E3112A00A2FA00A7103B /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		30E4E2ED2A00A13D00A7103B /* ForJOY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForJOY.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		30E4E2F02A00A13D00A7103B /* ForJOYApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForJOYApp.swift; sourceTree = "<group>"; };
-		30E4E2F22A00A13D00A7103B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		30E4E2F42A00A13E00A7103B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		30E4E2F72A00A13E00A7103B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		30E4E3072A00A2F900A7103B /* ForJOY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForJOY.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		30E4E30A2A00A2F900A7103B /* ForJOYApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForJOYApp.swift; sourceTree = "<group>"; };
+		30E4E30C2A00A2F900A7103B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		30E4E30E2A00A2FA00A7103B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		30E4E3112A00A2FA00A7103B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		30E4E2EA2A00A13D00A7103B /* Frameworks */ = {
+		30E4E3042A00A2F900A7103B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -32,37 +32,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		30E4E2E42A00A13D00A7103B = {
+		30E4E2FE2A00A2F900A7103B = {
 			isa = PBXGroup;
 			children = (
-				30E4E2EF2A00A13D00A7103B /* ForJOY */,
-				30E4E2EE2A00A13D00A7103B /* Products */,
+				30E4E3092A00A2F900A7103B /* ForJOY */,
+				30E4E3082A00A2F900A7103B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		30E4E2EE2A00A13D00A7103B /* Products */ = {
+		30E4E3082A00A2F900A7103B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				30E4E2ED2A00A13D00A7103B /* ForJOY.app */,
+				30E4E3072A00A2F900A7103B /* ForJOY.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		30E4E2EF2A00A13D00A7103B /* ForJOY */ = {
+		30E4E3092A00A2F900A7103B /* ForJOY */ = {
 			isa = PBXGroup;
 			children = (
-				30E4E2F02A00A13D00A7103B /* ForJOYApp.swift */,
-				30E4E2F22A00A13D00A7103B /* ContentView.swift */,
-				30E4E2F42A00A13E00A7103B /* Assets.xcassets */,
-				30E4E2F62A00A13E00A7103B /* Preview Content */,
+				30E4E30A2A00A2F900A7103B /* ForJOYApp.swift */,
+				30E4E30C2A00A2F900A7103B /* ContentView.swift */,
+				30E4E30E2A00A2FA00A7103B /* Assets.xcassets */,
+				30E4E3102A00A2FA00A7103B /* Preview Content */,
 			);
 			path = ForJOY;
 			sourceTree = "<group>";
 		};
-		30E4E2F62A00A13E00A7103B /* Preview Content */ = {
+		30E4E3102A00A2FA00A7103B /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				30E4E2F72A00A13E00A7103B /* Preview Assets.xcassets */,
+				30E4E3112A00A2FA00A7103B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -70,13 +70,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		30E4E2EC2A00A13D00A7103B /* ForJOY */ = {
+		30E4E3062A00A2F900A7103B /* ForJOY */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 30E4E2FB2A00A13E00A7103B /* Build configuration list for PBXNativeTarget "ForJOY" */;
+			buildConfigurationList = 30E4E3152A00A2FA00A7103B /* Build configuration list for PBXNativeTarget "ForJOY" */;
 			buildPhases = (
-				30E4E2E92A00A13D00A7103B /* Sources */,
-				30E4E2EA2A00A13D00A7103B /* Frameworks */,
-				30E4E2EB2A00A13D00A7103B /* Resources */,
+				30E4E3032A00A2F900A7103B /* Sources */,
+				30E4E3042A00A2F900A7103B /* Frameworks */,
+				30E4E3052A00A2F900A7103B /* Resources */,
 			);
 			buildRules = (
 			);
@@ -84,25 +84,25 @@
 			);
 			name = ForJOY;
 			productName = ForJOY;
-			productReference = 30E4E2ED2A00A13D00A7103B /* ForJOY.app */;
+			productReference = 30E4E3072A00A2F900A7103B /* ForJOY.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		30E4E2E52A00A13D00A7103B /* Project object */ = {
+		30E4E2FF2A00A2F900A7103B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
-					30E4E2EC2A00A13D00A7103B = {
+					30E4E3062A00A2F900A7103B = {
 						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
-			buildConfigurationList = 30E4E2E82A00A13D00A7103B /* Build configuration list for PBXProject "ForJOY" */;
+			buildConfigurationList = 30E4E3022A00A2F900A7103B /* Build configuration list for PBXProject "ForJOY" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -110,42 +110,42 @@
 				en,
 				Base,
 			);
-			mainGroup = 30E4E2E42A00A13D00A7103B;
-			productRefGroup = 30E4E2EE2A00A13D00A7103B /* Products */;
+			mainGroup = 30E4E2FE2A00A2F900A7103B;
+			productRefGroup = 30E4E3082A00A2F900A7103B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				30E4E2EC2A00A13D00A7103B /* ForJOY */,
+				30E4E3062A00A2F900A7103B /* ForJOY */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		30E4E2EB2A00A13D00A7103B /* Resources */ = {
+		30E4E3052A00A2F900A7103B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30E4E2F82A00A13E00A7103B /* Preview Assets.xcassets in Resources */,
-				30E4E2F52A00A13E00A7103B /* Assets.xcassets in Resources */,
+				30E4E3122A00A2FA00A7103B /* Preview Assets.xcassets in Resources */,
+				30E4E30F2A00A2FA00A7103B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		30E4E2E92A00A13D00A7103B /* Sources */ = {
+		30E4E3032A00A2F900A7103B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30E4E2F32A00A13D00A7103B /* ContentView.swift in Sources */,
-				30E4E2F12A00A13D00A7103B /* ForJOYApp.swift in Sources */,
+				30E4E30D2A00A2F900A7103B /* ContentView.swift in Sources */,
+				30E4E30B2A00A2F900A7103B /* ForJOYApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		30E4E2F92A00A13E00A7103B /* Debug */ = {
+		30E4E3132A00A2FA00A7103B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -205,7 +205,7 @@
 			};
 			name = Debug;
 		};
-		30E4E2FA2A00A13E00A7103B /* Release */ = {
+		30E4E3142A00A2FA00A7103B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -259,7 +259,7 @@
 			};
 			name = Release;
 		};
-		30E4E2FC2A00A13E00A7103B /* Debug */ = {
+		30E4E3162A00A2FA00A7103B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -287,7 +287,7 @@
 			};
 			name = Debug;
 		};
-		30E4E2FD2A00A13E00A7103B /* Release */ = {
+		30E4E3172A00A2FA00A7103B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -318,25 +318,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		30E4E2E82A00A13D00A7103B /* Build configuration list for PBXProject "ForJOY" */ = {
+		30E4E3022A00A2F900A7103B /* Build configuration list for PBXProject "ForJOY" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				30E4E2F92A00A13E00A7103B /* Debug */,
-				30E4E2FA2A00A13E00A7103B /* Release */,
+				30E4E3132A00A2FA00A7103B /* Debug */,
+				30E4E3142A00A2FA00A7103B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		30E4E2FB2A00A13E00A7103B /* Build configuration list for PBXNativeTarget "ForJOY" */ = {
+		30E4E3152A00A2FA00A7103B /* Build configuration list for PBXNativeTarget "ForJOY" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				30E4E2FC2A00A13E00A7103B /* Debug */,
-				30E4E2FD2A00A13E00A7103B /* Release */,
+				30E4E3162A00A2FA00A7103B /* Debug */,
+				30E4E3172A00A2FA00A7103B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 30E4E2E52A00A13D00A7103B /* Project object */;
+	rootObject = 30E4E2FF2A00A2F900A7103B /* Project object */;
 }
