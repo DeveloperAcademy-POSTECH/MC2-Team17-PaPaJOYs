@@ -7,26 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		30E4E2D229FFA42700A7103B /* ForJOYApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E4E2D129FFA42700A7103B /* ForJOYApp.swift */; };
-		30E4E2D429FFA42700A7103B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E4E2D329FFA42700A7103B /* ContentView.swift */; };
-		30E4E2D629FFA42800A7103B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30E4E2D529FFA42800A7103B /* Assets.xcassets */; };
-		30E4E2D929FFA42800A7103B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30E4E2D829FFA42800A7103B /* Preview Assets.xcassets */; };
-		30E4E2DB29FFA42800A7103B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E4E2DA29FFA42800A7103B /* Persistence.swift */; };
-		30E4E2DE29FFA42800A7103B /* ForJOY.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30E4E2DC29FFA42800A7103B /* ForJOY.xcdatamodeld */; };
+		30E4E2F12A00A13D00A7103B /* ForJOYApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E4E2F02A00A13D00A7103B /* ForJOYApp.swift */; };
+		30E4E2F32A00A13D00A7103B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E4E2F22A00A13D00A7103B /* ContentView.swift */; };
+		30E4E2F52A00A13E00A7103B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30E4E2F42A00A13E00A7103B /* Assets.xcassets */; };
+		30E4E2F82A00A13E00A7103B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30E4E2F72A00A13E00A7103B /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		30E4E2CE29FFA42700A7103B /* ForJOY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForJOY.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		30E4E2D129FFA42700A7103B /* ForJOYApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForJOYApp.swift; sourceTree = "<group>"; };
-		30E4E2D329FFA42700A7103B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		30E4E2D529FFA42800A7103B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		30E4E2D829FFA42800A7103B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		30E4E2DA29FFA42800A7103B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		30E4E2DD29FFA42800A7103B /* ForJOY.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ForJOY.xcdatamodel; sourceTree = "<group>"; };
+		30E4E2ED2A00A13D00A7103B /* ForJOY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForJOY.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		30E4E2F02A00A13D00A7103B /* ForJOYApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForJOYApp.swift; sourceTree = "<group>"; };
+		30E4E2F22A00A13D00A7103B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		30E4E2F42A00A13E00A7103B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		30E4E2F72A00A13E00A7103B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		30E4E2CB29FFA42700A7103B /* Frameworks */ = {
+		30E4E2EA2A00A13D00A7103B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -36,39 +32,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		30E4E2C529FFA42700A7103B = {
+		30E4E2E42A00A13D00A7103B = {
 			isa = PBXGroup;
 			children = (
-				30E4E2D029FFA42700A7103B /* ForJOY */,
-				30E4E2CF29FFA42700A7103B /* Products */,
+				30E4E2EF2A00A13D00A7103B /* ForJOY */,
+				30E4E2EE2A00A13D00A7103B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		30E4E2CF29FFA42700A7103B /* Products */ = {
+		30E4E2EE2A00A13D00A7103B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				30E4E2CE29FFA42700A7103B /* ForJOY.app */,
+				30E4E2ED2A00A13D00A7103B /* ForJOY.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		30E4E2D029FFA42700A7103B /* ForJOY */ = {
+		30E4E2EF2A00A13D00A7103B /* ForJOY */ = {
 			isa = PBXGroup;
 			children = (
-				30E4E2D129FFA42700A7103B /* ForJOYApp.swift */,
-				30E4E2D329FFA42700A7103B /* ContentView.swift */,
-				30E4E2D529FFA42800A7103B /* Assets.xcassets */,
-				30E4E2DA29FFA42800A7103B /* Persistence.swift */,
-				30E4E2DC29FFA42800A7103B /* ForJOY.xcdatamodeld */,
-				30E4E2D729FFA42800A7103B /* Preview Content */,
+				30E4E2F02A00A13D00A7103B /* ForJOYApp.swift */,
+				30E4E2F22A00A13D00A7103B /* ContentView.swift */,
+				30E4E2F42A00A13E00A7103B /* Assets.xcassets */,
+				30E4E2F62A00A13E00A7103B /* Preview Content */,
 			);
 			path = ForJOY;
 			sourceTree = "<group>";
 		};
-		30E4E2D729FFA42800A7103B /* Preview Content */ = {
+		30E4E2F62A00A13E00A7103B /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				30E4E2D829FFA42800A7103B /* Preview Assets.xcassets */,
+				30E4E2F72A00A13E00A7103B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -76,13 +70,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		30E4E2CD29FFA42700A7103B /* ForJOY */ = {
+		30E4E2EC2A00A13D00A7103B /* ForJOY */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 30E4E2E129FFA42800A7103B /* Build configuration list for PBXNativeTarget "ForJOY" */;
+			buildConfigurationList = 30E4E2FB2A00A13E00A7103B /* Build configuration list for PBXNativeTarget "ForJOY" */;
 			buildPhases = (
-				30E4E2CA29FFA42700A7103B /* Sources */,
-				30E4E2CB29FFA42700A7103B /* Frameworks */,
-				30E4E2CC29FFA42700A7103B /* Resources */,
+				30E4E2E92A00A13D00A7103B /* Sources */,
+				30E4E2EA2A00A13D00A7103B /* Frameworks */,
+				30E4E2EB2A00A13D00A7103B /* Resources */,
 			);
 			buildRules = (
 			);
@@ -90,25 +84,25 @@
 			);
 			name = ForJOY;
 			productName = ForJOY;
-			productReference = 30E4E2CE29FFA42700A7103B /* ForJOY.app */;
+			productReference = 30E4E2ED2A00A13D00A7103B /* ForJOY.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		30E4E2C629FFA42700A7103B /* Project object */ = {
+		30E4E2E52A00A13D00A7103B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
-					30E4E2CD29FFA42700A7103B = {
+					30E4E2EC2A00A13D00A7103B = {
 						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
-			buildConfigurationList = 30E4E2C929FFA42700A7103B /* Build configuration list for PBXProject "ForJOY" */;
+			buildConfigurationList = 30E4E2E82A00A13D00A7103B /* Build configuration list for PBXProject "ForJOY" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -116,44 +110,42 @@
 				en,
 				Base,
 			);
-			mainGroup = 30E4E2C529FFA42700A7103B;
-			productRefGroup = 30E4E2CF29FFA42700A7103B /* Products */;
+			mainGroup = 30E4E2E42A00A13D00A7103B;
+			productRefGroup = 30E4E2EE2A00A13D00A7103B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				30E4E2CD29FFA42700A7103B /* ForJOY */,
+				30E4E2EC2A00A13D00A7103B /* ForJOY */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		30E4E2CC29FFA42700A7103B /* Resources */ = {
+		30E4E2EB2A00A13D00A7103B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30E4E2D929FFA42800A7103B /* Preview Assets.xcassets in Resources */,
-				30E4E2D629FFA42800A7103B /* Assets.xcassets in Resources */,
+				30E4E2F82A00A13E00A7103B /* Preview Assets.xcassets in Resources */,
+				30E4E2F52A00A13E00A7103B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		30E4E2CA29FFA42700A7103B /* Sources */ = {
+		30E4E2E92A00A13D00A7103B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30E4E2DE29FFA42800A7103B /* ForJOY.xcdatamodeld in Sources */,
-				30E4E2DB29FFA42800A7103B /* Persistence.swift in Sources */,
-				30E4E2D429FFA42700A7103B /* ContentView.swift in Sources */,
-				30E4E2D229FFA42700A7103B /* ForJOYApp.swift in Sources */,
+				30E4E2F32A00A13D00A7103B /* ContentView.swift in Sources */,
+				30E4E2F12A00A13D00A7103B /* ForJOYApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		30E4E2DF29FFA42800A7103B /* Debug */ = {
+		30E4E2F92A00A13E00A7103B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -213,7 +205,7 @@
 			};
 			name = Debug;
 		};
-		30E4E2E029FFA42800A7103B /* Release */ = {
+		30E4E2FA2A00A13E00A7103B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -267,7 +259,7 @@
 			};
 			name = Release;
 		};
-		30E4E2E229FFA42800A7103B /* Debug */ = {
+		30E4E2FC2A00A13E00A7103B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -287,7 +279,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = chaen.ForJOY;
+				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ForJOY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -295,7 +287,7 @@
 			};
 			name = Debug;
 		};
-		30E4E2E329FFA42800A7103B /* Release */ = {
+		30E4E2FD2A00A13E00A7103B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -315,7 +307,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = chaen.ForJOY;
+				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ForJOY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -326,38 +318,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		30E4E2C929FFA42700A7103B /* Build configuration list for PBXProject "ForJOY" */ = {
+		30E4E2E82A00A13D00A7103B /* Build configuration list for PBXProject "ForJOY" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				30E4E2DF29FFA42800A7103B /* Debug */,
-				30E4E2E029FFA42800A7103B /* Release */,
+				30E4E2F92A00A13E00A7103B /* Debug */,
+				30E4E2FA2A00A13E00A7103B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		30E4E2E129FFA42800A7103B /* Build configuration list for PBXNativeTarget "ForJOY" */ = {
+		30E4E2FB2A00A13E00A7103B /* Build configuration list for PBXNativeTarget "ForJOY" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				30E4E2E229FFA42800A7103B /* Debug */,
-				30E4E2E329FFA42800A7103B /* Release */,
+				30E4E2FC2A00A13E00A7103B /* Debug */,
+				30E4E2FD2A00A13E00A7103B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		30E4E2DC29FFA42800A7103B /* ForJOY.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				30E4E2DD29FFA42800A7103B /* ForJOY.xcdatamodel */,
-			);
-			currentVersion = 30E4E2DD29FFA42800A7103B /* ForJOY.xcdatamodel */;
-			path = ForJOY.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
-	rootObject = 30E4E2C629FFA42700A7103B /* Project object */;
+	rootObject = 30E4E2E52A00A13D00A7103B /* Project object */;
 }
