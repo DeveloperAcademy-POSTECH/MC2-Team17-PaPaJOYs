@@ -14,6 +14,7 @@
 		5B52BDFC2A00AC7700320ECD /* NYTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52BDFB2A00AC7700320ECD /* NYTest.swift */; };
 		BEBFF85F2A00AAAE00600556 /* SunTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBFF85E2A00AAAE00600556 /* SunTest.swift */; };
 		D97A198A2A00AFDB0053E12D /* oliveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97A19892A00AFDB0053E12D /* oliveView.swift */; };
+		D97A198C2A01CBD00053E12D /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97A198B2A01CBD00053E12D /* CircularProgressView.swift */; };
 		E697EBB72A00ACA2002ADCC1 /* Helia.swift in Sources */ = {isa = PBXBuildFile; fileRef = E697EBB62A00ACA2002ADCC1 /* Helia.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		5B52BDFB2A00AC7700320ECD /* NYTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTest.swift; sourceTree = "<group>"; };
 		BEBFF85E2A00AAAE00600556 /* SunTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunTest.swift; sourceTree = "<group>"; };
 		D97A19892A00AFDB0053E12D /* oliveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = oliveView.swift; sourceTree = "<group>"; };
+		D97A198B2A01CBD00053E12D /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		E697EBB62A00ACA2002ADCC1 /* Helia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helia.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				D97A19892A00AFDB0053E12D /* oliveView.swift */,
+				D97A198B2A01CBD00053E12D /* CircularProgressView.swift */,
 				5B52BDFB2A00AC7700320ECD /* NYTest.swift */,
 				303238792A00A876008A8093 /* ForJOYApp.swift */,
 				3032387B2A00A876008A8093 /* ContentView.swift */,
@@ -152,6 +155,7 @@
 				BEBFF85F2A00AAAE00600556 /* SunTest.swift in Sources */,
 				E697EBB72A00ACA2002ADCC1 /* Helia.swift in Sources */,
 				D97A198A2A00AFDB0053E12D /* oliveView.swift in Sources */,
+				D97A198C2A01CBD00053E12D /* CircularProgressView.swift in Sources */,
 				3032387C2A00A876008A8093 /* ContentView.swift in Sources */,
 				5B52BDFC2A00AC7700320ECD /* NYTest.swift in Sources */,
 				3032387A2A00A876008A8093 /* ForJOYApp.swift in Sources */,

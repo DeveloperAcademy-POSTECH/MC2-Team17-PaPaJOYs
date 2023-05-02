@@ -7,14 +7,91 @@
 
 import SwiftUI
 
-struct oliveView: View {
-    var body: some View {
-        Text("Hello, wow!")
-    }
-}
 
-struct oliveView_Previews: PreviewProvider {
-    static var previews: some View {
-        oliveView()
+struct oliveView: View {
+    
+    
+    @State var isRecOn = false
+    @State var remainingTime: TimeInterval = 300.0
+    @State var isRecEnd = false
+    @State var recProgress = 0.0
+    
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    
+    func timeString(from time: TimeInterval) -> String {
+        let minutes = Int(time) / 60 % 60
+        let seconds = Int(time) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
-}
+    
+    
+    var body: some View {
+        
+        //Vstack1 Start
+        VStack{
+            
+            Button(action: {
+                isRecEnd = true
+                isRecOn = false
+                recProgress = 1.0
+                remainingTime = 0.0
+            }){
+                Text("End")
+                
+            }
+            //Zstack1 Start
+            ZStack{
+                
+                //background color
+                Color("JoyDarkG")
+                    .ignoresSafeArea()
+                
+                Button(action: {
+                    isRecOn = true
+                }){
+                    Text("")
+                        .padding(120)
+                        .overlay(Circle()
+                            .fill(Color("JoyYellow"))
+                            .opacity(1))
+                    
+                }
+                //timer count
+                Text("\(timeString(from: remainingTime))")
+                    .foregroundColor(Color("JoyBlue"))
+                    .font(.system(size:40,weight: .medium))
+                
+                CircularProgressView(recProgress : $recProgress)
+                
+            }//Zstack1 END
+            
+            Text("Progress \(recProgress)")
+            
+        }//Vstack1 END
+                        .onReceive(timer) { _ in
+                            if !isRecEnd{
+                                if isRecOn && remainingTime > 0 {
+                    remainingTime -= 1
+                    recProgress += (1/300)
+                } else if remainingTime <= 0 {
+                    isRecOn = false
+                    remainingTime = 0.0
+                }
+            }
+        }
+    
+        
+        
+        
+        }//Body End
+    
+    }//Struct END
+    
+    
+    
+    struct oliveView_Previews: PreviewProvider {
+        static var previews: some View {
+            oliveView()
+        }
+    }
