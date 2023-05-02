@@ -7,22 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		30E4E30B2A00A2F900A7103B /* ForJOYApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E4E30A2A00A2F900A7103B /* ForJOYApp.swift */; };
-		30E4E30D2A00A2F900A7103B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E4E30C2A00A2F900A7103B /* ContentView.swift */; };
-		30E4E30F2A00A2FA00A7103B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30E4E30E2A00A2FA00A7103B /* Assets.xcassets */; };
-		30E4E3122A00A2FA00A7103B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30E4E3112A00A2FA00A7103B /* Preview Assets.xcassets */; };
+		3032387A2A00A876008A8093 /* ForJOYApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303238792A00A876008A8093 /* ForJOYApp.swift */; };
+		3032387C2A00A876008A8093 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3032387B2A00A876008A8093 /* ContentView.swift */; };
+		3032387E2A00A876008A8093 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3032387D2A00A876008A8093 /* Assets.xcassets */; };
+		303238812A00A876008A8093 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 303238802A00A876008A8093 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		30E4E3072A00A2F900A7103B /* ForJOY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForJOY.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		30E4E30A2A00A2F900A7103B /* ForJOYApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForJOYApp.swift; sourceTree = "<group>"; };
-		30E4E30C2A00A2F900A7103B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		30E4E30E2A00A2FA00A7103B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		30E4E3112A00A2FA00A7103B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		303238762A00A876008A8093 /* ForJOY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForJOY.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		303238792A00A876008A8093 /* ForJOYApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForJOYApp.swift; sourceTree = "<group>"; };
+		3032387B2A00A876008A8093 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3032387D2A00A876008A8093 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		303238802A00A876008A8093 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		30E4E3042A00A2F900A7103B /* Frameworks */ = {
+		303238732A00A876008A8093 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -32,37 +32,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		30E4E2FE2A00A2F900A7103B = {
+		3032386D2A00A876008A8093 = {
 			isa = PBXGroup;
 			children = (
-				30E4E3092A00A2F900A7103B /* ForJOY */,
-				30E4E3082A00A2F900A7103B /* Products */,
+				303238782A00A876008A8093 /* ForJOY */,
+				303238772A00A876008A8093 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		30E4E3082A00A2F900A7103B /* Products */ = {
+		303238772A00A876008A8093 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				30E4E3072A00A2F900A7103B /* ForJOY.app */,
+				303238762A00A876008A8093 /* ForJOY.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		30E4E3092A00A2F900A7103B /* ForJOY */ = {
+		303238782A00A876008A8093 /* ForJOY */ = {
 			isa = PBXGroup;
 			children = (
-				30E4E30A2A00A2F900A7103B /* ForJOYApp.swift */,
-				30E4E30C2A00A2F900A7103B /* ContentView.swift */,
-				30E4E30E2A00A2FA00A7103B /* Assets.xcassets */,
-				30E4E3102A00A2FA00A7103B /* Preview Content */,
+				303238792A00A876008A8093 /* ForJOYApp.swift */,
+				3032387B2A00A876008A8093 /* ContentView.swift */,
+				3032387D2A00A876008A8093 /* Assets.xcassets */,
+				3032387F2A00A876008A8093 /* Preview Content */,
 			);
 			path = ForJOY;
 			sourceTree = "<group>";
 		};
-		30E4E3102A00A2FA00A7103B /* Preview Content */ = {
+		3032387F2A00A876008A8093 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				30E4E3112A00A2FA00A7103B /* Preview Assets.xcassets */,
+				303238802A00A876008A8093 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -70,13 +70,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		30E4E3062A00A2F900A7103B /* ForJOY */ = {
+		303238752A00A876008A8093 /* ForJOY */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 30E4E3152A00A2FA00A7103B /* Build configuration list for PBXNativeTarget "ForJOY" */;
+			buildConfigurationList = 303238842A00A876008A8093 /* Build configuration list for PBXNativeTarget "ForJOY" */;
 			buildPhases = (
-				30E4E3032A00A2F900A7103B /* Sources */,
-				30E4E3042A00A2F900A7103B /* Frameworks */,
-				30E4E3052A00A2F900A7103B /* Resources */,
+				303238722A00A876008A8093 /* Sources */,
+				303238732A00A876008A8093 /* Frameworks */,
+				303238742A00A876008A8093 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -84,25 +84,25 @@
 			);
 			name = ForJOY;
 			productName = ForJOY;
-			productReference = 30E4E3072A00A2F900A7103B /* ForJOY.app */;
+			productReference = 303238762A00A876008A8093 /* ForJOY.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		30E4E2FF2A00A2F900A7103B /* Project object */ = {
+		3032386E2A00A876008A8093 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
-					30E4E3062A00A2F900A7103B = {
+					303238752A00A876008A8093 = {
 						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
-			buildConfigurationList = 30E4E3022A00A2F900A7103B /* Build configuration list for PBXProject "ForJOY" */;
+			buildConfigurationList = 303238712A00A876008A8093 /* Build configuration list for PBXProject "ForJOY" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -110,42 +110,42 @@
 				en,
 				Base,
 			);
-			mainGroup = 30E4E2FE2A00A2F900A7103B;
-			productRefGroup = 30E4E3082A00A2F900A7103B /* Products */;
+			mainGroup = 3032386D2A00A876008A8093;
+			productRefGroup = 303238772A00A876008A8093 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				30E4E3062A00A2F900A7103B /* ForJOY */,
+				303238752A00A876008A8093 /* ForJOY */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		30E4E3052A00A2F900A7103B /* Resources */ = {
+		303238742A00A876008A8093 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30E4E3122A00A2FA00A7103B /* Preview Assets.xcassets in Resources */,
-				30E4E30F2A00A2FA00A7103B /* Assets.xcassets in Resources */,
+				303238812A00A876008A8093 /* Preview Assets.xcassets in Resources */,
+				3032387E2A00A876008A8093 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		30E4E3032A00A2F900A7103B /* Sources */ = {
+		303238722A00A876008A8093 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30E4E30D2A00A2F900A7103B /* ContentView.swift in Sources */,
-				30E4E30B2A00A2F900A7103B /* ForJOYApp.swift in Sources */,
+				3032387C2A00A876008A8093 /* ContentView.swift in Sources */,
+				3032387A2A00A876008A8093 /* ForJOYApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		30E4E3132A00A2FA00A7103B /* Debug */ = {
+		303238822A00A876008A8093 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -205,7 +205,7 @@
 			};
 			name = Debug;
 		};
-		30E4E3142A00A2FA00A7103B /* Release */ = {
+		303238832A00A876008A8093 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -259,7 +259,7 @@
 			};
 			name = Release;
 		};
-		30E4E3162A00A2FA00A7103B /* Debug */ = {
+		303238852A00A876008A8093 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -287,7 +287,7 @@
 			};
 			name = Debug;
 		};
-		30E4E3172A00A2FA00A7103B /* Release */ = {
+		303238862A00A876008A8093 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -318,25 +318,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		30E4E3022A00A2F900A7103B /* Build configuration list for PBXProject "ForJOY" */ = {
+		303238712A00A876008A8093 /* Build configuration list for PBXProject "ForJOY" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				30E4E3132A00A2FA00A7103B /* Debug */,
-				30E4E3142A00A2FA00A7103B /* Release */,
+				303238822A00A876008A8093 /* Debug */,
+				303238832A00A876008A8093 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		30E4E3152A00A2FA00A7103B /* Build configuration list for PBXNativeTarget "ForJOY" */ = {
+		303238842A00A876008A8093 /* Build configuration list for PBXNativeTarget "ForJOY" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				30E4E3162A00A2FA00A7103B /* Debug */,
-				30E4E3172A00A2FA00A7103B /* Release */,
+				303238852A00A876008A8093 /* Debug */,
+				303238862A00A876008A8093 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 30E4E2FF2A00A2F900A7103B /* Project object */;
+	rootObject = 3032386E2A00A876008A8093 /* Project object */;
 }
