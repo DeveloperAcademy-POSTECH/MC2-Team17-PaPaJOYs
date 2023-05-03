@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Home: View {
+    @EnvironmentObject var model: CarouselViewModel
     var body: some View {
         VStack {
             HStack {
@@ -27,6 +28,13 @@ struct Home: View {
             
             // Carousel....
             
+            ZStack {
+                
+                ForEach(model.cards.indices.reversed(), id: \.self){index in
+                    model.cards[index].cardColor
+                }
+            }
+            
             Spacer()
         }
     }
@@ -34,6 +42,6 @@ struct Home: View {
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        Home()
+        ContentView()
     }
 }

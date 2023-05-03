@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class CarouselViewmodel: ObservableObject {
+class CarouselViewModel: ObservableObject {
     
     @Published var cards = [
         Card(cardColor: Color("blue"), title: "Neurobics for your mind."),

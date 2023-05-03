@@ -10,14 +10,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var homeHomel = CarouselViewModel()
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+        Home()
+        // Using it as Environment Object...
+//            .environmentObject(homeModel)
     }
 }
 
