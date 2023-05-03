@@ -12,6 +12,12 @@
 		3032387E2A00A876008A8093 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3032387D2A00A876008A8093 /* Assets.xcassets */; };
 		303238812A00A876008A8093 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 303238802A00A876008A8093 /* Preview Assets.xcassets */; };
 		5B52BDFC2A00AC7700320ECD /* NYTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52BDFB2A00AC7700320ECD /* NYTest.swift */; };
+		AAA3447C2A01DDAB009307B0 /* VoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA3447B2A01DDAB009307B0 /* VoiceViewModel.swift */; };
+		AAA3447E2A01DE12009307B0 /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA3447D2A01DE12009307B0 /* Recording.swift */; };
+		AAA344812A01DEC4009307B0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA344802A01DEC4009307B0 /* Date.swift */; };
+		AAA344862A01F2C1009307B0 /* convertSecToMinAndHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA344852A01F2C1009307B0 /* convertSecToMinAndHour.swift */; };
+		AAA344892A01F31A009307B0 /* VoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA344882A01F31A009307B0 /* VoiceView.swift */; };
+		AAA3448B2A01F360009307B0 /* RecordingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA3448A2A01F360009307B0 /* RecordingListView.swift */; };
 		BEBFF85F2A00AAAE00600556 /* SunTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBFF85E2A00AAAE00600556 /* SunTest.swift */; };
 		D97A198A2A00AFDB0053E12D /* oliveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97A19892A00AFDB0053E12D /* oliveView.swift */; };
 		E697EBB72A00ACA2002ADCC1 /* Helia.swift in Sources */ = {isa = PBXBuildFile; fileRef = E697EBB62A00ACA2002ADCC1 /* Helia.swift */; };
@@ -24,6 +30,12 @@
 		3032387D2A00A876008A8093 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		303238802A00A876008A8093 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5B52BDFB2A00AC7700320ECD /* NYTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTest.swift; sourceTree = "<group>"; };
+		AAA3447B2A01DDAB009307B0 /* VoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceViewModel.swift; sourceTree = "<group>"; };
+		AAA3447D2A01DE12009307B0 /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
+		AAA344802A01DEC4009307B0 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		AAA344852A01F2C1009307B0 /* convertSecToMinAndHour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = convertSecToMinAndHour.swift; sourceTree = "<group>"; };
+		AAA344882A01F31A009307B0 /* VoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceView.swift; sourceTree = "<group>"; };
+		AAA3448A2A01F360009307B0 /* RecordingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingListView.swift; sourceTree = "<group>"; };
 		BEBFF85E2A00AAAE00600556 /* SunTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunTest.swift; sourceTree = "<group>"; };
 		D97A19892A00AFDB0053E12D /* oliveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = oliveView.swift; sourceTree = "<group>"; };
 		E697EBB62A00ACA2002ADCC1 /* Helia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helia.swift; sourceTree = "<group>"; };
@@ -67,6 +79,7 @@
 				3032387D2A00A876008A8093 /* Assets.xcassets */,
 				3032387F2A00A876008A8093 /* Preview Content */,
 				E697EBB62A00ACA2002ADCC1 /* Helia.swift */,
+				AAA3447F2A01DE9E009307B0 /* Voice */,
 			);
 			path = ForJOY;
 			sourceTree = "<group>";
@@ -77,6 +90,51 @@
 				303238802A00A876008A8093 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		AAA3447F2A01DE9E009307B0 /* Voice */ = {
+			isa = PBXGroup;
+			children = (
+				AAA344872A01F2FD009307B0 /* Views */,
+				AAA344832A01F262009307B0 /* ViewModels */,
+				AAA344842A01F27B009307B0 /* Extensions */,
+				AAA344822A01F248009307B0 /* Models */,
+			);
+			path = Voice;
+			sourceTree = "<group>";
+		};
+		AAA344822A01F248009307B0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AAA3447D2A01DE12009307B0 /* Recording.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AAA344832A01F262009307B0 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				AAA3447B2A01DDAB009307B0 /* VoiceViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AAA344842A01F27B009307B0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AAA344802A01DEC4009307B0 /* Date.swift */,
+				AAA344852A01F2C1009307B0 /* convertSecToMinAndHour.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AAA344872A01F2FD009307B0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AAA344882A01F31A009307B0 /* VoiceView.swift */,
+				AAA3448A2A01F360009307B0 /* RecordingListView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,10 +209,16 @@
 			files = (
 				BEBFF85F2A00AAAE00600556 /* SunTest.swift in Sources */,
 				E697EBB72A00ACA2002ADCC1 /* Helia.swift in Sources */,
+				AAA3447C2A01DDAB009307B0 /* VoiceViewModel.swift in Sources */,
 				D97A198A2A00AFDB0053E12D /* oliveView.swift in Sources */,
+				AAA344892A01F31A009307B0 /* VoiceView.swift in Sources */,
 				3032387C2A00A876008A8093 /* ContentView.swift in Sources */,
+				AAA344862A01F2C1009307B0 /* convertSecToMinAndHour.swift in Sources */,
 				5B52BDFC2A00AC7700320ECD /* NYTest.swift in Sources */,
 				3032387A2A00A876008A8093 /* ForJOYApp.swift in Sources */,
+				AAA344812A01DEC4009307B0 /* Date.swift in Sources */,
+				AAA3448B2A01F360009307B0 /* RecordingListView.swift in Sources */,
+				AAA3447E2A01DE12009307B0 /* Recording.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
