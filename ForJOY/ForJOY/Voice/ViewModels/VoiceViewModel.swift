@@ -55,7 +55,7 @@ class VoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
         }
         // 녹음 파일을 저장할 경로와 파일 이름 설정
         let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let fileName = path.appendingPathComponent("CO-Voice : \(Date().toString(dateFormat: "dd-MM-YY 'at' HH:mm:ss")).m4a")
+        let fileName = path.appendingPathComponent("\(Date().toString(dateFormat: "YY-MM-dd HH:mm:ss")).m4a")
         // 녹음 설정
         let settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
