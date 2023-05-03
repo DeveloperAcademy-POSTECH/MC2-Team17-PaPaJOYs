@@ -19,19 +19,19 @@ struct CircularProgressView: View {
             
             Circle() // Progress 1
                 .stroke(
-                    Color.blue.opacity(0.5),
+                    Color("JoyBlue").opacity(0.5),
                     lineWidth: 2)
                 .frame(width: 260)
             Circle() // Progress 2
                 .trim(from: 0, to: recProgress)
                 .stroke(
-                    Color.blue,
+                    Color("JoyBlue"),
                     style: StrokeStyle(
                         lineWidth: 5,
                         lineCap: .round))
                     .frame(width: 260)
                     .rotationEffect(.degrees(-90))//What Degree is Proper? Clockwise?
-                    .animation(.easeOut(duration: 1.5), value: recProgress)
+                    .animation(.easeInOut(duration: 2), value: recProgress)
         }
     }//Body End
 }//Struct End

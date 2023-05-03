@@ -12,7 +12,7 @@ struct oliveView: View {
     
     
     @State var isRecOn = false
-    @State var remainingTime: TimeInterval = 300.0
+    @State var remainingTime: TimeInterval = 60.0
     @State var isRecEnd = false
     @State var recProgress = 0.0
     
@@ -28,52 +28,71 @@ struct oliveView: View {
     
     var body: some View {
         
-        //Vstack1 Start
-        VStack{
+        //Zstack2 START
+        ZStack{
+            //background color
+            Color("JoyDarkG")
+                .ignoresSafeArea()
             
-            Button(action: {
-                isRecEnd = true
-                isRecOn = false
-                recProgress = 1.0
-                remainingTime = 0.0
-            }){
-                Text("End")
-                
-            }
-            //Zstack1 Start
-            ZStack{
-                
-                //background color
-                Color("JoyDarkG")
-                    .ignoresSafeArea()
+            //Vstack1 Start
+            VStack{
                 
                 Button(action: {
-                    isRecOn = true
+                    isRecEnd = true
+                    isRecOn = false
+                    recProgress = 1.0
+                    remainingTime = 0.0
                 }){
-                    Text("")
-                        .padding(120)
-                        .overlay(Circle()
-                            .fill(Color("JoyYellow"))
-                            .opacity(1))
+                    Text("End")
                     
                 }
-                //timer count
-                Text("\(timeString(from: remainingTime))")
-                    .foregroundColor(Color("JoyBlue"))
-                    .font(.system(size:40,weight: .medium))
+                //Zstack1 Start
+                ZStack{
+                    
+                    
+                    Button(action: {
+                        isRecOn = true
+                    }){
+                        Text("")
+                            .padding(120)
+                            .overlay(Circle()
+                                .fill(Color("JoyYellow"))
+                                .opacity(1))
+                        
+                    }
+                    //timer count
+                    Text("\(timeString(from: remainingTime))")
+                        .foregroundColor(Color("JoyBlue"))
+                         .font(.system(size:40,weight: .medium))
+                    
+                    CircularProgressView(recProgress : $recProgress)
+                    
+                    //                //Zstack2 START
+                    //                ZStack{
+                    //                                Circle()
+                    //                                    .fill(Color.blue)
+                    //                                    .frame(width: 100)
+                    //                                    .blur(radius: 20)
+                    //
+                    //                                Circle()
+                    //                                    .fill(Color.yellow)
+                    //                                    .frame(width: 70)
+                    //                                    .blur(radius: 20)
+                    //                                    .position(x: 300, y: 450)
+                    //                            }//Zstack2 END
+                    
+                }//Zstack1 END
                 
-                CircularProgressView(recProgress : $recProgress)
+                Text("Progress \(recProgress)")
                 
-            }//Zstack1 END
+            }//Vstack1 END
             
-            Text("Progress \(recProgress)")
-            
-        }//Vstack1 END
+        }//Zstack2 END
                         .onReceive(timer) { _ in
                             if !isRecEnd{
                                 if isRecOn && remainingTime > 0 {
                     remainingTime -= 1
-                    recProgress += (1/300)
+                    recProgress += (1/remainingTime)
                 } else if remainingTime <= 0 {
                     isRecOn = false
                     remainingTime = 0.0
