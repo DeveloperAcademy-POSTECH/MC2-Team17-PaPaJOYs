@@ -7,7 +7,9 @@
 
 import SwiftUI
 
+
 struct VoiceView: View {
+
     
     // VoiceViewModel의 인스턴스를 생성하여 관찰합니다.
     @ObservedObject var vm = VoiceViewModel()
@@ -25,6 +27,7 @@ struct VoiceView: View {
         
         ZStack{
             VStack{
+                DecibelView()
                 HStack{
                     Button(action: {
                         if vm.isRecording == true {
