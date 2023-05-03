@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3032387A2A00A876008A8093 /* ForJOYApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303238792A00A876008A8093 /* ForJOYApp.swift */; };
-		3032387C2A00A876008A8093 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3032387B2A00A876008A8093 /* ContentView.swift */; };
 		3032387E2A00A876008A8093 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3032387D2A00A876008A8093 /* Assets.xcassets */; };
 		303238812A00A876008A8093 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 303238802A00A876008A8093 /* Preview Assets.xcassets */; };
 		5B52BDFC2A00AC7700320ECD /* NYTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52BDFB2A00AC7700320ECD /* NYTest.swift */; };
@@ -28,7 +27,6 @@
 /* Begin PBXFileReference section */
 		303238762A00A876008A8093 /* ForJOY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForJOY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		303238792A00A876008A8093 /* ForJOYApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForJOYApp.swift; sourceTree = "<group>"; };
-		3032387B2A00A876008A8093 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3032387D2A00A876008A8093 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		303238802A00A876008A8093 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5B52BDFB2A00AC7700320ECD /* NYTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTest.swift; sourceTree = "<group>"; };
@@ -61,6 +59,7 @@
 			children = (
 				303238782A00A876008A8093 /* ForJOY */,
 				303238772A00A876008A8093 /* Products */,
+				BEFB04F42A0254BB006EA670 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,7 +78,6 @@
 				D97A19892A00AFDB0053E12D /* oliveView.swift */,
 				5B52BDFB2A00AC7700320ECD /* NYTest.swift */,
 				303238792A00A876008A8093 /* ForJOYApp.swift */,
-				3032387B2A00A876008A8093 /* ContentView.swift */,
 				3032387D2A00A876008A8093 /* Assets.xcassets */,
 				3032387F2A00A876008A8093 /* Preview Content */,
 				E697EBB62A00ACA2002ADCC1 /* Helia.swift */,
@@ -148,6 +146,14 @@
 			children = (
 			);
 			path = Sun;
+			sourceTree = "<group>";
+		};
+		BEFB04F42A0254BB006EA670 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				BEBFF85E2A00AAAE00600556 /* SunTest.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,7 +233,6 @@
 				AAA3447C2A01DDAB009307B0 /* VoiceViewModel.swift in Sources */,
 				D97A198A2A00AFDB0053E12D /* oliveView.swift in Sources */,
 				AAA344892A01F31A009307B0 /* VoiceView.swift in Sources */,
-				3032387C2A00A876008A8093 /* ContentView.swift in Sources */,
 				AAA344862A01F2C1009307B0 /* convertSecToMinAndHour.swift in Sources */,
 				5B52BDFC2A00AC7700320ECD /* NYTest.swift in Sources */,
 				3032387A2A00A876008A8093 /* ForJOYApp.swift in Sources */,
