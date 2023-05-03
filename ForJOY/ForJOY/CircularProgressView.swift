@@ -2,7 +2,7 @@
 ////  CircularProgressView.swift
 ////  ForJOY
 ////
-////  Created by Sehui Oh on 2023/05/03.
+////  Created by Sehui Oh(olive) on 2023/05/03.
 ////
 //
 //import SwiftUI
