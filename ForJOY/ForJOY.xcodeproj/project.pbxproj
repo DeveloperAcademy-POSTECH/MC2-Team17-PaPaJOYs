@@ -19,8 +19,9 @@
 		AAA3448B2A01F360009307B0 /* RecordingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA3448A2A01F360009307B0 /* RecordingListView.swift */; };
 		AAA3449A2A0208F9009307B0 /* DecibelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA344992A0208F9009307B0 /* DecibelView.swift */; };
 		AAA344BC2A024165009307B0 /* GlobalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA344BB2A024165009307B0 /* GlobalStore.swift */; };
+		AAA344BE2A02470A009307B0 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA344BD2A02470A009307B0 /* CircularProgressView.swift */; };
 		BEBFF85F2A00AAAE00600556 /* SunTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBFF85E2A00AAAE00600556 /* SunTest.swift */; };
-		D97A198A2A00AFDB0053E12D /* oliveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97A19892A00AFDB0053E12D /* oliveView.swift */; };
+		D97A198A2A00AFDB0053E12D /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97A19892A00AFDB0053E12D /* TimerView.swift */; };
 		E697EBB72A00ACA2002ADCC1 /* Helia.swift in Sources */ = {isa = PBXBuildFile; fileRef = E697EBB62A00ACA2002ADCC1 /* Helia.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,8 +39,9 @@
 		AAA3448A2A01F360009307B0 /* RecordingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingListView.swift; sourceTree = "<group>"; };
 		AAA344992A0208F9009307B0 /* DecibelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecibelView.swift; sourceTree = "<group>"; };
 		AAA344BB2A024165009307B0 /* GlobalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalStore.swift; sourceTree = "<group>"; };
+		AAA344BD2A02470A009307B0 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		BEBFF85E2A00AAAE00600556 /* SunTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunTest.swift; sourceTree = "<group>"; };
-		D97A19892A00AFDB0053E12D /* oliveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = oliveView.swift; sourceTree = "<group>"; };
+		D97A19892A00AFDB0053E12D /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		E697EBB62A00ACA2002ADCC1 /* Helia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helia.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				AAA3447B2A01DDAB009307B0 /* VoiceViewModel.swift */,
+				AAA344BD2A02470A009307B0 /* CircularProgressView.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -135,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				AAA344882A01F31A009307B0 /* VoiceView.swift */,
+				D97A19892A00AFDB0053E12D /* TimerView.swift */,
 				AAA3448A2A01F360009307B0 /* RecordingListView.swift */,
 				AAA344992A0208F9009307B0 /* DecibelView.swift */,
 			);
@@ -231,13 +235,14 @@
 				E697EBB72A00ACA2002ADCC1 /* Helia.swift in Sources */,
 				AAA3449A2A0208F9009307B0 /* DecibelView.swift in Sources */,
 				AAA3447C2A01DDAB009307B0 /* VoiceViewModel.swift in Sources */,
-				D97A198A2A00AFDB0053E12D /* oliveView.swift in Sources */,
+				D97A198A2A00AFDB0053E12D /* TimerView.swift in Sources */,
 				AAA344892A01F31A009307B0 /* VoiceView.swift in Sources */,
 				AAA344862A01F2C1009307B0 /* convertSecToMinAndHour.swift in Sources */,
 				5B52BDFC2A00AC7700320ECD /* NYTest.swift in Sources */,
 				3032387A2A00A876008A8093 /* ForJOYApp.swift in Sources */,
 				AAA344812A01DEC4009307B0 /* Date.swift in Sources */,
 				AAA3448B2A01F360009307B0 /* RecordingListView.swift in Sources */,
+				AAA344BE2A02470A009307B0 /* CircularProgressView.swift in Sources */,
 				AAA3447E2A01DE12009307B0 /* Recording.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
