@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		3032387A2A00A876008A8093 /* ForJOYApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303238792A00A876008A8093 /* ForJOYApp.swift */; };
-		3032387C2A00A876008A8093 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3032387B2A00A876008A8093 /* ContentView.swift */; };
 		3032387E2A00A876008A8093 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3032387D2A00A876008A8093 /* Assets.xcassets */; };
 		303238812A00A876008A8093 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 303238802A00A876008A8093 /* Preview Assets.xcassets */; };
 		303238882A00B3BB008A8093 /* SelectYearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303238872A00B3BB008A8093 /* SelectYearView.swift */; };
 		3032388B2A00B89E008A8093 /* Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3032388A2A00B89E008A8093 /* Ref.swift */; };
 		3032388D2A0208D8008A8093 /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3032388C2A0208D8008A8093 /* TestModel.swift */; };
+		3032388E2A033332008A8093 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3032387B2A00A876008A8093 /* ContentView.swift */; };
 		5B52BDFC2A00AC7700320ECD /* NYTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52BDFB2A00AC7700320ECD /* NYTest.swift */; };
 		AAA344442A00B1CF009307B0 /* JOYTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA344432A00B1CF009307B0 /* JOYTest.swift */; };
 		BEBFF85F2A00AAAE00600556 /* SunTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBFF85E2A00AAAE00600556 /* SunTest.swift */; };
@@ -173,9 +173,9 @@
 				E697EBB72A00ACA2002ADCC1 /* Helia.swift in Sources */,
 				D97A198A2A00AFDB0053E12D /* oliveView.swift in Sources */,
 				303238882A00B3BB008A8093 /* SelectYearView.swift in Sources */,
-				3032387C2A00A876008A8093 /* ContentView.swift in Sources */,
 				5B52BDFC2A00AC7700320ECD /* NYTest.swift in Sources */,
 				3032387A2A00A876008A8093 /* ForJOYApp.swift in Sources */,
+				3032388E2A033332008A8093 /* ContentView.swift in Sources */,
 				3032388D2A0208D8008A8093 /* TestModel.swift in Sources */,
 				AAA344442A00B1CF009307B0 /* JOYTest.swift in Sources */,
 				3032388B2A00B89E008A8093 /* Ref.swift in Sources */,
