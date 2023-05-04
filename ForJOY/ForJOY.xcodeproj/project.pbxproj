@@ -8,42 +8,41 @@
 
 /* Begin PBXBuildFile section */
 		3032387A2A00A876008A8093 /* ForJOYApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303238792A00A876008A8093 /* ForJOYApp.swift */; };
-		3032387C2A00A876008A8093 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		3032387E2A00A876008A8093 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3032387D2A00A876008A8093 /* Assets.xcassets */; };
 		303238812A00A876008A8093 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 303238802A00A876008A8093 /* Preview Assets.xcassets */; };
-		3055A7B62A0345FC001E2B64 /* SelectYearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3055A7B52A0345FC001E2B64 /* SelectYearView.swift */; };
-		3055A7B92A03461D001E2B64 /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3055A7B82A03461D001E2B64 /* TestModel.swift */; };
-		3055A7BB2A034624001E2B64 /* Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3055A7BA2A034624001E2B64 /* Ref.swift */; };
-		3055A7BD2A034774001E2B64 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3055A7BC2A034774001E2B64 /* ContentView.swift */; };
-		3055A7BF2A0347A8001E2B64 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3055A7BE2A0347A8001E2B64 /* TimerView.swift */; };
-		AAA3447C2A01DDAB009307B0 /* VoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA3447B2A01DDAB009307B0 /* VoiceViewModel.swift */; };
-		AAA3447E2A01DE12009307B0 /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA3447D2A01DE12009307B0 /* Recording.swift */; };
-		AAA344812A01DEC4009307B0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA344802A01DEC4009307B0 /* Date.swift */; };
-		AAA344862A01F2C1009307B0 /* convertSecToMinAndHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA344852A01F2C1009307B0 /* convertSecToMinAndHour.swift */; };
-		AAA344892A01F31A009307B0 /* VoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA344882A01F31A009307B0 /* VoiceView.swift */; };
-		AAA3448B2A01F360009307B0 /* RecordingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA3448A2A01F360009307B0 /* RecordingListView.swift */; };
-		AAA3449A2A0208F9009307B0 /* DecibelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA344992A0208F9009307B0 /* DecibelView.swift */; };
-		AAA344BE2A02470A009307B0 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA344BD2A02470A009307B0 /* CircularProgressView.swift */; };
+		303238882A00B3BB008A8093 /* SelectYearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303238872A00B3BB008A8093 /* SelectYearView.swift */; };
+		3032388B2A00B89E008A8093 /* Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3032388A2A00B89E008A8093 /* Ref.swift */; };
+		3032388D2A0208D8008A8093 /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3032388C2A0208D8008A8093 /* TestModel.swift */; };
+		3032388E2A033332008A8093 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3032387B2A00A876008A8093 /* ContentView.swift */; };
+		30BDADE62A034DB7000BDA8F /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADDA2A034DB7000BDA8F /* CircularProgressView.swift */; };
+		30BDADE72A034DB7000BDA8F /* VoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADDB2A034DB7000BDA8F /* VoiceViewModel.swift */; };
+		30BDADE82A034DB7000BDA8F /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADDD2A034DB7000BDA8F /* Recording.swift */; };
+		30BDADE92A034DB7000BDA8F /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADDF2A034DB7000BDA8F /* Date.swift */; };
+		30BDADEA2A034DB7000BDA8F /* convertSecToMinAndHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADE02A034DB7000BDA8F /* convertSecToMinAndHour.swift */; };
+		30BDADEB2A034DB7000BDA8F /* DecibelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADE22A034DB7000BDA8F /* DecibelView.swift */; };
+		30BDADEC2A034DB7000BDA8F /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADE32A034DB7000BDA8F /* TimerView.swift */; };
+		30BDADED2A034DB7000BDA8F /* RecordingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADE42A034DB7000BDA8F /* RecordingListView.swift */; };
+		30BDADEE2A034DB7000BDA8F /* VoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADE52A034DB7000BDA8F /* VoiceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		303238762A00A876008A8093 /* ForJOY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = ForJOY.app; path = "/Users/chaen/MC2/MC2-Team17-PaPaJOYs/ForJOY/build/Debug-iphoneos/ForJOY.app"; sourceTree = "<absolute>"; };
+		303238762A00A876008A8093 /* ForJOY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForJOY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		303238792A00A876008A8093 /* ForJOYApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForJOYApp.swift; sourceTree = "<group>"; };
+		3032387B2A00A876008A8093 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3032387D2A00A876008A8093 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		303238802A00A876008A8093 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		3055A7B52A0345FC001E2B64 /* SelectYearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectYearView.swift; sourceTree = "<group>"; };
-		3055A7B82A03461D001E2B64 /* TestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
-		3055A7BA2A034624001E2B64 /* Ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ref.swift; sourceTree = "<group>"; };
-		3055A7BC2A034774001E2B64 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		3055A7BE2A0347A8001E2B64 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		AAA3447B2A01DDAB009307B0 /* VoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceViewModel.swift; sourceTree = "<group>"; };
-		AAA3447D2A01DE12009307B0 /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
-		AAA344802A01DEC4009307B0 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		AAA344852A01F2C1009307B0 /* convertSecToMinAndHour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = convertSecToMinAndHour.swift; sourceTree = "<group>"; };
-		AAA344882A01F31A009307B0 /* VoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceView.swift; sourceTree = "<group>"; };
-		AAA3448A2A01F360009307B0 /* RecordingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingListView.swift; sourceTree = "<group>"; };
-		AAA344992A0208F9009307B0 /* DecibelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecibelView.swift; sourceTree = "<group>"; };
-		AAA344BD2A02470A009307B0 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		303238872A00B3BB008A8093 /* SelectYearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectYearView.swift; sourceTree = "<group>"; };
+		3032388A2A00B89E008A8093 /* Ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ref.swift; sourceTree = "<group>"; };
+		3032388C2A0208D8008A8093 /* TestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
+		30BDADDA2A034DB7000BDA8F /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		30BDADDB2A034DB7000BDA8F /* VoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceViewModel.swift; sourceTree = "<group>"; };
+		30BDADDD2A034DB7000BDA8F /* Recording.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
+		30BDADDF2A034DB7000BDA8F /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		30BDADE02A034DB7000BDA8F /* convertSecToMinAndHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = convertSecToMinAndHour.swift; sourceTree = "<group>"; };
+		30BDADE22A034DB7000BDA8F /* DecibelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecibelView.swift; sourceTree = "<group>"; };
+		30BDADE32A034DB7000BDA8F /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		30BDADE42A034DB7000BDA8F /* RecordingListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingListView.swift; sourceTree = "<group>"; };
+		30BDADE52A034DB7000BDA8F /* VoiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,18 +60,27 @@
 			isa = PBXGroup;
 			children = (
 				303238782A00A876008A8093 /* ForJOY */,
+				303238772A00A876008A8093 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		303238772A00A876008A8093 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				303238762A00A876008A8093 /* ForJOY.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		303238782A00A876008A8093 /* ForJOY */ = {
 			isa = PBXGroup;
 			children = (
 				303238792A00A876008A8093 /* ForJOYApp.swift */,
-				3055A7BC2A034774001E2B64 /* ContentView.swift */,
+				3032387B2A00A876008A8093 /* ContentView.swift */,
+				30BDADD82A034DB7000BDA8F /* Voice */,
+				30BDADD72A034D7D000BDA8F /* SelectYear */,
 				3032387D2A00A876008A8093 /* Assets.xcassets */,
 				3032387F2A00A876008A8093 /* Preview Content */,
-				AAA3447F2A01DE9E009307B0 /* Voice */,
-				3055A7B72A034613001E2B64 /* SelectYear */,
 			);
 			path = ForJOY;
 			sourceTree = "<group>";
@@ -85,60 +93,61 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		3055A7B72A034613001E2B64 /* SelectYear */ = {
+		30BDADD72A034D7D000BDA8F /* SelectYear */ = {
 			isa = PBXGroup;
 			children = (
-				3055A7B52A0345FC001E2B64 /* SelectYearView.swift */,
-				3055A7B82A03461D001E2B64 /* TestModel.swift */,
-				3055A7BA2A034624001E2B64 /* Ref.swift */,
+				3032388A2A00B89E008A8093 /* Ref.swift */,
+				303238872A00B3BB008A8093 /* SelectYearView.swift */,
+				3032388C2A0208D8008A8093 /* TestModel.swift */,
 			);
 			path = SelectYear;
 			sourceTree = "<group>";
 		};
-		AAA3447F2A01DE9E009307B0 /* Voice */ = {
+		30BDADD82A034DB7000BDA8F /* Voice */ = {
 			isa = PBXGroup;
 			children = (
-				AAA344872A01F2FD009307B0 /* Views */,
-				AAA344832A01F262009307B0 /* ViewModels */,
-				AAA344842A01F27B009307B0 /* Extensions */,
-				AAA344822A01F248009307B0 /* Models */,
+				30BDADD92A034DB7000BDA8F /* ViewModels */,
+				30BDADDC2A034DB7000BDA8F /* Models */,
+				30BDADDE2A034DB7000BDA8F /* Extensions */,
+				30BDADE12A034DB7000BDA8F /* Views */,
 			);
-			path = Voice;
-			sourceTree = "<group>";
+			name = Voice;
+			path = ForJOY/Voice;
+			sourceTree = SOURCE_ROOT;
 		};
-		AAA344822A01F248009307B0 /* Models */ = {
+		30BDADD92A034DB7000BDA8F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				AAA3447D2A01DE12009307B0 /* Recording.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		AAA344832A01F262009307B0 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				AAA3447B2A01DDAB009307B0 /* VoiceViewModel.swift */,
-				AAA344BD2A02470A009307B0 /* CircularProgressView.swift */,
+				30BDADDA2A034DB7000BDA8F /* CircularProgressView.swift */,
+				30BDADDB2A034DB7000BDA8F /* VoiceViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		AAA344842A01F27B009307B0 /* Extensions */ = {
+		30BDADDC2A034DB7000BDA8F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AAA344802A01DEC4009307B0 /* Date.swift */,
-				AAA344852A01F2C1009307B0 /* convertSecToMinAndHour.swift */,
+				30BDADDD2A034DB7000BDA8F /* Recording.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		30BDADDE2A034DB7000BDA8F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				30BDADDF2A034DB7000BDA8F /* Date.swift */,
+				30BDADE02A034DB7000BDA8F /* convertSecToMinAndHour.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		AAA344872A01F2FD009307B0 /* Views */ = {
+		30BDADE12A034DB7000BDA8F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AAA344882A01F31A009307B0 /* VoiceView.swift */,
-				AAA3448A2A01F360009307B0 /* RecordingListView.swift */,
-				AAA344992A0208F9009307B0 /* DecibelView.swift */,
-				3055A7BE2A0347A8001E2B64 /* TimerView.swift */,
+				30BDADE22A034DB7000BDA8F /* DecibelView.swift */,
+				30BDADE32A034DB7000BDA8F /* TimerView.swift */,
+				30BDADE42A034DB7000BDA8F /* RecordingListView.swift */,
+				30BDADE52A034DB7000BDA8F /* VoiceView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -187,7 +196,7 @@
 				Base,
 			);
 			mainGroup = 3032386D2A00A876008A8093;
-			productRefGroup = 3032386D2A00A876008A8093;
+			productRefGroup = 303238772A00A876008A8093 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -213,21 +222,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3055A7BF2A0347A8001E2B64 /* TimerView.swift in Sources */,
-				AAA3449A2A0208F9009307B0 /* DecibelView.swift in Sources */,
-				3055A7BB2A034624001E2B64 /* Ref.swift in Sources */,
-				3055A7BD2A034774001E2B64 /* ContentView.swift in Sources */,
-				AAA3447C2A01DDAB009307B0 /* VoiceViewModel.swift in Sources */,
-				AAA344892A01F31A009307B0 /* VoiceView.swift in Sources */,
-				3032387C2A00A876008A8093 /* (null) in Sources */,
-				3055A7B92A03461D001E2B64 /* TestModel.swift in Sources */,
-				AAA344862A01F2C1009307B0 /* convertSecToMinAndHour.swift in Sources */,
+				30BDADED2A034DB7000BDA8F /* RecordingListView.swift in Sources */,
+				30BDADE72A034DB7000BDA8F /* VoiceViewModel.swift in Sources */,
+				30BDADEB2A034DB7000BDA8F /* DecibelView.swift in Sources */,
+				303238882A00B3BB008A8093 /* SelectYearView.swift in Sources */,
 				3032387A2A00A876008A8093 /* ForJOYApp.swift in Sources */,
-				3055A7B62A0345FC001E2B64 /* SelectYearView.swift in Sources */,
-				AAA344812A01DEC4009307B0 /* Date.swift in Sources */,
-				AAA3448B2A01F360009307B0 /* RecordingListView.swift in Sources */,
-				AAA344BE2A02470A009307B0 /* CircularProgressView.swift in Sources */,
-				AAA3447E2A01DE12009307B0 /* Recording.swift in Sources */,
+				3032388E2A033332008A8093 /* ContentView.swift in Sources */,
+				3032388D2A0208D8008A8093 /* TestModel.swift in Sources */,
+				30BDADEC2A034DB7000BDA8F /* TimerView.swift in Sources */,
+				30BDADEA2A034DB7000BDA8F /* convertSecToMinAndHour.swift in Sources */,
+				30BDADEE2A034DB7000BDA8F /* VoiceView.swift in Sources */,
+				30BDADE62A034DB7000BDA8F /* CircularProgressView.swift in Sources */,
+				3032388B2A00B89E008A8093 /* Ref.swift in Sources */,
+				30BDADE92A034DB7000BDA8F /* Date.swift in Sources */,
+				30BDADE82A034DB7000BDA8F /* Recording.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
