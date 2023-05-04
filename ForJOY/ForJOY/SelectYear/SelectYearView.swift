@@ -5,6 +5,8 @@
 //  Created by Chaeeun Shin on 2023/05/02.
 //
 
+// 뷰만 그려놓음, 기능 구현 필요!!
+
 import SwiftUI
 
 struct SelectYearView: View {
