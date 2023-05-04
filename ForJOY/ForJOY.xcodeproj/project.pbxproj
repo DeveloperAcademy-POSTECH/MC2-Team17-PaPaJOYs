@@ -23,6 +23,7 @@
 		30BDADEC2A034DB7000BDA8F /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADE32A034DB7000BDA8F /* TimerView.swift */; };
 		30BDADED2A034DB7000BDA8F /* RecordingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADE42A034DB7000BDA8F /* RecordingListView.swift */; };
 		30BDADEE2A034DB7000BDA8F /* VoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADE52A034DB7000BDA8F /* VoiceView.swift */; };
+		D9F0DC622A0353D3002CE5E5 /* RecAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F0DC612A0353D3002CE5E5 /* RecAnimationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		30BDADE32A034DB7000BDA8F /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		30BDADE42A034DB7000BDA8F /* RecordingListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingListView.swift; sourceTree = "<group>"; };
 		30BDADE52A034DB7000BDA8F /* VoiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceView.swift; sourceTree = "<group>"; };
+		D9F0DC612A0353D3002CE5E5 /* RecAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecAnimationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +120,6 @@
 		30BDADD92A034DB7000BDA8F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				30BDADDA2A034DB7000BDA8F /* CircularProgressView.swift */,
 				30BDADDB2A034DB7000BDA8F /* VoiceViewModel.swift */,
 			);
 			path = ViewModels;
@@ -144,6 +145,8 @@
 		30BDADE12A034DB7000BDA8F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D9F0DC612A0353D3002CE5E5 /* RecAnimationView.swift */,
+				30BDADDA2A034DB7000BDA8F /* CircularProgressView.swift */,
 				30BDADE22A034DB7000BDA8F /* DecibelView.swift */,
 				30BDADE32A034DB7000BDA8F /* TimerView.swift */,
 				30BDADE42A034DB7000BDA8F /* RecordingListView.swift */,
@@ -234,6 +237,7 @@
 				30BDADEE2A034DB7000BDA8F /* VoiceView.swift in Sources */,
 				30BDADE62A034DB7000BDA8F /* CircularProgressView.swift in Sources */,
 				3032388B2A00B89E008A8093 /* Ref.swift in Sources */,
+				D9F0DC622A0353D3002CE5E5 /* RecAnimationView.swift in Sources */,
 				30BDADE92A034DB7000BDA8F /* Date.swift in Sources */,
 				30BDADE82A034DB7000BDA8F /* Recording.swift in Sources */,
 			);
