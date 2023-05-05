@@ -1,8 +1,10 @@
+//
 //  oliveView.swift
 //  ForJOY
 //
 //  Created by Sehui Oh on 2023/05/02.
 //
+
 import SwiftUI
 
 
@@ -35,54 +37,51 @@ struct TimerView: View {
             //Vstack1 Start
             VStack{
 
-                Button(action: {
-                    isRecEnd = true
-                    isRecOn = false
-                    recProgress = 1.0
-                    remainingTime = 0.0
-                }){
-                    Text("End")
-
-                }
                 //Zstack1 Start
                 ZStack{
+                    
+                    if !isRecOn && !isRecEnd {
+                        
+                        Button(action: {
+                            isRecOn = true
+                        }){
+                            Text("")
+                                .padding(120)
+                                .overlay(Circle()
+                                    .fill(Color("JoyYellow"))
+                                    .opacity(1))
+                                    
+                            
+                        }
 
-
-                    Button(action: {
-                        isRecOn = true
-                    }){
-                        Text("")
-                            .padding(120)
-                            .overlay(Circle()
-                                .fill(Color.yellow
-                                     )
-                                .opacity(1))
-
+                    } else if isRecOn && !isRecEnd {
+                        Button(action: {
+                            isRecEnd = true
+                            isRecOn = false
+                            recProgress = 1.0
+                            remainingTime = 0.0
+                        }){
+                            Text("")
+                                .padding(120)
+                                .overlay(Circle()
+                                    .fill(Color.red)
+                                    .opacity(1))
+                        }
                     }
-                    //timer count
-                    Text("\(timeString(from: remainingTime))")
-                        .foregroundColor(Color.blue)
-                         .font(.system(size:40,weight: .medium))
+                        
+                        //timer count
+                        Text("\(timeString(from: remainingTime))")
+                            .foregroundColor(Color("JoyBlue"))
+                            .font(.system(size:40,weight: .medium))
+                        
+                        CircularProgressView(recProgress : $recProgress)
+                        
+                    }//Zstack1 END
 
-                    CircularProgressView(recProgress : $recProgress)
-
-                    //                //Zstack2 START
-                    //                ZStack{
-                    //                                Circle()
-                    //                                    .fill(Color.blue)
-                    //                                    .frame(width: 100)
-                    //                                    .blur(radius: 20)
-                    //
-                    //                                Circle()
-                    //                                    .fill(Color.yellow)
-                    //                                    .frame(width: 70)
-                    //                                    .blur(radius: 20)
-                    //                                    .position(x: 300, y: 450)
-                    //                            }//Zstack2 END
-                }//Zstack1 END
                 Text("Progress \(recProgress)")
 
             }//Vstack1 END
+
         }//Zstack2 END
                         .onReceive(timer) { _ in
                             if !isRecEnd{
@@ -100,7 +99,9 @@ struct TimerView: View {
 
 
         }//Body End
+
     }//Struct END
+
 
 
     struct TimerView_Previews: PreviewProvider {
