@@ -47,8 +47,8 @@ struct CarouselView: View {
                                 .frame(width: 300, height: self.getHeight(i))
                                 .animation(.interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
                                 .background(Color.white)
-                                .cornerRadius(10)
-                                .shadow(radius: 5)
+                                .cornerRadius(20)
+                                .shadow(radius: 4)
                                 .opacity(self.getOpacity(i))
                                 .animation(.interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
                                 .offset(x: self.getOffset(i))
@@ -93,16 +93,19 @@ struct CarouselView: View {
     func getOpacity(_ i:Int) -> Double{
         
         if i == relativeLoc()
-            || i + 1 == relativeLoc()
-            || i - 1 == relativeLoc()
-            || i + 2 == relativeLoc()
-            || i - 2 == relativeLoc()
-            || (i + 1) - views.count == relativeLoc()
-            || (i - 1) + views.count == relativeLoc()
-            || (i + 2) - views.count == relativeLoc()
-            || (i - 2) + views.count == relativeLoc()
         {
             return 1
+        } else if i + 1 == relativeLoc()
+                    || i - 1 == relativeLoc()
+                    || i + 2 == relativeLoc()
+                    || i - 2 == relativeLoc()
+                    || (i + 1) - views.count == relativeLoc()
+                    || (i - 1) + views.count == relativeLoc()
+                    || (i + 2) - views.count == relativeLoc()
+                    || (i - 2) + views.count == relativeLoc()
+                    
+        {
+            return 0.8
         } else {
             return 0
         }
@@ -197,5 +200,12 @@ enum DragState {
         case .dragging:
             return true
         }
+    }
+}
+
+struct CarouselView_Previews: PreviewProvider {
+    static var previews: some View {
+        CardView()
+        
     }
 }
