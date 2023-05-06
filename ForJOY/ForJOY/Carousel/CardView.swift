@@ -14,7 +14,7 @@ struct CardView: View {
     @State var isPlaying = false
     
     var body: some View {
-        CarouselView(itemHeight: 510, views: [
+        CarouselView(itemHeight: 520, views: [
             // Card 1
             AnyView(
                 VStack{
@@ -50,10 +50,10 @@ struct CardView: View {
                         Button {
                             isPlaying.toggle()
                         } label: {
-                            Label("Toggle Play", systemImage: isPlaying ? "headphones.circle.fill" : "headphones.circle")
+                            Label("Toggle Play", systemImage: isPlaying ? "pause.circle.fill" : "play.circle.fill")
                                 .labelStyle(.iconOnly)
                                 .font(.system(size: 30))
-                                .foregroundColor(Color("JoyBlue"))
+                                .foregroundColor(isPlaying ? Color("JoyYellow") : Color("JoyBlue"))
                         }
                         
                         ProgressView(value: 0.3)
@@ -80,7 +80,7 @@ struct CardView: View {
                         .padding(.top)
                     
                     VStack {
-                        Text("마운틴듀 먹는 아기")
+                        Text("마운틴듀 와앙~")
                         //                            .foregroundColor(Color("JoyDarkG"))
                             .font(.title3)
                             .bold()
@@ -102,10 +102,10 @@ struct CardView: View {
                         Button {
                             isPlaying.toggle()
                         } label: {
-                            Label("Toggle Play", systemImage: isPlaying ? "headphones.circle.fill" : "headphones.circle")
+                            Label("Toggle Play", systemImage: isPlaying ? "pause.circle.fill" : "play.circle.fill")
                                 .labelStyle(.iconOnly)
                                 .font(.system(size: 30))
-                                .foregroundColor(Color("JoyBlue"))
+                                .foregroundColor(isPlaying ? Color("JoyYellow") : Color("JoyBlue"))
                         }
                         
                         ProgressView(value: 0.3)
@@ -154,10 +154,10 @@ struct CardView: View {
                         Button {
                             isPlaying.toggle()
                         } label: {
-                            Label("Toggle Play", systemImage: isPlaying ? "headphones.circle.fill" : "headphones.circle")
+                            Label("Toggle Play", systemImage: isPlaying ? "pause.circle.fill" : "play.circle.fill")
                                 .labelStyle(.iconOnly)
                                 .font(.system(size: 30))
-                                .foregroundColor(Color("JoyBlue"))
+                                .foregroundColor(isPlaying ? Color("JoyYellow") : Color("JoyBlue"))
                         }
                         
                         ProgressView(value: 0.3)
@@ -206,10 +206,10 @@ struct CardView: View {
                         Button {
                             isPlaying.toggle()
                         } label: {
-                            Label("Toggle Play", systemImage: isPlaying ? "headphones.circle.fill" : "headphones.circle")
+                            Label("Toggle Play", systemImage: isPlaying ? "pause.circle.fill" : "play.circle.fill")
                                 .labelStyle(.iconOnly)
                                 .font(.system(size: 30))
-                                .foregroundColor(Color("JoyBlue"))
+                                .foregroundColor(isPlaying ? Color("JoyYellow") : Color("JoyBlue"))
                         }
                         
                         ProgressView(value: 0.3)
@@ -236,7 +236,7 @@ struct CardView: View {
                         .padding(.top)
                     
                     VStack {
-                        Text("카와이😍")
+                        Text("카와이 아기😍")
                         //                            .foregroundColor(Color("JoyDarkG"))
                             .font(.title3)
                             .bold()
@@ -258,10 +258,10 @@ struct CardView: View {
                         Button {
                             isPlaying.toggle()
                         } label: {
-                            Label("Toggle Play", systemImage: isPlaying ? "headphones.circle.fill" : "headphones.circle")
+                            Label("Toggle Play", systemImage: isPlaying ? "pause.circle.fill" : "play.circle.fill")
                                 .labelStyle(.iconOnly)
                                 .font(.system(size: 30))
-                                .foregroundColor(Color("JoyBlue"))
+                                .foregroundColor(isPlaying ? Color("JoyYellow") : Color("JoyBlue"))
                         }
                         
                         ProgressView(value: 0.3)
@@ -310,10 +310,10 @@ struct CardView: View {
                         Button {
                             isPlaying.toggle()
                         } label: {
-                            Label("Toggle Play", systemImage: isPlaying ? "headphones.circle.fill" : "headphones.circle")
+                            Label("Toggle Play", systemImage: isPlaying ? "pause.circle.fill" : "play.circle.fill")
                                 .labelStyle(.iconOnly)
                                 .font(.system(size: 30))
-                                .foregroundColor(Color("JoyBlue"))
+                                .foregroundColor(isPlaying ? Color("JoyYellow") : Color("JoyBlue"))
                         }
                         
                         ProgressView(value: 0.3)
@@ -362,10 +362,10 @@ struct CardView: View {
                         Button {
                             isPlaying.toggle()
                         } label: {
-                            Label("Toggle Play", systemImage: isPlaying ? "headphones.circle.fill" : "headphones.circle")
+                            Label("Toggle Play", systemImage: isPlaying ? "pause.circle.fill" : "play.circle.fill")
                                 .labelStyle(.iconOnly)
                                 .font(.system(size: 30))
-                                .foregroundColor(Color("JoyBlue"))
+                                .foregroundColor(isPlaying ? Color("JoyYellow") : Color("JoyBlue"))
                         }
                         
                         ProgressView(value: 0.3)
