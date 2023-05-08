@@ -12,8 +12,8 @@ struct RecAnimationView: View {
     @EnvironmentObject var GlobalStore: globalStore
     @State private var blueCircleOffset: CGSize = .init(width: -20, height: 0)
     @State private var yellowCircleOffset: CGSize = .init(width: 50, height: 60)
-    @State private var remainingTime: Double = 30.0 // Set the initial remaining time here
-    @State private var blurSize : Double = 10
+    @State private var remainingTime: Double = 300.0 // Set the initial remaining time here
+    @State private var blurSize : Double = 50
     @State private var isRecEnd = false
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect() // Timer to decrement the remaining time
@@ -54,20 +54,25 @@ struct RecAnimationView: View {
                 remainingTime -= 1
                 
                 if Int(remainingTime) % 3 == 0 { // Move the circles randomly every 5 seconds
-                    withAnimation(Animation.easeInOut(duration: 8)) {
+                    withAnimation(Animation.easeInOut(duration: 7)) {
                         blueCircleOffset = getRandomOffset()
                         yellowCircleOffset = getRandomOffset()
+                        blurSize = (remainingTime/7) + 10
+                        //블러 사이즈 비례
+                        
                     }
                 } else if Int(remainingTime)-297 > 0 {
-                    withAnimation(Animation.easeInOut(duration: 8)) {
+                    withAnimation(Animation.easeInOut(duration: 7)) {
                         blueCircleOffset = .init(width: 20, height: 60)
                         yellowCircleOffset = .init(width: 50, height: 00)
+                        blurSize = (remainingTime/7) + 10
                     }
                 }
             }else if Int(remainingTime) == 0{
-                withAnimation(Animation.easeInOut(duration: 4)) {
+                withAnimation(Animation.easeInOut(duration: 3)) {
                     blueCircleOffset = .init(width: -20, height: 0)
                     yellowCircleOffset = .init(width: 50, height: 60)
+                    blurSize = 10
                 }
             }
         }
@@ -89,7 +94,7 @@ struct RecAnimationView: View {
     
     func animateCircles() {
         if remainingTime > 0 {
-            withAnimation(Animation.easeInOut(duration: 5)) {
+            withAnimation(Animation.easeInOut(duration: 4)) {
                 blueCircleOffset = getRandomOffset()
                 yellowCircleOffset = getRandomOffset()
             }
