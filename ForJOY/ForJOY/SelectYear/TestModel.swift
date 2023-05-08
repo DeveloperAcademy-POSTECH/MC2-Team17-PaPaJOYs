@@ -9,14 +9,16 @@ import SwiftUI
 
 struct TestModel: Identifiable {
     let tagName: String
-    let images: [Image]
+    let image: Image
+    let year: String
+    let idx: Int
     
     let id = UUID()
 }
 
-class TestViewModel: ObservableObject {
-    @Published var testData: [TestModel] = [
-        TestModel(tagName: "이한", images: [Image("test1"), Image("test2")]),
-        TestModel(tagName: "이서", images: [Image("test3"), Image("test4")])
-    ]
+struct TestYearModel: Identifiable {
+    let tagName: String
+    let image: Image
+    
+    let id = UUID()
 }
