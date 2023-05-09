@@ -282,7 +282,7 @@ struct CardView: View {
                         Image("6")
                             .resizable()
                             .scaledToFill()
-                            .frame(width: 250, height: 360)
+                            .frame(width: 270, height: 360)
                             .border(.red)
                             .cornerRadius(10)
                             .clipped()
