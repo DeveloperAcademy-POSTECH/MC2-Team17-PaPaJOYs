@@ -11,9 +11,9 @@ import Foundation
 
 struct DecibelView: View { // DecibelView 구조체 정의
     
-    @EnvironmentObject var GlobalStore: globalStore
+    
 //
-//    @State private var decibels: CGFloat = 0 // 데시벨 수치를 나타내는 속성 정의 및 초기값 설정
+    @Binding var decibels: CGFloat// 데시벨 수치를 나타내는 속성 정의 및 초기값 설정
     
     // AVAudioRecorder 인스턴스 생성 및 초기화
     let audioRecorder = try! AVAudioRecorder(
@@ -29,7 +29,7 @@ struct DecibelView: View { // DecibelView 구조체 정의
     
     var body: some View {
         VStack {
-            Text("\(Int(GlobalStore.decibels))") // 현재 데시벨 값을 텍스트로 표시
+            Text("decibels : \(decibels)") // 현재 데시벨 값을 텍스트로 표시
 //            Button("record") { // 녹음 버튼을 생성하고 누르면 record() 메서드 호출
 //                record()
 //            }
@@ -54,7 +54,7 @@ struct DecibelView: View { // DecibelView 구조체 정의
 
     func record() { // 녹음을 실행하고 데시벨 값을 업데이트하는 함수
         audioRecorder.updateMeters() // 미터링 값을 업데이트
-        GlobalStore.decibels = -CGFloat(audioRecorder.averagePower(forChannel: 0)) // 현재 데시벨 값을 decibels 속성에 저장
+        decibels = -CGFloat(audioRecorder.averagePower(forChannel: 0)) // 현재 데시벨 값을 decibels 속성에 저장
     }
 }
 
