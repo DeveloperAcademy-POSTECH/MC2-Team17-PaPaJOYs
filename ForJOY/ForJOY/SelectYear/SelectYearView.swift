@@ -13,20 +13,22 @@ import SwiftUI
 struct SelectYearView: View {
     @State var isNewest = true
     var body: some View {
-        ZStack {
-            Color(hex: "524F4D")
-                .ignoresSafeArea()
-            VStack(spacing: 20) {
-                HeaderView(isNewest: $isNewest)
-                HStack {
-                    Spacer()
-                    TagView()
-                    Spacer()
-                }
-                HStack {
-                    Spacer()
-                    AlbumView(isNewest: $isNewest)
-                    Spacer()
+        NavigationStack {
+            ZStack {
+                Color("JoyDarkG")
+                    .ignoresSafeArea()
+                VStack(spacing: 20) {
+                    HeaderView(isNewest: $isNewest)
+                    HStack {
+                        Spacer()
+                        TagView()
+                        Spacer()
+                    }
+                    HStack {
+                        Spacer()
+                        AlbumView(isNewest: $isNewest)
+                        Spacer()
+                    }
                 }
             }
         }
@@ -164,7 +166,10 @@ struct AlbumView: View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 15) {
                 ForEach(yearKey, id: \.self) { i in
-                    Button(action: {}) {
+//                    Button(action: {}) {
+//                        AlbumSubView(image: YearGroup[i]![0].image, year: i)
+//                    }
+                    NavigationLink(destination: GalleryView()) {
                         AlbumSubView(image: YearGroup[i]![0].image, year: i)
                     }
                 }
