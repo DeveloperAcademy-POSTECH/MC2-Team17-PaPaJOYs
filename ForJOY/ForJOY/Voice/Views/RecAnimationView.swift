@@ -10,13 +10,14 @@ import SwiftUI
 
 struct RecAnimationView: View {
 //    @EnvironmentObject var GlobalStore: globalStore
+    @ObservedObject var vm = VoiceViewModel()
     @State private var blueCircleOffset: CGSize = .init(width: -40, height: 0)
     @State private var yellowCircleOffset: CGSize = .init(width: 80, height: 40)
-    @State var remainingTime: Double = 300.0 // Set the initial remaining time here
+    @Binding var remainingTime: TimeInterval // Set the initial remaining time here
     @State private var blurSize : Double = 50
-    @State private var isRecEnd = false
+//    @State private var isRecEnd = false
     
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect() // Timer to decrement the remaining time
+    let timer3 = Timer.publish(every: 1, on: .main, in: .common).autoconnect() // Timer to decrement the remaining time
     
     var body: some View {
         ZStack{
@@ -24,6 +25,7 @@ struct RecAnimationView: View {
 //                .ignoresSafeArea()
             VStack {
                 ZStack {
+                    
                     Circle()
                         .fill(Color("JoyBlue"))
 //                        .frame(width: GlobalStore.circleX_1 * 175, height: GlobalStore.circleY_1 * 175) //데시벨 값에 따라서 크기수정 되게 GlobalStore.circle
@@ -37,26 +39,29 @@ struct RecAnimationView: View {
                         .frame(width: 120, height: 120)
                         .offset(yellowCircleOffset)
                         .blur(radius: blurSize)
+                    
                 }
+                
                 Text("Remaining Time: \(Int(remainingTime))")
                     .font(.headline)
                     .padding()
-                Button("RecEnd") {
-                    isRecEnd.toggle()
-                    remainingTime = 10
-                }
+                
+//                Button("RecEnd") {
+//                    vm.isEndRecording.toggle()
+//                    remainingTime = 0
+//                }
             }
         }
         .onAppear {
             animateCircles()
         }
-        .onReceive(timer) { _ in
+        .onReceive(timer3) { _ in
             
             if remainingTime > 0 {
                 remainingTime -= 1
                 
                 if Int(remainingTime) % 3 == 0 { // Move the circles randomly every 5 seconds
-                    withAnimation(Animation.easeInOut(duration: 7)) {
+                    withAnimation(Animation.easeInOut(duration: 2)) {
                         blueCircleOffset = getRandomOffset()
                         yellowCircleOffset = getRandomOffset()
                         blurSize = (remainingTime/7) + 10
@@ -64,7 +69,7 @@ struct RecAnimationView: View {
                         
                     }
                 } else if Int(remainingTime)-297 > 0 {
-                    withAnimation(Animation.easeInOut(duration: 7)) {
+                    withAnimation(Animation.easeInOut(duration: 2)) {
                         blueCircleOffset = .init(width: 20, height: 60)
                         yellowCircleOffset = .init(width: 50, height: 00)
                         blurSize = (remainingTime/7) + 10
@@ -74,7 +79,7 @@ struct RecAnimationView: View {
                 withAnimation(Animation.easeInOut(duration: 3)) {
                     blueCircleOffset = .init(width: -40, height: 0)
                     yellowCircleOffset = .init(width: 70, height: 70)
-                    blurSize = 0
+                    blurSize = 10
                 }
             }
         }
@@ -97,7 +102,7 @@ struct RecAnimationView: View {
     
     func animateCircles() {
         if remainingTime > 0 {
-            withAnimation(Animation.easeInOut(duration: 4)) {
+            withAnimation(Animation.easeInOut(duration: 2)) {
                 blueCircleOffset = getRandomOffset()
                 yellowCircleOffset = getRandomOffset()
             }
@@ -116,8 +121,8 @@ struct RecAnimationView: View {
 }
 
 
-struct RecAnimationView_Previews: PreviewProvider {
-    static var previews: some View {
-        RecAnimationView()
-    }
-}
+//struct RecAnimationView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RecAnimationView()
+//    }
+//}

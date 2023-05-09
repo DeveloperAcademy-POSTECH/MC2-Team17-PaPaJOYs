@@ -61,19 +61,34 @@ struct TimerView: View {
                             
                         }
 
-                    } else if vm.isRecording && !vm.isEndRecording {
+                    } else {
                         
-                        Button(action: {
-                            remainingTime = 0.0
-                            recProgress = 1.0
-                            vm.isRecording = false
-                            vm.isEndRecording = true
-                            vm.stopRecording()
-                        }){
-                            Text("")
-                                .padding(120)
-                                .overlay(Circle()
-                                    .fill(Color.red))
+                        ZStack{
+                            RecAnimationView(remainingTime: $remainingTime)
+                                .mask{
+                                    Circle()
+                                        .frame(width: 240, height: 240)
+                                        .blur(radius: 10)
+                                }
+                            
+                            if vm.isRecording && !vm.isEndRecording {
+                                
+                                Button(action: {
+                                    remainingTime = 0.0
+                                    recProgress = 1.0
+                                    vm.isRecording = false
+                                    vm.isEndRecording = true
+                                    vm.stopRecording()
+                                }){
+                                    Text("End")
+                                        .padding(120)
+                                    
+                                }
+                            }else if !vm.isRecording && vm.isEndRecording {
+                                
+                            }
+                            
+                            
                         }
                     }
                         
