@@ -15,10 +15,3 @@ struct TestModel: Identifiable {
     
     let id = UUID()
 }
-
-struct TestYearModel: Identifiable {
-    let tagName: String
-    let image: Image
-    
-    let id = UUID()
-}
