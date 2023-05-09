@@ -12,7 +12,7 @@ struct RecAnimationView: View {
 //    @EnvironmentObject var GlobalStore: globalStore
     @State private var blueCircleOffset: CGSize = .init(width: -40, height: 0)
     @State private var yellowCircleOffset: CGSize = .init(width: 80, height: 40)
-    @State private var remainingTime: Double = 300.0 // Set the initial remaining time here
+    @State var remainingTime: Double = 300.0 // Set the initial remaining time here
     @State private var blurSize : Double = 50
     @State private var isRecEnd = false
     
@@ -20,8 +20,8 @@ struct RecAnimationView: View {
     
     var body: some View {
         ZStack{
-            Color("JoyDarkG")
-                .ignoresSafeArea()
+//            Color("JoyDarkG")
+//                .ignoresSafeArea()
             VStack {
                 ZStack {
                     Circle()

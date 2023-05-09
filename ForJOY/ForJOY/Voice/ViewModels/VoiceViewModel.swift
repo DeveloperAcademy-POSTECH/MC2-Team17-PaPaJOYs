@@ -70,6 +70,7 @@ class VoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
             audioRecorder.prepareToRecord()
             audioRecorder.record()
             isRecording = true
+            isEndRecording = false
             // 녹음 시간 계산을 위한 타이머 설정
             timerCount = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (value) in
                 self.countSec += 1
@@ -84,6 +85,7 @@ class VoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
     func stopRecording(){
         audioRecorder.stop()
         isRecording = false
+        isEndRecording = true
         self.countSec = 0
         timerCount!.invalidate()
         blinkingCount!.invalidate()

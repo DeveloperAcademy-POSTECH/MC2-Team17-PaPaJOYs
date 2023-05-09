@@ -28,17 +28,20 @@ struct VoiceView: View {
         
         // ZStack을 사용하여 뷰를 겹칩니다.
         ZStack{
+            
             VStack{
                 
                 // DecibelView를 추가합니다.
                 DecibelView(decibels: $decibels)
+                
+
+                
 //
                 ZStack {
                     
                     
-                    
-                    
                     TimerView()
+
                     
                     
 //                    Image(systemName: vm.isRecording ? "stop.circle.fill" : "mic.circle.fill")

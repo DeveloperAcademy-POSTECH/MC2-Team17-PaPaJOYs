@@ -16,7 +16,7 @@ struct TimerView: View {
     @State var isRecEnd = false
     @State var recProgress = 0.0
 
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    let timer2 = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
 
     func timeString(from time: TimeInterval) -> String {
@@ -43,11 +43,7 @@ struct TimerView: View {
                     if !vm.isRecording && !vm.isEndRecording {
                         
                         Button(action: {
-                            if vm.isRecording == true {
-                                vm.stopRecording()
-                            } else {
                                 vm.startRecording()
-                            }
                         }){
                             ZStack{
                                 Circle()
@@ -63,8 +59,7 @@ struct TimerView: View {
 
                     } else if vm.isRecording && !vm.isEndRecording {
                         Button(action: {
-                            isRecEnd = true
-                            isRecOn = false
+                            vm.stopRecording()
                             recProgress = 1.0
                             remainingTime = 0.0
                         }){
@@ -87,17 +82,20 @@ struct TimerView: View {
 
                 Text("Progress \(recProgress)") // 임시로 표기
                 Text("Time\(timeString(from: remainingTime))") // 임시로 표기
+                Text("isEndRecording? \(vm.isEndRecording ? "True":"false")")
+                    Text("isRecording? \(vm.isRecording ? "True":"false")")
 
             }//Vstack1 END
 
+            
         }//Zstack2 END
-                        .onReceive(timer) { _ in
-                            if !isRecEnd{
-                                if isRecOn && remainingTime > 0 {
+                        .onReceive(timer2) { _ in
+                            if !vm.isEndRecording{
+                                if vm.isRecording && remainingTime > 0 {
                     remainingTime -= 1
                     recProgress += (1/remainingTime)
                 } else if remainingTime <= 0 {
-                    isRecOn = false
+                    vm.isRecording = false
                     remainingTime = 0.0
                 }
             }
