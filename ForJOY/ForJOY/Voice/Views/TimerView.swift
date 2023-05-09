@@ -11,10 +11,11 @@ import SwiftUI
 struct TimerView: View {
 
     @ObservedObject var vm = VoiceViewModel()
-    @State var isRecOn = false
-    @State var remainingTime: TimeInterval = 60.0
-    @State var isRecEnd = false
-    @State var recProgress = 0.0
+    @State var isRecOn : Bool = false
+    @State var remainingTime: TimeInterval = 30.0
+    @State var settingTime =  30.0
+    @State var isRecEnd : Bool = false
+    @State var recProgress : Double = 0.0
 
     let timer2 = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
@@ -47,27 +48,32 @@ struct TimerView: View {
                         }){
                             ZStack{
                                 Circle()
-                                    .fill(Color("JoyYellow"))
-                                    .frame(width: 240)
+                                    .fill(Color("JoyBlue"))
+                                    .frame(width: 190)
+                                    .blur(radius: 30)
+                                    .opacity(0.6)
                                 Image(systemName: "mic.fill")
                                     .resizable()
                                     .frame(width: 27, height: 40)
+                                    .foregroundColor(Color("JoyWhite"))
                             }
                                     
                             
                         }
 
                     } else if vm.isRecording && !vm.isEndRecording {
+                        
                         Button(action: {
-                            vm.stopRecording()
-                            recProgress = 1.0
                             remainingTime = 0.0
+                            recProgress = 1.0
+                            vm.isRecording = false
+                            vm.isEndRecording = true
+                            vm.stopRecording()
                         }){
                             Text("")
                                 .padding(120)
                                 .overlay(Circle()
-                                    .fill(Color.red)
-                                    .opacity(1))
+                                    .fill(Color.red))
                         }
                     }
                         
@@ -75,8 +81,8 @@ struct TimerView: View {
 //                        Text("\(timeString(from: remainingTime))")
 //                            .foregroundColor(Color("JoyBlue"))
 //                            .font(.system(size:40,weight: .medium))
+                    CircularProgressView(recProgress : $recProgress)
                         
-                        CircularProgressView(recProgress : $recProgress)
                         
                     }//Zstack1 END
 
@@ -93,10 +99,11 @@ struct TimerView: View {
                             if !vm.isEndRecording{
                                 if vm.isRecording && remainingTime > 0 {
                     remainingTime -= 1
-                    recProgress += (1/remainingTime)
+                    recProgress += (1/settingTime)
                 } else if remainingTime <= 0 {
                     vm.isRecording = false
-                    remainingTime = 0.0
+                    vm.isEndRecording = true
+                    vm.stopRecording()
                 }
             }
         }
