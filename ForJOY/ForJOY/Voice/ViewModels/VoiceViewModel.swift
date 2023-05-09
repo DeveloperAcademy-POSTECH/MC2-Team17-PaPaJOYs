@@ -16,6 +16,7 @@ class VoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
     var indexOfPlayer = 0
     // 녹음 중인지 여부를 나타내는 @Published 프로퍼티
     @Published var isRecording : Bool = false
+    @Published var isEndRecording : Bool = false
     // 녹음 파일 목록을 담는 @Published 배열
     @Published var recordingsList = [Recording]()
     // 녹음 시간을 계산하는 데 사용되는 타이머와 블링킹 효과를 구현하는 데 사용되는 타이머, 타이머의 카운트 시간과 변하는 색상을 나타내는 @Published 프로퍼티

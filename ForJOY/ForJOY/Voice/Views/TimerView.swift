@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TimerView: View {
 
-
+    @ObservedObject var vm = VoiceViewModel()
     @State var isRecOn = false
     @State var remainingTime: TimeInterval = 60.0
     @State var isRecEnd = false
@@ -40,21 +40,28 @@ struct TimerView: View {
                 //Zstack1 Start
                 ZStack{
                     
-                    if !isRecOn && !isRecEnd {
+                    if !vm.isRecording && !vm.isEndRecording {
                         
                         Button(action: {
-                            isRecOn = true
+                            if vm.isRecording == true {
+                                vm.stopRecording()
+                            } else {
+                                vm.startRecording()
+                            }
                         }){
-                            Text("")
-                                .padding(120)
-                                .overlay(Circle()
+                            ZStack{
+                                Circle()
                                     .fill(Color("JoyYellow"))
-                                    .opacity(1))
+                                    .frame(width: 240)
+                                Image(systemName: "mic.fill")
+                                    .resizable()
+                                    .frame(width: 27, height: 40)
+                            }
                                     
                             
                         }
 
-                    } else if isRecOn && !isRecEnd {
+                    } else if vm.isRecording && !vm.isEndRecording {
                         Button(action: {
                             isRecEnd = true
                             isRecOn = false
@@ -70,15 +77,16 @@ struct TimerView: View {
                     }
                         
                         //timer count
-                        Text("\(timeString(from: remainingTime))")
-                            .foregroundColor(Color("JoyBlue"))
-                            .font(.system(size:40,weight: .medium))
+//                        Text("\(timeString(from: remainingTime))")
+//                            .foregroundColor(Color("JoyBlue"))
+//                            .font(.system(size:40,weight: .medium))
                         
                         CircularProgressView(recProgress : $recProgress)
                         
                     }//Zstack1 END
 
-                Text("Progress \(recProgress)")
+                Text("Progress \(recProgress)") // 임시로 표기
+                Text("Time\(timeString(from: remainingTime))") // 임시로 표기
 
             }//Vstack1 END
 
