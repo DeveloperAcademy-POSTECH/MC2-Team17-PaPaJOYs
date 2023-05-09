@@ -5,14 +5,13 @@
 //  Created by Chaeeun Shin on 2023/05/02.
 //
 
-// 뷰만 그려놓음, 기능 구현 필요!!
-
+// 다음 페이지와 연결될 수 있도록 데이터 고민필요..
+// 데이터를 불러올 때 필터링 하는 방향 고려
 
 import SwiftUI
 
 struct SelectYearView: View {
     @State var isNewest = true
-    @State var tagActive = Array(repeating: true, count: TestViewModel().testName.count)
     var body: some View {
         ZStack {
             Color(hex: "524F4D")
@@ -22,9 +21,13 @@ struct SelectYearView: View {
                 HStack {
                     Spacer()
                     TagView()
+                    Spacer()
                 }
-                .padding(.trailing, 15)
-                AlbumView(isNewest: $isNewest)
+                HStack {
+                    Spacer()
+                    AlbumView(isNewest: $isNewest)
+                    Spacer()
+                }
             }
         }
     }
@@ -36,12 +39,13 @@ struct HeaderView: View {
     var body: some View {
         VStack(spacing: 10) {
             HStack {
+                Spacer()
+                // 녹음하는 뷰와 이어지는 NavigationLink로 변경 예정
                 Button(action: {}) {
-                    Image(systemName: "plus.circle.fill")
+                    Image(systemName: "mic.circle.fill")
+                        .font(.title2)
                         .foregroundColor(Color(hex: "659BD5"))
                 }
-                .padding(.leading, 20)
-                Spacer()
                 Menu {
                     Button(action: {isNewest = true}) {
                         HStack {
@@ -61,6 +65,7 @@ struct HeaderView: View {
                     }
                 } label: {
                     Image(systemName: "slider.horizontal.3")
+                        .font(.title2)
                         .foregroundColor(Color(hex: "659BD5"))
                 }
                 .padding(.trailing, 20)
@@ -72,7 +77,6 @@ struct HeaderView: View {
 struct TagView: View {
     @ObservedObject var viewModel = TestViewModel()
     @State var isAllSelect = true
-//    @Binding var tagActive: [Bool]
     
     // 데이터를 태그 단위로 묶어주기
     var TagGroup: [String: [TestModel]] {
@@ -92,40 +96,45 @@ struct TagView: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 5) {
-                Text("모든태그")
-                    .font(.subheadline)
-                    .foregroundColor(.black)
-                    .padding(10)
-                    .lineLimit(1)
-                    .background(isAllSelect ? Color("JoyYellow") : Color(hex: "F2F2F7"))
-                    .opacity(0.9)
-                    .frame(width: 75, height: 30)
-                    .cornerRadius(7)
-                    .onTapGesture {
-                        isAllSelect.toggle()
-                        if isAllSelect {
-                            viewModel.testName = Dictionary(uniqueKeysWithValues: viewModel.testName.map { ($0.key, true) })
-                        }
-                        
+                Button {
+                    isAllSelect.toggle()
+                    if isAllSelect {
+                        viewModel.testName = Dictionary(uniqueKeysWithValues: viewModel.testName.map { ($0.key, true) })
                     }
-                
-                ForEach(tagKey, id: \.self) { i in
-                    Text("#" + i)
-                        .font(.subheadline)
-                        .foregroundColor(.black)
-                        .padding(10)
-                        .lineLimit(1)
-                        .background(viewModel.testName[i]! ? Color("JoyYellow") : Color(hex: "F2F2F7"))
-                        .opacity(0.9)
+                } label: {
+                    RoundedRectangle(cornerRadius: 10)
                         .frame(width: 75, height: 30)
-                        .cornerRadius(10)
-                        .onTapGesture {
-                            viewModel.testName[i]!.toggle()
+                        .foregroundColor(isAllSelect ? Color("JoyYellow") : Color(hex: "F2F2F7"))
+                        .opacity(0.9)
+                        .overlay(
+                            Text("모든태그")
+                                .font(.subheadline)
+                                .foregroundColor(.black)
+                                .lineLimit(1)
+                        )
+                }
+                ForEach(tagKey, id: \.self) { i in
+                    Button {
+                        if isAllSelect { isAllSelect.toggle()
+                            viewModel.testName = Dictionary(uniqueKeysWithValues: viewModel.testName.map { ($0.key, false) })
                         }
+                        viewModel.testName[i]!.toggle()
+                    } label: {
+                        RoundedRectangle(cornerRadius: 10)
+                            .frame(width: 75, height: 30)
+                            .foregroundColor(isAllSelect ? Color(hex: "F2F2F7") : (viewModel.testName[i]! ? Color("JoyYellow") : Color(hex: "F2F2F7")))
+                            .opacity(0.9)
+                            .overlay(
+                                Text("#" + i)
+                                    .font(.subheadline)
+                                    .foregroundColor(.black)
+                                    .lineLimit(1)
+                            )
+                    }
                 }
             }
         }
-        .frame(width: screenWidth * 0.6)
+//        .frame(width: screenWidth * 0.6)
     }
 }
 
@@ -161,8 +170,6 @@ struct AlbumView: View {
                 }
             }
         }
-        .padding(.leading, 15)
-        .padding(.trailing, 15)
     }
 }
 
@@ -171,10 +178,11 @@ struct AlbumSubView: View {
     let year: String
     var body: some View {
         ZStack {
-            Color.white
+            Color("JoyWhite")
             VStack {
                 image
                     .resizable()
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: screenWidth * 0.4, height: screenWidth * 0.4)
                     .clipped()
                     .cornerRadius(10)
