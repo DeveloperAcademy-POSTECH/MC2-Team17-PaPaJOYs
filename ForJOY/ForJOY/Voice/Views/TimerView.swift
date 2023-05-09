@@ -10,13 +10,13 @@ import SwiftUI
 
 struct TimerView: View {
 
-
+    @ObservedObject var vm = VoiceViewModel()
     @State var isRecOn = false
     @State var remainingTime: TimeInterval = 60.0
     @State var isRecEnd = false
     @State var recProgress = 0.0
 
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    let timer2 = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
 
     func timeString(from time: TimeInterval) -> String {
@@ -40,24 +40,26 @@ struct TimerView: View {
                 //Zstack1 Start
                 ZStack{
                     
-                    if !isRecOn && !isRecEnd {
+                    if !vm.isRecording && !vm.isEndRecording {
                         
                         Button(action: {
-                            isRecOn = true
+                                vm.startRecording()
                         }){
-                            Text("")
-                                .padding(120)
-                                .overlay(Circle()
+                            ZStack{
+                                Circle()
                                     .fill(Color("JoyYellow"))
-                                    .opacity(1))
+                                    .frame(width: 240)
+                                Image(systemName: "mic.fill")
+                                    .resizable()
+                                    .frame(width: 27, height: 40)
+                            }
                                     
                             
                         }
 
-                    } else if isRecOn && !isRecEnd {
+                    } else if vm.isRecording && !vm.isEndRecording {
                         Button(action: {
-                            isRecEnd = true
-                            isRecOn = false
+                            vm.stopRecording()
                             recProgress = 1.0
                             remainingTime = 0.0
                         }){
@@ -70,26 +72,30 @@ struct TimerView: View {
                     }
                         
                         //timer count
-                        Text("\(timeString(from: remainingTime))")
-                            .foregroundColor(Color("JoyBlue"))
-                            .font(.system(size:40,weight: .medium))
+//                        Text("\(timeString(from: remainingTime))")
+//                            .foregroundColor(Color("JoyBlue"))
+//                            .font(.system(size:40,weight: .medium))
                         
                         CircularProgressView(recProgress : $recProgress)
                         
                     }//Zstack1 END
 
-                Text("Progress \(recProgress)")
+                Text("Progress \(recProgress)") // 임시로 표기
+                Text("Time\(timeString(from: remainingTime))") // 임시로 표기
+                Text("isEndRecording? \(vm.isEndRecording ? "True":"false")")
+                    Text("isRecording? \(vm.isRecording ? "True":"false")")
 
             }//Vstack1 END
 
+            
         }//Zstack2 END
-                        .onReceive(timer) { _ in
-                            if !isRecEnd{
-                                if isRecOn && remainingTime > 0 {
+                        .onReceive(timer2) { _ in
+                            if !vm.isEndRecording{
+                                if vm.isRecording && remainingTime > 0 {
                     remainingTime -= 1
                     recProgress += (1/remainingTime)
                 } else if remainingTime <= 0 {
-                    isRecOn = false
+                    vm.isRecording = false
                     remainingTime = 0.0
                 }
             }
