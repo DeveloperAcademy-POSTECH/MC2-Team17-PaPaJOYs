@@ -82,8 +82,8 @@ struct TimerView: View {
 
                 Text("Progress \(recProgress)") // 임시로 표기
                 Text("Time\(timeString(from: remainingTime))") // 임시로 표기
-                Text("isEndRecording? \(vm.isEndRecording ? "True":"false")")
-                    Text("isRecording? \(vm.isRecording ? "True":"false")")
+                Text("isEndRecording? \(vm.isEndRecording ? "true":"false")")
+                Text("isRecording? \(vm.isRecording ? "true":"false")")
 
             }//Vstack1 END
 
