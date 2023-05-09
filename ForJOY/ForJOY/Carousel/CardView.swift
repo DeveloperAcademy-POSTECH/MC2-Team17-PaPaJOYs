@@ -278,14 +278,19 @@ struct CardView: View {
             // Card 6
             AnyView(
                 VStack{
-                    Image("6")
-                        .resizable()
-                        .scaledToFit()
-                        .cornerRadius(10)
-                        .clipped()
-                        .shadow(radius: 3)
-                        .padding()
-                        .padding(.top)
+                    GeometryReader { geo in
+                        Image("6")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 250, height: 360)
+                            .border(.red)
+                            .cornerRadius(10)
+                            .clipped()
+                            .shadow(radius: 3)
+                            .padding()
+                            .padding(.top)
+                            .frame(width: geo.size.width, height: geo.size.height)
+                    }
                     
                     VStack {
                         Text("사진 사이즈 조정 어떻게하니")
@@ -330,14 +335,26 @@ struct CardView: View {
             // Card 7
             AnyView(
                 VStack{
-                    Image("7")
-                        .resizable()
-                        .scaledToFit()
-                        .cornerRadius(10)
-                        .clipped()
-                        .shadow(radius: 3)
-                        .padding()
-                        .padding(.top)
+                    GeometryReader { geo in
+                        Image("7")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 250, height: 360)
+                            .border(.red)
+                            .cornerRadius(10)
+                            .clipped()
+                            .shadow(radius: 3)
+                            .padding()
+                            .padding(.top)
+                            .frame(width: geo.size.width, height: geo.size.height)
+                    }
+                    //                        .resizable()
+                    //                        .scaledToFit()
+                    //                        .cornerRadius(10)
+                    //                        .clipped()
+                    //                        .shadow(radius: 3)
+                    //                        .padding()
+                    //                        .padding(.top)
                     
                     VStack {
                         Text("사진 크기 어케 맞추니")
