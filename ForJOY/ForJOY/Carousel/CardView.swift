@@ -17,86 +17,88 @@ struct CardView: View {
     @State private var remainingTime: Double = 0.0
     @State var textfield_val = ""
     
+    
     var body: some View {
         CarouselView(itemHeight: 520, views: [
             // Card 1
-            AnyView(
-                
-                VStack{
-                    
-                    Image("1")
-                        .resizable()
-                        .scaledToFit()
-                        .cornerRadius(10)
-                        .clipped()
-                        .shadow(radius: 3)
-                        .padding()
-                        .padding(.top)
-                    
-                    
-                    VStack {
-                        Text("애플디벨로퍼아카데미 @포스텍")
-                        //                            .foregroundColor(Color("JoyDarkG"))
-                            .font(.title3)
-                            .bold()
-                            .frame(width: 300, alignment: .leading)
-                            .allowsTightening(true)
-                            .padding(.leading, 51)
-                        //                            .border(.red)
-                        Text("2023.05.03")
-                            .foregroundColor(Color("JoyLightG"))
-                            .frame(width: 300, alignment: .leading)
-                            .padding(.leading, 51)
-                        //                            .border(.blue)
-                        
-                    }
-                    
-                    HStack(spacing: -8) {
-                        
-                        Spacer().frame(width: 29)
-                        
-                        Button(action: {
-                            if isPlaying {
-                                player.pause()
-                            } else {
-                                player.play()
-                            }
-                            isPlaying.toggle()
-                        }) {
-                            Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
-                                .labelStyle(.iconOnly)
-                                .font(.system(size: 30))
-                                .foregroundColor(isPlaying ? Color("JoyYellow") : Color("JoyBlue"))
-                        }
-                        
-                        Slider(value: $currentTime, in: 0...remainingTime)
-                            .accentColor(Color("JoyBlue"))
-                            .frame(width: 160)
-                            .padding(.horizontal)
-                            .onChange(of: currentTime) { time in
-                                let cmTime = CMTime(seconds: time, preferredTimescale: 1)
-                                player.seek(to: cmTime)
-                            }
-                        
-                            Text(timeString(time: remainingTime - currentTime))
-                            .font(.system(size: 16))
-                            .frame(width: 40)
-                                .foregroundColor(Color("JoyLightG"))
-                                .padding(.trailing)
-                        
-                        Spacer().frame(width: 14)
-                    }
-                    .onAppear {
-                        player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: DispatchQueue.main) { time in
-                            currentTime = time.seconds
-                            remainingTime = player.currentItem?.duration.seconds ?? 0.0
-                        }
-                    }
-
-                    
-                    Spacer()
-                }
-            ),
+            AnyView(TempView()),
+//            AnyView(
+//
+//                VStack{
+//
+//                    Image("1")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .cornerRadius(10)
+//                        .clipped()
+//                        .shadow(radius: 3)
+//                        .padding()
+//                        .padding(.top)
+//
+//
+//                    VStack {
+//                        Text("애플디벨로퍼아카데미 @포스텍")
+//                        //                            .foregroundColor(Color("JoyDarkG"))
+//                            .font(.title3)
+//                            .bold()
+//                            .frame(width: 300, alignment: .leading)
+//                            .allowsTightening(true)
+//                            .padding(.leading, 51)
+//                        //                            .border(.red)
+//                        Text("2023.05.03")
+//                            .foregroundColor(Color("JoyLightG"))
+//                            .frame(width: 300, alignment: .leading)
+//                            .padding(.leading, 51)
+//                        //                            .border(.blue)
+//
+//                    }
+//
+//                    HStack(spacing: -8) {
+//
+//                        Spacer().frame(width: 29)
+//
+//                        Button(action: {
+//                            if isPlaying {
+//                                player.pause()
+//                            } else {
+//                                player.play()
+//                            }
+//                            isPlaying.toggle()
+//                        }) {
+//                            Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
+//                                .labelStyle(.iconOnly)
+//                                .font(.system(size: 30))
+//                                .foregroundColor(isPlaying ? Color("JoyYellow") : Color("JoyBlue"))
+//                        }
+//
+//                        Slider(value: $currentTime, in: 0...remainingTime)
+//                            .accentColor(Color("JoyBlue"))
+//                            .frame(width: 160)
+//                            .padding(.horizontal)
+//                            .onChange(of: currentTime) { time in
+//                                let cmTime = CMTime(seconds: time, preferredTimescale: 1)
+//                                player.seek(to: cmTime)
+//                            }
+//
+//                            Text(timeString(time: remainingTime - currentTime))
+//                            .font(.system(size: 16))
+//                            .frame(width: 40)
+//                                .foregroundColor(Color("JoyLightG"))
+//                                .padding(.trailing)
+//
+//                        Spacer().frame(width: 14)
+//                    }
+//                    .onAppear {
+//                        player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: DispatchQueue.main) { time in
+//                            currentTime = time.seconds
+//                            remainingTime = player.currentItem?.duration.seconds ?? 0.0
+//                        }
+//                    }
+//
+//
+//                    Spacer()
+//                }
+//            ),
             // Card 2
             AnyView(
                 VStack{
@@ -435,6 +437,98 @@ struct CardView: View {
         return String(format: "%d:%02d", minutes, seconds)
     }
 
+}
+
+struct TempView: View {
+    let player = AVPlayer(url : URL(fileURLWithPath: Bundle.main.path(forResource: "Overnight", ofType: "mp3")!))
+    
+    @State private var isPlaying = false
+    @State private var currentTime: Double = 0.0
+    @State private var remainingTime: Double = 0.0
+    @State var textfield_val = ""
+    
+    var body: some View {
+            
+        VStack{
+            
+            Image("1")
+                .resizable()
+                .scaledToFit()
+                .cornerRadius(10)
+                .clipped()
+                .shadow(radius: 3)
+                .padding()
+                .padding(.top)
+            
+            
+            VStack {
+                Text("애플디벨로퍼아카데미 @포스텍")
+                //                            .foregroundColor(Color("JoyDarkG"))
+                    .font(.title3)
+                    .bold()
+                    .frame(width: 300, alignment: .leading)
+                    .allowsTightening(true)
+                    .padding(.leading, 51)
+                //                            .border(.red)
+                Text("2023.05.03")
+                    .foregroundColor(Color("JoyLightG"))
+                    .frame(width: 300, alignment: .leading)
+                    .padding(.leading, 51)
+                //                            .border(.blue)
+                
+            }
+            
+            HStack(spacing: -8) {
+                
+                Spacer().frame(width: 29)
+                
+                Button(action: {
+                    if isPlaying {
+                        player.pause()
+                    } else {
+                        player.play()
+                    }
+                    isPlaying.toggle()
+                }) {
+                    Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
+                        .labelStyle(.iconOnly)
+                        .font(.system(size: 30))
+                        .foregroundColor(isPlaying ? Color("JoyYellow") : Color("JoyBlue"))
+                }
+                
+                Slider(value: $currentTime, in: 0...remainingTime)
+                    .accentColor(Color("JoyBlue"))
+                    .frame(width: 160)
+                    .padding(.horizontal)
+                    .onChange(of: currentTime) { time in
+                        let cmTime = CMTime(seconds: time, preferredTimescale: 1)
+                        player.seek(to: cmTime)
+                    }
+                
+                    Text(timeString(time: remainingTime - currentTime))
+                    .font(.system(size: 16))
+                    .frame(width: 40)
+                        .foregroundColor(Color("JoyLightG"))
+                        .padding(.trailing)
+                
+                Spacer().frame(width: 14)
+            }
+            .onAppear {
+                player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: DispatchQueue.main) { time in
+                    currentTime = time.seconds
+                    remainingTime = player.currentItem?.duration.seconds ?? 0.0
+                }
+            }
+
+            
+            Spacer()
+        }
+    }
+    func timeString(time: Double) -> String {
+        let minutes = Int(time) / 60
+        let seconds = Int(time) % 60
+        return String(format: "%d:%02d", minutes, seconds)
+    }
 }
 
 struct CardView_Previews: PreviewProvider {
