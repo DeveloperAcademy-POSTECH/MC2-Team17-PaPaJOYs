@@ -6,18 +6,24 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct CardView: View {
     
+    let player = AVPlayer(url : URL(fileURLWithPath: Bundle.main.path(forResource: "Overnight", ofType: "mp3")!))
+    
+    @State private var isPlaying = false
+    @State private var currentTime: Double = 0.0
+    @State private var remainingTime: Double = 0.0
     @State var textfield_val = ""
-    // 재생버튼 토글 각각 따로 설정해야함
-    @State var isPlaying = false
     
     var body: some View {
         CarouselView(itemHeight: 520, views: [
             // Card 1
             AnyView(
+                
                 VStack{
+                    
                     Image("1")
                         .resizable()
                         .scaledToFit()
@@ -26,6 +32,7 @@ struct CardView: View {
                         .shadow(radius: 3)
                         .padding()
                         .padding(.top)
+                    
                     
                     VStack {
                         Text("애플디벨로퍼아카데미 @포스텍")
@@ -44,25 +51,46 @@ struct CardView: View {
                         
                     }
                     
-                    HStack(spacing: 10){
-                        Spacer().frame(width: 14)
+                    HStack(spacing: -5) {
                         
-                        Button {
+                        Spacer().frame(width: 29)
+                        
+                        Button(action: {
+                            if isPlaying {
+                                player.pause()
+                            } else {
+                                player.play()
+                            }
                             isPlaying.toggle()
-                        } label: {
-                            Label("Toggle Play", systemImage: isPlaying ? "pause.circle.fill" : "play.circle.fill")
+                        }) {
+                            Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
                                 .labelStyle(.iconOnly)
                                 .font(.system(size: 30))
                                 .foregroundColor(isPlaying ? Color("JoyYellow") : Color("JoyBlue"))
                         }
                         
-                        ProgressView(value: 0.3)
+                        Slider(value: $currentTime, in: 0...remainingTime)
+                            .accentColor(Color("JoyBlue"))
+                            .padding(.horizontal)
+                            .onChange(of: currentTime) { time in
+                                let cmTime = CMTime(seconds: time, preferredTimescale: 1)
+                                player.seek(to: cmTime)
+                            }
                         
-                        Text("01:24")
-                            .foregroundColor(Color("JoyLightG"))
+                            Text(timeString(time: remainingTime - currentTime))
+                            .font(.system(size: 16))
+                                .foregroundColor(Color("JoyLightG"))
+                                .padding(.trailing)
                         
-                        Spacer().frame(width: 16)
+                        Spacer().frame(width: 14)
                     }
+                    .onAppear {
+                        player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: DispatchQueue.main) { time in
+                            currentTime = time.seconds
+                            remainingTime = player.currentItem?.duration.seconds ?? 0.0
+                        }
+                    }
+
                     
                     Spacer()
                 }
@@ -398,6 +426,13 @@ struct CardView: View {
             )
         ])
     }
+    
+    func timeString(time: Double) -> String {
+        let minutes = Int(time) / 60
+        let seconds = Int(time) % 60
+        return String(format: "%d:%02d", minutes, seconds)
+    }
+
 }
 
 struct CardView_Previews: PreviewProvider {
