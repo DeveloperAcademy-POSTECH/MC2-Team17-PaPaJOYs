@@ -32,7 +32,8 @@
 		AA44E15B2A089F9500DB9601 /* GlobalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA44E15A2A089F9500DB9601 /* GlobalStore.swift */; };
 		BE522DFD2A05A48D00D4AEEA /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE522DFC2A05A48D00D4AEEA /* CarouselView.swift */; };
 		BECC97372A05A54700E27120 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC97362A05A54700E27120 /* CardView.swift */; };
-		D967AA692A08C363005E7BAC /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D967AA682A08C363005E7BAC /* Lottie */; };
+		BEF241BC2A0B35CF004AF83D /* Overnight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BEF241BB2A0B35CF004AF83D /* Overnight.mp3 */; };
+    D967AA692A08C363005E7BAC /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D967AA682A08C363005E7BAC /* Lottie */; };
 		D9F0DC622A0353D3002CE5E5 /* RecAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F0DC612A0353D3002CE5E5 /* RecAnimationView.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		AA44E15A2A089F9500DB9601 /* GlobalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalStore.swift; sourceTree = "<group>"; };
 		BE522DFC2A05A48D00D4AEEA /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		BECC97362A05A54700E27120 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		BEF241BB2A0B35CF004AF83D /* Overnight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Overnight.mp3; path = ../../../../../../../Downloads/Overnight.mp3; sourceTree = "<group>"; };
 		D9F0DC612A0353D3002CE5E5 /* RecAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecAnimationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -226,6 +228,7 @@
 		BECC97382A05A64300E27120 /* Carousel */ = {
 			isa = PBXGroup;
 			children = (
+				BEF241BB2A0B35CF004AF83D /* Overnight.mp3 */,
 				BE522DFC2A05A48D00D4AEEA /* CarouselView.swift */,
 				BECC97362A05A54700E27120 /* CardView.swift */,
 			);
@@ -298,6 +301,7 @@
 			files = (
 				303238812A00A876008A8093 /* Preview Assets.xcassets in Resources */,
 				3032387E2A00A876008A8093 /* Assets.xcassets in Resources */,
+				BEF241BC2A0B35CF004AF83D /* Overnight.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
