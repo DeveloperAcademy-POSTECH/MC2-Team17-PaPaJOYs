@@ -6,17 +6,18 @@
 //
 
 import SwiftUI
-
+import Combine
 
 struct TimerView: View {
 
     @ObservedObject var vm = VoiceViewModel()
-    @State var isRecOn = false
-    @State var remainingTime: TimeInterval = 60.0
-    @State var isRecEnd = false
-    @State var recProgress = 0.0
-
-    let timer2 = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State var isRecOn : Bool = false
+    @State var remainingTime: TimeInterval = 30.0
+    @State var settingTime =  30.0
+    @State var isRecEnd : Bool = false
+    @State var recProgress : Double = 0.0
+    @State var decibels: CGFloat = 0
+    @State var timer2 = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
 
     func timeString(from time: TimeInterval) -> String {
@@ -47,27 +48,47 @@ struct TimerView: View {
                         }){
                             ZStack{
                                 Circle()
-                                    .fill(Color("JoyYellow"))
-                                    .frame(width: 240)
+                                    .fill(Color("JoyBlue"))
+                                    .frame(width: 190)
+                                    .blur(radius: 30)
+                                    .opacity(0.6)
                                 Image(systemName: "mic.fill")
                                     .resizable()
                                     .frame(width: 27, height: 40)
+                                    .foregroundColor(Color("JoyWhite"))
                             }
                                     
                             
                         }
 
-                    } else if vm.isRecording && !vm.isEndRecording {
-                        Button(action: {
-                            vm.stopRecording()
-                            recProgress = 1.0
-                            remainingTime = 0.0
-                        }){
-                            Text("")
-                                .padding(120)
-                                .overlay(Circle()
-                                    .fill(Color.red)
-                                    .opacity(1))
+                    } else {
+                        
+                        ZStack{
+                            RecAnimationView(remainingTime: $remainingTime, decibels: $decibels)
+                                .mask{
+                                    Circle()
+                                        .frame(width: 240, height: 240)
+                                        .blur(radius: 10)
+                                }
+                            
+                            if vm.isRecording && !vm.isEndRecording {
+                                
+                                Button(action: {
+                                    remainingTime = 0.0
+                                    recProgress = 1.0
+                                    vm.isRecording = false
+                                    vm.isEndRecording = true
+                                    vm.stopRecording()
+                                }){
+                                    Text("End")
+                                        .padding(120)
+                                    
+                                }
+                            }else if !vm.isRecording && vm.isEndRecording {
+                                
+                            }
+                            
+                            
                         }
                     }
                         
@@ -75,15 +96,15 @@ struct TimerView: View {
 //                        Text("\(timeString(from: remainingTime))")
 //                            .foregroundColor(Color("JoyBlue"))
 //                            .font(.system(size:40,weight: .medium))
+                    CircularProgressView(recProgress : $recProgress)
                         
-                        CircularProgressView(recProgress : $recProgress)
                         
                     }//Zstack1 END
 
                 Text("Progress \(recProgress)") // 임시로 표기
                 Text("Time\(timeString(from: remainingTime))") // 임시로 표기
-                Text("isEndRecording? \(vm.isEndRecording ? "True":"false")")
-                    Text("isRecording? \(vm.isRecording ? "True":"false")")
+                Text("isEndRecording? \(vm.isEndRecording ? "true":"false")")
+                Text("isRecording? \(vm.isRecording ? "true":"false")")
 
             }//Vstack1 END
 
@@ -93,10 +114,11 @@ struct TimerView: View {
                             if !vm.isEndRecording{
                                 if vm.isRecording && remainingTime > 0 {
                     remainingTime -= 1
-                    recProgress += (1/remainingTime)
+                    recProgress += (1/settingTime)
                 } else if remainingTime <= 0 {
                     vm.isRecording = false
-                    remainingTime = 0.0
+                    vm.isEndRecording = true
+                    vm.stopRecording()
                 }
             }
         }

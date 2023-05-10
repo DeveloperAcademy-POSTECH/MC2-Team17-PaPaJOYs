@@ -13,7 +13,11 @@ struct DecibelView: View { // DecibelView 구조체 정의
     
     
 //
-    @Binding var decibels: CGFloat// 데시벨 수치를 나타내는 속성 정의 및 초기값 설정
+@State var decibels: CGFloat// 데시벨 수치를 나타내는 속성 정의 및 초기값 설정
+    @Binding var circleX_1: CGFloat
+    @Binding var circleX_2: CGFloat
+    @Binding var circleY_1: CGFloat
+    @Binding var circleY_2: CGFloat 
     
     // AVAudioRecorder 인스턴스 생성 및 초기화
     let audioRecorder = try! AVAudioRecorder(
@@ -28,6 +32,8 @@ struct DecibelView: View { // DecibelView 구조체 정의
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect() // 1초마다 실행되는 타이머 생성
     
     var body: some View {
+        
+        
         VStack {
             Text("decibels : \(decibels)") // 현재 데시벨 값을 텍스트로 표시
 //            Button("record") { // 녹음 버튼을 생성하고 누르면 record() 메서드 호출
@@ -36,6 +42,20 @@ struct DecibelView: View { // DecibelView 구조체 정의
         }
         .onAppear { // 뷰가 생성될 때(setup 함수 대체) 실행할 블록
             setUpRecord() // 녹음 세팅 설정
+        }
+    }
+    
+    func circleSize(){
+        if decibels < 40 {
+            self.circleX_1 = 2.0
+            self.circleY_1 = 2.0
+            self.circleX_2 = 1.0
+            self.circleY_2 = 1.0
+        } else if decibels > 40 {
+            self.circleX_1 = 1.0
+            self.circleY_1 = 1.0
+            self.circleX_2 = 2.0
+            self.circleY_2 = 2.0  //데시벨 값에 따라서 크기수정 되게 GlobalStore.circle
         }
     }
 
