@@ -43,7 +43,6 @@ struct CarouselView: View {
                             Spacer()
                             
                             self.views[i]
-                            //                             Text("\(i)")
                                 .frame(width: 300, height: self.getHeight(i))
                                 .animation(.interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
                                 .background(Color.white)
@@ -70,9 +69,11 @@ struct CarouselView: View {
             }
             VStack {
                 Spacer()
-                Spacer().frame(height: itemHeight + 60)
+                Spacer().frame(height: itemHeight + 90)
                 Text("\(relativeLoc() + 1) / \(views.count)")
+                    .font(.system(size: 14))
                     .foregroundColor(Color("JoyLightG"))
+                    .background(Capsule().fill(Color.white).frame(width: 50, height: 30).opacity(0.1))
                 Spacer()
             }
         }
