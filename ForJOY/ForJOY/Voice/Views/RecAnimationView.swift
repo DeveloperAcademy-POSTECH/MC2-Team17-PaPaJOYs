@@ -74,6 +74,7 @@ struct RecAnimationView: View {
         }
         .onAppear {
             animateCircles()
+            circleSize()
         }
         .onAppear { // 뷰가 생성될 때(setup 함수 대체) 실행할 블록
             setUpRecord() // 녹음 세팅 설정
@@ -143,6 +144,21 @@ struct RecAnimationView: View {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + remainingTime) {
             animateCircles()
+            circleSize()
+        }
+    }
+    
+    func circleSize(){
+        if decibels < 40 {
+            self.circleX_1 = 2.0
+            self.circleY_1 = 2.0
+            self.circleX_2 = 1.0
+            self.circleY_2 = 1.0
+        } else if decibels > 40 {
+            self.circleX_1 = 1.0
+            self.circleY_1 = 1.0
+            self.circleX_2 = 2.0
+            self.circleY_2 = 2.0  //데시벨 값에 따라서 크기수정 되게 GlobalStore.circle
         }
     }
     
