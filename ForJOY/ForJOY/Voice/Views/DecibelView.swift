@@ -5,55 +5,56 @@
 //  Created by 조호식 on 2023/05/03.
 //
 //
-import SwiftUI
-import AVFoundation
+import SwiftUI // SwiftUI 라이브러리 import
+import AVFoundation // AVFoundation 라이브러리 import
+import Foundation
 
-
-
-struct DecibelView: View {
+struct DecibelView: View { // DecibelView 구조체 정의
     
     
-    @State private var decibels: CGFloat = 0
+//
+    @Binding var decibels: CGFloat// 데시벨 수치를 나타내는 속성 정의 및 초기값 설정
     
+    // AVAudioRecorder 인스턴스 생성 및 초기화
+    let audioRecorder = try! AVAudioRecorder(
+        url: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("audio.m4a"), // 녹음 파일의 저장 경로
+        settings: [
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC), // 오디오 인코딩 포맷 설정
+            AVSampleRateKey: 44100, // 샘플 레이트 설정
+            AVNumberOfChannelsKey: 1, // 채널 수 설정
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue // 오디오 인코딩 품질 설정
+        ])
     
-    
-    let audioRecorder = try! AVAudioRecorder(url: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("audio.m4a"),
-                                             settings: [
-                                                AVFormatIDKey: Int(kAudioFormatMPEG4AAC), AVSampleRateKey: 44100,
-                                                AVNumberOfChannelsKey: 1, AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-                                             ])
-    
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect() // 1초마다 실행되는 타이머 생성
     
     var body: some View {
         VStack {
-            Text(decibels, format: .number)
-            Button("record") {
-                record()
-            }
+            Text("decibels : \(decibels)") // 현재 데시벨 값을 텍스트로 표시
+//            Button("record") { // 녹음 버튼을 생성하고 누르면 record() 메서드 호출
+//                record()
+//            }
         }
-        .onAppear { // 뷰가 켜지면 실행할 블록
-            // 녹음 세팅 설정
-            setUpRecord()
+        .onAppear { // 뷰가 생성될 때(setup 함수 대체) 실행할 블록
+            setUpRecord() // 녹음 세팅 설정
         }
     }
-    
-    
-    func setUpRecord() {
-            try! AVAudioSession.sharedInstance().setCategory(.record)
-            try! AVAudioSession.sharedInstance().setActive(true)
-            audioRecorder.prepareToRecord()
-            audioRecorder.isMeteringEnabled = true
-            audioRecorder.record()
-            
-            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-                record()
-            }
+
+
+    func setUpRecord() { // 녹음 세팅을 설정하는 함수
+        try! AVAudioSession.sharedInstance().setCategory(.record) // 녹음 모드로 세팅
+        try! AVAudioSession.sharedInstance().setActive(true) // 오디오 세션 활성화
+        audioRecorder.prepareToRecord() // 녹음 준비
+        audioRecorder.isMeteringEnabled = true // 녹음 시 미터링 기능 사용
+        audioRecorder.record() // 녹음 시작
+
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in // 0.1초 간격으로 실행되는 타이머 생성
+            record() // record() 메서드 호출
         }
-        
-    func record() {
-        audioRecorder.updateMeters()
-        decibels = CGFloat(audioRecorder.averagePower(forChannel: 0))
+    }
+
+    func record() { // 녹음을 실행하고 데시벨 값을 업데이트하는 함수
+        audioRecorder.updateMeters() // 미터링 값을 업데이트
+        decibels = -CGFloat(audioRecorder.averagePower(forChannel: 0)) // 현재 데시벨 값을 decibels 속성에 저장
     }
 }
 

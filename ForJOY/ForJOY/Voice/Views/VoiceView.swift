@@ -9,8 +9,8 @@ import SwiftUI
 
 
 struct VoiceView: View {
-
     
+    @EnvironmentObject var GlobalStore: globalStore
     // VoiceViewModel의 인스턴스를 생성하여 관찰합니다.
     @ObservedObject var vm = VoiceViewModel()
     // 녹음 파일 리스트를 보여줄지 여부를 나타내는 상태 변수입니다.
@@ -22,52 +22,38 @@ struct VoiceView: View {
     // 효과음2을 재생할지 여부를 나타내는 상태 변수입니다.
     @State private var effect2 = false
     
+    @State var decibels: CGFloat = 0
     
     var body: some View {
         
+        // ZStack을 사용하여 뷰를 겹칩니다.
         ZStack{
+            
             VStack{
-                DecibelView()
-                HStack{
-                    Button(action: {
-                        if vm.isRecording == true {
-                            vm.stopRecording()
-                        }
-                        vm.fetchAllRecording()
-                        showingList.toggle()
-                    }) {
-                        Image(systemName: "list.bullet")
-                            .foregroundColor(.black)
-                            .font(.system(size: 20, weight: .bold))
-                    }.sheet(isPresented: $showingList, content: {
-                        recordingListView()
-                    })
-                }
-                if vm.isRecording {
-                    
-                    VStack(alignment : .leading , spacing : -5){
-                        HStack (spacing : 3) {
-                            Image(systemName: vm.isRecording && vm.toggleColor ? "circle.fill" : "circle")
-                                .font(.system(size:10))
-                                .foregroundColor(.red)
-                            Text("Rec")
-                        }
-                        Text(vm.timer)
-                            .font(.system(size:60))
-                            .foregroundColor(.black)
-                    }
-                }
+                
+                // DecibelView를 추가합니다.
+                DecibelView(decibels: $decibels)
+                
+
+                
+//
                 ZStack {
-                    Image(systemName: vm.isRecording ? "stop.circle.fill" : "mic.circle.fill")
-                        .foregroundColor(.black)
-                        .font(.system(size: 45))
-                        .onTapGesture {
-                            if vm.isRecording == true {
-                                vm.stopRecording()
-                            } else {
-                                vm.startRecording()
-                            }
-                        }
+                    
+                    
+                    TimerView()
+
+                    
+                    
+//                    Image(systemName: vm.isRecording ? "stop.circle.fill" : "mic.circle.fill")
+//                        .foregroundColor(.black)
+//                        .font(.system(size: 45))
+//                        .onTapGesture {
+//                            if vm.isRecording == true {
+//                                vm.stopRecording()
+//                            } else {
+//                                vm.startRecording()
+//                            }
+//                        }
                 }
             }
         }

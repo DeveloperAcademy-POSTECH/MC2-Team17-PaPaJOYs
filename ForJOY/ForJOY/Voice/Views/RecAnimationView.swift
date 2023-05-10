@@ -3,141 +3,118 @@
 //  ForJOY
 //
 //  Created by Sehui Oh on 2023/05/04.
-// hehehe
+//
 
 import SwiftUI
 
+
 struct RecAnimationView: View {
-    
-    private enum AnimationProperties {
-            static let animationSpeed: Double = 4
-            static let timerDuration: TimeInterval = 3
-            static let blurRadius: CGFloat = 20
-        }
-        
-        @State private var timer = Timer.publish(every: AnimationProperties.timerDuration, on: .main, in: .common).autoconnect()
-        @ObservedObject private var animator = CircleAnimator(colors: AuroraColors.all)
+//    @EnvironmentObject var GlobalStore: globalStore
+    @State private var blueCircleOffset: CGSize = .init(width: -40, height: 0)
+    @State private var yellowCircleOffset: CGSize = .init(width: 80, height: 40)
+    @State var remainingTime: Double = 300.0 // Set the initial remaining time here
+    @State private var blurSize : Double = 50
     @State private var isRecEnd = false
     
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect() // Timer to decrement the remaining time
     
     var body: some View {
-        
         ZStack{
-            ZStack {
+//            Color("JoyDarkG")
+//                .ignoresSafeArea()
+            VStack {
                 ZStack {
-                    ForEach(animator.circles) { circle in
-                        //                            MovingCircle(originOffset: circle.position)
-                        MovingCircle(originOffset: isRecEnd ? CGPoint(x: 0.5, y: 0.5) : circle.position)
-                            .foregroundColor(circle.color)
+                    Circle()
+                        .fill(Color("JoyBlue"))
+//                        .frame(width: GlobalStore.circleX_1 * 175, height: GlobalStore.circleY_1 * 175) //데시벨 값에 따라서 크기수정 되게 GlobalStore.circle
+                        .frame(width: 175, height: 175)
+                        .offset(blueCircleOffset)
+                        .blur(radius: blurSize)
+                    
+                    Circle()
+                        .fill(Color("JoyYellow"))
+//                        .frame(width: GlobalStore.circleX_2 * 120, height: GlobalStore.circleY_2 * 120) //데시벨 값에 따라서 크기수정 되게 GlobalStore.circle
+                        .frame(width: 120, height: 120)
+                        .offset(yellowCircleOffset)
+                        .blur(radius: blurSize)
+                }
+                Text("Remaining Time: \(Int(remainingTime))")
+                    .font(.headline)
+                    .padding()
+                Button("RecEnd") {
+                    isRecEnd.toggle()
+                    remainingTime = 10
+                }
+            }
+        }
+        .onAppear {
+            animateCircles()
+        }
+        .onReceive(timer) { _ in
+            
+            if remainingTime > 0 {
+                remainingTime -= 1
+                
+                if Int(remainingTime) % 3 == 0 { // Move the circles randomly every 5 seconds
+                    withAnimation(Animation.easeInOut(duration: 7)) {
+                        blueCircleOffset = getRandomOffset()
+                        yellowCircleOffset = getRandomOffset()
+                        blurSize = (remainingTime/7) + 10
+                        //블러 사이즈 비례
+                        
                     }
-                }.blur(radius: AnimationProperties.blurRadius)
-                
-            }
-            .background(AuroraColors.backgroundColor)
-            .onDisappear {
-                timer.upstream.connect().cancel()
-            }
-            .onAppear {
-                animateCircles()
-                timer = Timer.publish(every: AnimationProperties.timerDuration, on: .main, in: .common).autoconnect()
-            }
-            .onReceive(timer) { _ in
-                if isRecEnd {
-                    timer.upstream.connect().cancel()
+                } else if Int(remainingTime)-297 > 0 {
+                    withAnimation(Animation.easeInOut(duration: 7)) {
+                        blueCircleOffset = .init(width: 20, height: 60)
+                        yellowCircleOffset = .init(width: 50, height: 00)
+                        blurSize = (remainingTime/7) + 10
+                    }
                 }
-                animateCircles()
-            }
-        
-            Button("RecEnd") {
-                isRecEnd.toggle()
-            }
-            
-        }
-            }
-            
-            private func animateCircles() {
-                withAnimation(.easeInOut(duration: AnimationProperties.animationSpeed)) {
-                    animator.animate()
+            }else if Int(remainingTime) == 0{
+                withAnimation(Animation.easeInOut(duration: 3)) {
+                    blueCircleOffset = .init(width: -40, height: 0)
+                    yellowCircleOffset = .init(width: 70, height: 70)
+                    blurSize = 0
                 }
-                if animator.circles.allSatisfy({ $0.position == CGPoint(x: 0.5, y: 0.5) }) {
-                    isRecEnd = true
-                }
-            }
-            
-        }
-
-        private enum AuroraColors {
-            static var all: [Color] {
-                [
-                    Color("JoyBlue"),
-                    Color("JoyYellow"),
-                ]
-            }
-            
-            static var backgroundColor: Color {
-                Color("JoyDarkG")
             }
         }
+//        .onReceive(GlobalStore.$decibels) { value in  //데시벨 값에 따라서 크기수정 되게 GlobalStore.circle
+//            if value < 40 {
+//                self.GlobalStore.circleX_1 = 2.0
+//                self.GlobalStore.circleY_1 = 2.0
+//                self.GlobalStore.circleX_2 = 1.0
+//                self.GlobalStore.circleY_2 = 1.0
+//            } else if value > 40 {
+//                self.GlobalStore.circleX_1 = 1.0
+//                self.GlobalStore.circleY_1 = 1.0
+//                self.GlobalStore.circleX_2 = 2.0
+//                self.GlobalStore.circleY_2 = 2.0  //데시벨 값에 따라서 크기수정 되게 GlobalStore.circle
+//            }
+//        }
 
-        private struct MovingCircle: Shape {
-            
-            var originOffset: CGPoint
-            
-            var animatableData: CGPoint.AnimatableData {
-                get {
-                    originOffset.animatableData
-                }
-                set {
-                    originOffset.animatableData = newValue
-                }
-            }
-            
-            func path(in rect: CGRect) -> Path {
-                var path = Path()
-                
-                let adjustedX = rect.width * originOffset.x
-                let adjustedY = rect.height * originOffset.y
-                let smallestDimension = min(rect.width, rect.height)
-                path.addArc(center: CGPoint(x: adjustedX, y: adjustedY), radius: smallestDimension/2, startAngle: .zero, endAngle: .degrees(360), clockwise: true)
-                return path
-            }
-        }
-
-        private class CircleAnimator: ObservableObject {
-            class Circle: Identifiable {
-                internal init(position: CGPoint, color: Color) {
-                    self.position = position
-                    self.color = color
-                }
-                var position: CGPoint
-                let id = UUID().uuidString
-                let color: Color
-            }
-            
-            @Published private(set) var circles: [Circle] = []
-            
-            
-            init(colors: [Color]) {
-                circles = colors.map({ color in
-                    Circle(position: CircleAnimator.generateRandomPosition(), color: color)
-                })
-            }
-            
-            func animate() {
-                objectWillChange.send()
-                for circle in circles {
-                    circle.position = CircleAnimator.generateRandomPosition()
-                }
-            }
-            
-            static func generateRandomPosition() -> CGPoint {
-                CGPoint(x: CGFloat.random(in: 0 ... 1), y: CGFloat.random(in: 0 ... 1))
-        
-
-        
         
     }
+    
+    func animateCircles() {
+        if remainingTime > 0 {
+            withAnimation(Animation.easeInOut(duration: 4)) {
+                blueCircleOffset = getRandomOffset()
+                yellowCircleOffset = getRandomOffset()
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + remainingTime) {
+            animateCircles()
+        }
+    }
+    
+    func getRandomOffset() -> CGSize {
+        let x = CGFloat.random(in: -50...80)
+        let y = CGFloat.random(in: -60...60)
+        return CGSize(width: x, height: y)
+    }
 }
+
 
 struct RecAnimationView_Previews: PreviewProvider {
     static var previews: some View {

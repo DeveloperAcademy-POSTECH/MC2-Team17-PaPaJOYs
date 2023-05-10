@@ -31,81 +31,103 @@ struct CameraView: View {
                     }
                 )
             VStack {
-                HStack {
-                    Button(action: {viewModel.switchFlash()}) {
-                        Image(systemName: viewModel.isFlashOn ? "bolt.fill" : "bolt")
-                            .foregroundColor(viewModel.isFlashOn ? .yellow : .white)
+                ZStack {
+                    Rectangle()
+                        .fill(Color("JoyDarkG"))
+                        .ignoresSafeArea()
+                        .frame(height: 100)
+                        .opacity(0.5)
+                    HStack {
+                        Button(action: {viewModel.switchFlash()}) {
+                            Image(systemName: viewModel.isFlashOn ? "bolt.fill" : "bolt")
+                                .foregroundColor(viewModel.isFlashOn ? Color("JoyYellow") : .white)
+                        }
+                        .padding(.horizontal, 20)
+                        
+                        Button(action: {viewModel.switchSilent()}) {
+                            Image(systemName: viewModel.isSilentModeOn ? "bell.fill" : "bell")
+                                .foregroundColor(viewModel.isSilentModeOn ? Color("JoyYellow") : .white)
+                        }
+                        .padding(.horizontal, 20)
                     }
-                    .padding(.horizontal, 30)
-                    
-                    Button(action: {viewModel.switchSilent()}) {
-                        Image(systemName: viewModel.isSilentModeOn ? "speaker.fill" : "speaker")
-                            .foregroundColor(viewModel.isSilentModeOn ? .yellow : .white)
-                    }
-                    .padding(.horizontal, 30)
+                    .font(.system(size: 25))
+                    .padding()
                 }
-                .font(.system(size: 25))
-                .padding()
                 
                 Spacer()
                 
-                HStack {
-                    // 미리보기 -> 갤러리
-                    PhotosPicker(selection: $selectedItem, maxSelectionCount: 1, matching: .images) {
-                        if let previewImage = viewModel.recentImage {
-                            Image(uiImage: previewImage)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 75, height: 75)
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .aspectRatio(1, contentMode: .fit)
-                        } else {
-                            RoundedRectangle(cornerRadius: 15)
-                                .stroke(lineWidth:  3)
-                                .foregroundColor(.white)
-                                .frame(width: 75, height: 75)
-                        }
-                    }
-                    .padding()
-                    .onChange(of: selectedItem) { newValue in
-                        guard let item = selectedItem.first else { return }
-                        item.loadTransferable(type: Data.self) { result in
-                            switch result {
-                            case .success(let data):
-                                if let data = data {
-                                    self.data = data
+                ZStack {
+                    Rectangle()
+                        .fill(Color("JoyDarkG"))
+                        .ignoresSafeArea()
+                        .frame(height: 130)
+                        .opacity(0.5)
+                    HStack {
+                            // 미리보기 -> 갤러리
+                            PhotosPicker(selection: $selectedItem, maxSelectionCount: 1, matching: .images) {
+                                if let previewImage = viewModel.recentImage {
+                                    Image(uiImage: previewImage)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 65, height: 65)
+                                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                                        .aspectRatio(1, contentMode: .fit)
+                                        .padding()
                                 } else {
-                                    print("Data is nill!")
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .stroke(lineWidth:  3)
+                                        .foregroundColor(.white)
+                                        .frame(width: 65, height: 65)
                                 }
-                            case .failure(let failure):
-                                fatalError("\(failure)")
                             }
+                            .preferredColorScheme(.dark)
+                            .tint(Color("JoyBlue"))
+                            //                    .padding()
+                            .onChange(of: selectedItem) { newValue in
+                                guard let item = selectedItem.first else { return }
+                                item.loadTransferable(type: Data.self) { result in
+                                    switch result {
+                                    case .success(let data):
+                                        if let data = data {
+                                            self.data = data
+                                        } else {
+                                            print("Data is nill!")
+                                        }
+                                    case .failure(let failure):
+                                        fatalError("\(failure)")
+                                    }
+                                }
+                            }
+                            .frame(width: 100, height: 100)
+                            
+                            Spacer()
+                            
+                            Button(action: {viewModel.capturePhoto()}) {
+                                Image(systemName: "button.programmable")
+                                    .resizable()
+                                    .font(.system(size: 16, weight: .thin))
+                                    .frame(width: 85, height: 85)
+                                //                            .padding()
+                            }
+                            .frame(width: 100, height: 100)
+                            
+                            Spacer()
+                            
+                            Button(action: {viewModel.changeCamera()}) {
+                                Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
+                                    .resizable()
+                                    .font(.system(size: 16, weight: .light))
+                                    .scaledToFit()
+                                    .frame(width: 60, height: 60)
+                                    .padding()
+                            }
+                            .frame(width: 100, height: 100)
                         }
-                    }
-                    
-                    Spacer()
-                    
-                    Button(action: {viewModel.capturePhoto()}) {
-                        Circle()
-                            .stroke(lineWidth: 5)
-                            .frame(width: 75, height: 75)
-                            .padding()
-                    }
-                    
-                    Spacer()
-                    
-                    Button(action: {viewModel.changeCamera()}) {
-                        Image(systemName: "arrow.triangle.2.circlepath.camera")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 50, height: 50)
-                    }
-                    .frame(width: 75, height: 75)
-                    .padding()
                 }
             }
             .foregroundColor(.white)
         }
+        .background(Color("JoyDarkG"))
         .opacity(viewModel.shutterEffect ? 0 : 1)
     }
 }
@@ -125,7 +147,7 @@ struct CameraPreviewView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> VideoPreviewView {
         let view = VideoPreviewView()
-        
+    
         view.backgroundColor = .black
         view.videoPreviewLayer.videoGravity = .resizeAspectFill
         view.videoPreviewLayer.cornerRadius = 0

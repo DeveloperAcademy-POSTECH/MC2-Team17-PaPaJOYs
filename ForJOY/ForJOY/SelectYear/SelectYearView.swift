@@ -10,17 +10,18 @@
 import SwiftUI
 
 struct SelectYearView: View {
+    @State var isNewest = true
     var body: some View {
         VStack(spacing: 20) {
-            HeaderView()
-//            Spacer()
-            AlbumView()
+            HeaderView(isNewest: $isNewest)
+            AlbumView(isNewest: $isNewest)
         }
     }
 }
 
 struct HeaderView: View {
     @ObservedObject var viewModel = TestViewModel()
+    @Binding var isNewest: Bool
     var body: some View {
         VStack(spacing: 10) {
             HStack {
@@ -30,16 +31,30 @@ struct HeaderView: View {
                 .padding(.leading, 20)
                 Spacer()
                 Menu("정렬") {
-                    Button("최근부터 보기", action: {})
-                    Button("과거부터 보기", action: {})
+                    Button(action: {isNewest = true}) {
+                        HStack {
+                            Text("최근부터 보기")
+                            Spacer()
+                            if isNewest {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                    }
+                    Button(action: {isNewest = false}) {
+                        Text("과거부터 보기")
+                        Spacer()
+                        if !isNewest {
+                            Image(systemName: "checkmark")
+                        }
+                    }
                 }
                 .padding(.trailing, 20)
             }
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(viewModel.testData) { i in
-                        TagView(name: i.tagName)
+                    ForEach(viewModel.testName, id: \.self) { name in
+                        TagView(name: name)
                     }
                 }
             }
@@ -67,91 +82,44 @@ struct TagView: View {
 }
 
 struct AlbumView: View {
+    @ObservedObject var viewModel = TestViewModel()
+    @Binding var isNewest: Bool
+    
+    // 데이터를 연도 단위로 묶어주기
+    var YearGroup: [String: [TestModel]] {
+        var data = Dictionary(grouping: viewModel.testData) { i in
+            i.year
+        }
+        for(key, value) in data {
+            data[key] = value.sorted(by: {$0.idx > $1.idx})
+        }
+        return data
+    }
+    var yearKey: [String] {
+        var temp = YearGroup.map({ $0.key }).sorted()
+        
+        return isNewest ? temp.reversed() : temp
+    }
+    // Grid를 사용하기 위한..?!
+    var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
+    
     var body: some View {
         ScrollView {
-            VStack(spacing: 20) {
-                HStack {
+            LazyVGrid(columns: columns) {
+                ForEach(yearKey, id: \.self) { i in
                     VStack {
                         Button(action: {}) {
-                            Rectangle()
-                                .frame(width: screenWidth * 0.42, height: screenWidth * 0.42)
+                            YearGroup[i]![0].image
+                                .resizable()
+                                .scaledToFit()
                         }
-                        Text("2023")
+                        Text(i)
                     }
-                    .padding(.leading, 20)
-                    Spacer()
-                    VStack {
-                        Button(action: {}) {
-                            Rectangle()
-                                .frame(width: screenWidth * 0.42, height: screenWidth * 0.42)
-                        }
-                        Text("2022")
-                    }
-                    .padding(.trailing, 20)
-                }
-                HStack {
-                    VStack {
-                        Button(action: {}) {
-                            Rectangle()
-                                .frame(width: screenWidth * 0.42, height: screenWidth * 0.42)
-                        }
-                        Text("2021")
-                    }
-                    .padding(.leading, 20)
-                    Spacer()
-                    VStack {
-                        Button(action: {}) {
-                            Rectangle()
-                                .frame(width: screenWidth * 0.42, height: screenWidth * 0.42)
-                        }
-                        Text("2020")
-                    }
-                    .padding(.trailing, 20)
-                }
-                HStack {
-                    VStack {
-                        Button(action: {}) {
-                            Rectangle()
-                                .frame(width: screenWidth * 0.42, height: screenWidth * 0.42)
-                        }
-                        Text("2019")
-                    }
-                    .padding(.leading, 20)
-                    Spacer()
-                    VStack {
-                        Button(action: {}) {
-                            Rectangle()
-                                .frame(width: screenWidth * 0.42, height: screenWidth * 0.42)
-                        }
-                        Text("2018")
-                    }
-                    .padding(.trailing, 20)
-                }
-                
-                HStack {
-                    VStack {
-                        Button(action: {}) {
-                            Rectangle()
-                                .frame(width: screenWidth * 0.42, height: screenWidth * 0.42)
-                        }
-                        Text("2017")
-                    }
-                    .padding(.leading, 20)
-                    Spacer()
-                    VStack {
-                        Button(action: {}) {
-                            Rectangle()
-                                .frame(width: screenWidth * 0.42, height: screenWidth * 0.42)
-                        }
-                        Text("2016")
-                    }
-                    .padding(.trailing, 20)
                 }
             }
         }
     }
 }
-
 
 struct SelectYearView_Previews: PreviewProvider {
     static var previews: some View {
