@@ -51,7 +51,7 @@ struct CardView: View {
                         
                     }
                     
-                    HStack(spacing: -5) {
+                    HStack(spacing: -8) {
                         
                         Spacer().frame(width: 29)
                         
@@ -71,6 +71,7 @@ struct CardView: View {
                         
                         Slider(value: $currentTime, in: 0...remainingTime)
                             .accentColor(Color("JoyBlue"))
+                            .frame(width: 160)
                             .padding(.horizontal)
                             .onChange(of: currentTime) { time in
                                 let cmTime = CMTime(seconds: time, preferredTimescale: 1)
@@ -79,6 +80,7 @@ struct CardView: View {
                         
                             Text(timeString(time: remainingTime - currentTime))
                             .font(.system(size: 16))
+                            .frame(width: 40)
                                 .foregroundColor(Color("JoyLightG"))
                                 .padding(.trailing)
                         
