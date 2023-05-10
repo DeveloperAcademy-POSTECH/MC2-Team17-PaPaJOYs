@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import Combine
 
 struct TimerView: View {
 
@@ -16,8 +16,8 @@ struct TimerView: View {
     @State var settingTime =  30.0
     @State var isRecEnd : Bool = false
     @State var recProgress : Double = 0.0
-
-    let timer2 = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State var decibels: CGFloat = 0
+    @State var timer2 = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
 
     func timeString(from time: TimeInterval) -> String {
@@ -64,7 +64,7 @@ struct TimerView: View {
                     } else {
                         
                         ZStack{
-                            RecAnimationView(remainingTime: $remainingTime)
+                            RecAnimationView(remainingTime: $remainingTime, decibels: $decibels)
                                 .mask{
                                     Circle()
                                         .frame(width: 240, height: 240)

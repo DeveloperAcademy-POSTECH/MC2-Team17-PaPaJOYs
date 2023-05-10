@@ -6,7 +6,7 @@
 //  why cant commit?
 
 import SwiftUI
-
+import Combine
 
 struct RecAnimationView: View {
 //    @EnvironmentObject var GlobalStore: globalStore
@@ -17,7 +17,13 @@ struct RecAnimationView: View {
     @State private var blurSize : Double = 50
 //    @State private var isRecEnd = false
     
-    let timer3 = Timer.publish(every: 1, on: .main, in: .common).autoconnect() // Timer to decrement the remaining time
+        @State var circleX_1: CGFloat = 1.0
+        @State var circleX_2: CGFloat = 1.0
+        @State var circleY_1: CGFloat = 1.0
+        @State var circleY_2: CGFloat = 1.0
+        @Binding var decibels : CGFloat
+    
+    var timer3 = Timer.publish(every: 1, on: .main, in: .common).autoconnect() // Timer to decrement the remaining time
     
     var body: some View {
         ZStack{
@@ -28,15 +34,15 @@ struct RecAnimationView: View {
                     
                     Circle()
                         .fill(Color("JoyBlue"))
-//                        .frame(width: GlobalStore.circleX_1 * 175, height: GlobalStore.circleY_1 * 175) //데시벨 값에 따라서 크기수정 되게 GlobalStore.circle
-                        .frame(width: 175, height: 175)
+                        .frame(width: circleX_1 * 175, height: circleY_1 * 175) //데시벨 값에 따라서 크기수정 되게 GlobalStore.circle
+//                        .frame(width: 175, height: 175)
                         .offset(blueCircleOffset)
                         .blur(radius: blurSize)
                     
                     Circle()
                         .fill(Color("JoyYellow"))
-//                        .frame(width: GlobalStore.circleX_2 * 120, height: GlobalStore.circleY_2 * 120) //데시벨 값에 따라서 크기수정 되게 GlobalStore.circle
-                        .frame(width: 120, height: 120)
+                        .frame(width: circleX_2 * 120, height: circleY_2 * 120) //데시벨 값에 따라서 크기수정 되게 GlobalStore.circle
+//                        .frame(width: 120, height: 120)
                         .offset(yellowCircleOffset)
                         .blur(radius: blurSize)
                     
@@ -83,19 +89,6 @@ struct RecAnimationView: View {
                 }
             }
         }
-//        .onReceive(GlobalStore.$decibels) { value in  //데시벨 값에 따라서 크기수정 되게 GlobalStore.circle
-//            if value < 40 {
-//                self.GlobalStore.circleX_1 = 2.0
-//                self.GlobalStore.circleY_1 = 2.0
-//                self.GlobalStore.circleX_2 = 1.0
-//                self.GlobalStore.circleY_2 = 1.0
-//            } else if value > 40 {
-//                self.GlobalStore.circleX_1 = 1.0
-//                self.GlobalStore.circleY_1 = 1.0
-//                self.GlobalStore.circleX_2 = 2.0
-//                self.GlobalStore.circleY_2 = 2.0  //데시벨 값에 따라서 크기수정 되게 GlobalStore.circle
-//            }
-//        }
 
         
     }

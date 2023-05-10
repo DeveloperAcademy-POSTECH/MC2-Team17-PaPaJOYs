@@ -10,7 +10,7 @@ import SwiftUI
 
 struct VoiceView: View {
     
-    @EnvironmentObject var GlobalStore: globalStore
+//    @EnvironmentObject var GlobalStore: globalStore
     // VoiceViewModel의 인스턴스를 생성하여 관찰합니다.
     @ObservedObject var vm = VoiceViewModel()
     // 녹음 파일 리스트를 보여줄지 여부를 나타내는 상태 변수입니다.
@@ -22,7 +22,7 @@ struct VoiceView: View {
     // 효과음2을 재생할지 여부를 나타내는 상태 변수입니다.
     @State private var effect2 = false
     
-    @State var decibels: CGFloat = 0
+//    @State var decibels: CGFloat = 0
     
     var body: some View {
         
@@ -32,7 +32,7 @@ struct VoiceView: View {
             VStack{
                 
                 // DecibelView를 추가합니다.
-                DecibelView(decibels: $decibels)
+//                DecibelView(decibels: $decibels)
                 
 
                 
