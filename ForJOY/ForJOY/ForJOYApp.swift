@@ -16,6 +16,8 @@ struct ForJOYApp: App {
             ContentView()
 //            CameraView()
                 .environmentObject(GlobalStore) //GlobalStore.swift 의 ObservableObject/Published
+//            SelectYearView()
+//                .accentColor(.white)
         }
     }
 }

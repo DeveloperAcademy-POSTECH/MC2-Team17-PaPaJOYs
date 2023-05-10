@@ -79,6 +79,7 @@ struct HeaderView: View {
 struct TagView: View {
     @ObservedObject var viewModel = TestViewModel()
     @State var isAllSelect = true
+    @State var selection = "All"
     
     // 데이터를 태그 단위로 묶어주기
     var TagGroup: [String: [TestModel]] {
@@ -98,11 +99,20 @@ struct TagView: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 5) {
+                // 확인용 코드
+//                Text(selection)
+//                    .foregroundColor(.white)
                 Button {
-                    isAllSelect.toggle()
-                    if isAllSelect {
-                        viewModel.testName = Dictionary(uniqueKeysWithValues: viewModel.testName.map { ($0.key, true) })
+                    selection = "All"
+                    if !isAllSelect {
+                        isAllSelect.toggle()
                     }
+//                    if isAllSelect {
+//                        viewModel.testName = Dictionary(uniqueKeysWithValues: viewModel.testName.map { ($0.key, true) })
+//                    }
+//                    else {
+//                        isAllSelect.toggle()
+//                    }
                 } label: {
                     RoundedRectangle(cornerRadius: 10)
                         .frame(width: 75, height: 30)
@@ -117,9 +127,11 @@ struct TagView: View {
                 }
                 ForEach(tagKey, id: \.self) { i in
                     Button {
-                        if isAllSelect { isAllSelect.toggle()
-                            viewModel.testName = Dictionary(uniqueKeysWithValues: viewModel.testName.map { ($0.key, false) })
+                        selection = i
+                        if isAllSelect {
+                            isAllSelect.toggle()
                         }
+                        viewModel.testName = Dictionary(uniqueKeysWithValues: viewModel.testName.map { ($0.key, false) })
                         viewModel.testName[i]!.toggle()
                     } label: {
                         RoundedRectangle(cornerRadius: 10)
@@ -136,7 +148,6 @@ struct TagView: View {
                 }
             }
         }
-//        .frame(width: screenWidth * 0.6)
     }
 }
 
@@ -166,10 +177,7 @@ struct AlbumView: View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 15) {
                 ForEach(yearKey, id: \.self) { i in
-//                    Button(action: {}) {
-//                        AlbumSubView(image: YearGroup[i]![0].image, year: i)
-//                    }
-                    NavigationLink(destination: GalleryView()) {
+                    NavigationLink(destination: GalleryView(tagName: "조이서", year: i)) {
                         AlbumSubView(image: YearGroup[i]![0].image, year: i)
                     }
                 }
