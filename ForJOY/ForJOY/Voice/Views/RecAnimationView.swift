@@ -7,10 +7,11 @@
 
 import SwiftUI
 import Combine
+import AVFoundation
 
 struct RecAnimationView: View {
 //    @EnvironmentObject var GlobalStore: globalStore
-    @ObservedObject var vm = VoiceViewModel()
+    @ObservedObject var vm: VoiceViewModel
     @State private var blueCircleOffset: CGSize = .init(width: -40, height: 0)
     @State private var yellowCircleOffset: CGSize = .init(width: 80, height: 40)
     @Binding var remainingTime: TimeInterval // Set the initial remaining time here
@@ -23,7 +24,17 @@ struct RecAnimationView: View {
         @State var circleY_2: CGFloat = 1.0
         @Binding var decibels : CGFloat
     
+    // record에서도 사용해야함
     var timer3 = Timer.publish(every: 1, on: .main, in: .common).autoconnect() // Timer to decrement the remaining time
+    
+    let audioRecorder = try! AVAudioRecorder(
+        url: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("audio.m4a"), // 녹음 파일의 저장 경로
+        settings: [
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC), // 오디오 인코딩 포맷 설정
+            AVSampleRateKey: 44100, // 샘플 레이트 설정
+            AVNumberOfChannelsKey: 1, // 채널 수 설정
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue // 오디오 인코딩 품질 설정
+        ])
     
     var body: some View {
         ZStack{
@@ -48,7 +59,10 @@ struct RecAnimationView: View {
                     
                 }
                 
-                Text("Remaining Time: \(Int(remainingTime))")
+//                Text("Remaining Time: \(Int(remainingTime))")
+//                    .font(.headline)
+//                    .padding()
+                Text("Decibels: \(Int(decibels))")
                     .font(.headline)
                     .padding()
                 
@@ -61,34 +75,37 @@ struct RecAnimationView: View {
         .onAppear {
             animateCircles()
         }
-        .onReceive(timer3) { _ in
-            
-            if remainingTime > 0 {
-                remainingTime -= 1
-                
-                if Int(remainingTime) % 3 == 0 { // Move the circles randomly every 5 seconds
-                    withAnimation(Animation.easeInOut(duration: 2)) {
-                        blueCircleOffset = getRandomOffset()
-                        yellowCircleOffset = getRandomOffset()
-                        blurSize = (remainingTime/7) + 10
-                        //블러 사이즈 비례
-                        
-                    }
-                } else if Int(remainingTime)-297 > 0 {
-                    withAnimation(Animation.easeInOut(duration: 2)) {
-                        blueCircleOffset = .init(width: 20, height: 60)
-                        yellowCircleOffset = .init(width: 50, height: 00)
-                        blurSize = (remainingTime/7) + 10
-                    }
-                }
-            }else if Int(remainingTime) == 0{
-                withAnimation(Animation.easeInOut(duration: 3)) {
-                    blueCircleOffset = .init(width: -40, height: 0)
-                    yellowCircleOffset = .init(width: 70, height: 70)
-                    blurSize = 10
-                }
-            }
+        .onAppear { // 뷰가 생성될 때(setup 함수 대체) 실행할 블록
+            setUpRecord() // 녹음 세팅 설정
         }
+//        .onReceive(timer3) { _ in
+//
+//            if remainingTime > 0 {
+//                remainingTime -= 1
+//
+//                if Int(remainingTime) % 3 == 0 { // Move the circles randomly every 5 seconds
+//                    withAnimation(Animation.easeInOut(duration: 2)) {
+//                        blueCircleOffset = getRandomOffset()
+//                        yellowCircleOffset = getRandomOffset()
+//                        blurSize = (remainingTime/7) + 10
+//                        //블러 사이즈 비례
+//
+//                    }
+//                } else if Int(remainingTime)-297 > 0 {
+//                    withAnimation(Animation.easeInOut(duration: 2)) {
+//                        blueCircleOffset = .init(width: 20, height: 60)
+//                        yellowCircleOffset = .init(width: 50, height: 00)
+//                        blurSize = (remainingTime/7) + 10
+//                    }
+//                }
+//            }else if Int(remainingTime) == 0{
+//                withAnimation(Animation.easeInOut(duration: 3)) {
+//                    blueCircleOffset = .init(width: -40, height: 0)
+//                    yellowCircleOffset = .init(width: 70, height: 70)
+//                    blurSize = 10
+//                }
+//            }
+//        }
 
         
     }
@@ -98,6 +115,29 @@ struct RecAnimationView: View {
             withAnimation(Animation.easeInOut(duration: 2)) {
                 blueCircleOffset = getRandomOffset()
                 yellowCircleOffset = getRandomOffset()
+//                remainingTime -= 1
+                
+                if Int(remainingTime) % 3 == 0 { // Move the circles randomly every 5 seconds
+                    withAnimation(Animation.easeInOut(duration: 2)) {
+                        blueCircleOffset = getRandomOffset()
+                        yellowCircleOffset = getRandomOffset()
+                        blurSize = (remainingTime/7) + 10
+                        //블러 사이즈 비례d
+                        
+                    }
+                } else if Int(remainingTime)-297 > 0 {
+                    withAnimation(Animation.easeInOut(duration: 2)) {
+                        blueCircleOffset = .init(width: 20, height: 60)
+                        yellowCircleOffset = .init(width: 50, height: 00)
+                        blurSize = (remainingTime/7) + 10
+                    }
+                }
+            }
+        }else if Int(remainingTime) == 0{
+            withAnimation(Animation.easeInOut(duration: 3)) {
+                blueCircleOffset = .init(width: -40, height: 0)
+                yellowCircleOffset = .init(width: 70, height: 70)
+                blurSize = 10
             }
         }
         
@@ -110,6 +150,24 @@ struct RecAnimationView: View {
         let x = CGFloat.random(in: -50...80)
         let y = CGFloat.random(in: -60...60)
         return CGSize(width: x, height: y)
+    }
+    
+    
+    func setUpRecord() { // 녹음 세팅을 설정하는 함수
+        try! AVAudioSession.sharedInstance().setCategory(.record) // 녹음 모드로 세팅
+        try! AVAudioSession.sharedInstance().setActive(true) // 오디오 세션 활성화
+        audioRecorder.prepareToRecord() // 녹음 준비
+        audioRecorder.isMeteringEnabled = true // 녹음 시 미터링 기능 사용
+        audioRecorder.record() // 녹음 시작
+
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in // 0.1초 간격으로 실행되는 타이머 생성
+            record() // record() 메서드 호출
+        }
+    }
+
+    func record() { // 녹음을 실행하고 데시벨 값을 업데이트하는 함수
+        audioRecorder.updateMeters() // 미터링 값을 업데이트
+        decibels = -CGFloat(audioRecorder.averagePower(forChannel: 0)) // 현재 데시벨 값을 decibels 속성에 저장
     }
 }
 
