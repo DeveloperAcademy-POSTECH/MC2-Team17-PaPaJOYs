@@ -43,7 +43,6 @@ struct CarouselView: View {
                             Spacer()
                             
                             self.views[i]
-                            //                             Text("\(i)")
                                 .frame(width: 300, height: self.getHeight(i))
                                 .animation(.interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
                                 .background(Color.white)
