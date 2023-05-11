@@ -11,10 +11,10 @@ import Combine
 struct TimerView: View {
 
     @ObservedObject var vm: VoiceViewModel
-    @State var isRecOn : Bool = false
+//    @State var isRecOn : Bool = false
     @State var remainingTime: TimeInterval = 30.0
     @State var settingTime =  30.0
-    @State var isRecEnd : Bool = false
+//    @State var isRecEnd : Bool = false
     @State var recProgress : Double = 0.0
     @State var decibels: CGFloat = 0
     @State var timer2 = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -64,6 +64,7 @@ struct TimerView: View {
                     } else {
                         
                         ZStack{
+                            
                             RecAnimationView(vm: vm, remainingTime: $remainingTime, decibels: $decibels)
                                 .mask{
                                     Circle()

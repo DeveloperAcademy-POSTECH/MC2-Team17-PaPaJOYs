@@ -57,14 +57,20 @@ struct RecAnimationView: View {
                         .offset(yellowCircleOffset)
                         .blur(radius: blurSize)
                     
+                    VStack{
+                        Text("Decibels: \(Int(decibels))")
+                            .font(.headline)
+                            .padding()
+                        Text("Remaining Time : \(Int(remainingTime))")
+                            .font(.headline)
+                            .padding()
+                    }
+                    
                 }
                 
 //                Text("Remaining Time: \(Int(remainingTime))")
 //                    .font(.headline)
 //                    .padding()
-                Text("Decibels: \(Int(decibels))")
-                    .font(.headline)
-                    .padding()
                 
 //                Button("RecEnd") {
 //                    vm.isEndRecording.toggle()
@@ -74,7 +80,6 @@ struct RecAnimationView: View {
         }
         .onAppear {
             animateCircles()
-            circleSize()
         }
         .onAppear { // 뷰가 생성될 때(setup 함수 대체) 실행할 블록
             setUpRecord() // 녹음 세팅 설정
