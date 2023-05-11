@@ -14,55 +14,59 @@ struct CameraView: View {
     @ObservedObject var viewModel = CameraViewModel()
     @State var selectedItem: [PhotosPickerItem] = []
     @State var data: Data?
+    @State var selectedImage: UIImage?
+    @State var isChoosen = false
+    @State var isTaken = false
     
     var body: some View {
-        ZStack {
-            viewModel.cameraPreview
-                .ignoresSafeArea()
-                .onAppear {
-                    viewModel.configure()
-                }
-                .gesture(MagnificationGesture()
-                    .onChanged { val in
-                        viewModel.zoom(factor: val)
+        NavigationView(){
+            ZStack {
+                viewModel.cameraPreview
+                    .ignoresSafeArea()
+                    .onAppear {
+                        viewModel.configure()
                     }
-                    .onEnded { _ in
-                        viewModel.zoomInitialize()
-                    }
-                )
-            VStack {
-                ZStack {
-                    Rectangle()
-                        .fill(Color("JoyDarkG"))
-                        .ignoresSafeArea()
-                        .frame(height: 100)
-                        .opacity(0.5)
-                    HStack {
-                        Button(action: {viewModel.switchFlash()}) {
-                            Image(systemName: viewModel.isFlashOn ? "bolt.fill" : "bolt")
-                                .foregroundColor(viewModel.isFlashOn ? Color("JoyYellow") : .white)
+                    .gesture(MagnificationGesture()
+                        .onChanged { val in
+                            viewModel.zoom(factor: val)
                         }
-                        .padding(.horizontal, 20)
-                        
-                        Button(action: {viewModel.switchSilent()}) {
-                            Image(systemName: viewModel.isSilentModeOn ? "bell.fill" : "bell")
-                                .foregroundColor(viewModel.isSilentModeOn ? Color("JoyYellow") : .white)
+                        .onEnded { _ in
+                            viewModel.zoomInitialize()
                         }
-                        .padding(.horizontal, 20)
+                    )
+                VStack {
+                    ZStack {
+                        Rectangle()
+                            .fill(Color("JoyDarkG"))
+                            .ignoresSafeArea()
+                            .frame(height: 100)
+                            .opacity(0.5)
+                        HStack {
+                            Button(action: {viewModel.switchFlash()}) {
+                                Image(systemName: viewModel.isFlashOn ? "bolt.fill" : "bolt")
+                                    .foregroundColor(viewModel.isFlashOn ? Color("JoyYellow") : .white)
+                            }
+                            .padding(.horizontal, 20)
+                            
+                            Button(action: {viewModel.switchSilent()}) {
+                                Image(systemName: viewModel.isSilentModeOn ? "bell.fill" : "bell")
+                                    .foregroundColor(viewModel.isSilentModeOn ? Color("JoyYellow") : .white)
+                            }
+                            .padding(.horizontal, 20)
+                        }
+                        .font(.system(size: 25))
+                        .padding()
                     }
-                    .font(.system(size: 25))
-                    .padding()
-                }
-                
-                Spacer()
-                
-                ZStack {
-                    Rectangle()
-                        .fill(Color("JoyDarkG"))
-                        .ignoresSafeArea()
-                        .frame(height: 130)
-                        .opacity(0.5)
-                    HStack {
+                    
+                    Spacer()
+                    
+                    ZStack {
+                        Rectangle()
+                            .fill(Color("JoyDarkG"))
+                            .ignoresSafeArea()
+                            .frame(height: 130)
+                            .opacity(0.5)
+                        HStack {
                             // 미리보기 -> 갤러리
                             PhotosPicker(selection: $selectedItem, maxSelectionCount: 1, matching: .images) {
                                 if let previewImage = viewModel.recentImage {
@@ -90,6 +94,11 @@ struct CameraView: View {
                                     case .success(let data):
                                         if let data = data {
                                             self.data = data
+                                            selectedImage = UIImage(data: data)
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                                                isShowingInfoView = true
+                                                isChoosen = true
+                                            }
                                         } else {
                                             print("Data is nill!")
                                         }
@@ -101,15 +110,17 @@ struct CameraView: View {
                             .frame(width: 100, height: 100)
                             
                             Spacer()
-                            
-                            Button(action: {viewModel.capturePhoto()}) {
+                            Button(action: {
+                                viewModel.capturePhoto()
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    isTaken = true
+                                }
+                            }) {
                                 Image(systemName: "button.programmable")
                                     .resizable()
                                     .font(.system(size: 16, weight: .thin))
                                     .frame(width: 85, height: 85)
-                                //                            .padding()
-                            }
-                            .frame(width: 100, height: 100)
+                            }.frame(width: 100, height: 100)
                             
                             Spacer()
                             
@@ -122,13 +133,38 @@ struct CameraView: View {
                                     .padding()
                             }
                             .frame(width: 100, height: 100)
+                            
+                            if isTaken {
+                                if let image = viewModel.recentImage {
+                                    NavigationLink(
+                                        destination: InfoView(selectedImage: $selectedImage)
+                                                        .navigationBarBackButtonHidden(),
+                                        isActive: $isTaken
+                                    ){
+                                        EmptyView()
+                                    }
+                                    .onAppear {
+                                        selectedImage = image
+                                    }
+                                }
+                            } else if isChoosen {
+                                NavigationLink(
+                                    destination: InfoView(selectedImage: $selectedImage)
+                                                    .navigationBarBackButtonHidden(),
+                                    isActive: $isChoosen
+                                ){
+                                    EmptyView()
+                                }
+                            }
                         }
+                    }
                 }
+                .foregroundColor(.white)
             }
-            .foregroundColor(.white)
+            .background(Color("JoyDarkG"))
+            .opacity(viewModel.shutterEffect ? 0 : 1)
         }
-        .background(Color("JoyDarkG"))
-        .opacity(viewModel.shutterEffect ? 0 : 1)
+        .navigationBarBackButtonHidden()
     }
 }
 
