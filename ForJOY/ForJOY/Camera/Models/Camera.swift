@@ -18,6 +18,7 @@ class Camera: NSObject, ObservableObject {
     
     @Published var isCameraBusy = false
     @Published var recentImage: UIImage?
+    @Published var selectedImage: UIImage?
     @Published var isSelect: Bool = false
     
     func setUpCamera() {
