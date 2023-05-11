@@ -10,7 +10,6 @@
 		0E40FB022A0C904C00AFA66D /* AddDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40FB012A0C904C00AFA66D /* AddDoneView.swift */; };
 		0ECFA0252A0B3027009D3C5B /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECFA0232A0B3027009D3C5B /* InfoView.swift */; };
 		0ECFA0262A0B3027009D3C5B /* InfoTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECFA0242A0B3027009D3C5B /* InfoTagView.swift */; };
-		0ECFA0282A0C8859009D3C5B /* test.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0ECFA0272A0C8859009D3C5B /* test.jpeg */; };
 		3032387A2A00A876008A8093 /* ForJOYApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303238792A00A876008A8093 /* ForJOYApp.swift */; };
 		3032387E2A00A876008A8093 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3032387D2A00A876008A8093 /* Assets.xcassets */; };
 		303238812A00A876008A8093 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 303238802A00A876008A8093 /* Preview Assets.xcassets */; };
@@ -33,8 +32,6 @@
 		5B52BECC2A0358EA00320ECD /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52BECB2A0358EA00320ECD /* Camera.swift */; };
 		5B52BECE2A03590900320ECD /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52BECD2A03590900320ECD /* CameraViewModel.swift */; };
 		5B52BED02A03592400320ECD /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52BECF2A03592400320ECD /* CameraView.swift */; };
-		5BEA6C4C2A0B8A3B006C3FEE /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEA6C4A2A0B8A3A006C3FEE /* InfoView.swift */; };
-		5BEA6C4D2A0B8A3B006C3FEE /* InfoTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEA6C4B2A0B8A3A006C3FEE /* InfoTagView.swift */; };
 		AA44E15B2A089F9500DB9601 /* GlobalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA44E15A2A089F9500DB9601 /* GlobalStore.swift */; };
 		BE522DFD2A05A48D00D4AEEA /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE522DFC2A05A48D00D4AEEA /* CarouselView.swift */; };
 		BECC97372A05A54700E27120 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC97362A05A54700E27120 /* CardView.swift */; };
@@ -46,7 +43,6 @@
 		0E40FB012A0C904C00AFA66D /* AddDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDoneView.swift; sourceTree = "<group>"; };
 		0ECFA0232A0B3027009D3C5B /* InfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		0ECFA0242A0B3027009D3C5B /* InfoTagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTagView.swift; sourceTree = "<group>"; };
-		0ECFA0272A0C8859009D3C5B /* test.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test.jpeg; path = "../../../../Pictures/Photos Library.photoslibrary/originals/8/test.jpeg"; sourceTree = "<group>"; };
 		303238762A00A876008A8093 /* ForJOY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForJOY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		303238792A00A876008A8093 /* ForJOYApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForJOYApp.swift; sourceTree = "<group>"; };
 		3032387B2A00A876008A8093 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,7 +100,6 @@
 			isa = PBXGroup;
 			children = (
 				303238782A00A876008A8093 /* ForJOY */,
-				0ECFA0272A0C8859009D3C5B /* test.jpeg */,
 				303238772A00A876008A8093 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -121,8 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				5BEA6C492A0B8A3A006C3FEE /* Info */,
-				BECC97382A05A64300E27120 /* Carousel */,
-				5B52BEB72A03575500320ECD /* Camera */,
 				303238792A00A876008A8093 /* ForJOYApp.swift */,
 				3032387B2A00A876008A8093 /* ContentView.swift */,
 				307814402A08A18000231E6F /* ColorExtension.swift */,
@@ -333,7 +326,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				303238812A00A876008A8093 /* Preview Assets.xcassets in Resources */,
-				0ECFA0282A0C8859009D3C5B /* test.jpeg in Resources */,
 				3032387E2A00A876008A8093 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
