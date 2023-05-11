@@ -42,6 +42,7 @@ class CameraViewModel: ObservableObject {
                 
                 let fetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
                 
+                //TODO: Image 화질
                 if let asset = fetchResult.firstObject {
                     let requestOptions = PHImageRequestOptions()
                     requestOptions.deliveryMode = .fastFormat

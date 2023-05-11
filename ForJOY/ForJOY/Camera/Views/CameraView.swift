@@ -11,16 +11,15 @@ import Combine
 import PhotosUI
 
 struct CameraView: View {
-//    @ObservedObject var camera = Camera()
     @ObservedObject var viewModel = CameraViewModel()
     @State var selectedItem: [PhotosPickerItem] = []
     @State var data: Data?
     @State var selectedImage: UIImage?
-    @State private var isShowingInfoView = false
-    @State var newImage: UIImage?
+    @State var isChoosen = false
+    @State var isTaken = false
     
     var body: some View {
-        NavigationView {
+        NavigationView(){
             ZStack {
                 viewModel.cameraPreview
                     .ignoresSafeArea()
@@ -95,10 +94,10 @@ struct CameraView: View {
                                     case .success(let data):
                                         if let data = data {
                                             self.data = data
-//                                            newImage = UIImage(data: data)
-                                            
+                                            selectedImage = UIImage(data: data)
                                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                                isShowingInfoView = true
+//                                                isShowingInfoView = true
+                                                isChoosen = true
                                             }
                                         } else {
                                             print("Data is nill!")
@@ -111,32 +110,17 @@ struct CameraView: View {
                             .frame(width: 100, height: 100)
                             
                             Spacer()
-                            
-                            Button(action: {viewModel.capturePhoto()
+                            Button(action: {
+                                viewModel.capturePhoto()
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                    isShowingInfoView = true
+                                    isTaken = true
                                 }
                             }) {
                                 Image(systemName: "button.programmable")
                                     .resizable()
                                     .font(.system(size: 16, weight: .thin))
                                     .frame(width: 85, height: 85)
-                                //                            .padding()
-                            }
-                            .frame(width: 100, height: 100)
-
-                            if isShowingInfoView {
-                                if let image = viewModel.recentImage {
-                                    NavigationLink(destination: InfoView(selectedImage: $selectedImage)
-                                        .navigationBarBackButtonHidden(),
-                                                   isActive: $isShowingInfoView) {
-                                        Text("Photo's in")
-                                    }
-                                                   .onAppear {
-                                                       selectedImage = image
-                                                   }
-                                }
-                            }
+                            }.frame(width: 100, height: 100)
                             
                             Spacer()
                             
@@ -149,6 +133,29 @@ struct CameraView: View {
                                     .padding()
                             }
                             .frame(width: 100, height: 100)
+                            
+                            if isTaken {
+                                if let image = viewModel.recentImage {
+                                    NavigationLink(
+                                        destination: InfoView(selectedImage: $selectedImage)
+                                                        .navigationBarBackButtonHidden(),
+                                        isActive: $isTaken
+                                    ){
+                                        EmptyView()
+                                    }
+                                    .onAppear {
+                                        selectedImage = image
+                                    }
+                                }
+                            } else if isChoosen {
+                                NavigationLink(
+                                    destination: InfoView(selectedImage: $selectedImage)
+                                                    .navigationBarBackButtonHidden(),
+                                    isActive: $isChoosen
+                                ){
+                                    EmptyView()
+                                }
+                            }
                         }
                     }
                 }
@@ -157,6 +164,7 @@ struct CameraView: View {
             .background(Color("JoyDarkG"))
             .opacity(viewModel.shutterEffect ? 0 : 1)
         }
+        .navigationBarBackButtonHidden()
     }
 }
 
