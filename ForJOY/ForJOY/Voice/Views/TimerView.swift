@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import AVFoundation
 
 struct TimerView: View {
 
@@ -19,16 +20,73 @@ struct TimerView: View {
     @State var decibels: CGFloat = 0
     @State var timer2 = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
-
+    
+    @State var blueCircleOffset: CGSize = .init(width: -40, height: 0)
+    @State var yellowCircleOffset: CGSize = .init(width: 80, height: 40)
+    @State var blurSize : Double = 50
+    
+    @State var circle1: Double = 1.0
+    @State var circle2: Double = 1.0
+    
+    
+    let audioRecorder = try! AVAudioRecorder(
+        url: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("audio.m4a"), // 녹음 파일의 저장 경로
+        settings: [
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC), // 오디오 인코딩 포맷 설정
+            AVSampleRateKey: 44100, // 샘플 레이트 설정
+            AVNumberOfChannelsKey: 1, // 채널 수 설정
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue // 오디오 인코딩 품질 설정
+        ])
+    
+    
+    
+    func getRandomOffset() -> CGSize {
+        let x = CGFloat.random(in: -50...80)
+        let y = CGFloat.random(in: -60...60)
+        return CGSize(width: x, height: y)
+    }
+    
+    func circleSize(){
+        if decibels > 70 {
+            circle1 = 0.8
+            circle2 = 1.0
+        }else{
+            circle1 = 1.0
+            circle2 = 0.8
+        }
+    }
+    
     func timeString(from time: TimeInterval) -> String {
         let minutes = Int(time) / 60 % 60
         let seconds = Int(time) % 60
         return String(format: "%02d:%02d", minutes, seconds)
     }
+    
+    func setUpRecord() { // 녹음 세팅을 설정하는 함수
+        try! AVAudioSession.sharedInstance().setCategory(.record) // 녹음 모드로 세팅
+        try! AVAudioSession.sharedInstance().setActive(true) // 오디오 세션 활성화
+        audioRecorder.prepareToRecord() // 녹음 준비
+        audioRecorder.isMeteringEnabled = true // 녹음 시 미터링 기능 사용
+        audioRecorder.record() // 녹음 시작
+
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in // 0.1초 간격으로 실행되는 타이머 생성
+            record()
+            // record() 메서드 호출
+        }
+    }
+
+    func record() { // 녹음을 실행하고 데시벨 값을 업데이트하는 함수
+        audioRecorder.updateMeters() // 미터링 값을 업데이트
+        decibels = 100+CGFloat(audioRecorder.averagePower(forChannel: 0))
+        // 현재 데시벨 값을 decibels 속성에 저장
+        withAnimation(Animation.easeInOut(duration: 0)) {
+            circleSize()
+        }
+    }
+    
 
 
     var body: some View {
-
         //Zstack2 START
         ZStack{
             //background color
@@ -65,12 +123,26 @@ struct TimerView: View {
                         
                         ZStack{
                             
-                            RecAnimationView(vm: vm, remainingTime: $remainingTime, decibels: $decibels)
-                                .mask{
+                            ZStack {
+                                
+                                Circle()
+                                    .fill(Color("JoyBlue"))
+                                    .frame(width: circle1 * 175, height: circle1 * 175) //데시벨 값에 따라서 크기수정 되게 GlobalStore.circle
+                                    .offset(blueCircleOffset)
+                                    .blur(radius: blurSize)
+                                
+                                Circle()
+                                    .fill(Color("JoyYellow"))
+                                    .frame(width: circle2 * 120, height: circle2 * 120) //데시벨 값에 따라서 크기수정 되게 GlobalStore.circle
+                                    .offset(yellowCircleOffset)
+                                    .blur(radius: blurSize)
+                            }
+                            .mask{
                                     Circle()
                                         .frame(width: 240, height: 240)
                                         .blur(radius: 10)
                                 }
+                            
                             
                             if vm.isRecording && !vm.isEndRecording {
                                 
@@ -87,39 +159,86 @@ struct TimerView: View {
                                 }
                             }else if !vm.isRecording && vm.isEndRecording {
                                 
+                                Circle()
+                                    .fill(Color.red)
+                                    .frame(width: 240)
+                                    .opacity(0.1)
+                                    
                             }
                             
                             
                         }
                     }
                         
-                        //timer count
-//                        Text("\(timeString(from: remainingTime))")
-//                            .foregroundColor(Color("JoyBlue"))
-//                            .font(.system(size:40,weight: .medium))
                     CircularProgressView(recProgress : $recProgress)
                         
                         
                     }//Zstack1 END
+                .onAppear(){
+                    setUpRecord()
+                }
 
                 Text("Progress \(recProgress)") // 임시로 표기
                 Text("Time\(timeString(from: remainingTime))") // 임시로 표기
                 Text("isEndRecording? \(vm.isEndRecording ? "true":"false")")
                 Text("isRecording? \(vm.isRecording ? "true":"false")")
+                Text("Decibels: \(Int(decibels))")
+                Text("circle1 : \(circle1)")
+                Text("circle2 : \(circle2)")
+                
 
             }//Vstack1 END
 
             
         }//Zstack2 END
-                        .onReceive(timer2) { _ in
-                            if !vm.isEndRecording{
-                                if vm.isRecording && remainingTime > 0 {
+        .onReceive(timer2) { _ in
+            if !vm.isEndRecording{
+                
+                if vm.isRecording && remainingTime > 0 {
+                    
+                    
                     remainingTime -= 1
                     recProgress += (1/settingTime)
+                    
+                    
+                    withAnimation(Animation.easeInOut(duration: 2)) {
+                        blueCircleOffset = getRandomOffset()
+                        yellowCircleOffset = getRandomOffset()
+                        
+                        
+                        if Int(remainingTime) % 3 == 0 { // Move the circles randomly every 5 seconds
+                            withAnimation(Animation.easeInOut(duration: 2)) {
+//                                blueCircleOffset = getRandomOffset()
+//                                yellowCircleOffset = getRandomOffset()
+                                blurSize = (remainingTime/7) + 10
+  
+                                //블러 사이즈 비례d
+                                
+                            }
+                        } else if Int(remainingTime)-297 > 0 {
+                            withAnimation(Animation.easeInOut(duration: 2)) {
+                                blueCircleOffset = .init(width: 20, height: 60)
+                                yellowCircleOffset = .init(width: 50, height: 00)
+                                blurSize = (remainingTime/7) + 10
+
+                            }
+                        }
+                    }
+                    
+                    
                 } else if remainingTime <= 0 {
+                    
+                    
                     vm.isRecording = false
                     vm.isEndRecording = true
                     vm.stopRecording()
+                    
+                    withAnimation(Animation.easeInOut(duration: 3)) {
+                        blueCircleOffset = .init(width: -40, height: 0)
+                        yellowCircleOffset = .init(width: 70, height: 70)
+                        blurSize = 10
+                    }
+                    
                 }
             }
         }
