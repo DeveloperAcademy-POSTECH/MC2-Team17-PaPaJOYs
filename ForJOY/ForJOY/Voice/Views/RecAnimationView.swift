@@ -57,14 +57,20 @@ struct RecAnimationView: View {
                         .offset(yellowCircleOffset)
                         .blur(radius: blurSize)
                     
+                    VStack{
+                        Text("Decibels: \(Int(decibels))")
+                            .font(.headline)
+                            .padding()
+                        Text("Remaining Time : \(Int(remainingTime))")
+                            .font(.headline)
+                            .padding()
+                    }
+                    
                 }
                 
 //                Text("Remaining Time: \(Int(remainingTime))")
 //                    .font(.headline)
 //                    .padding()
-                Text("Decibels: \(Int(decibels))")
-                    .font(.headline)
-                    .padding()
                 
 //                Button("RecEnd") {
 //                    vm.isEndRecording.toggle()
@@ -143,6 +149,21 @@ struct RecAnimationView: View {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + remainingTime) {
             animateCircles()
+            circleSize()
+        }
+    }
+    
+    func circleSize(){
+        if decibels < 40 {
+            self.circleX_1 = 2.0
+            self.circleY_1 = 2.0
+            self.circleX_2 = 1.0
+            self.circleY_2 = 1.0
+        } else if decibels > 40 {
+            self.circleX_1 = 1.0
+            self.circleY_1 = 1.0
+            self.circleX_2 = 2.0
+            self.circleY_2 = 2.0  //데시벨 값에 따라서 크기수정 되게 GlobalStore.circle
         }
     }
     

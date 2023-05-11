@@ -28,7 +28,7 @@ struct DecibelView: View { // DecibelView 구조체 정의
 //            AVNumberOfChannelsKey: 1, // 채널 수 설정
 //            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue // 오디오 인코딩 품질 설정
 //        ])
-//    
+//
 //    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect() // 1초마다 실행되는 타이머 생성
     
     var body: some View {
@@ -46,12 +46,12 @@ struct DecibelView: View { // DecibelView 구조체 정의
     }
     
     func circleSize(){
-        if decibels < 40 {
+        if decibels < 20 {
             self.circleX_1 = 2.0
             self.circleY_1 = 2.0
             self.circleX_2 = 1.0
             self.circleY_2 = 1.0
-        } else if decibels > 40 {
+        } else if decibels > 20 {
             self.circleX_1 = 1.0
             self.circleY_1 = 1.0
             self.circleX_2 = 2.0
