@@ -288,13 +288,6 @@ struct CardView: View {
                                 .padding(.top)
                                 .frame(width: geo.size.width, height: geo.size.height)
                         }
-                        //                        .resizable()
-                        //                        .scaledToFit()
-                        //                        .cornerRadius(10)
-                        //                        .clipped()
-                        //                        .shadow(radius: 3)
-                        //                        .padding()
-                        //                        .padding(.top)
                         
                         VStack {
                             Text("사진 크기 어케 맞추니")
