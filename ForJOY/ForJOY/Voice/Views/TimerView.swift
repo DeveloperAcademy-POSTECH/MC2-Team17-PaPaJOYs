@@ -12,10 +12,10 @@ import AVFoundation
 struct TimerView: View {
     
     @ObservedObject var vm: VoiceViewModel
-    @ObservedObject var rt: RemainingTimeModel
+//    @ObservedObject var rt: RemainingTimeModel
     //    @State var isRecOn : Bool = false
-//    @State var remainingTime: TimeInterval = 30.0
-    @State var settingTime =  30.0
+    @State var remainingTime: TimeInterval = 300.0
+    @State var settingTime =  300.0
     //    @State var isRecEnd : Bool = false
     @State var recProgress : Double = 0.0
     @State var decibels: CGFloat = 0
@@ -48,12 +48,17 @@ struct TimerView: View {
     }
     
     func circleSize(){
-        if decibels > 70 {
-            circle1 = 0.8
-            circle2 = 1.0
-        }else{
+        if vm.isRecording == true {
+            if decibels > 70 {
+                circle1 = 0.8
+                circle2 = 1.2
+            }else{
+                circle1 = 1.0
+                circle2 = 1.0
+            }
+        }else if vm.isEndRecording == true {
             circle1 = 1.0
-            circle2 = 0.8
+            circle2 = 1.0
         }
     }
     
@@ -83,6 +88,23 @@ struct TimerView: View {
         withAnimation(Animation.easeInOut(duration: 0)) {
             circleSize()
         }
+    }
+    
+    
+    
+    
+    /// 제자리로 돌아가는 함수 ////
+    func endButton() {
+        vm.isRecording = false
+        vm.isEndRecording = true
+        vm.stopRecording()
+        
+        withAnimation(Animation.easeInOut(duration: 3)) {
+            blueCircleOffset = .init(width: -40, height: 0)
+            yellowCircleOffset = .init(width: 70, height: 70)
+            blurSize = 10
+        }
+        
     }
     
 
@@ -149,7 +171,8 @@ struct TimerView: View {
                             if vm.isRecording && !vm.isEndRecording {
                                 
                                 Button(action: {
-                                    rt.remainingTime = 0.0
+                                    endButton() /// 제자리로 돌아가는 함수
+                                    remainingTime = 0.0
                                     recProgress = 1.0
                                     vm.isRecording = false
                                     vm.isEndRecording = true
@@ -259,6 +282,6 @@ struct TimerView_Previews: PreviewProvider {
     @StateObject static var rt = RemainingTimeModel()
     
     static var previews: some View {
-        TimerView(vm: vm,rt: rt)
+        TimerView(vm: vm)
     }
 }
