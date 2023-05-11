@@ -16,7 +16,6 @@ class Camera: NSObject, ObservableObject {
     var isSilentModeOn = false
     var flashMode: AVCaptureDevice.FlashMode = .off
     
-    @Published var selectedImage: UIImage?
     @Published var isCameraBusy = false
     @Published var recentImage: UIImage?
     @Published var isSelect: Bool = false
@@ -31,7 +30,7 @@ class Camera: NSObject, ObservableObject {
                 
                 if session.canAddOutput(output) {
                     session.addOutput(output)
-//                    output.isHighResolutionCaptureEnabled = true
+                    output.isHighResolutionCaptureEnabled = true
                     output.maxPhotoQualityPrioritization = .quality
                 }
                 session.startRunning()
@@ -72,7 +71,6 @@ class Camera: NSObject, ObservableObject {
         guard let image = UIImage(data: imageData) else { return }
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
         
-        selectedImage = UIImage(data: imageData)
         print("[Camera]: Photo's saved")
     }
     
@@ -132,7 +130,7 @@ class Camera: NSObject, ObservableObject {
                     }
                 }
                 
-//                output.isHighResolutionCaptureEnabled = true
+                output.isHighResolutionCaptureEnabled = true
                 output.maxPhotoQualityPrioritization = .quality
                 
                 self.session.commitConfiguration()

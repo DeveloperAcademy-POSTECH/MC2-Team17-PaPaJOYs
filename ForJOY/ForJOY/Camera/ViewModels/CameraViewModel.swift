@@ -78,8 +78,9 @@ class CameraViewModel: ObservableObject {
                     self.shutterEffect = false
                 }
             }
+            
             model.capturePhoto()
-
+            
             print("[CameraViewModel]: Photo captured!")
         } else {
             print("[CameraViewModel]: Camera's busy.")

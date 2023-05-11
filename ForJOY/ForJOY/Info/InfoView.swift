@@ -18,7 +18,6 @@ struct InfoView: View {
     var body: some View {
         NavigationView {
             VStack{
-                //TODO: 이미지 받아서 보여주기
                 if selectedImage != nil {
                     Image(uiImage: selectedImage!)
                         .resizable()
