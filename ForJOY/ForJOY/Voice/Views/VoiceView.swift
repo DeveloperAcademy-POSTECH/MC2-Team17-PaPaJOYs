@@ -10,9 +10,11 @@ import SwiftUI
 
 struct VoiceView: View {
     
-//    @EnvironmentObject var GlobalStore: globalStore
     // VoiceViewModel의 인스턴스를 생성하여 관찰합니다.
     @StateObject var vm = VoiceViewModel()
+    
+    @StateObject var rt = RemainingTimeModel()
+    
     // 녹음 파일 리스트를 보여줄지 여부를 나타내는 상태 변수입니다.
 //    @State private var shoWarningList = false
     // 삭제 경고 메시지를 보여줄지 여부를 나타내는 상태 변수입니다.
@@ -40,7 +42,7 @@ struct VoiceView: View {
                 ZStack {
                     
                     
-                    TimerView(vm: vm)
+                    TimerView(vm: vm,rt: rt)
 
                     
                     
