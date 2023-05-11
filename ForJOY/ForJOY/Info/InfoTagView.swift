@@ -7,39 +7,42 @@
 
 import SwiftUI
 
-struct Tag: Identifiable {
+struct Tag: Identifiable, Codable {
     var id = UUID()
-    var tag: String
+    var tagName: String
 }
 
 struct InfoTagView: View {
     @State var addTag: Bool = false
     @State var newTag: String = ""
-    @Binding var tag: String?
+    @Binding var selectTag: String?
     
-    @State var tags = [
-       Tag(tag: "이서"),
-       Tag(tag: "이한")
-     ]
+    @State private var tags = [Tag]()
     
     var body: some View {
         NavigationView(){
             VStack{
-                List(selection: $tag){
+                //TODO: 리스트 row 삭제
+                List(selection: $selectTag){
                     ForEach(tags) { t in
-                        if t.tag == tag {
+                        if t.tagName == selectTag {
                             HStack {
-                                Text(t.tag)
-                                    .tag(t.tag)
+                                Text(t.tagName)
+                                    .tag(t.tagName)
                                 Spacer(minLength: 220)
                                 Image(systemName: "checkmark")
                             }
+                            
                             .listRowBackground(Color("JoyWhite"))
                         }else{
-                            Text(t.tag)
-                                .tag(t.tag)
+                            Text(t.tagName)
+                                .tag(t.tagName)
                                 .listRowBackground(Color("JoyWhite"))
                         }
+                    }
+                    .onDelete{ index in
+                        tags.remove(atOffsets: index)
+                        saveTags()
                     }
                     
                     if addTag{
@@ -50,6 +53,7 @@ struct InfoTagView: View {
                 .scrollContentBackground(.hidden)
                 .background(Color("JoyDarkG"))
                 
+                
                 Button(action: {
                     addTag = true
                 }, label: {
@@ -59,24 +63,41 @@ struct InfoTagView: View {
             }
             .padding(8)
             .background(Color("JoyDarkG"))
+            .foregroundColor(.black)
+            .onDisappear() {
+                saveTags()
+            }
+            .onAppear(){
+                tags = {
+                   if let data = UserDefaults.standard.data(forKey: "tags"),
+                       let tags = try? JSONDecoder().decode([Tag].self, from: data) {
+                       return tags
+                   }
+                   return []
+               }()
+            }
         }
         .navigationTitle("Tag")
-        
     }
     
     func addNewTag() {
         addTag  = false
         if newTag != "" {
-            tags.append(Tag(tag: newTag))
+            tags.append(Tag(tagName: newTag))
             DispatchQueue.main.async {
                 self.newTag = ""
             }
         }
     }
+    
+    func saveTags() {
+        if let data = try? JSONEncoder().encode(tags) {
+            UserDefaults.standard.set(data, forKey: "tags")
+        }
+    }
 }
-
 struct InfoTagView_Previews: PreviewProvider {
     static var previews: some View {
-        InfoTagView(tag: .constant("nil"))
+        InfoTagView(selectTag: .constant(nil))
     }
 }

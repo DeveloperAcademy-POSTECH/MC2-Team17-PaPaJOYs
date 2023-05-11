@@ -8,17 +8,23 @@
 import SwiftUI
 
 struct InfoView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     @State var title: String = ""
     @State var date = Date()
     @State var tag: String?
+    @Binding var selectedImage: UIImage?
     
     var body: some View {
         NavigationView {
             VStack{
-                //TODO: 이미지 받아서 보여주기
-                Rectangle()
-                    .fill(.black)
-                    .padding(32)
+                if selectedImage != nil {
+                    Image(uiImage: selectedImage!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                } else {
+                    Text("No image")
+                }
                 
                 List {
                     HStack{
@@ -32,7 +38,7 @@ struct InfoView: View {
                     HStack{
                         Text("태그")
                         Spacer(minLength: 230)
-                        NavigationLink(destination: InfoTagView(tag: $tag), label: {
+                        NavigationLink(destination: InfoTagView(selectTag: $tag), label: {
                             if tag == nil {
                                 Text("없음")
                             }else {
@@ -51,14 +57,37 @@ struct InfoView: View {
                     .listRowBackground(Color("JoyWhite"))
                 }
                 .scrollContentBackground(.hidden)
+                .scrollDisabled(true)
             }
             .background(Color("JoyDarkG"))
+            .foregroundColor(.black)
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                    }, label: {
+                        NavigationLink(
+                            destination:  {
+                                AddDoneView()
+                            }, label: {
+                                Text("Done")
+                            })
+                    })
+                }
+            }
+            .gesture(DragGesture(minimumDistance: 3.0,
+                                 coordinateSpace: .local)
+                .onEnded({ (value) in
+                    if value.translation.width > 0 {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+            }))
         }
     }
 }
 
 struct InfoView_Previews: PreviewProvider {
     static var previews: some View {
-        InfoView()
+        InfoView(selectedImage: .constant(UIImage(named: "test")))
     }
 }
