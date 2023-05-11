@@ -12,6 +12,7 @@ import SwiftUI
 
 struct SelectYearView: View {
     @State var isNewest = true
+    @State var selection = "All"
     var body: some View {
         NavigationStack {
             ZStack {
@@ -21,12 +22,12 @@ struct SelectYearView: View {
                     HeaderView(isNewest: $isNewest)
                     HStack {
                         Spacer()
-                        TagView()
+                        TagView(selection: $selection)
                         Spacer()
                     }
                     HStack {
                         Spacer()
-                        AlbumView(isNewest: $isNewest)
+                        AlbumView(isNewest: $isNewest, selection: $selection)
                         Spacer()
                     }
                 }
@@ -78,10 +79,10 @@ struct HeaderView: View {
 
 struct TagView: View {
     @ObservedObject var viewModel = TestViewModel()
+    @Binding var selection: String
     @State var isAllSelect = true
-    @State var selection = "All"
     
-    // 데이터를 태그 단위로 묶어주기
+    // 데이터를 태그 단위로 묶어주기 - DB 연결시 변경 가능
     var TagGroup: [String: [TestModel]] {
         var data = Dictionary(grouping: viewModel.testData) { i in
             i.tagName
@@ -99,20 +100,9 @@ struct TagView: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 5) {
-                // 확인용 코드
-//                Text(selection)
-//                    .foregroundColor(.white)
                 Button {
                     selection = "All"
-                    if !isAllSelect {
-                        isAllSelect.toggle()
-                    }
-//                    if isAllSelect {
-//                        viewModel.testName = Dictionary(uniqueKeysWithValues: viewModel.testName.map { ($0.key, true) })
-//                    }
-//                    else {
-//                        isAllSelect.toggle()
-//                    }
+                    isAllSelect = true
                 } label: {
                     RoundedRectangle(cornerRadius: 10)
                         .frame(width: 75, height: 30)
@@ -128,15 +118,11 @@ struct TagView: View {
                 ForEach(tagKey, id: \.self) { i in
                     Button {
                         selection = i
-                        if isAllSelect {
-                            isAllSelect.toggle()
-                        }
-                        viewModel.testName = Dictionary(uniqueKeysWithValues: viewModel.testName.map { ($0.key, false) })
-                        viewModel.testName[i]!.toggle()
+                        isAllSelect = false
                     } label: {
                         RoundedRectangle(cornerRadius: 10)
                             .frame(width: 75, height: 30)
-                            .foregroundColor(isAllSelect ? Color(hex: "F2F2F7") : (viewModel.testName[i]! ? Color("JoyYellow") : Color(hex: "F2F2F7")))
+                            .foregroundColor(isAllSelect ? Color(hex: "F2F2F7") : (selection == i ? Color("JoyYellow") : Color(hex: "F2F2F7")))
                             .opacity(0.9)
                             .overlay(
                                 Text("#" + i)
@@ -154,6 +140,7 @@ struct TagView: View {
 struct AlbumView: View {
     @ObservedObject var viewModel = TestViewModel()
     @Binding var isNewest: Bool
+    @Binding var selection: String
     
     // 데이터를 연도 단위로 묶어주기
     var YearGroup: [String: [TestModel]] {
@@ -163,22 +150,32 @@ struct AlbumView: View {
         for(key, value) in data {
             data[key] = value.sorted(by: {$0.idx > $1.idx})
         }
-        return data
+        
+        if selection == "All" {
+            return data
+        } else {
+            let filteredData = data.filter({ $0.value.contains(where: { $0.tagName == selection })})
+            let filteredByTag = filteredData.mapValues { value in
+                value.filter{ $0.tagName == selection }
+            }
+            return filteredByTag
+        }
     }
     var yearKey: [String] {
         let temp = YearGroup.map({ $0.key }).sorted()
         
         return isNewest ? temp.reversed() : temp
     }
-    // Grid를 사용하기 위한..?!
+    
     var columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 12), count: 2)
     
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 15) {
                 ForEach(yearKey, id: \.self) { i in
-                    NavigationLink(destination: GalleryView(tagName: "조이서", year: i)) {
-                        AlbumSubView(image: YearGroup[i]![0].image, year: i)
+                    let filteredData = (selection == "All" ? YearGroup[i]! : YearGroup[i]!.filter{ $0.tagName == selection })
+                    NavigationLink(destination: GalleryView(tagName: selection, year: i, imageName: filteredData.map{ $0.imageName })) {
+                        AlbumSubView(imageName: YearGroup[i]![0].imageName, year: i)
                     }
                 }
             }
@@ -187,13 +184,13 @@ struct AlbumView: View {
 }
 
 struct AlbumSubView: View {
-    let image: Image
+    let imageName: String
     let year: String
     var body: some View {
         ZStack {
             Color("JoyWhite")
             VStack {
-                image
+                Image(imageName)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: screenWidth * 0.4, height: screenWidth * 0.4)
