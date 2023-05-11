@@ -364,6 +364,7 @@ struct CardSubView: View {
                             currentAmount = 0
                         }
                 )
+                .zIndex(1.0)
 
             VStack {
                 Text("애플디벨로퍼아카데미 @포스텍")
