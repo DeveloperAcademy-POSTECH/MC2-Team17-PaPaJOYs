@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct InfoView: View {
+    @Binding var selectedImage: UIImage?
     @State var title: String = ""
     @State var date = Date()
     @State var tag: String?
@@ -16,9 +17,13 @@ struct InfoView: View {
         NavigationView {
             VStack{
                 //TODO: 이미지 받아서 보여주기
-                Rectangle()
-                    .fill(.black)
-                    .padding(32)
+                if selectedImage != nil {
+                    Image(uiImage: selectedImage!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                } else {
+                    Text("No image")
+                }
                 
                 List {
                     HStack{
@@ -57,8 +62,8 @@ struct InfoView: View {
     }
 }
 
-struct InfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        InfoView()
-    }
-}
+//struct InfoView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        InfoView()
+//    }
+//}
