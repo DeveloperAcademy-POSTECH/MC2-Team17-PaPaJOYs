@@ -10,7 +10,13 @@ import AVFoundation
 
 struct CardView: View {
     
+    let player = AVPlayer(url : URL(fileURLWithPath: Bundle.main.path(forResource: "Overnight", ofType: "mp3")!))
+    
     @State private var isPlaying = false
+    @State private var currentTime: Double = 0.0
+    @State private var remainingTime: Double = 0.0
+    @State var textfield_val = ""
+    
     
     var body: some View {
         
@@ -288,6 +294,13 @@ struct CardView: View {
                                 .padding(.top)
                                 .frame(width: geo.size.width, height: geo.size.height)
                         }
+                        //                        .resizable()
+                        //                        .scaledToFit()
+                        //                        .cornerRadius(10)
+                        //                        .clipped()
+                        //                        .shadow(radius: 3)
+                        //                        .padding()
+                        //                        .padding(.top)
                         
                         VStack {
                             Text("사진 크기 어케 맞추니")
@@ -339,7 +352,7 @@ struct CardSubView: View {
     @State private var isPlaying = false
     @State private var currentTime: Double = 0.0
     @State private var remainingTime: Double = 0.0
-    @State private var currentAmount: CGFloat = 0
+    @State var textfield_val = ""
     
     var body: some View {
             
@@ -353,19 +366,8 @@ struct CardSubView: View {
                 .shadow(radius: 3)
                 .padding()
                 .padding(.top)
-                .scaleEffect(1 + currentAmount)
-            // Pinch Zoom
-                .gesture(
-                    MagnificationGesture()
-                        .onChanged { value in
-                            currentAmount = value - 1
-                        }
-                        .onEnded { value in
-                            currentAmount = 0
-                        }
-                )
-                .zIndex(1.0)
-
+            
+            
             VStack {
                 Text("애플디벨로퍼아카데미 @포스텍")
                     .font(.title3)
