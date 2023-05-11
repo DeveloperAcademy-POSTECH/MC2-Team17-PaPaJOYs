@@ -11,63 +11,58 @@ import Combine
 import PhotosUI
 
 struct CameraView: View {
-//    @ObservedObject var camera = Camera()
     @ObservedObject var viewModel = CameraViewModel()
     @State var selectedItem: [PhotosPickerItem] = []
     @State var data: Data?
-    @State var selectedImage: UIImage?
-    @State private var isShowingInfoView = false
-    @State var newImage: UIImage?
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                viewModel.cameraPreview
-                    .ignoresSafeArea()
-                    .onAppear {
-                        viewModel.configure()
+        ZStack {
+            viewModel.cameraPreview
+                .ignoresSafeArea()
+                .onAppear {
+                    viewModel.configure()
+                }
+                .gesture(MagnificationGesture()
+                    .onChanged { val in
+                        viewModel.zoom(factor: val)
                     }
-                    .gesture(MagnificationGesture()
-                        .onChanged { val in
-                            viewModel.zoom(factor: val)
-                        }
-                        .onEnded { _ in
-                            viewModel.zoomInitialize()
-                        }
-                    )
-                VStack {
-                    ZStack {
-                        Rectangle()
-                            .fill(Color("JoyDarkG"))
-                            .ignoresSafeArea()
-                            .frame(height: 100)
-                            .opacity(0.5)
-                        HStack {
-                            Button(action: {viewModel.switchFlash()}) {
-                                Image(systemName: viewModel.isFlashOn ? "bolt.fill" : "bolt")
-                                    .foregroundColor(viewModel.isFlashOn ? Color("JoyYellow") : .white)
-                            }
-                            .padding(.horizontal, 20)
-                            
-                            Button(action: {viewModel.switchSilent()}) {
-                                Image(systemName: viewModel.isSilentModeOn ? "bell.fill" : "bell")
-                                    .foregroundColor(viewModel.isSilentModeOn ? Color("JoyYellow") : .white)
-                            }
-                            .padding(.horizontal, 20)
-                        }
-                        .font(.system(size: 25))
-                        .padding()
+                    .onEnded { _ in
+                        viewModel.zoomInitialize()
                     }
-                    
-                    Spacer()
-                    
-                    ZStack {
-                        Rectangle()
-                            .fill(Color("JoyDarkG"))
-                            .ignoresSafeArea()
-                            .frame(height: 130)
-                            .opacity(0.5)
-                        HStack {
+                )
+            VStack {
+                ZStack {
+                    Rectangle()
+                        .fill(Color("JoyDarkG"))
+                        .ignoresSafeArea()
+                        .frame(height: 100)
+                        .opacity(0.5)
+                    HStack {
+                        Button(action: {viewModel.switchFlash()}) {
+                            Image(systemName: viewModel.isFlashOn ? "bolt.fill" : "bolt")
+                                .foregroundColor(viewModel.isFlashOn ? Color("JoyYellow") : .white)
+                        }
+                        .padding(.horizontal, 20)
+                        
+                        Button(action: {viewModel.switchSilent()}) {
+                            Image(systemName: viewModel.isSilentModeOn ? "bell.fill" : "bell")
+                                .foregroundColor(viewModel.isSilentModeOn ? Color("JoyYellow") : .white)
+                        }
+                        .padding(.horizontal, 20)
+                    }
+                    .font(.system(size: 25))
+                    .padding()
+                }
+                
+                Spacer()
+                
+                ZStack {
+                    Rectangle()
+                        .fill(Color("JoyDarkG"))
+                        .ignoresSafeArea()
+                        .frame(height: 130)
+                        .opacity(0.5)
+                    HStack {
                             // 미리보기 -> 갤러리
                             PhotosPicker(selection: $selectedItem, maxSelectionCount: 1, matching: .images) {
                                 if let previewImage = viewModel.recentImage {
@@ -95,11 +90,6 @@ struct CameraView: View {
                                     case .success(let data):
                                         if let data = data {
                                             self.data = data
-//                                            newImage = UIImage(data: data)
-                                            
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                                isShowingInfoView = true
-                                            }
                                         } else {
                                             print("Data is nill!")
                                         }
@@ -112,11 +102,7 @@ struct CameraView: View {
                             
                             Spacer()
                             
-                            Button(action: {viewModel.capturePhoto()
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                    isShowingInfoView = true
-                                }
-                            }) {
+                            Button(action: {viewModel.capturePhoto()}) {
                                 Image(systemName: "button.programmable")
                                     .resizable()
                                     .font(.system(size: 16, weight: .thin))
@@ -124,19 +110,6 @@ struct CameraView: View {
                                 //                            .padding()
                             }
                             .frame(width: 100, height: 100)
-
-                            if isShowingInfoView {
-                                if let image = viewModel.recentImage {
-                                    NavigationLink(destination: InfoView(selectedImage: $selectedImage)
-                                        .navigationBarBackButtonHidden(),
-                                                   isActive: $isShowingInfoView) {
-                                        Text("Photo's in")
-                                    }
-                                                   .onAppear {
-                                                       selectedImage = image
-                                                   }
-                                }
-                            }
                             
                             Spacer()
                             
@@ -150,13 +123,12 @@ struct CameraView: View {
                             }
                             .frame(width: 100, height: 100)
                         }
-                    }
                 }
-                .foregroundColor(.white)
             }
-            .background(Color("JoyDarkG"))
-            .opacity(viewModel.shutterEffect ? 0 : 1)
+            .foregroundColor(.white)
         }
+        .background(Color("JoyDarkG"))
+        .opacity(viewModel.shutterEffect ? 0 : 1)
     }
 }
 

@@ -71,14 +71,12 @@ class CameraViewModel: ObservableObject {
             withAnimation(.easeInOut(duration: 0.1)) {
                 shutterEffect = true
             }
-            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 withAnimation(.easeInOut(duration: 0.1)) {
                     self.shutterEffect = false
                 }
             }
             model.capturePhoto()
-
             print("[CameraViewModel]: Photo captured!")
         } else {
             print("[CameraViewModel]: Camera's busy.")
