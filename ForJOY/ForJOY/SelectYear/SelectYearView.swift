@@ -5,9 +5,6 @@
 //  Created by Chaeeun Shin on 2023/05/02.
 //
 
-// 다음 페이지와 연결될 수 있도록 데이터 고민필요..
-// 데이터를 불러올 때 필터링 하는 방향 고려
-
 import SwiftUI
 
 struct SelectYearView: View {

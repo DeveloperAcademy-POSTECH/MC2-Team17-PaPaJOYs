@@ -5,19 +5,20 @@
 //  Created by Chaeeun Shin on 2023/05/09.
 //
 
-// 스크롤 인식을 통한 변경사항 적용 필요...
-
-
 import SwiftUI
 
 struct GalleryView: View {
+    var tagName: String
+    var year: String
+    var imageName: [String]
+    
     init(tagName: String, year: String, imageName: [String]) {
         
         self.tagName = tagName
         self.year = year
         self.imageName = imageName
         
-//         네비게이션바 투명
+        // 네비게이션바 투명
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         UINavigationBar.appearance().shadowImage = UIImage()
     }
@@ -25,12 +26,6 @@ struct GalleryView: View {
     @State var offset = CGSize(width: 0.0, height: screenHeight * 0.07)
     
     var columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 3), count: 3)
-
-    
-    var tagName: String
-    var year: String
-    var imageName: [String]
-    
     
     var body: some View {
         NavigationStack {
@@ -38,6 +33,7 @@ struct GalleryView: View {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 3) {
                         ForEach(imageName, id: \.self) { name in
+                            // 카드뷰(디테일)로 연결 예정
                             Image(name)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
