@@ -1,22 +1,14 @@
-//
-//  CardView.swift
-//  CarouselTutorial
-//
-//  Created by Sunjoo IM on 2023/05/04.
-//
 
 import SwiftUI
 import AVFoundation
 
 struct CardView: View {
-    
-    let player = AVPlayer(url : URL(fileURLWithPath: Bundle.main.path(forResource: "Overnight", ofType: "mp3")!))
-    
+    @ObservedObject var cardViewModel = CardViewModel()
     @State private var isPlaying = false
-    @State private var currentTime: Double = 0.0
-    @State private var remainingTime: Double = 0.0
-    @State var textfield_val = ""
     
+    var cardGroup: [AnyView] {
+        cardViewModel.cardData.map{ AnyView(CardSubView(imageName: $0.recordImage, title: $0.recordName, date: $0.recordDate, recordName: $0.recordAudio)) }
+    }
     
     var body: some View {
         
@@ -24,322 +16,7 @@ struct CardView: View {
             Color("JoyDarkG")
                 .ignoresSafeArea()
             
-            CarouselView(itemHeight: 520, views: [
-                // Card 1
-                AnyView(CardSubView()),
-                
-                // Card 2
-                AnyView(
-                    VStack{
-                        Image("2")
-                            .resizable()
-                            .scaledToFit()
-                            .cornerRadius(10)
-                            .clipped()
-                            .shadow(radius: 3)
-                            .padding()
-                            .padding(.top)
-                        
-                        VStack {
-                            Text("마운틴듀 와앙~")
-                                .font(.title3)
-                                .bold()
-                                .frame(width: 300, alignment: .leading)
-                                .allowsTightening(true)
-                                .padding(.leading, 51)
-                            Text("2023.05.03")
-                                .foregroundColor(Color("JoyLightG"))
-                                .frame(width: 300, alignment: .leading)
-                                .padding(.leading, 51)
-                            
-                        }
-                        
-                        HStack(spacing: 10){
-                            Spacer().frame(width: 14)
-                            
-                            Button {
-                                isPlaying.toggle()
-                            } label: {
-                                Label("Toggle Play", systemImage: isPlaying ? "pause.circle.fill" : "play.circle.fill")
-                                    .labelStyle(.iconOnly)
-                                    .font(.system(size: 30))
-                                    .foregroundColor(isPlaying ? Color("JoyYellow") : Color("JoyBlue"))
-                            }
-                            
-                            ProgressView(value: 0.3)
-                            
-                            Text("01:24")
-                                .foregroundColor(Color("JoyLightG"))
-                            
-                            Spacer().frame(width: 16)
-                        }
-                        
-                        Spacer()
-                    }
-                ),
-                // Card 3
-                AnyView(
-                    VStack{
-                        Image("3")
-                            .resizable()
-                            .scaledToFit()
-                            .cornerRadius(10)
-                            .clipped()
-                            .shadow(radius: 3)
-                            .padding()
-                            .padding(.top)
-                        
-                        VStack {
-                            Text("마조리카 아기")
-                                .font(.title3)
-                                .bold()
-                                .frame(width: 300, alignment: .leading)
-                                .allowsTightening(true)
-                                .padding(.leading, 51)
-                            Text("2023.05.03")
-                                .foregroundColor(Color("JoyLightG"))
-                                .frame(width: 300, alignment: .leading)
-                                .padding(.leading, 51)
-                            
-                        }
-                        
-                        HStack(spacing: 10){
-                            Spacer().frame(width: 14)
-                            
-                            Button {
-                                isPlaying.toggle()
-                            } label: {
-                                Label("Toggle Play", systemImage: isPlaying ? "pause.circle.fill" : "play.circle.fill")
-                                    .labelStyle(.iconOnly)
-                                    .font(.system(size: 30))
-                                    .foregroundColor(isPlaying ? Color("JoyYellow") : Color("JoyBlue"))
-                            }
-                            
-                            ProgressView(value: 0.3)
-                            
-                            Text("01:24")
-                                .foregroundColor(Color("JoyLightG"))
-                            
-                            Spacer().frame(width: 16)
-                        }
-                        
-                        Spacer()
-                    }
-                ),
-                // Card 4
-                AnyView(
-                    VStack{
-                        Image("4")
-                            .resizable()
-                            .scaledToFit()
-                            .cornerRadius(10)
-                            .clipped()
-                            .shadow(radius: 3)
-                            .padding()
-                            .padding(.top)
-                        
-                        VStack {
-                            Text("아기상어 스티커 덕지덕지 아기")
-                                .font(.title3)
-                                .bold()
-                                .frame(width: 300, alignment: .leading)
-                                .allowsTightening(true)
-                                .padding(.leading, 51)
-                            Text("2023.05.03")
-                                .foregroundColor(Color("JoyLightG"))
-                                .frame(width: 300, alignment: .leading)
-                                .padding(.leading, 51)
-                            
-                        }
-                        
-                        HStack(spacing: 10){
-                            Spacer().frame(width: 14)
-                            
-                            Button {
-                                isPlaying.toggle()
-                            } label: {
-                                Label("Toggle Play", systemImage: isPlaying ? "pause.circle.fill" : "play.circle.fill")
-                                    .labelStyle(.iconOnly)
-                                    .font(.system(size: 30))
-                                    .foregroundColor(isPlaying ? Color("JoyYellow") : Color("JoyBlue"))
-                            }
-                            
-                            ProgressView(value: 0.3)
-                            
-                            Text("01:24")
-                                .foregroundColor(Color("JoyLightG"))
-                            
-                            Spacer().frame(width: 16)
-                        }
-                        
-                        Spacer()
-                    }
-                ),
-                // Card 5
-                AnyView(
-                    VStack{
-                        Image("5")
-                            .resizable()
-                            .scaledToFit()
-                            .cornerRadius(10)
-                            .clipped()
-                            .shadow(radius: 3)
-                            .padding()
-                            .padding(.top)
-                        
-                        VStack {
-                            Text("카와이 아기😍")
-                                .font(.title3)
-                                .bold()
-                                .frame(width: 300, alignment: .leading)
-                                .allowsTightening(true)
-                                .padding(.leading, 51)
-                            Text("2023.05.03")
-                                .foregroundColor(Color("JoyLightG"))
-                                .frame(width: 300, alignment: .leading)
-                                .padding(.leading, 51)
-                            
-                        }
-                        
-                        HStack(spacing: 10){
-                            Spacer().frame(width: 14)
-                            
-                            Button {
-                                isPlaying.toggle()
-                            } label: {
-                                Label("Toggle Play", systemImage: isPlaying ? "pause.circle.fill" : "play.circle.fill")
-                                    .labelStyle(.iconOnly)
-                                    .font(.system(size: 30))
-                                    .foregroundColor(isPlaying ? Color("JoyYellow") : Color("JoyBlue"))
-                            }
-                            
-                            ProgressView(value: 0.3)
-                            
-                            Text("01:24")
-                                .foregroundColor(Color("JoyLightG"))
-                            
-                            Spacer().frame(width: 16)
-                        }
-                        
-                        Spacer()
-                    }
-                ),
-                // Card 6
-                AnyView(
-                    VStack{
-                        GeometryReader { geo in
-                            Image("6")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 270, height: 360)
-                                .border(.red)
-                                .cornerRadius(10)
-                                .clipped()
-                                .shadow(radius: 3)
-                                .padding()
-                                .padding(.top)
-                                .frame(width: geo.size.width, height: geo.size.height)
-                        }
-                        
-                        VStack {
-                            Text("사진 사이즈 조정 어떻게하니")
-                                .font(.title3)
-                                .bold()
-                                .frame(width: 300, alignment: .leading)
-                                .allowsTightening(true)
-                                .padding(.leading, 51)
-                            Text("2023.05.03")
-                                .foregroundColor(Color("JoyLightG"))
-                                .frame(width: 300, alignment: .leading)
-                                .padding(.leading, 51)
-                            
-                        }
-                        
-                        HStack(spacing: 10){
-                            Spacer().frame(width: 14)
-                            
-                            Button {
-                                isPlaying.toggle()
-                            } label: {
-                                Label("Toggle Play", systemImage: isPlaying ? "pause.circle.fill" : "play.circle.fill")
-                                    .labelStyle(.iconOnly)
-                                    .font(.system(size: 30))
-                                    .foregroundColor(isPlaying ? Color("JoyYellow") : Color("JoyBlue"))
-                            }
-                            
-                            ProgressView(value: 0.3)
-                            
-                            Text("01:24")
-                                .foregroundColor(Color("JoyLightG"))
-                            
-                            Spacer().frame(width: 16)
-                        }
-                        
-                        Spacer()
-                    }
-                ),
-                // Card 7
-                AnyView(
-                    VStack{
-                        GeometryReader { geo in
-                            Image("7")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 250, height: 360)
-                                .border(.red)
-                                .cornerRadius(10)
-                                .clipped()
-                                .shadow(radius: 3)
-                                .padding()
-                                .padding(.top)
-                                .frame(width: geo.size.width, height: geo.size.height)
-                        }
-                        //                        .resizable()
-                        //                        .scaledToFit()
-                        //                        .cornerRadius(10)
-                        //                        .clipped()
-                        //                        .shadow(radius: 3)
-                        //                        .padding()
-                        //                        .padding(.top)
-                        
-                        VStack {
-                            Text("사진 크기 어케 맞추니")
-                                .font(.title3)
-                                .bold()
-                                .frame(width: 300, alignment: .leading)
-                                .allowsTightening(true)
-                                .padding(.leading, 51)
-                            Text("2023.05.03")
-                                .foregroundColor(Color("JoyLightG"))
-                                .frame(width: 300, alignment: .leading)
-                                .padding(.leading, 51)
-                            
-                        }
-                        
-                        HStack(spacing: 10){
-                            Spacer().frame(width: 14)
-                            
-                            Button {
-                                isPlaying.toggle()
-                            } label: {
-                                Label("Toggle Play", systemImage: isPlaying ? "pause.circle.fill" : "play.circle.fill")
-                                    .labelStyle(.iconOnly)
-                                    .font(.system(size: 30))
-                                    .foregroundColor(isPlaying ? Color("JoyYellow") : Color("JoyBlue"))
-                            }
-                            
-                            ProgressView(value: 0.3)
-                            
-                            Text("01:24")
-                                .foregroundColor(Color("JoyLightG"))
-                            
-                            Spacer().frame(width: 16)
-                        }
-                        
-                        Spacer()
-                    }
-                )
-            ])
+            CarouselView(itemHeight: 520, views: cardGroup)
         }
     }
 }
@@ -347,18 +24,29 @@ struct CardView: View {
 
 struct CardSubView: View {
     
-    let player = AVPlayer(url : URL(fileURLWithPath: Bundle.main.path(forResource: "Overnight", ofType: "mp3")!))
-    
     @State private var isPlaying = false
     @State private var currentTime: Double = 0.0
     @State private var remainingTime: Double = 0.0
-    @State var textfield_val = ""
+    @State private var currentAmount: CGFloat = 0
+    
+    let imageName: String
+    let title: String
+    let date: String
+    let recordName: String
+    
+    var player: AVPlayer?
+    
+    init(imageName: String, title: String, date: String, recordName: String) {
+        self.imageName = imageName
+        self.title = title
+        self.date = date
+        self.recordName = recordName
+        self.player = AVPlayer(url: URL(fileURLWithPath: Bundle.main.path(forResource: recordName, ofType: "mp3")!))
+    }
     
     var body: some View {
-            
         VStack{
-            
-            Image("1")
+            Image(imageName) // 이미지 파일 이름 : "1"
                 .resizable()
                 .scaledToFit()
                 .cornerRadius(10)
@@ -366,16 +54,27 @@ struct CardSubView: View {
                 .shadow(radius: 3)
                 .padding()
                 .padding(.top)
-            
+                .scaleEffect(1 + currentAmount)
+            // Pinch Zoom
+                .gesture(
+                    MagnificationGesture()
+                        .onChanged { value in
+                            currentAmount = value - 1
+                        }
+                        .onEnded { value in
+                            currentAmount = 0
+                        }
+                )
+                .zIndex(1.0)
             
             VStack {
-                Text("애플디벨로퍼아카데미 @포스텍")
+                Text(title) // 게시물 제목 : "애플디벨로퍼아카데미 @포스텍"
                     .font(.title3)
                     .bold()
                     .frame(width: 300, alignment: .leading)
                     .allowsTightening(true)
                     .padding(.leading, 51)
-                Text("2023.05.03")
+                Text(date)  // 등록 날짜 : "2023.05.03"
                     .foregroundColor(Color("JoyLightG"))
                     .frame(width: 300, alignment: .leading)
                     .padding(.leading, 51)
@@ -388,9 +87,9 @@ struct CardSubView: View {
                 
                 Button(action: {
                     if isPlaying {
-                        player.pause()
+                        player!.pause()
                     } else {
-                        player.play()
+                        player!.play()
                     }
                     isPlaying.toggle()
                 }) {
@@ -406,24 +105,24 @@ struct CardSubView: View {
                     .padding(.horizontal)
                     .onChange(of: currentTime) { time in
                         let cmTime = CMTime(seconds: time, preferredTimescale: 1)
-                        player.seek(to: cmTime)
+                        player!.seek(to: cmTime)
                     }
                 
-                    Text(timeString(time: remainingTime - currentTime))
+                Text(timeString(time: remainingTime - currentTime))
                     .font(.system(size: 16))
                     .frame(width: 40)
-                        .foregroundColor(Color("JoyLightG"))
-                        .padding(.trailing)
+                    .foregroundColor(Color("JoyLightG"))
+                    .padding(.trailing)
                 
                 Spacer().frame(width: 14)
             }
             .onAppear {
-                player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: DispatchQueue.main) { time in
+                player!.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: DispatchQueue.main) { time in
                     currentTime = time.seconds
-                    remainingTime = player.currentItem?.duration.seconds ?? 0.0
+                    remainingTime = player!.currentItem?.duration.seconds ?? 0.0
                 }
             }
-
+            
             
             Spacer()
         }
