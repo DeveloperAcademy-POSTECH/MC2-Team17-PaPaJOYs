@@ -4,10 +4,9 @@ import AVFoundation
 
 struct CardView: View {
     @ObservedObject var cardViewModel = CardViewModel()
-    @State private var isPlaying = false
     
     var cardGroup: [AnyView] {
-        cardViewModel.cardData.map{ AnyView(CardSubView(imageName: $0.recordImage, title: $0.recordName, date: $0.recordDate, recordName: $0.recordAudio)) }
+        cardViewModel.cardData.map{ AnyView(CardSubView(imageName: $0.recordImage, title: $0.recordName, date: $0.recordDate, player: cardViewModel.players![$0.idx - 1])) }
     }
     
     var body: some View {
@@ -16,7 +15,7 @@ struct CardView: View {
             Color("JoyDarkG")
                 .ignoresSafeArea()
             
-            CarouselView(itemHeight: 520, views: cardGroup)
+            CarouselView(players: $cardViewModel.players, itemHeight: 520, views: cardGroup)
         }
     }
 }
@@ -32,21 +31,12 @@ struct CardSubView: View {
     let imageName: String
     let title: String
     let date: String
-    let recordName: String
     
     var player: AVPlayer?
     
-    init(imageName: String, title: String, date: String, recordName: String) {
-        self.imageName = imageName
-        self.title = title
-        self.date = date
-        self.recordName = recordName
-        self.player = AVPlayer(url: URL(fileURLWithPath: Bundle.main.path(forResource: recordName, ofType: "mp3")!))
-    }
-    
     var body: some View {
         VStack{
-            Image(imageName) // 이미지 파일 이름 : "1"
+            Image(imageName)
                 .resizable()
                 .scaledToFit()
                 .cornerRadius(10)
@@ -67,14 +57,14 @@ struct CardSubView: View {
                 )
                 .zIndex(1.0)
             
-            VStack {
-                Text(title) // 게시물 제목 : "애플디벨로퍼아카데미 @포스텍"
+            VStack(spacing: 3) {
+                Text(title)
                     .font(.title3)
                     .bold()
                     .frame(width: 300, alignment: .leading)
                     .allowsTightening(true)
                     .padding(.leading, 51)
-                Text(date)  // 등록 날짜 : "2023.05.03"
+                Text(date)
                     .foregroundColor(Color("JoyLightG"))
                     .frame(width: 300, alignment: .leading)
                     .padding(.leading, 51)
