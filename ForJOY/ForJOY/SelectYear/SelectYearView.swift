@@ -79,19 +79,8 @@ struct TagView: View {
     @Binding var selection: String
     @State var isAllSelect = true
     
-    // 데이터를 태그 단위로 묶어주기 - DB 연결시 변경 가능
-    var TagGroup: [String: [TestModel]] {
-        var data = Dictionary(grouping: viewModel.testData) { i in
-            i.tagName
-        }
-        for(key, value) in data {
-            data[key] = value.sorted(by: {$0.idx > $1.idx})
-        }
-        return data
-    }
-    
-    var tagKey: [String] {
-        TagGroup.map({ $0.key }).sorted()
+    var tags: [String] {
+        Array(Set(viewModel.testData.map { $0.tagName })).sorted()
     }
 
     var body: some View {
@@ -112,7 +101,7 @@ struct TagView: View {
                                 .lineLimit(1)
                         )
                 }
-                ForEach(tagKey, id: \.self) { i in
+                ForEach(viewModel.tags!, id: \.self) { i in
                     Button {
                         selection = i
                         isAllSelect = false
@@ -158,6 +147,8 @@ struct AlbumView: View {
             return filteredByTag
         }
     }
+    
+    
     var yearKey: [String] {
         let temp = YearGroup.map({ $0.key }).sorted()
         
@@ -171,7 +162,7 @@ struct AlbumView: View {
             LazyVGrid(columns: columns, spacing: 15) {
                 ForEach(yearKey, id: \.self) { i in
                     let filteredData = (selection == "All" ? YearGroup[i]! : YearGroup[i]!.filter{ $0.tagName == selection })
-                    NavigationLink(destination: GalleryView(tagName: selection, year: i, imageName: filteredData.map{ $0.imageName })) {
+                    NavigationLink(destination: GalleryView(tagName: selection, year: i, imageNames: filteredData.map{ $0.imageName })) {
                         AlbumSubView(imageName: YearGroup[i]![0].imageName, year: i)
                     }
                 }

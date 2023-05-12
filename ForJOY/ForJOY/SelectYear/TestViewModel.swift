@@ -18,4 +18,11 @@ class TestViewModel: ObservableObject {
         TestModel(tagName: "조이서", imageName: "test7", year: "2020", idx: 2),
         TestModel(tagName: "고양이", imageName: "test8", year: "2017", idx: 1)
     ]
+    
+    @Published var tags: [String]?
+    
+    init() {
+        self.tags = Array(Set(testData.map { $0.tagName })).sorted()
+    }
+    
 }

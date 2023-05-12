@@ -10,13 +10,13 @@ import SwiftUI
 struct GalleryView: View {
     var tagName: String
     var year: String
-    var imageName: [String]
+    var imageNames: [String]
     
-    init(tagName: String, year: String, imageName: [String]) {
+    init(tagName: String, year: String, imageNames: [String]) {
         
         self.tagName = tagName
         self.year = year
-        self.imageName = imageName
+        self.imageNames = imageNames
         
         // 네비게이션바 투명
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
@@ -32,7 +32,7 @@ struct GalleryView: View {
             ZStack {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 3) {
-                        ForEach(imageName, id: \.self) { name in
+                        ForEach(imageNames, id: \.self) { name in
                             // 카드뷰(디테일)로 연결 예정
                             Image(name)
                                 .resizable()
