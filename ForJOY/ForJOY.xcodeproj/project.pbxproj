@@ -33,6 +33,10 @@
 		5B52BECE2A03590900320ECD /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52BECD2A03590900320ECD /* CameraViewModel.swift */; };
 		5B52BED02A03592400320ECD /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52BECF2A03592400320ECD /* CameraView.swift */; };
 		AA44E15B2A089F9500DB9601 /* GlobalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA44E15A2A089F9500DB9601 /* GlobalStore.swift */; };
+		BE197A1A2A0E15CE00B89DD6 /* Overnight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BE197A192A0E15CE00B89DD6 /* Overnight.mp3 */; };
+		BE197A1C2A0E15D300B89DD6 /* I AM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BE197A1B2A0E15D300B89DD6 /* I AM.mp3 */; };
+		BE4173372A0DD54500AB1BA6 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4173362A0DD54500AB1BA6 /* CardModel.swift */; };
+		BE4173392A0DD55A00AB1BA6 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4173382A0DD55A00AB1BA6 /* CardViewModel.swift */; };
 		BE522DFD2A05A48D00D4AEEA /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE522DFC2A05A48D00D4AEEA /* CarouselView.swift */; };
 		BECC97372A05A54700E27120 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC97362A05A54700E27120 /* CardView.swift */; };
 		D967AA692A08C363005E7BAC /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D967AA682A08C363005E7BAC /* Lottie */; };
@@ -67,6 +71,10 @@
 		5B52BECD2A03590900320ECD /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		5B52BECF2A03592400320ECD /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		AA44E15A2A089F9500DB9601 /* GlobalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalStore.swift; sourceTree = "<group>"; };
+		BE197A192A0E15CE00B89DD6 /* Overnight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Overnight.mp3; path = ../../../../../../../Downloads/Overnight.mp3; sourceTree = "<group>"; };
+		BE197A1B2A0E15D300B89DD6 /* I AM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "I AM.mp3"; path = "../../../../../../../Downloads/I AM.mp3"; sourceTree = "<group>"; };
+		BE4173362A0DD54500AB1BA6 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		BE4173382A0DD55A00AB1BA6 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		BE522DFC2A05A48D00D4AEEA /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		BECC97362A05A54700E27120 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		D9F0DC612A0353D3002CE5E5 /* RecAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecAnimationView.swift; sourceTree = "<group>"; };
@@ -243,7 +251,11 @@
 		BECC97382A05A64300E27120 /* Carousel */ = {
 			isa = PBXGroup;
 			children = (
+				BE197A192A0E15CE00B89DD6 /* Overnight.mp3 */,
+				BE197A1B2A0E15D300B89DD6 /* I AM.mp3 */,
 				BE522DFC2A05A48D00D4AEEA /* CarouselView.swift */,
+				BE4173362A0DD54500AB1BA6 /* CardModel.swift */,
+				BE4173382A0DD55A00AB1BA6 /* CardViewModel.swift */,
 				BECC97362A05A54700E27120 /* CardView.swift */,
 			);
 			path = Carousel;
@@ -314,7 +326,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				303238812A00A876008A8093 /* Preview Assets.xcassets in Resources */,
+				BE197A1C2A0E15D300B89DD6 /* I AM.mp3 in Resources */,
 				3032387E2A00A876008A8093 /* Assets.xcassets in Resources */,
+				BE197A1A2A0E15CE00B89DD6 /* Overnight.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,12 +356,14 @@
 				30BDADE62A034DB7000BDA8F /* CircularProgressView.swift in Sources */,
 				3078143F2A08785D00231E6F /* TestViewModel.swift in Sources */,
 				5B52BED02A03592400320ECD /* CameraView.swift in Sources */,
+				BE4173372A0DD54500AB1BA6 /* CardModel.swift in Sources */,
 				BE522DFD2A05A48D00D4AEEA /* CarouselView.swift in Sources */,
 				BECC97372A05A54700E27120 /* CardView.swift in Sources */,
 				30C74FA52A0D06EB0099DC1B /* InfoView.swift in Sources */,
 				AA44E15B2A089F9500DB9601 /* GlobalStore.swift in Sources */,
 				5B52BECC2A0358EA00320ECD /* Camera.swift in Sources */,
 				3032388B2A00B89E008A8093 /* Ref.swift in Sources */,
+				BE4173392A0DD55A00AB1BA6 /* CardViewModel.swift in Sources */,
 				D9F0DC622A0353D3002CE5E5 /* RecAnimationView.swift in Sources */,
 				30BDADE92A034DB7000BDA8F /* Date.swift in Sources */,
 				307814412A08A18000231E6F /* ColorExtension.swift in Sources */,

@@ -1,19 +1,15 @@
-//
-//  CarouselView.swift
-//  CarouselTutorial
-//
-//  Created by Sunjoo IM on 2023/05/04.
-//
 
 import SwiftUI
+import AVKit
 
 struct CarouselView: View {
     
     @GestureState private var dragState = DragState.inactive
     @State var carouselLocation = 0
+    @Binding var players: [AVPlayer]?
     
-    var itemHeight:CGFloat
-    var views:[AnyView]
+    var itemHeight: CGFloat
+    var views: [AnyView]
     
     private func onDragEnded(drag: DragGesture.Value) {
         print("drag ended")
@@ -24,17 +20,14 @@ struct CarouselView: View {
         {
             carouselLocation = carouselLocation + 1
         }
+        for p in players! {
+            p.pause()
+            p.currentItem?.seek(to: CMTime.zero)
+        }
     }
     
     var body: some View {
         ZStack {
-//            VStack {
-//                Text("\(dragState.translation.width)")
-//                Text("Carousel Location = \(carouselLocation)")
-//                Text("Relative Location = \(relativeLoc())")
-//                Text("\(relativeLoc()) = \(views.count - 1)")
-//                Spacer()
-//            }
             
             VStack {
                 ZStack {
