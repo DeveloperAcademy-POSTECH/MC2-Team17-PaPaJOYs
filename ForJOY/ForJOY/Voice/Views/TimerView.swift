@@ -52,15 +52,11 @@ struct TimerView: View {
     }
     
     func circleSize(){
-            if vm.isRecording == true {
-                if decibels > 70 {
-                    circle1 = 0.8
-                    circle2 = 1.2
-                }else{
-                    circle1 = 1.0
-                    circle2 = 1.0
-                }
-            }else if vm.isEndRecording == true {
+        if vm.isRecording == true {
+            if decibels > 70 {
+                circle1 = 0.8
+                circle2 = 1.2
+            }else{
                 circle1 = 1.0
                 circle2 = 1.0
             }
@@ -231,7 +227,7 @@ struct TimerView: View {
                 
 
             }//Vstack1 END
-
+            
             
         }//Zstack2 END
         .onReceive(timer2) { _ in
