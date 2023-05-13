@@ -34,11 +34,14 @@ struct GalleryView: View {
                     LazyVGrid(columns: columns, spacing: 3) {
                         ForEach(imageNames, id: \.self) { name in
                             // 카드뷰(디테일)로 연결 예정
-                            Image(name)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: screenWidth / 3 - 3, height: screenWidth / 3 - 3)
-                                .clipped()
+                            
+                            NavigationLink(destination: CardView()) {
+                                Image(name)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: screenWidth / 3 - 3, height: screenWidth / 3 - 3)
+                                    .clipped()
+                            }
                         }
                     }
                     .offset(self.offset)

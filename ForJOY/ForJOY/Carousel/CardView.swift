@@ -3,10 +3,11 @@ import SwiftUI
 import AVFoundation
 
 struct CardView: View {
-    @ObservedObject var cardViewModel = CardViewModel()
+//    @ObservedObject var cardViewModel = CardViewModel()
+    @ObservedObject var postViewModel = PostViewModel()
     
     var cardGroup: [AnyView] {
-        cardViewModel.cardData.map{ AnyView(CardSubView(imageName: $0.recordImage, title: $0.recordName, date: $0.recordDate, player: cardViewModel.players![$0.idx - 1])) }
+        postViewModel.postData.map{ AnyView(CardSubView(imageName: $0.imageName, title: $0.title, date: $0.audioName, player: postViewModel.players![$0.idx - 1])) }
     }
     
     var body: some View {
@@ -15,7 +16,7 @@ struct CardView: View {
             Color("JoyDarkG")
                 .ignoresSafeArea()
             
-            CarouselView(players: $cardViewModel.players, itemHeight: 520, views: cardGroup)
+            CarouselView(players: $postViewModel.players, itemHeight: 520, views: cardGroup)
         }
     }
 }

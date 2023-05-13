@@ -34,7 +34,6 @@ struct SelectYearView: View {
 }
 
 struct HeaderView: View {
-    @ObservedObject var viewModel = TestViewModel()
     @Binding var isNewest: Bool
     var body: some View {
         VStack(spacing: 10) {
@@ -75,12 +74,12 @@ struct HeaderView: View {
 }
 
 struct TagView: View {
-    @ObservedObject var viewModel = TestViewModel()
+    @ObservedObject var postViewModel = PostViewModel()
     @Binding var selection: String
     @State var isAllSelect = true
     
     var tags: [String] {
-        Array(Set(viewModel.testData.map { $0.tagName })).sorted()
+        Array(Set(postViewModel.postData.map { $0.tagName })).sorted()
     }
 
     var body: some View {
@@ -101,7 +100,7 @@ struct TagView: View {
                                 .lineLimit(1)
                         )
                 }
-                ForEach(viewModel.tags!, id: \.self) { i in
+                ForEach(postViewModel.tags!, id: \.self) { i in
                     Button {
                         selection = i
                         isAllSelect = false
@@ -124,13 +123,13 @@ struct TagView: View {
 }
 
 struct AlbumView: View {
-    @ObservedObject var viewModel = TestViewModel()
+    @ObservedObject var postViewModel = PostViewModel()
     @Binding var isNewest: Bool
     @Binding var selection: String
     
     // 데이터를 연도 단위로 묶어주기
-    var YearGroup: [String: [TestModel]] {
-        var data = Dictionary(grouping: viewModel.testData) { i in
+    var YearGroup: [String: [PostModel]] {
+        var data = Dictionary(grouping: postViewModel.postData) { i in
             i.year
         }
         for(key, value) in data {
