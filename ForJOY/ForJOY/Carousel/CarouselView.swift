@@ -1,19 +1,15 @@
-//
-//  CarouselView.swift
-//  CarouselTutorial
-//
-//  Created by Sunjoo IM on 2023/05/04.
-//
 
 import SwiftUI
+import AVKit
 
 struct CarouselView: View {
     
     @GestureState private var dragState = DragState.inactive
     @State var carouselLocation = 0
+    @Binding var players: [AVPlayer]?
     
-    var itemHeight:CGFloat
-    var views:[AnyView]
+    var itemHeight: CGFloat
+    var views: [AnyView]
     
     private func onDragEnded(drag: DragGesture.Value) {
         print("drag ended")
@@ -24,17 +20,14 @@ struct CarouselView: View {
         {
             carouselLocation = carouselLocation + 1
         }
+        for p in players! {
+            p.pause()
+            p.currentItem?.seek(to: CMTime.zero)
+        }
     }
     
     var body: some View {
         ZStack {
-//            VStack {
-//                Text("\(dragState.translation.width)")
-//                Text("Carousel Location = \(carouselLocation)")
-//                Text("Relative Location = \(relativeLoc())")
-//                Text("\(relativeLoc()) = \(views.count - 1)")
-//                Spacer()
-//            }
             
             VStack {
                 ZStack {
@@ -43,7 +36,6 @@ struct CarouselView: View {
                             Spacer()
                             
                             self.views[i]
-                            //                             Text("\(i)")
                                 .frame(width: 300, height: self.getHeight(i))
                                 .animation(.interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
                                 .background(Color.white)
@@ -70,9 +62,11 @@ struct CarouselView: View {
             }
             VStack {
                 Spacer()
-                Spacer().frame(height: itemHeight + 60)
+                Spacer().frame(height: itemHeight + 90)
                 Text("\(relativeLoc() + 1) / \(views.count)")
+                    .font(.system(size: 14))
                     .foregroundColor(Color("JoyLightG"))
+                    .background(Capsule().fill(Color.white).frame(width: 50, height: 30).opacity(0.1))
                 Spacer()
             }
         }
