@@ -23,10 +23,15 @@ struct TimerView: View {
     
     @State var blueCircleOffset: CGSize = .init(width: -40, height: 0)
     @State var yellowCircleOffset: CGSize = .init(width: 80, height: 40)
-    @State var blurSize : Double = 50
+    @State var blurSize : Double = 20
     
     @State var circle1: Double = 1.0
     @State var circle2: Double = 1.0
+    
+    @State var progressOpacity = 1.0
+    @State var showLottieView = true
+    
+    @State var maskFrameSize : CGFloat = 240
     
     
     let audioRecorder = try! AVAudioRecorder(
@@ -47,14 +52,19 @@ struct TimerView: View {
     }
     
     func circleSize(){
-        if decibels > 70 {
-            circle1 = 0.8
-            circle2 = 1.0
-        }else{
-            circle1 = 1.0
-            circle2 = 0.8
+            if vm.isRecording == true {
+                if decibels > 70 {
+                    circle1 = 0.8
+                    circle2 = 1.2
+                }else{
+                    circle1 = 1.0
+                    circle2 = 1.0
+                }
+            }else if vm.isEndRecording == true {
+                circle1 = 1.0
+                circle2 = 1.0
+            }
         }
-    }
     
     func timeString(from time: TimeInterval) -> String {
         let minutes = Int(time) / 60 % 60
@@ -79,10 +89,26 @@ struct TimerView: View {
         audioRecorder.updateMeters() // 미터링 값을 업데이트
         decibels = 100+CGFloat(audioRecorder.averagePower(forChannel: 0))
         // 현재 데시벨 값을 decibels 속성에 저장
-        withAnimation(Animation.easeInOut(duration: 0)) {
+        withAnimation(Animation.easeInOut(duration: 2)) {
             circleSize()
         }
     }
+    
+    
+    /// 제자리로 돌아가는 함수 ////
+        func endButton() {
+//            vm.isRecording = false
+//            vm.isEndRecording = true
+//            vm.stopRecording()
+
+            withAnimation(Animation.easeInOut(duration: 2.1)) {
+                blueCircleOffset = .init(width: -40, height: -30)
+                yellowCircleOffset = .init(width: 73, height: 37.5)
+                blurSize = 0
+            }
+
+        }
+
     
 
 
@@ -92,12 +118,17 @@ struct TimerView: View {
             //background color
             Color("JoyDarkG")
                 .ignoresSafeArea()
+            
+            
 
             //Vstack1 Start
             VStack{
 
                 //Zstack1 Start
                 ZStack{
+                    
+                    CircularProgressView(recProgress : $recProgress, progressOpacity: $progressOpacity)
+                    
                     
                     if !vm.isRecording && !vm.isEndRecording {
                         
@@ -126,51 +157,62 @@ struct TimerView: View {
                             ZStack {
                                 
                                 Circle()
-                                    .fill(Color("JoyBlue"))
+                                    .fill(LinearGradient(gradient: Gradient(colors: [Color("JoyBlue"),Color("JoyBlueL")]), startPoint: .bottom, endPoint: .top))
                                     .frame(width: circle1 * 175, height: circle1 * 175) //데시벨 값에 따라서 크기수정 되게 GlobalStore.circle
                                     .offset(blueCircleOffset)
                                     .blur(radius: blurSize)
                                 
                                 Circle()
-                                    .fill(Color("JoyYellow"))
+                                    .fill(LinearGradient(gradient: Gradient(colors: [Color("JoyYellow"),Color("JoyYellowL")]), startPoint: .bottom, endPoint: .top))
                                     .frame(width: circle2 * 120, height: circle2 * 120) //데시벨 값에 따라서 크기수정 되게 GlobalStore.circle
                                     .offset(yellowCircleOffset)
                                     .blur(radius: blurSize)
                             }
                             .mask{
                                     Circle()
-                                        .frame(width: 240, height: 240)
-                                        .blur(radius: 10)
+                                        .frame(width: maskFrameSize, height: maskFrameSize)
+                                        .blur(radius: 0)
                                 }
                             
                             
                             if vm.isRecording && !vm.isEndRecording {
                                 
                                 Button(action: {
+                                    endButton()
+                                    maskFrameSize = 700
                                     remainingTime = 0.0
                                     recProgress = 1.0
                                     vm.isRecording = false
                                     vm.isEndRecording = true
                                     vm.stopRecording()
+                                    progressOpacity = 0
                                 }){
-                                    Text("End")
+                                    Text("   ")
                                         .padding(120)
                                     
                                 }
                             }else if !vm.isRecording && vm.isEndRecording {
-                                
-                                Circle()
-                                    .fill(Color.red)
-                                    .frame(width: 240)
-                                    .opacity(0.1)
+                            
+                                ZStack{
                                     
+                                    if showLottieView{
+                                        ZStack{
+                                            LottieView(jsonName: "RecComplete2")
+                                                .frame(width: 910, height: 910)
+                                            LottieView(jsonName: "panpare")
+                                                .frame(width: 900, height: 900)
+                                        }
+                                    }
+                                    
+                                }
                             }
+                            
                             
                             
                         }
                     }
                         
-                    CircularProgressView(recProgress : $recProgress)
+                    
                         
                         
                     }//Zstack1 END
@@ -178,13 +220,14 @@ struct TimerView: View {
                     setUpRecord()
                 }
 
-                Text("Progress \(recProgress)") // 임시로 표기
-                Text("Time\(timeString(from: remainingTime))") // 임시로 표기
-                Text("isEndRecording? \(vm.isEndRecording ? "true":"false")")
-                Text("isRecording? \(vm.isRecording ? "true":"false")")
-                Text("Decibels: \(Int(decibels))")
-                Text("circle1 : \(circle1)")
-                Text("circle2 : \(circle2)")
+//                Text("Progress \(recProgress)") // 임시로 표기
+//                Text("Time\(timeString(from: remainingTime))") // 임시로 표기
+//                Text("isEndRecording? \(vm.isEndRecording ? "true":"false")")
+//                Text("isRecording? \(vm.isRecording ? "true":"false")")
+//                Text("Decibels: \(Int(decibels))")
+//                Text("circle1 : \(circle1)")
+//                Text("circle2 : \(circle2)")
+                
                 
 
             }//Vstack1 END
@@ -201,43 +244,47 @@ struct TimerView: View {
                     recProgress += (1/settingTime)
                     
                     
-                    withAnimation(Animation.easeInOut(duration: 2)) {
+                    withAnimation(Animation.easeInOut(duration: 9)) {
                         blueCircleOffset = getRandomOffset()
                         yellowCircleOffset = getRandomOffset()
                         
                         
-                        if Int(remainingTime) % 3 == 0 { // Move the circles randomly every 5 seconds
-                            withAnimation(Animation.easeInOut(duration: 2)) {
+                        if Int(remainingTime) % 7 == 0 { // Move the circles randomly every 5 seconds
+//                            withAnimation(Animation.easeInOut(duration: 7)) {
 //                                blueCircleOffset = getRandomOffset()
 //                                yellowCircleOffset = getRandomOffset()
-                                blurSize = (remainingTime/7) + 10
+                                blurSize = (remainingTime/7) + 0
   
                                 //블러 사이즈 비례d
                                 
-                            }
-                        } else if Int(remainingTime)-297 > 0 {
-                            withAnimation(Animation.easeInOut(duration: 2)) {
-                                blueCircleOffset = .init(width: 20, height: 60)
-                                yellowCircleOffset = .init(width: 50, height: 00)
-                                blurSize = (remainingTime/7) + 10
-
-                            }
+//                            }
                         }
+                        
+//                        else if Int(remainingTime)-295 > 0 {
+////                            withAnimation(Animation.easeInOut(duration: 5)) {
+//                                blueCircleOffset = .init(width: 20, height: 60)
+//                                yellowCircleOffset = .init(width: 50, height: 00)
+//                                blurSize = (remainingTime/7) + 0
+//
+////                            }
+//                        }
                     }
                     
                     
                 } else if remainingTime <= 0 {
                     
-                    
+                    endButton()
                     vm.isRecording = false
                     vm.isEndRecording = true
                     vm.stopRecording()
-                    
-                    withAnimation(Animation.easeInOut(duration: 3)) {
-                        blueCircleOffset = .init(width: -40, height: 0)
-                        yellowCircleOffset = .init(width: 70, height: 70)
-                        blurSize = 10
-                    }
+                    progressOpacity = 0
+                    maskFrameSize = 700
+//
+//                    withAnimation(Animation.easeInOut(duration: 3)) {
+//                        blueCircleOffset = .init(width: -40, height: 0)
+//                        yellowCircleOffset = .init(width: 70, height: 70)
+//                        blurSize = 10
+//                    }
                     
                 }
             }

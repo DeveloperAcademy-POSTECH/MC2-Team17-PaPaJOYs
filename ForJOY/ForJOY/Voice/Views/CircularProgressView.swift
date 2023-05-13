@@ -9,6 +9,7 @@ import SwiftUI
 struct CircularProgressView: View {
 
     @Binding var recProgress: Double
+    @Binding var progressOpacity : Double
 
     var body: some View {
 
@@ -17,13 +18,13 @@ struct CircularProgressView: View {
 
             Circle() // Progress 1
                 .stroke(
-                    Color("JoyBlue").opacity(0.5),
+                    Color("JoyBlue").opacity(progressOpacity),
                     lineWidth: 1)
                 .frame(width: 260)
             Circle() // Progress 2
                 .trim(from: 0, to: recProgress)
                 .stroke(
-                    Color("JoyBlue"),
+                    Color("JoyBlue").opacity(progressOpacity),
                     style: StrokeStyle(
                         lineWidth: 5,
                         lineCap: .round))
