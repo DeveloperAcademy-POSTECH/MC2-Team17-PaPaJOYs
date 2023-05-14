@@ -9,7 +9,12 @@ import SwiftUI
 
 struct AddDoneView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            LottieView(jsonName: "SaveComplete")
+                .frame(width: 1000, height: 1000)
+            Text("추억이 저장되었어요")
+                .foregroundColor(Color("JoyWhite"))
+        }
     }
 }
 

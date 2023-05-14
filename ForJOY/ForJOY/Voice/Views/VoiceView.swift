@@ -34,21 +34,23 @@ struct VoiceView: View {
                     //                DecibelView(decibels: $decibels)
                     ZStack {
                         TimerView(vm: vm)
+//                        VStack {
+//                            Spacer()
+//                            NavigationLink(destination: CameraView()) {
+//                                Text("임시버튼")
+//                                    .font(.title)
+//                                    .fontWeight(.bold)
+//                                    .foregroundColor(Color("JoyWhite"))
+//                            }
+//                        }
+//                        .frame(width: 400, height: 400)
                         
                     }
 //                    
                     
                     
                 }
-                VStack {
-                    Spacer()
-                    NavigationLink(destination: CameraView()) {
-                        Text("임시버튼")
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .foregroundColor(Color("JoyWhite"))
-                    }
-                }
+
                 //                .navigationBarTitle("Voice Recording")
                 //                .navigationBarBackButtonHidden()
 //                .navigationBarItems(

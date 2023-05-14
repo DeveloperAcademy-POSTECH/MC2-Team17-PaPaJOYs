@@ -53,9 +53,13 @@ struct TimerView: View {
     func circleSize(){
         if vm.isRecording == true {
             if decibels > 70 {
-                circle1 = 0.8
-                circle2 = 1.2
-            }else{
+                circle1 = 1.1
+                circle2 = 0.9
+            }else if decibels > 80{
+                circle1 = 1.2
+                circle2 = 0.8
+            }
+            else{
                 circle1 = 1.0
                 circle2 = 1.0
             }
@@ -195,108 +199,126 @@ struct TimerView: View {
                                 ZStack{
                                     
                                     if showLottieView{
+                                        
                                         ZStack{
-//                                            LottieView(jsonName: "RecComplete2")
-//                                                .frame(width: 910, height: 910)
-//                                            LottieView(jsonName: "panpare")
-//                                                .frame(width: 900, height: 900)
+                                            ZStack{
+                                                LottieView(jsonName: "RecComplete2")
+                                                    .frame(width: 910, height: 910)
+                                                LottieView(jsonName: "panpare")
+                                                    .frame(width: 900, height: 900)
+                                            }
+                                            VStack{
+                                                Spacer()
+                                                Button(action: {
+                                                    print("Cameraview Nav Click")
+                                                }, label: {
+                                                    NavigationLink(destination: CameraView()) {
+                                                        Text("사진 고르러 가기")
+                                                            .foregroundColor(Color("JoyDarkG"))
+                                                            .background(RoundedRectangle(cornerRadius: 12)
+                                                                .fill(Color("JoyWhite"))
+                                                                .frame(width: 150, height: 50)
+                                                            )
+                                                    }
+                                                })
+                                        
+                                            }
+                                            .frame(width: 400, height: 370)
                                         }
                                     }
-                                    
                                 }
+                                
+                            }
+                                
+                            }
+                        }
+                        
+                        
+                        
+                        
+                    }//Zstack1 END
+                        .onAppear(){
+                            setUpRecord()
+                        }
+                    
+                    //                Text("Progress \(recProgress)") // 임시로 표기
+                    //                Text("Time\(timeString(from: remainingTime))") // 임시로 표기
+                    //                Text("isEndRecording? \(vm.isEndRecording ? "true":"false")")
+                    //                Text("isRecording? \(vm.isRecording ? "true":"false")")
+                    //                Text("Decibels: \(Int(decibels))")
+                    //                Text("circle1 : \(circle1)")
+                    //                Text("circle2 : \(circle2)")
+                    
+                }//Vstack1 END
+                
+                
+            }//Zstack2 END
+            .onReceive(timer2) { _ in
+                if !vm.isEndRecording{
+                    
+                    if vm.isRecording && remainingTime > 0 {
+                        
+                        
+                        remainingTime -= 1
+                        recProgress += (1/settingTime)
+                        
+                        
+                        withAnimation(Animation.easeInOut(duration: 9)) {
+                            blueCircleOffset = getRandomOffset()
+                            yellowCircleOffset = getRandomOffset()
+                            
+                            
+                            if Int(remainingTime) % 7 == 0 { // Move the circles randomly every 5 seconds
+                                //                            withAnimation(Animation.easeInOut(duration: 7)) {
+                                //                                blueCircleOffset = getRandomOffset()
+                                //                                yellowCircleOffset = getRandomOffset()
+                                blurSize = (remainingTime/7) + 0
+                                
+                                //블러 사이즈 비례
+                                
+                                //                            }
                             }
                             
-                            
-                            
-                        }
-                    }
-                    
-                    
-                    
-                    
-                }//Zstack1 END
-                .onAppear(){
-                    setUpRecord()
-                }
-                
-                //                Text("Progress \(recProgress)") // 임시로 표기
-                //                Text("Time\(timeString(from: remainingTime))") // 임시로 표기
-                //                Text("isEndRecording? \(vm.isEndRecording ? "true":"false")")
-                //                Text("isRecording? \(vm.isRecording ? "true":"false")")
-                //                Text("Decibels: \(Int(decibels))")
-                //                Text("circle1 : \(circle1)")
-                //                Text("circle2 : \(circle2)")
-                
-            }//Vstack1 END
-            
-            
-        }//Zstack2 END
-        .onReceive(timer2) { _ in
-            if !vm.isEndRecording{
-                
-                if vm.isRecording && remainingTime > 0 {
-                    
-                    
-                    remainingTime -= 1
-                    recProgress += (1/settingTime)
-                    
-                    
-                    withAnimation(Animation.easeInOut(duration: 9)) {
-                        blueCircleOffset = getRandomOffset()
-                        yellowCircleOffset = getRandomOffset()
-                        
-                        
-                        if Int(remainingTime) % 7 == 0 { // Move the circles randomly every 5 seconds
-                            //                            withAnimation(Animation.easeInOut(duration: 7)) {
-                            //                                blueCircleOffset = getRandomOffset()
-                            //                                yellowCircleOffset = getRandomOffset()
-                            blurSize = (remainingTime/7) + 0
-                            
-                            //블러 사이즈 비례
-                            
-                            //                            }
+                            //                        else if Int(remainingTime)-295 > 0 {
+                            ////                            withAnimation(Animation.easeInOut(duration: 5)) {
+                            //                                blueCircleOffset = .init(width: 20, height: 60)
+                            //                                yellowCircleOffset = .init(width: 50, height: 00)
+                            //                                blurSize = (remainingTime/7) + 0
+                            //
+                            ////                            }
+                            //                        }
                         }
                         
-                        //                        else if Int(remainingTime)-295 > 0 {
-                        ////                            withAnimation(Animation.easeInOut(duration: 5)) {
-                        //                                blueCircleOffset = .init(width: 20, height: 60)
-                        //                                yellowCircleOffset = .init(width: 50, height: 00)
-                        //                                blurSize = (remainingTime/7) + 0
+                        
+                    } else if remainingTime <= 0 {
+                        
+                        endButton()
+                        vm.isRecording = false
+                        vm.isEndRecording = true
+                        vm.stopRecording()
+                        progressOpacity = 0
+                        maskFrameSize = 700
                         //
-                        ////                            }
-                        //                        }
+                        //                    withAnimation(Animation.easeInOut(duration: 3)) {
+                        //                        blueCircleOffset = .init(width: -40, height: 0)
+                        //                        yellowCircleOffset = .init(width: 70, height: 70)
+                        //                        blurSize = 10
+                        //                    }
                     }
                     
-                    
-                } else if remainingTime <= 0 {
-                    
-                    endButton()
-                    vm.isRecording = false
-                    vm.isEndRecording = true
-                    vm.stopRecording()
-                    progressOpacity = 0
-                    maskFrameSize = 700
-                    //
-                    //                    withAnimation(Animation.easeInOut(duration: 3)) {
-                    //                        blueCircleOffset = .init(width: -40, height: 0)
-                    //                        yellowCircleOffset = .init(width: 70, height: 70)
-                    //                        blurSize = 10
-                    //                    }
                 }
-                
             }
+            
+        }//Body End
+        
+    }//Struct END
+    
+    
+    
+    struct TimerView_Previews: PreviewProvider {
+        @StateObject static var vm = VoiceViewModel()
+        
+        static var previews: some View {
+            TimerView(vm: vm)
         }
-    
-}//Body End
-
-}//Struct END
-
-
-
-struct TimerView_Previews: PreviewProvider {
-    @StateObject static var vm = VoiceViewModel()
-    
-    static var previews: some View {
-        TimerView(vm: vm)
     }
-}
