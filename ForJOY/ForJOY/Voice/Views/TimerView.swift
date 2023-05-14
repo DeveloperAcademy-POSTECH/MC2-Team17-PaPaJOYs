@@ -196,10 +196,10 @@ struct TimerView: View {
                                     
                                     if showLottieView{
                                         ZStack{
-                                            LottieView(jsonName: "RecComplete2")
-                                                .frame(width: 910, height: 910)
-                                            LottieView(jsonName: "panpare")
-                                                .frame(width: 900, height: 900)
+//                                            LottieView(jsonName: "RecComplete2")
+//                                                .frame(width: 910, height: 910)
+//                                            LottieView(jsonName: "panpare")
+//                                                .frame(width: 900, height: 900)
                                         }
                                     }
                                     
@@ -226,8 +226,6 @@ struct TimerView: View {
                 //                Text("Decibels: \(Int(decibels))")
                 //                Text("circle1 : \(circle1)")
                 //                Text("circle2 : \(circle2)")
-                
-                
                 
             }//Vstack1 END
             

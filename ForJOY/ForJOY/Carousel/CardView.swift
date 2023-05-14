@@ -3,26 +3,31 @@ import SwiftUI
 import AVFoundation
 
 struct CardView: View {
-    @ObservedObject var cardViewModel = CardViewModel()
+    @Binding var filteredData: [PostModel]
+    @Binding var players: [AVPlayer]
     
     var cardGroup: [AnyView] {
-        cardViewModel.cardData.map{ AnyView(CardSubView(imageName: $0.recordImage, title: $0.recordName, date: $0.recordDate, player: cardViewModel.players![$0.idx - 1])) }
+        if filteredData.isEmpty {
+            return []
+        } else {
+            return filteredData.enumerated().map { (i, post) in
+                let player = players[i]
+                return AnyView(CardSubView(imageName: post.imageName, title: post.title, date: post.date, player: player))
+            }
+        }
     }
     
     var body: some View {
-        
         ZStack {
             Color("JoyDarkG")
                 .ignoresSafeArea()
-            
-            CarouselView(players: $cardViewModel.players, itemHeight: 520, views: cardGroup)
+            CarouselView(players: $players, itemHeight: 520, views: cardGroup)
         }
     }
 }
 
-
 struct CardSubView: View {
-    
+    @ObservedObject var postViewModel = PostViewModel()
     @State private var isPlaying = false
     @State private var currentTime: Double = 0.0
     @State private var remainingTime: Double = 0.0
@@ -32,7 +37,8 @@ struct CardSubView: View {
     let title: String
     let date: String
     
-    var player: AVPlayer?
+    // 플레이어 방식 고민 필요
+    var player: AVPlayer
     
     var body: some View {
         VStack{
@@ -77,9 +83,9 @@ struct CardSubView: View {
                 
                 Button(action: {
                     if isPlaying {
-                        player!.pause()
+                        player.pause()
                     } else {
-                        player!.play()
+                        player.play()
                     }
                     isPlaying.toggle()
                 }) {
@@ -95,7 +101,7 @@ struct CardSubView: View {
                     .padding(.horizontal)
                     .onChange(of: currentTime) { time in
                         let cmTime = CMTime(seconds: time, preferredTimescale: 1)
-                        player!.seek(to: cmTime)
+                        player.seek(to: cmTime)
                     }
                 
                 Text(timeString(time: remainingTime - currentTime))
@@ -107,13 +113,11 @@ struct CardSubView: View {
                 Spacer().frame(width: 14)
             }
             .onAppear {
-                player!.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: DispatchQueue.main) { time in
+                player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: DispatchQueue.main) { time in
                     currentTime = time.seconds
-                    remainingTime = player!.currentItem?.duration.seconds ?? 0.0
+                    remainingTime = player.currentItem?.duration.seconds ?? 0.0
                 }
             }
-            
-            
             Spacer()
         }
     }
@@ -125,9 +129,8 @@ struct CardSubView: View {
     }
 }
 
-struct CardView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardView()
-        
-    }
-}
+//struct CardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CardView()
+//    }
+//}

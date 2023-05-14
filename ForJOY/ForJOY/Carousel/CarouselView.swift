@@ -3,16 +3,15 @@ import SwiftUI
 import AVKit
 
 struct CarouselView: View {
-    
     @GestureState private var dragState = DragState.inactive
     @State var carouselLocation = 0
-    @Binding var players: [AVPlayer]?
+    @Binding var players: [AVPlayer]
     
     var itemHeight: CGFloat
     var views: [AnyView]
     
     private func onDragEnded(drag: DragGesture.Value) {
-        print("drag ended")
+//        print("drag ended")
         let dragThreshold:CGFloat = 200
         if drag.predictedEndTranslation.width > dragThreshold || drag.translation.width > dragThreshold{
             carouselLocation = carouselLocation - 1
@@ -20,7 +19,7 @@ struct CarouselView: View {
         {
             carouselLocation = carouselLocation + 1
         }
-        for p in players! {
+        for p in players {
             p.pause()
             p.currentItem?.seek(to: CMTime.zero)
         }
@@ -197,9 +196,9 @@ enum DragState {
     }
 }
 
-struct CarouselView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardView()
-        
-    }
-}
+//struct CarouselView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CardView()
+//        
+//    }
+//}

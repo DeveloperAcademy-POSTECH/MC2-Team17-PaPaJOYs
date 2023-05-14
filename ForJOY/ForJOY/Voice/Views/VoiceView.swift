@@ -26,7 +26,7 @@ struct VoiceView: View {
     
     var body: some View {
         
-        NavigationView(){
+        NavigationStack {
             // ZStack을 사용하여 뷰를 겹칩니다.
             ZStack{
                 VStack{
@@ -36,17 +36,29 @@ struct VoiceView: View {
                         TimerView(vm: vm)
                         
                     }
+//                    
+                    
+                    
+                }
+                VStack {
+                    Spacer()
+                    NavigationLink(destination: CameraView()) {
+                        Text("임시버튼")
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color("JoyWhite"))
+                    }
                 }
                 //                .navigationBarTitle("Voice Recording")
                 //                .navigationBarBackButtonHidden()
-                .navigationBarItems(
-                    leading:
-                        NavigationLink(
-                            destination: ContentView(),
-                            label: {
-                                Image(systemName: "chevron.left")
-                                    .foregroundColor(Color("JoyWhite"))
-                            }))
+//                .navigationBarItems(
+//                    leading:
+//                        NavigationLink(
+//                            destination: ContentView(),
+//                            label: {
+//                                Image(systemName: "chevron.left")
+//                                    .foregroundColor(Color("JoyWhite"))
+//                            }))
             }
         }
     }
