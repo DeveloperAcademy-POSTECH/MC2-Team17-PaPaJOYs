@@ -227,8 +227,6 @@ struct TimerView: View {
                 //                Text("circle1 : \(circle1)")
                 //                Text("circle2 : \(circle2)")
                 
-                
-                
             }//Vstack1 END
             
             

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct SelectYearView: View {
-    @State var isNewest = true
-    @State var selection = "All"
+    @State private var isNewest = true
+    @State private var selectedTag = "All"
     var body: some View {
         NavigationStack {
             ZStack {
@@ -19,12 +19,12 @@ struct SelectYearView: View {
                     HeaderView(isNewest: $isNewest)
                     HStack {
                         Spacer()
-                        TagView(selection: $selection)
+                        TagView(selectedTag: $selectedTag)
                         Spacer()
                     }
                     HStack {
                         Spacer()
-                        AlbumView(isNewest: $isNewest, selection: $selection)
+                        AlbumView(isNewest: $isNewest, selectedTag: $selectedTag)
                         Spacer()
                     }
                 }
@@ -39,8 +39,7 @@ struct HeaderView: View {
         VStack(spacing: 10) {
             HStack {
                 Spacer()
-                // 녹음하는 뷰와 이어지는 NavigationLink로 변경 예정
-                Button(action: {}) {
+                NavigationLink(destination: VoiceView()) {
                     Image(systemName: "mic.circle.fill")
                         .font(.title2)
                         .foregroundColor(Color(hex: "659BD5"))
@@ -75,18 +74,14 @@ struct HeaderView: View {
 
 struct TagView: View {
     @ObservedObject var postViewModel = PostViewModel()
-    @Binding var selection: String
+    @Binding var selectedTag: String
     @State var isAllSelect = true
-    
-    var tags: [String] {
-        Array(Set(postViewModel.postData.map { $0.tagName })).sorted()
-    }
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 5) {
                 Button {
-                    selection = "All"
+                    selectedTag = "All"
                     isAllSelect = true
                 } label: {
                     RoundedRectangle(cornerRadius: 10)
@@ -100,14 +95,14 @@ struct TagView: View {
                                 .lineLimit(1)
                         )
                 }
-                ForEach(postViewModel.tags!, id: \.self) { i in
+                ForEach(postViewModel.tags ?? [], id: \.self) { i in
                     Button {
-                        selection = i
+                        selectedTag = i
                         isAllSelect = false
                     } label: {
                         RoundedRectangle(cornerRadius: 10)
                             .frame(width: 75, height: 30)
-                            .foregroundColor(isAllSelect ? Color(hex: "F2F2F7") : (selection == i ? Color("JoyYellow") : Color(hex: "F2F2F7")))
+                            .foregroundColor(isAllSelect ? Color(hex: "F2F2F7") : (selectedTag == i ? Color("JoyYellow") : Color(hex: "F2F2F7")))
                             .opacity(0.9)
                             .overlay(
                                 Text("#" + i)
@@ -125,7 +120,7 @@ struct TagView: View {
 struct AlbumView: View {
     @ObservedObject var postViewModel = PostViewModel()
     @Binding var isNewest: Bool
-    @Binding var selection: String
+    @Binding var selectedTag: String
     
     // 데이터를 연도 단위로 묶어주기
     var YearGroup: [String: [PostModel]] {
@@ -136,12 +131,12 @@ struct AlbumView: View {
             data[key] = value.sorted(by: {$0.idx > $1.idx})
         }
         
-        if selection == "All" {
+        if selectedTag == "All" {
             return data
         } else {
-            let filteredData = data.filter({ $0.value.contains(where: { $0.tagName == selection })})
+            let filteredData = data.filter({ $0.value.contains(where: { $0.tagName == selectedTag })})
             let filteredByTag = filteredData.mapValues { value in
-                value.filter{ $0.tagName == selection }
+                value.filter{ $0.tagName == selectedTag }
             }
             return filteredByTag
         }
@@ -160,9 +155,8 @@ struct AlbumView: View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 15) {
                 ForEach(yearKey, id: \.self) { i in
-                    let filteredData = (selection == "All" ? YearGroup[i]! : YearGroup[i]!.filter{ $0.tagName == selection })
-                    NavigationLink(destination: GalleryView(tagName: selection, year: i, imageNames: filteredData.map{ $0.imageName })) {
-                        AlbumSubView(imageName: YearGroup[i]![0].imageName, year: i)
+                    NavigationLink(destination: GalleryView(tagName: selectedTag, year: i)) {
+                        AlbumSubView(post: YearGroup[i]![0])
                     }
                 }
             }
@@ -171,13 +165,12 @@ struct AlbumView: View {
 }
 
 struct AlbumSubView: View {
-    let imageName: String
-    let year: String
+    let post: PostModel
     var body: some View {
         ZStack {
             Color("JoyWhite")
             VStack {
-                Image(imageName)
+                Image(post.imageName)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: screenWidth * 0.4, height: screenWidth * 0.4)
@@ -186,7 +179,7 @@ struct AlbumSubView: View {
                     .padding(10)
                 HStack {
                     Spacer()
-                    Text(year)
+                    Text(post.year)
                         .font(.headline)
                         .foregroundColor(Color("JoyDarkG"))
                         .padding(.top, -10)

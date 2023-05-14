@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct GalleryView: View {
+    @ObservedObject var postViewModel = PostViewModel()
     var tagName: String
     var year: String
-    var imageNames: [String]
     
-    init(tagName: String, year: String, imageNames: [String]) {
+    init(tagName: String, year: String) {
         
         self.tagName = tagName
         self.year = year
-        self.imageNames = imageNames
+        
+        // 데이터 필터링하기
+        postViewModel.filterData(tagName: self.tagName, year: self.year)
         
         // 네비게이션바 투명
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
@@ -32,11 +34,9 @@ struct GalleryView: View {
             ZStack {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 3) {
-                        ForEach(imageNames, id: \.self) { name in
-                            // 카드뷰(디테일)로 연결 예정
-                            
-                            NavigationLink(destination: CardView()) {
-                                Image(name)
+                        ForEach(postViewModel.filteredData, id: \.self) { post in
+                            NavigationLink(destination: CardView(filteredData: $postViewModel.filteredData, players: $postViewModel.players)) {
+                                Image(post.imageName)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: screenWidth / 3 - 3, height: screenWidth / 3 - 3)
