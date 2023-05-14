@@ -5,7 +5,6 @@
 //  Created by Chaeeun Shin on 2023/05/12.
 //
 
-
 import SwiftUI
 import AVKit
 
@@ -25,7 +24,6 @@ class PostViewModel: ObservableObject {
     
     // CardView에서 음악 멈추기 위한 배열
     @Published var players: [AVPlayer] = []
-    
     
     // 필터링된 데이터들
     @Published var filteredData: [PostModel] = []

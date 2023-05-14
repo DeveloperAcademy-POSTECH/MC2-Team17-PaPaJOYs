@@ -11,7 +11,7 @@ struct CarouselView: View {
     var views: [AnyView]
     
     private func onDragEnded(drag: DragGesture.Value) {
-        print("drag ended")
+//        print("drag ended")
         let dragThreshold:CGFloat = 200
         if drag.predictedEndTranslation.width > dragThreshold || drag.translation.width > dragThreshold{
             carouselLocation = carouselLocation - 1
