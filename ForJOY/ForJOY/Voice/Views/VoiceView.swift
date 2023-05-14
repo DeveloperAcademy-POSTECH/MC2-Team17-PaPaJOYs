@@ -49,6 +49,7 @@ struct VoiceView: View {
                             .foregroundColor(Color("JoyWhite"))
                     }
                 }
+                .frame(width: 400, height: 400)
                 //                .navigationBarTitle("Voice Recording")
                 //                .navigationBarBackButtonHidden()
 //                .navigationBarItems(
