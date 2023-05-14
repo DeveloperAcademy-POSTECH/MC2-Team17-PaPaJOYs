@@ -4,7 +4,7 @@ import AVKit
 
 struct CarouselView: View {
     @GestureState private var dragState = DragState.inactive
-    @State var carouselLocation = 0
+    @State var carouselLocation: Int
     @Binding var players: [AVPlayer]
     
     var itemHeight: CGFloat

@@ -6,6 +6,8 @@ struct CardView: View {
     @Binding var filteredData: [PostModel]
     @Binding var players: [AVPlayer]
     
+    var order: Int
+    
     var cardGroup: [AnyView] {
         if filteredData.isEmpty {
             return []
@@ -21,7 +23,7 @@ struct CardView: View {
         ZStack {
             Color("JoyDarkG")
                 .ignoresSafeArea()
-            CarouselView(players: $players, itemHeight: 520, views: cardGroup)
+            CarouselView(carouselLocation: order, players: $players, itemHeight: 520, views: cardGroup)
         }
     }
 }

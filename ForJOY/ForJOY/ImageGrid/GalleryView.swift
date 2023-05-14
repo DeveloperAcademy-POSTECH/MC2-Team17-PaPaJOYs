@@ -34,8 +34,8 @@ struct GalleryView: View {
             ZStack {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 3) {
-                        ForEach(postViewModel.filteredData, id: \.self) { post in
-                            NavigationLink(destination: CardView(filteredData: $postViewModel.filteredData, players: $postViewModel.players)) {
+                        ForEach(Array(postViewModel.filteredData.enumerated()), id: \.1) { i, post in
+                            NavigationLink(destination: CardView(filteredData: $postViewModel.filteredData, players: $postViewModel.players, order: i)) {
                                 Image(post.imageName)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
