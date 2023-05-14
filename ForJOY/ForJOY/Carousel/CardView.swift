@@ -5,6 +5,7 @@ import AVFoundation
 struct CardView: View {
     @Binding var filteredData: [PostModel]
     @Binding var players: [AVPlayer]
+    @State private var isPlaying = false
     
     var order: Int
     
@@ -14,7 +15,7 @@ struct CardView: View {
         } else {
             return filteredData.enumerated().map { (i, post) in
                 let player = players[i]
-                return AnyView(CardSubView(imageName: post.imageName, title: post.title, date: post.date, player: player))
+                return AnyView(CardSubView(isPlaying: $isPlaying, imageName: post.imageName, title: post.title, date: post.date, player: player))
             }
         }
     }
@@ -23,23 +24,27 @@ struct CardView: View {
         ZStack {
             Color("JoyDarkG")
                 .ignoresSafeArea()
-            CarouselView(carouselLocation: order, players: $players, itemHeight: 520, views: cardGroup)
+            CarouselView(carouselLocation: order, players: $players, isPlaying: $isPlaying, itemHeight: 520, views: cardGroup)
+        }
+        .onDisappear {
+            for p in players {
+                p.pause()
+            }
         }
     }
 }
 
 struct CardSubView: View {
     @ObservedObject var postViewModel = PostViewModel()
-    @State private var isPlaying = false
     @State private var currentTime: Double = 0.0
     @State private var remainingTime: Double = 0.0
     @State private var currentAmount: CGFloat = 0
+    @Binding var isPlaying: Bool
     
     let imageName: String
     let title: String
     let date: String
     
-    // 플레이어 방식 고민 필요
     var player: AVPlayer
     
     var body: some View {
@@ -101,10 +106,10 @@ struct CardSubView: View {
                     .accentColor(Color("JoyBlue"))
                     .frame(width: 160)
                     .padding(.horizontal)
-                    .onChange(of: currentTime) { time in
-                        let cmTime = CMTime(seconds: time, preferredTimescale: 1)
-                        player.seek(to: cmTime)
-                    }
+//                    .onChange(of: currentTime) { time in
+//                        let cmTime = CMTime(seconds: time, preferredTimescale: 1)
+//                        player.seek(to: cmTime)
+//                    }
                 
                 Text(timeString(time: remainingTime - currentTime))
                     .font(.system(size: 16))

@@ -12,7 +12,8 @@ class PostViewModel: ObservableObject {
     // 전체 데이터(임시) - DB와 연결 필요
     @Published var postData: [PostModel] = [
         PostModel(tagName: "아카데미", imageName: "test2", audioName: "Overnight", title: "가족사진이어요", year: "2023", date: "2023.05.05", idx: 1),
-        PostModel(tagName: "딸랑구", imageName: "test1", audioName: "I AM", title: "축제 즐기기", year: "2023", date: "2023.03.05", idx: 2),
+        PostModel(tagName: "딸랑구", imageName: "test3", audioName: "I AM", title: "축제 즐기기", year: "2023", date: "2023.03.05", idx: 2),
+        PostModel(tagName: "딸랑구", imageName: "test1", audioName: "Overnight", title: "테스트중~~", year: "2023", date: "2023.03.05", idx: 3),
         PostModel(tagName: "딸랑구", imageName: "test3", audioName: "Overnight", title: "노래감상", year: "2022", date: "2022.05.05", idx: 1),
         PostModel(tagName: "아카데미", imageName: "test4", audioName: "I AM", title: "댄스왕🕺", year: "2021", date: "2021.03.05", idx: 1),
         PostModel(tagName: "아카데미", imageName: "test5", audioName: "Overnight", title: "푸드트럭 즐기기", year: "2020", date: "2020.05.05", idx: 1),

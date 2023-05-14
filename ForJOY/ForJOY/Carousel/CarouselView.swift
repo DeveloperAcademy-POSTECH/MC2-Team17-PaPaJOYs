@@ -6,6 +6,7 @@ struct CarouselView: View {
     @GestureState private var dragState = DragState.inactive
     @State var carouselLocation: Int
     @Binding var players: [AVPlayer]
+    @Binding var isPlaying: Bool
     
     var itemHeight: CGFloat
     var views: [AnyView]
@@ -23,6 +24,7 @@ struct CarouselView: View {
             p.pause()
             p.currentItem?.seek(to: CMTime.zero)
         }
+        isPlaying = false
     }
     
     var body: some View {

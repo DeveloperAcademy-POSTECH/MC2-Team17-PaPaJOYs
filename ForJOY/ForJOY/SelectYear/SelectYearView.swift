@@ -142,7 +142,6 @@ struct AlbumView: View {
         }
     }
     
-    
     var yearKey: [String] {
         let temp = YearGroup.map({ $0.key }).sorted()
         
