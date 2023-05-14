@@ -8,86 +8,124 @@
 import SwiftUI
 
 struct InfoView: View {
+    @EnvironmentObject var realmManger: RealmManger
+    @EnvironmentObject var voiceViewModel: VoiceViewModel
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     
     @State var title: String = ""
     @State var date = Date()
     @State var tag: String?
+    @State var toAddDoneView = false
+    @State var isAddData: Bool = false
+    
     @Binding var selectedImage: UIImage?
+    @Binding var recording: URL?
     
     var body: some View {
-        NavigationView {
-            VStack{
-                if selectedImage != nil {
-                    Image(uiImage: selectedImage!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                } else {
-                    Text("No image")
-                }
-                
-                List {
-                    HStack{
-                        Text("제목")
-                        Spacer(minLength: 220)
-                        TextField("제목", text: $title)
-                            .frame(alignment: .trailing)
-                    }
-                    .listRowBackground(Color("JoyWhite"))
-                    
-                    HStack{
-                        Text("태그")
-                        Spacer(minLength: 230)
-                        NavigationLink(destination: InfoTagView(selectTag: $tag), label: {
-                            if tag == nil {
-                                Text("없음")
-                            }else {
-                                Text(tag!)
-                            }
-                        })
-                    }
-                    .listRowBackground(Color("JoyWhite"))
-                    
-                    DatePicker(
-                        "날짜",
-                        selection: $date,
-                        displayedComponents: [.date]
-                    )
-                    .tint(Color("JoyBlue"))
-                    .listRowBackground(Color("JoyWhite"))
-                }
-                .scrollContentBackground(.hidden)
-                .scrollDisabled(true)
+        VStack{
+            if selectedImage != nil {
+                Image(uiImage: selectedImage!)
+                    .resizable()
+                    .aspectRatio(3/4, contentMode: .fit)
+            } else {
+                Text("No image")
             }
-            .background(Color("JoyDarkG"))
-            .foregroundColor(.black)
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                    }, label: {
-                        NavigationLink(
-                            destination:  {
-                                AddDoneView()
-                            }, label: {
-                                Text("Done")
-                            })
+            
+            List {
+                HStack{
+                    Text("제목")
+                    Spacer(minLength: 210)
+                    TextField("제목", text: $title)
+                        .multilineTextAlignment(.trailing)
+                        .onChange(of: title) { newValue in
+                            title = String(newValue.prefix(10))
+                            
+                        }
+                }
+                .listRowBackground(Color("JoyWhite"))
+                
+                HStack{
+                    Text("태그")
+                    Spacer(minLength: 230)
+                    NavigationLink(destination: InfoTagView(selectTag: $tag), label: {
+                        if tag == nil {
+                            Text("없음")
+                        }else {
+                            Text(tag!)
+                        }
                     })
                 }
+                .listRowBackground(Color("JoyWhite"))
+                
+                DatePicker(
+                    "날짜",
+                    selection: $date,
+                    displayedComponents: [.date]
+                )
+                .tint(Color("JoyBlue"))
+                .listRowBackground(Color("JoyWhite"))
             }
-            .gesture(DragGesture(minimumDistance: 3.0,
-                                 coordinateSpace: .local)
-                .onEnded({ (value) in
-                    if value.translation.width > 0 {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }
-            }))
+            .scrollContentBackground(.hidden)
+            .scrollDisabled(true)
         }
-    }
-}
-
-struct InfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        InfoView(selectedImage: .constant(UIImage(named: "test")))
+        .background(Color("JoyDarkG"))
+        .foregroundColor(.black)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                //TODO: title 작성 안되있으면 done 비활성화
+                Button(
+                    action: {
+                        toAddDoneView = true
+                    },
+                    label: {
+                        NavigationLink(
+                            isActive: $toAddDoneView,
+                            destination:  {
+                                AddDoneView()
+                                    .navigationBarBackButtonHidden()
+                                    .environmentObject(realmManger)
+                                    .onAppear(){
+                                        if !isAddData {
+                                            if title != "" {
+                                                let dateFormatter = DateFormatter()
+                                                dateFormatter.dateFormat = "yyyy"
+                                                let year = Int(dateFormatter.string(from: date))!
+                                                
+                                                print("음성 \(recording)")
+                                                
+                                                realmManger.addMemories(Memory(value: [
+                                                    "title": title,
+                                                    "year": year,
+                                                    "date": date,
+                                                    "tag": tag ?? "기본",
+                                                    "image": selectedImage!.jpegData(compressionQuality: 0.5),
+                                                    "voice": recording!.absoluteString
+                                                ] ))
+//                                                dismiss()
+                                                isAddData = true
+                                            }
+                                        }
+                                    }
+                            },
+                            label: {
+                                Text("Done")
+                            }
+                        )
+                        .isDetailLink(false)
+                    }
+                )
+                .disabled(title == "")
+            }
+        }
+        .tint(Color("JoyBlue"))
+        .gesture(DragGesture(minimumDistance: 3.0,
+                             coordinateSpace: .local)
+        .onEnded({ (value) in
+            if value.translation.width > 0 {
+                self.presentationMode.wrappedValue.dismiss()
+            }
+        }))
     }
 }

@@ -8,81 +8,75 @@
 import SwiftUI
 
 struct GalleryView: View {
-    @ObservedObject var postViewModel = PostViewModel()
-    var tagName: String
-    var year: String
+    @Environment(\.dismiss) var dismiss
+    @State var offset = CGSize(width: 0.0, height: screenHeight * 0.07)
     
-    init(tagName: String, year: String) {
-        
+    var tagName: String
+    var year: Int
+    var album: [Memory]
+    
+    init(tagName: String, year: Int, album: [Memory]) {
         self.tagName = tagName
         self.year = year
-        
-        // 데이터 필터링하기
-        postViewModel.filterData(tagName: self.tagName, year: self.year)
+        self.album = album
         
         // 네비게이션바 투명
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         UINavigationBar.appearance().shadowImage = UIImage()
     }
     
-    @State var offset = CGSize(width: 0.0, height: screenHeight * 0.07)
-    
     var columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 3), count: 3)
     
     var body: some View {
-        NavigationStack {
-            ZStack {
-                ScrollView {
-                    LazyVGrid(columns: columns, spacing: 3) {
-                        ForEach(postViewModel.filteredData, id: \.self) { post in
-                            NavigationLink(destination: CardView(filteredData: $postViewModel.filteredData, players: $postViewModel.players)) {
-                                Image(post.imageName)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: screenWidth / 3 - 3, height: screenWidth / 3 - 3)
-                                    .clipped()
-                            }
+        ZStack {
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 3) {
+                    ForEach(album, id: \.self) { post in
+                        NavigationLink(destination: CardView(filteredData: album)) {
+                        Image(uiImage: UIImage(data: post.image) ?? UIImage(systemName: "house")!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: screenWidth / 3 - 3, height: screenWidth / 3 - 3)
+                            .clipped()
                         }
                     }
-                    .offset(self.offset)
                 }
-                .background(Color("JoyDarkG"))
-                
-                VStack {
-                    Color("JoyDarkG")
-                        .ignoresSafeArea()
-                        .opacity(0.5)
-                        .blur(radius: 10)
-                        .frame(height: screenHeight * 0.07)
-                    Spacer()
-                }
-                
-                HStack {
-                    VStack {
-                        Text("#" + tagName + " " + year)
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                        Spacer()
-                    }
-                    .padding(.top)
-                    .padding(.leading)
-                    Spacer()
-                }
+                .offset(self.offset)
             }
-            .toolbar {
-                Button(action: {}) {
+            .background(Color("JoyDarkG"))
+
+            VStack {
+                Color("JoyDarkG")
+                    .ignoresSafeArea()
+                    .opacity(0.5)
+                    .blur(radius: 10)
+                    .frame(height: screenHeight * 0.07)
+                Spacer()
+            }
+
+            HStack {
+                VStack {
+                    Text("#" + tagName + " " + "\(year)")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                    Spacer()
+                }
+                .padding(.top)
+                .padding(.leading)
+                Spacer()
+            }
+        }
+        .toolbar {
+            //TODO: VoiceView와 연동
+            Button(action: {}) {
+                NavigationLink(destination: VoiceView()) {
                     Image(systemName: "mic.circle.fill")
                         .font(.title2)
                         .foregroundColor(Color(hex: "659BD5"))
                 }
+                .isDetailLink(false)
             }
         }
     }
 }
-
-//struct GalleryView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        GalleryView(tagName: "조이서", year: "2021", image: )
-//    }
-//}

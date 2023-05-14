@@ -7,22 +7,15 @@
 
 import SwiftUI
 
-struct Tag: Identifiable, Codable {
-    var id = UUID()
-    var tagName: String
-}
-
 struct InfoTagView: View {
     @State var addTag: Bool = false
     @State var newTag: String = ""
     @Binding var selectTag: String?
-    
     @State private var tags = [Tag]()
     
     var body: some View {
         NavigationView(){
             VStack{
-                //TODO: 리스트 row 삭제
                 List(selection: $selectTag){
                     ForEach(tags) { t in
                         if t.tagName == selectTag {
@@ -57,7 +50,11 @@ struct InfoTagView: View {
                 Button(action: {
                     addTag = true
                 }, label: {
-                    Text("Add tag")
+                    HStack{
+                        Image(systemName: "plus.circle.fill")
+                        Text("Add tag")
+                    }
+                    .foregroundColor(Color("JoyBlue"))
                 })
                 
             }
@@ -94,10 +91,5 @@ struct InfoTagView: View {
         if let data = try? JSONEncoder().encode(tags) {
             UserDefaults.standard.set(data, forKey: "tags")
         }
-    }
-}
-struct InfoTagView_Previews: PreviewProvider {
-    static var previews: some View {
-        InfoTagView(selectTag: .constant(nil))
     }
 }

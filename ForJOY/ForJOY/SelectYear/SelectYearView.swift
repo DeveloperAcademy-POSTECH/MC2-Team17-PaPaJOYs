@@ -10,8 +10,9 @@ import SwiftUI
 struct SelectYearView: View {
     @State private var isNewest = true
     @State private var selectedTag = "All"
+    
     var body: some View {
-        NavigationStack {
+        NavigationView {
             ZStack {
                 Color("JoyDarkG")
                     .ignoresSafeArea()
@@ -20,11 +21,13 @@ struct SelectYearView: View {
                     HStack {
                         Spacer()
                         TagView(selectedTag: $selectedTag)
+
                         Spacer()
                     }
                     HStack {
                         Spacer()
                         AlbumView(isNewest: $isNewest, selectedTag: $selectedTag)
+
                         Spacer()
                     }
                 }
@@ -35,6 +38,7 @@ struct SelectYearView: View {
 
 struct HeaderView: View {
     @Binding var isNewest: Bool
+    
     var body: some View {
         VStack(spacing: 10) {
             HStack {
@@ -44,6 +48,7 @@ struct HeaderView: View {
                         .font(.title2)
                         .foregroundColor(Color(hex: "659BD5"))
                 }
+                .isDetailLink(false)
                 Menu {
                     Button(action: {isNewest = true}) {
                         HStack {
@@ -73,7 +78,7 @@ struct HeaderView: View {
 }
 
 struct TagView: View {
-    @ObservedObject var postViewModel = PostViewModel()
+    @StateObject var realmManger = RealmManger()
     @Binding var selectedTag: String
     @State var isAllSelect = true
 
@@ -95,7 +100,9 @@ struct TagView: View {
                                 .lineLimit(1)
                         )
                 }
-                ForEach(postViewModel.tags ?? [], id: \.self) { i in
+                let tags = realmManger.uniqueTags
+                
+                ForEach( Array(tags) , id: \.self) { i in
                     Button {
                         selectedTag = i
                         isAllSelect = false
@@ -118,46 +125,39 @@ struct TagView: View {
 }
 
 struct AlbumView: View {
-    @ObservedObject var postViewModel = PostViewModel()
+    @StateObject var realmManger = RealmManger()
+    
+    @State var memories = [Int: [Memory]]()
+    
     @Binding var isNewest: Bool
     @Binding var selectedTag: String
-    
-    // 데이터를 연도 단위로 묶어주기
-    var YearGroup: [String: [PostModel]] {
-        var data = Dictionary(grouping: postViewModel.postData) { i in
-            i.year
-        }
-        for(key, value) in data {
-            data[key] = value.sorted(by: {$0.idx > $1.idx})
-        }
-        
-        if selectedTag == "All" {
-            return data
-        } else {
-            let filteredData = data.filter({ $0.value.contains(where: { $0.tagName == selectedTag })})
-            let filteredByTag = filteredData.mapValues { value in
-                value.filter{ $0.tagName == selectedTag }
-            }
-            return filteredByTag
-        }
-    }
-    
-    
-    var yearKey: [String] {
-        let temp = YearGroup.map({ $0.key }).sorted()
-        
-        return isNewest ? temp.reversed() : temp
-    }
     
     var columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 12), count: 2)
     
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 15) {
-                ForEach(yearKey, id: \.self) { i in
-                    NavigationLink(destination: GalleryView(tagName: selectedTag, year: i)) {
-                        AlbumSubView(post: YearGroup[i]![0])
+                let memories = realmManger.yearlyMemories
+                
+                if selectedTag == "All" {
+                    ForEach(Array(isNewest ? memories.keys.sorted(by: >) : memories.keys.sorted()), id: \.self) { key in
+                        NavigationLink(destination: GalleryView(tagName: selectedTag, year: key, album: memories[key]!)
+                            .environmentObject(realmManger)) {
+                                AlbumSubView(post: memories[key]!.first!)
+                            }
                     }
+                }else {
+                    let filterMemories = memories.filter{
+                        $0.value.filter{$0.tag == selectedTag}.count > 0
+                    }
+                    
+                    ForEach(Array(isNewest ? filterMemories.keys.sorted(by: >) : filterMemories.keys.sorted()), id: \.self) { key in
+                        NavigationLink(destination: GalleryView(tagName: selectedTag, year: key, album: filterMemories[key]!)
+                            .environmentObject(realmManger)) {
+                                AlbumSubView(post: memories[key]!.first!)
+                            }
+                    }
+                    
                 }
             }
         }
@@ -165,12 +165,12 @@ struct AlbumView: View {
 }
 
 struct AlbumSubView: View {
-    let post: PostModel
+    let post: Memory
     var body: some View {
         ZStack {
             Color("JoyWhite")
             VStack {
-                Image(post.imageName)
+                Image(uiImage: UIImage(data: post.image) ?? UIImage(systemName: "house")!)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: screenWidth * 0.4, height: screenWidth * 0.4)
@@ -179,7 +179,7 @@ struct AlbumSubView: View {
                     .padding(10)
                 HStack {
                     Spacer()
-                    Text(post.year)
+                    Text("\(post.year)".replacingOccurrences(of: ",", with: ""))
                         .font(.headline)
                         .foregroundColor(Color("JoyDarkG"))
                         .padding(.top, -10)
@@ -189,11 +189,5 @@ struct AlbumSubView: View {
             }
         }
         .cornerRadius(10)
-    }
-}
-
-struct SelectYearView_Previews: PreviewProvider {
-    static var previews: some View {
-        SelectYearView()
     }
 }

@@ -10,15 +10,13 @@ import Combine
 import AVFoundation
 
 struct TimerView: View {
-    
     @ObservedObject var vm: VoiceViewModel
-    @State var remainingTime: TimeInterval = 30.0
-    @State var settingTime =  30.0
+    @State var remainingTime: TimeInterval = 300.0
+    @State var settingTime =  300.0
     
     @State var recProgress : Double = 0.0
     @State var decibels: CGFloat = 0
     @State var timer2 = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
     
     @State var blueCircleOffset: CGSize = .init(width: -40, height: 0)
     @State var yellowCircleOffset: CGSize = .init(width: 80, height: 40)
@@ -32,7 +30,6 @@ struct TimerView: View {
     
     @State var maskFrameSize : CGFloat = 240
     
-    
     let audioRecorder = try! AVAudioRecorder(
         url: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("audio.m4a"), // 녹음 파일의 저장 경로
         settings: [
@@ -40,9 +37,8 @@ struct TimerView: View {
             AVSampleRateKey: 44100, // 샘플 레이트 설정
             AVNumberOfChannelsKey: 1, // 채널 수 설정
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue // 오디오 인코딩 품질 설정
-        ])
-    
-    
+        ]
+    )
     
     func getRandomOffset() -> CGSize {
         let x = CGFloat.random(in: -50...80)
@@ -80,7 +76,6 @@ struct TimerView: View {
         
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in // 0.1초 간격으로 실행되는 타이머 생성
             record()
-            // record() 메서드 호출
         }
     }
     
@@ -93,13 +88,8 @@ struct TimerView: View {
         }
     }
     
-    
-    /// 제자리로 돌아가는 함수 ////
+    // 제자리로 돌아가는 함수
     func endButton() {
-        //            vm.isRecording = false
-        //            vm.isEndRecording = true
-        //            vm.stopRecording()
-        
         withAnimation(Animation.easeInOut(duration: 2.1)) {
             blueCircleOffset = .init(width: -40, height: -30)
             yellowCircleOffset = .init(width: 73, height: 37.5)
@@ -108,9 +98,6 @@ struct TimerView: View {
         
     }
     
-    
-    
-    
     var body: some View {
         //Zstack2 START
         ZStack{
@@ -118,19 +105,13 @@ struct TimerView: View {
             Color("JoyDarkG")
                 .ignoresSafeArea()
             
-            
-            
             //Vstack1 Start
             VStack{
-                
                 //Zstack1 Start
                 ZStack{
-                    
                     CircularProgressView(recProgress : $recProgress, progressOpacity: $progressOpacity)
                     
-                    
                     if !vm.isRecording && !vm.isEndRecording {
-                        
                         Button(action: {
                             vm.startRecording()
                         }){
@@ -145,16 +126,11 @@ struct TimerView: View {
                                     .frame(width: 27, height: 40)
                                     .foregroundColor(Color("JoyWhite"))
                             }
-                            
-                            
                         }
                         
                     } else {
-                        
                         ZStack{
-                            
                             ZStack {
-                                
                                 Circle()
                                     .fill(LinearGradient(gradient: Gradient(colors: [Color("JoyBlue"),Color("JoyBlueL")]), startPoint: .bottom, endPoint: .top))
                                     .frame(width: circle1 * 175, height: circle1 * 175) //데시벨 값에 따라서 크기수정 되게 GlobalStore.circle
@@ -175,7 +151,6 @@ struct TimerView: View {
                             
                             
                             if vm.isRecording && !vm.isEndRecording {
-                                
                                 Button(action: {
                                     endButton()
                                     maskFrameSize = 700
@@ -188,7 +163,6 @@ struct TimerView: View {
                                 }){
                                     Text("   ")
                                         .padding(120)
-                                    
                                 }
                             }else if !vm.isRecording && vm.isEndRecording {
                                 
@@ -205,15 +179,10 @@ struct TimerView: View {
                                     
                                 }
                             }
-                            
-                            
-                            
+
                         }
                     }
-                    
-                    
-                    
-                    
+
                 }//Zstack1 END
                 .onAppear(){
                     setUpRecord()

@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		0E40FB022A0C904C00AFA66D /* AddDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40FB012A0C904C00AFA66D /* AddDoneView.swift */; };
+		0EB701182A11A47E0066849D /* Overnight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0EB701172A11A47E0066849D /* Overnight.mp3 */; };
+		0EB7011A2A11A4810066849D /* I AM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0EB701192A11A4810066849D /* I AM.mp3 */; };
+		0EB7011D2A11A4A20066849D /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0EB7011C2A11A4A20066849D /* Realm */; };
+		0EB7011F2A11A4A20066849D /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0EB7011E2A11A4A20066849D /* RealmSwift */; };
+		0EB701212A11A8240066849D /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB701202A11A8240066849D /* Tag.swift */; };
+		0EB701232A11A8680066849D /* RealmManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB701222A11A8680066849D /* RealmManger.swift */; };
+		0EB701262A11A87F0066849D /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB701252A11A87F0066849D /* Memory.swift */; };
 		3032387A2A00A876008A8093 /* ForJOYApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303238792A00A876008A8093 /* ForJOYApp.swift */; };
 		3032387E2A00A876008A8093 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3032387D2A00A876008A8093 /* Assets.xcassets */; };
 		303238812A00A876008A8093 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 303238802A00A876008A8093 /* Preview Assets.xcassets */; };
@@ -19,38 +26,35 @@
 		3063F2CA2A0E1B5900C56EBA /* (null) in Resources */ = {isa = PBXBuildFile; };
 		3063F2CC2A0E1BAA00C56EBA /* (null) in Sources */ = {isa = PBXBuildFile; };
 		3063F2CE2A0E1BB500C56EBA /* (null) in Sources */ = {isa = PBXBuildFile; };
-		3063F2D12A0F6DC600C56EBA /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3063F2CF2A0F6DC600C56EBA /* PostViewModel.swift */; };
-		3063F2D22A0F6DC600C56EBA /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3063F2D02A0F6DC600C56EBA /* PostModel.swift */; };
 		3063F2D52A0FEE4900C56EBA /* panpare.json in Resources */ = {isa = PBXBuildFile; fileRef = 3063F2D32A0FEE4800C56EBA /* panpare.json */; };
 		3063F2D62A0FEE4900C56EBA /* RecComplete2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3063F2D42A0FEE4900C56EBA /* RecComplete2.json */; };
-		3063F2D92A0FFEF100C56EBA /* Overnight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3063F2D72A0FFEF100C56EBA /* Overnight.mp3 */; };
-		3063F2DA2A0FFEF100C56EBA /* I AM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3063F2D82A0FFEF100C56EBA /* I AM.mp3 */; };
 		307814412A08A18000231E6F /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307814402A08A18000231E6F /* ColorExtension.swift */; };
 		30BDADE62A034DB7000BDA8F /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADDA2A034DB7000BDA8F /* CircularProgressView.swift */; };
 		30BDADE72A034DB7000BDA8F /* VoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADDB2A034DB7000BDA8F /* VoiceViewModel.swift */; };
-		30BDADE82A034DB7000BDA8F /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADDD2A034DB7000BDA8F /* Recording.swift */; };
 		30BDADE92A034DB7000BDA8F /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADDF2A034DB7000BDA8F /* Date.swift */; };
 		30BDADEA2A034DB7000BDA8F /* convertSecToMinAndHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADE02A034DB7000BDA8F /* convertSecToMinAndHour.swift */; };
 		30BDADEB2A034DB7000BDA8F /* DecibelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADE22A034DB7000BDA8F /* DecibelView.swift */; };
 		30BDADEC2A034DB7000BDA8F /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADE32A034DB7000BDA8F /* TimerView.swift */; };
-		30BDADED2A034DB7000BDA8F /* RecordingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADE42A034DB7000BDA8F /* RecordingListView.swift */; };
 		30BDADEE2A034DB7000BDA8F /* VoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADE52A034DB7000BDA8F /* VoiceView.swift */; };
 		30C74FA52A0D06EB0099DC1B /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C74FA42A0D06EB0099DC1B /* InfoView.swift */; };
 		30C74FA72A0D06FE0099DC1B /* InfoTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C74FA62A0D06FE0099DC1B /* InfoTagView.swift */; };
 		5B52BECC2A0358EA00320ECD /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52BECB2A0358EA00320ECD /* Camera.swift */; };
 		5B52BECE2A03590900320ECD /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52BECD2A03590900320ECD /* CameraViewModel.swift */; };
 		5B52BED02A03592400320ECD /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52BECF2A03592400320ECD /* CameraView.swift */; };
-		AA44E15B2A089F9500DB9601 /* GlobalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA44E15A2A089F9500DB9601 /* GlobalStore.swift */; };
 		AAA673042A0C81AD00F85491 /* RemainingTimeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA673032A0C81AD00F85491 /* RemainingTimeModel.swift */; };
 		BE522DFD2A05A48D00D4AEEA /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE522DFC2A05A48D00D4AEEA /* CarouselView.swift */; };
 		BECC97372A05A54700E27120 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC97362A05A54700E27120 /* CardView.swift */; };
 		D92951642A0F643A00D7A7A7 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92951632A0F643A00D7A7A7 /* LottieView.swift */; };
 		D92951672A0F648F00D7A7A7 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D92951662A0F648F00D7A7A7 /* Lottie */; };
-		D9F0DC622A0353D3002CE5E5 /* RecAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F0DC612A0353D3002CE5E5 /* RecAnimationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0E40FB012A0C904C00AFA66D /* AddDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDoneView.swift; sourceTree = "<group>"; };
+		0EB701172A11A47E0066849D /* Overnight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Overnight.mp3; sourceTree = "<group>"; };
+		0EB701192A11A4810066849D /* I AM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "I AM.mp3"; sourceTree = "<group>"; };
+		0EB701202A11A8240066849D /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		0EB701222A11A8680066849D /* RealmManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManger.swift; sourceTree = "<group>"; };
+		0EB701252A11A87F0066849D /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
 		303238762A00A876008A8093 /* ForJOY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForJOY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		303238792A00A876008A8093 /* ForJOYApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForJOYApp.swift; sourceTree = "<group>"; };
 		3032387B2A00A876008A8093 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,33 +63,25 @@
 		303238872A00B3BB008A8093 /* SelectYearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectYearView.swift; sourceTree = "<group>"; };
 		3032388A2A00B89E008A8093 /* Ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ref.swift; sourceTree = "<group>"; };
 		3037CB852A09DFF200E6A92E /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
-		3063F2CF2A0F6DC600C56EBA /* PostViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
-		3063F2D02A0F6DC600C56EBA /* PostModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		3063F2D32A0FEE4800C56EBA /* panpare.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = panpare.json; sourceTree = "<group>"; };
 		3063F2D42A0FEE4900C56EBA /* RecComplete2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RecComplete2.json; sourceTree = "<group>"; };
-		3063F2D72A0FFEF100C56EBA /* Overnight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Overnight.mp3; path = ../../../../../Downloads/Overnight.mp3; sourceTree = "<group>"; };
-		3063F2D82A0FFEF100C56EBA /* I AM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "I AM.mp3"; path = "../../../../../Downloads/I AM.mp3"; sourceTree = "<group>"; };
 		307814402A08A18000231E6F /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		30BDADDA2A034DB7000BDA8F /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		30BDADDB2A034DB7000BDA8F /* VoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceViewModel.swift; sourceTree = "<group>"; };
-		30BDADDD2A034DB7000BDA8F /* Recording.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
 		30BDADDF2A034DB7000BDA8F /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		30BDADE02A034DB7000BDA8F /* convertSecToMinAndHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = convertSecToMinAndHour.swift; sourceTree = "<group>"; };
 		30BDADE22A034DB7000BDA8F /* DecibelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecibelView.swift; sourceTree = "<group>"; };
 		30BDADE32A034DB7000BDA8F /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		30BDADE42A034DB7000BDA8F /* RecordingListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingListView.swift; sourceTree = "<group>"; };
 		30BDADE52A034DB7000BDA8F /* VoiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceView.swift; sourceTree = "<group>"; };
 		30C74FA42A0D06EB0099DC1B /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		30C74FA62A0D06FE0099DC1B /* InfoTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTagView.swift; sourceTree = "<group>"; };
 		5B52BECB2A0358EA00320ECD /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		5B52BECD2A03590900320ECD /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		5B52BECF2A03592400320ECD /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
-		AA44E15A2A089F9500DB9601 /* GlobalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalStore.swift; sourceTree = "<group>"; };
 		AAA673032A0C81AD00F85491 /* RemainingTimeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemainingTimeModel.swift; sourceTree = "<group>"; };
 		BE522DFC2A05A48D00D4AEEA /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		BECC97362A05A54700E27120 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		D92951632A0F643A00D7A7A7 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
-		D9F0DC612A0353D3002CE5E5 /* RecAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecAnimationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +89,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EB7011F2A11A4A20066849D /* RealmSwift in Frameworks */,
+				0EB7011D2A11A4A20066849D /* Realm in Frameworks */,
 				D92951672A0F648F00D7A7A7 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,6 +98,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0EB701242A11A86B0066849D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				0EB701222A11A8680066849D /* RealmManger.swift */,
+				0EB701252A11A87F0066849D /* Memory.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		0ECFA0222A0B3027009D3C5B /* Info */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,8 +121,6 @@
 			isa = PBXGroup;
 			children = (
 				303238782A00A876008A8093 /* ForJOY */,
-				3063F2D02A0F6DC600C56EBA /* PostModel.swift */,
-				3063F2CF2A0F6DC600C56EBA /* PostViewModel.swift */,
 				303238772A00A876008A8093 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -137,6 +142,7 @@
 				3063F2D32A0FEE4800C56EBA /* panpare.json */,
 				3063F2D42A0FEE4900C56EBA /* RecComplete2.json */,
 				3032387D2A00A876008A8093 /* Assets.xcassets */,
+				0EB701242A11A86B0066849D /* Data */,
 				0ECFA0222A0B3027009D3C5B /* Info */,
 				BECC97382A05A64300E27120 /* Carousel */,
 				5B52BEB72A03575500320ECD /* Camera */,
@@ -144,6 +150,7 @@
 				30BDADD72A034D7D000BDA8F /* SelectYear */,
 				3037CB872A09DFF800E6A92E /* ImageGrid */,
 				3032387F2A00A876008A8093 /* Preview Content */,
+				0EB701202A11A8240066849D /* Tag.swift */,
 			);
 			path = ForJOY;
 			sourceTree = "<group>";
@@ -177,7 +184,6 @@
 			isa = PBXGroup;
 			children = (
 				30BDADD92A034DB7000BDA8F /* ViewModels */,
-				30BDADDC2A034DB7000BDA8F /* Models */,
 				30BDADDE2A034DB7000BDA8F /* Extensions */,
 				30BDADE12A034DB7000BDA8F /* Views */,
 			);
@@ -189,18 +195,9 @@
 			isa = PBXGroup;
 			children = (
 				30BDADDB2A034DB7000BDA8F /* VoiceViewModel.swift */,
-				AA44E15A2A089F9500DB9601 /* GlobalStore.swift */,
 				AAA673032A0C81AD00F85491 /* RemainingTimeModel.swift */,
 			);
 			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		30BDADDC2A034DB7000BDA8F /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				30BDADDD2A034DB7000BDA8F /* Recording.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		30BDADDE2A034DB7000BDA8F /* Extensions */ = {
@@ -215,12 +212,10 @@
 		30BDADE12A034DB7000BDA8F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D9F0DC612A0353D3002CE5E5 /* RecAnimationView.swift */,
 				D92951632A0F643A00D7A7A7 /* LottieView.swift */,
 				30BDADDA2A034DB7000BDA8F /* CircularProgressView.swift */,
 				30BDADE22A034DB7000BDA8F /* DecibelView.swift */,
 				30BDADE32A034DB7000BDA8F /* TimerView.swift */,
-				30BDADE42A034DB7000BDA8F /* RecordingListView.swift */,
 				30BDADE52A034DB7000BDA8F /* VoiceView.swift */,
 			);
 			path = Views;
@@ -263,8 +258,8 @@
 		BECC97382A05A64300E27120 /* Carousel */ = {
 			isa = PBXGroup;
 			children = (
-				3063F2D82A0FFEF100C56EBA /* I AM.mp3 */,
-				3063F2D72A0FFEF100C56EBA /* Overnight.mp3 */,
+				0EB701192A11A4810066849D /* I AM.mp3 */,
+				0EB701172A11A47E0066849D /* Overnight.mp3 */,
 				BE522DFC2A05A48D00D4AEEA /* CarouselView.swift */,
 				BECC97362A05A54700E27120 /* CardView.swift */,
 			);
@@ -289,6 +284,8 @@
 			name = ForJOY;
 			packageProductDependencies = (
 				D92951662A0F648F00D7A7A7 /* Lottie */,
+				0EB7011C2A11A4A20066849D /* Realm */,
+				0EB7011E2A11A4A20066849D /* RealmSwift */,
 			);
 			productName = ForJOY;
 			productReference = 303238762A00A876008A8093 /* ForJOY.app */;
@@ -320,6 +317,7 @@
 			mainGroup = 3032386D2A00A876008A8093;
 			packageReferences = (
 				D92951652A0F648F00D7A7A7 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				0EB7011B2A11A4A20066849D /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 303238772A00A876008A8093 /* Products */;
 			projectDirPath = "";
@@ -337,11 +335,11 @@
 			files = (
 				303238812A00A876008A8093 /* Preview Assets.xcassets in Resources */,
 				3063F2C92A0E1B5900C56EBA /* (null) in Resources */,
+				0EB701182A11A47E0066849D /* Overnight.mp3 in Resources */,
 				3032387E2A00A876008A8093 /* Assets.xcassets in Resources */,
 				3063F2D52A0FEE4900C56EBA /* panpare.json in Resources */,
 				3063F2D62A0FEE4900C56EBA /* RecComplete2.json in Resources */,
-				3063F2DA2A0FFEF100C56EBA /* I AM.mp3 in Resources */,
-				3063F2D92A0FFEF100C56EBA /* Overnight.mp3 in Resources */,
+				0EB7011A2A11A4810066849D /* I AM.mp3 in Resources */,
 				3063F2CA2A0E1B5900C56EBA /* (null) in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,19 +351,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EB701262A11A87F0066849D /* Memory.swift in Sources */,
 				3063F2CC2A0E1BAA00C56EBA /* (null) in Sources */,
 				AAA673042A0C81AD00F85491 /* RemainingTimeModel.swift in Sources */,
-				30BDADED2A034DB7000BDA8F /* RecordingListView.swift in Sources */,
 				3063F2CE2A0E1BB500C56EBA /* (null) in Sources */,
 				30BDADE72A034DB7000BDA8F /* VoiceViewModel.swift in Sources */,
+				0EB701232A11A8680066849D /* RealmManger.swift in Sources */,
 				30BDADEB2A034DB7000BDA8F /* DecibelView.swift in Sources */,
-				3063F2D12A0F6DC600C56EBA /* PostViewModel.swift in Sources */,
 				303238882A00B3BB008A8093 /* SelectYearView.swift in Sources */,
 				3032387A2A00A876008A8093 /* ForJOYApp.swift in Sources */,
 				5B52BECE2A03590900320ECD /* CameraViewModel.swift in Sources */,
 				3032388E2A033332008A8093 /* ContentView.swift in Sources */,
 				3037CB862A09DFF200E6A92E /* GalleryView.swift in Sources */,
 				30C74FA72A0D06FE0099DC1B /* InfoTagView.swift in Sources */,
+				0EB701212A11A8240066849D /* Tag.swift in Sources */,
 				0E40FB022A0C904C00AFA66D /* AddDoneView.swift in Sources */,
 				30BDADEC2A034DB7000BDA8F /* TimerView.swift in Sources */,
 				30BDADEA2A034DB7000BDA8F /* convertSecToMinAndHour.swift in Sources */,
@@ -375,14 +374,10 @@
 				BE522DFD2A05A48D00D4AEEA /* CarouselView.swift in Sources */,
 				BECC97372A05A54700E27120 /* CardView.swift in Sources */,
 				30C74FA52A0D06EB0099DC1B /* InfoView.swift in Sources */,
-				AA44E15B2A089F9500DB9601 /* GlobalStore.swift in Sources */,
 				5B52BECC2A0358EA00320ECD /* Camera.swift in Sources */,
 				3032388B2A00B89E008A8093 /* Ref.swift in Sources */,
-				D9F0DC622A0353D3002CE5E5 /* RecAnimationView.swift in Sources */,
 				30BDADE92A034DB7000BDA8F /* Date.swift in Sources */,
-				3063F2D22A0F6DC600C56EBA /* PostModel.swift in Sources */,
 				307814412A08A18000231E6F /* ColorExtension.swift in Sources */,
-				30BDADE82A034DB7000BDA8F /* Recording.swift in Sources */,
 				D92951642A0F643A00D7A7A7 /* LottieView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,7 +507,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ForJOY/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = HQS8MXQ7B5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -544,7 +539,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ForJOY/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = HQS8MXQ7B5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -592,6 +587,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0EB7011B2A11A4A20066849D /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		D92951652A0F648F00D7A7A7 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -603,6 +606,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0EB7011C2A11A4A20066849D /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0EB7011B2A11A4A20066849D /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		0EB7011E2A11A4A20066849D /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0EB7011B2A11A4A20066849D /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		D92951662A0F648F00D7A7A7 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D92951652A0F648F00D7A7A7 /* XCRemoteSwiftPackageReference "lottie-ios" */;

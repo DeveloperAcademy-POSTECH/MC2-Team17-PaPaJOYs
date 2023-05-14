@@ -5,23 +5,25 @@ import AVKit
 struct CarouselView: View {
     @GestureState private var dragState = DragState.inactive
     @State var carouselLocation = 0
-    @Binding var players: [AVPlayer]
+    var players: [Memory]
     
     var itemHeight: CGFloat
     var views: [AnyView]
     
+    init(carouselLocation: Int = 0, players: [Memory], itemHeight: CGFloat, views: [AnyView]) {
+        self.carouselLocation = carouselLocation
+        self.players = players
+        self.itemHeight = itemHeight
+        self.views = views
+    }
+    
     private func onDragEnded(drag: DragGesture.Value) {
-//        print("drag ended")
         let dragThreshold:CGFloat = 200
         if drag.predictedEndTranslation.width > dragThreshold || drag.translation.width > dragThreshold{
             carouselLocation = carouselLocation - 1
         } else if (drag.predictedEndTranslation.width) < (-1 * dragThreshold) || (drag.translation.width) < (-1 * dragThreshold)
         {
             carouselLocation = carouselLocation + 1
-        }
-        for p in players {
-            p.pause()
-            p.currentItem?.seek(to: CMTime.zero)
         }
     }
     
@@ -84,7 +86,6 @@ struct CarouselView: View {
     }
     
     func getOpacity(_ i:Int) -> Double{
-        
         if i == relativeLoc()
         {
             return 1
@@ -105,7 +106,6 @@ struct CarouselView: View {
     }
     
     func getOffset(_ i:Int) -> CGFloat{
-        
         // This sets up the central offset
         if (i) == relativeLoc()
         {
@@ -195,10 +195,3 @@ enum DragState {
         }
     }
 }
-
-//struct CarouselView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CardView()
-//        
-//    }
-//}
