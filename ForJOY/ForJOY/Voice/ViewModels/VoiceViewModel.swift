@@ -29,11 +29,11 @@ class VoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
     var playingURL : URL?
     
     // 초기화 메소드
-    override init(){
-        super.init()
-        // 앱이 실행될 때 저장된 녹음 파일을 불러옴
-        fetchAllRecording()
-    }
+//    override init(){
+//        super.init()
+//        // 앱이 실행될 때 저장된 녹음 파일을 불러옴
+//        fetchAllRecording()
+//    }
     
     // 녹음 파일 재생이 끝났을 때 호출되는 AVAudioPlayerDelegate 메소드
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
@@ -92,15 +92,15 @@ class VoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
     }
     
     // 저장된 모든 녹음 파일을 가져와서 recordingsList 배열에 추가하는 메소드
-    func fetchAllRecording(){
-        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let directoryContents = try! FileManager.default.contentsOfDirectory(at: path, includingPropertiesForKeys: nil)
-        for i in directoryContents {
-            recordingsList.append(Recording(fileURL : i, createdAt:getFileDate(for: i), isPlaying: false))
-        }
-        // recordingsList를 생성 날짜를 기준으로 내림차순 정렬
-        recordingsList.sort(by: { $0.createdAt.compare($1.createdAt) == .orderedDescending})
-    }
+//    func fetchAllRecording(){
+//        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//        let directoryContents = try! FileManager.default.contentsOfDirectory(at: path, includingPropertiesForKeys: nil)
+//        for i in directoryContents {
+//            recordingsList.append(Recording(fileURL : i, createdAt:getFileDate(for: i), isPlaying: false))
+//        }
+//        // recordingsList를 생성 날짜를 기준으로 내림차순 정렬
+//        recordingsList.sort(by: { $0.createdAt.compare($1.createdAt) == .orderedDescending})
+//    }
     
     // 녹음 파일 재생 메소드
     func startPlaying(url : URL) {
