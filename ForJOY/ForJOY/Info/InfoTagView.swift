@@ -7,76 +7,99 @@
 
 import SwiftUI
 
-struct Tag: Identifiable {
-    var id = UUID()
-    var tag: String
-}
-
 struct InfoTagView: View {
     @State var addTag: Bool = false
     @State var newTag: String = ""
-    @Binding var tag: String?
-    
-    @State var tags = [
-       Tag(tag: "이서"),
-       Tag(tag: "이한")
-     ]
+    @Binding var selectTag: String?
+    @State private var tags = [Tag]()
+    @FocusState private var textFieldIsFocused: Bool
     
     var body: some View {
-        NavigationView(){
+        NavigationStack{
             VStack{
-                List(selection: $tag){
+                List(selection: $selectTag){
                     ForEach(tags) { t in
-                        if t.tag == tag {
+                        if t.tagName == selectTag {
                             HStack {
-                                Text(t.tag)
-                                    .tag(t.tag)
+                                Text(t.tagName)
+                                    .tag(t.tagName)
                                 Spacer(minLength: 220)
                                 Image(systemName: "checkmark")
                             }
                             .listRowBackground(Color("JoyWhite"))
                         }else{
-                            Text(t.tag)
-                                .tag(t.tag)
+                            Text(t.tagName)
+                                .tag(t.tagName)
                                 .listRowBackground(Color("JoyWhite"))
                         }
                     }
-                    
+                    .onDelete{ index in
+                        tags.remove(atOffsets: index)
+                        saveTags()
+                        if tags.isEmpty {
+                            addTag = true
+                            textFieldIsFocused = true
+                        }
+                    }
+            
                     if addTag{
-                        TextField("테그", text: $newTag, onCommit: {addNewTag()})
+                        TextField("태그", text: $newTag, onCommit: {addNewTag()})
                             .listRowBackground(Color("JoyWhite"))
+                            .focused($textFieldIsFocused)
                     }
                 }
                 .scrollContentBackground(.hidden)
-                .background(Color("JoyDarkG"))
                 
                 Button(action: {
                     addTag = true
+                    textFieldIsFocused = true
                 }, label: {
-                    Text("Add tag")
+                    HStack{
+                        Image(systemName: "plus.circle.fill")
+                        Text("Add tag")
+                    }
+                    .foregroundColor(Color("JoyBlue"))
                 })
-                
             }
             .padding(8)
             .background(Color("JoyDarkG"))
+            .foregroundColor(.black)
+            .onDisappear() {
+                saveTags()
+            }
+            .onAppear(){
+                tags = {
+                    if let data = UserDefaults.standard.data(forKey: "tags"),
+                       let tags = try? JSONDecoder().decode([Tag].self, from: data) {
+                        return tags
+                    }
+                    return []
+                }()
+                if tags.isEmpty {
+                    addTag = true
+                    textFieldIsFocused = true
+                }
+            }
         }
         .navigationTitle("Tag")
-        
+        .tint(Color("JoyBlue"))
     }
     
     func addNewTag() {
-        addTag  = false
         if newTag != "" {
-            tags.append(Tag(tag: newTag))
+            textFieldIsFocused = true
+            tags.append(Tag(tagName: newTag))
             DispatchQueue.main.async {
                 self.newTag = ""
             }
         }
+        addTag  = false
     }
-}
+    
+    func saveTags() {
+        if let data = try? JSONEncoder().encode(tags) {
+            UserDefaults.standard.set(data, forKey: "tags")
+        }
+    }
 
-struct InfoTagView_Previews: PreviewProvider {
-    static var previews: some View {
-        InfoTagView(tag: .constant("nil"))
-    }
 }

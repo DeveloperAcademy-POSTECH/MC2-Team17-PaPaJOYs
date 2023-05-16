@@ -9,58 +9,48 @@ import SwiftUI
 
 
 struct VoiceView: View {
-    
-    @EnvironmentObject var GlobalStore: globalStore
     // VoiceViewModel의 인스턴스를 생성하여 관찰합니다.
-    @ObservedObject var vm = VoiceViewModel()
-    // 녹음 파일 리스트를 보여줄지 여부를 나타내는 상태 변수입니다.
-    @State private var showingList = false
+    @StateObject var voiceViewModel = VoiceViewModel()
     // 삭제 경고 메시지를 보여줄지 여부를 나타내는 상태 변수입니다.
     @State private var showingAlert = false
     // 효과음1을 재생할지 여부를 나타내는 상태 변수입니다.
     @State private var effect1 = false
     // 효과음2을 재생할지 여부를 나타내는 상태 변수입니다.
     @State private var effect2 = false
-    
-    @State var decibels: CGFloat = 0
-    
+    @State var recording: URL?
+    @State var isButtonOn = false
+
     var body: some View {
-        
-        // ZStack을 사용하여 뷰를 겹칩니다.
-        ZStack{
-            
-            VStack{
-                
-                // DecibelView를 추가합니다.
-                DecibelView(decibels: $decibels)
-                
-
-                
-//
-                ZStack {
-                    
-                    
-                    TimerView()
-
-                    
-                    
-//                    Image(systemName: vm.isRecording ? "stop.circle.fill" : "mic.circle.fill")
-//                        .foregroundColor(.black)
-//                        .font(.system(size: 45))
-//                        .onTapGesture {
-//                            if vm.isRecording == true {
-//                                vm.stopRecording()
-//                            } else {
-//                                vm.startRecording()
-//                            }
-//                        }
+        NavigationStack{
+            ZStack{
+                VStack{
+                    ZStack {
+                        TimerView(vm: voiceViewModel)
+                    }
                 }
+                VStack {
+                    Spacer()
+                    Button(action: {
+                    }, label: {
+                        NavigationLink(
+                            destination: CameraView(recording: $recording)
+                        ) {
+                            if !voiceViewModel.isRecording && voiceViewModel.isEndRecording {
+                                Text("사진 고르러 가기")
+                                    .foregroundColor(Color("JoyDarkG"))
+                                    .background(RoundedRectangle(cornerRadius: 12)
+                                        .fill(Color("JoyWhite"))
+                                        .frame(width: 150, height: 50))
+                            }
+                        }
+                        .isDetailLink(false)
+                    })
+                    .onChange(of: voiceViewModel.recording) { newValue in
+                        recording = newValue
+                    }
+                }
+                .frame(width: 400, height: 400)
             }
         }
-    }
-}
-struct VoiceView_Previews: PreviewProvider {
-    static var previews: some View {
-        VoiceView()
     }
 }
