@@ -30,6 +30,27 @@ struct SelectYearView: View {
 
                         Spacer()
                     }
+                    
+                    NavigationLink(destination: VoiceView()) {
+                        
+                        // ver1
+                        RoundedRectangle(cornerRadius: 20)
+                            .frame(width: screenWidth * 0.6, height: 50)
+                            .foregroundColor(Color("JoyBlue"))
+                            .opacity(0.9)
+                            .overlay(
+                                Image(systemName: "mic")
+                                    .font(.title)
+                                    .foregroundColor(Color("JoyDarkG"))
+//                                    .lineLimit(1)
+                            )
+//                        Image(systemName: "mic.circle.fill")
+//                            .font(.title)
+//                            .foregroundColor(Color(hex: "659BD5"))
+                    }
+                    .isDetailLink(false)
+//                    .padding(.top,)
+                    
                 }
             }
         }
@@ -43,12 +64,12 @@ struct HeaderView: View {
         VStack(spacing: 10) {
             HStack {
                 Spacer()
-                NavigationLink(destination: VoiceView()) {
-                    Image(systemName: "mic.circle.fill")
-                        .font(.title)
-                        .foregroundColor(Color(hex: "659BD5"))
-                }
-                .isDetailLink(false)
+//                NavigationLink(destination: VoiceView()) {
+//                    Image(systemName: "mic.circle.fill")
+//                        .font(.title)
+//                        .foregroundColor(Color(hex: "659BD5"))
+//                }
+//                .isDetailLink(false)
                 Menu {
                     Button(action: {isNewest = true}) {
                         HStack {
