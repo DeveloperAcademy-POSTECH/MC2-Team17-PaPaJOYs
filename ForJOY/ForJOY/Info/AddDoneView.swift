@@ -26,7 +26,7 @@ struct AddDoneView: View {
                     
                     VStack{
                         Spacer()
-                        Text("소중한 추억이 저장되었어요")
+                        Text("소중한 추억이 인화되었어요")
                             .foregroundColor(Color("JoyWhite"))
                         
                     }

@@ -36,7 +36,7 @@ struct VoiceView: View {
                             destination: CameraView(recording: $recording)
                         ) {
                             if !voiceViewModel.isRecording && voiceViewModel.isEndRecording {
-                                Text("사진 고르러 가기")
+                                Text("사진 담기")
                                     .foregroundColor(Color("JoyDarkG"))
                                     .background(RoundedRectangle(cornerRadius: 12)
                                         .fill(Color("JoyWhite"))

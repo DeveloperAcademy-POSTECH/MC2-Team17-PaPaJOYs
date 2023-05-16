@@ -41,6 +41,15 @@
 		5B52BECC2A0358EA00320ECD /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52BECB2A0358EA00320ECD /* Camera.swift */; };
 		5B52BECE2A03590900320ECD /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52BECD2A03590900320ECD /* CameraViewModel.swift */; };
 		5B52BED02A03592400320ECD /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52BECF2A03592400320ECD /* CameraView.swift */; };
+		5BF13D9A2A137846002DF1FA /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF13D632A1373C5002DF1FA /* WidgetKit.framework */; };
+		5BF13D9B2A137846002DF1FA /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF13D652A1373C5002DF1FA /* SwiftUI.framework */; };
+		5BF13D9E2A137846002DF1FA /* ForJoyWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF13D9D2A137846002DF1FA /* ForJoyWidgetBundle.swift */; };
+		5BF13DA02A137846002DF1FA /* ForJoyWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF13D9F2A137846002DF1FA /* ForJoyWidgetLiveActivity.swift */; };
+		5BF13DA22A137846002DF1FA /* ForJoyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF13DA12A137846002DF1FA /* ForJoyWidget.swift */; };
+		5BF13DA52A137847002DF1FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BF13DA42A137847002DF1FA /* Assets.xcassets */; };
+		5BF13DA72A137847002DF1FA /* ForJoyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 5BF13DA32A137846002DF1FA /* ForJoyWidget.intentdefinition */; };
+		5BF13DA82A137847002DF1FA /* ForJoyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 5BF13DA32A137846002DF1FA /* ForJoyWidget.intentdefinition */; };
+		5BF13DAB2A137847002DF1FA /* ForJoyWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5BF13D992A137846002DF1FA /* ForJoyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AAA673042A0C81AD00F85491 /* RemainingTimeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA673032A0C81AD00F85491 /* RemainingTimeModel.swift */; };
 		BE522DFD2A05A48D00D4AEEA /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE522DFC2A05A48D00D4AEEA /* CarouselView.swift */; };
 		BECC97372A05A54700E27120 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC97362A05A54700E27120 /* CardView.swift */; };
@@ -48,6 +57,30 @@
 		D92951672A0F648F00D7A7A7 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D92951662A0F648F00D7A7A7 /* Lottie */; };
 		D9BEE7D02A11DD0500868C80 /* SaveComplete2.json in Resources */ = {isa = PBXBuildFile; fileRef = D9BEE7CF2A11DD0500868C80 /* SaveComplete2.json */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5BF13DA92A137847002DF1FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3032386E2A00A876008A8093 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BF13D982A137846002DF1FA;
+			remoteInfo = ForJoyWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5BF13D772A1373C6002DF1FA /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				5BF13DAB2A137847002DF1FA /* ForJoyWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0E40FB012A0C904C00AFA66D /* AddDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDoneView.swift; sourceTree = "<group>"; };
@@ -79,6 +112,16 @@
 		5B52BECB2A0358EA00320ECD /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		5B52BECD2A03590900320ECD /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		5B52BECF2A03592400320ECD /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		5BF13D632A1373C5002DF1FA /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		5BF13D652A1373C5002DF1FA /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		5BF13D992A137846002DF1FA /* ForJoyWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ForJoyWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BF13D9D2A137846002DF1FA /* ForJoyWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForJoyWidgetBundle.swift; sourceTree = "<group>"; };
+		5BF13D9F2A137846002DF1FA /* ForJoyWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForJoyWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		5BF13DA12A137846002DF1FA /* ForJoyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForJoyWidget.swift; sourceTree = "<group>"; };
+		5BF13DA32A137846002DF1FA /* ForJoyWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = ForJoyWidget.intentdefinition; sourceTree = "<group>"; };
+		5BF13DA42A137847002DF1FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5BF13DA62A137847002DF1FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BF13DAF2A139ED9002DF1FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AAA673032A0C81AD00F85491 /* RemainingTimeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemainingTimeModel.swift; sourceTree = "<group>"; };
 		BE522DFC2A05A48D00D4AEEA /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		BECC97362A05A54700E27120 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -94,6 +137,15 @@
 				0E4E7DC02A10EF3F00D72E66 /* RealmSwift in Frameworks */,
 				0E4E7DBE2A10EF3F00D72E66 /* Realm in Frameworks */,
 				D92951672A0F648F00D7A7A7 /* Lottie in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BF13D962A137846002DF1FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BF13D9B2A137846002DF1FA /* SwiftUI.framework in Frameworks */,
+				5BF13D9A2A137846002DF1FA /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				303238782A00A876008A8093 /* ForJOY */,
+				5BF13D9C2A137846002DF1FA /* ForJoyWidget */,
+				5BF13D622A1373C5002DF1FA /* Frameworks */,
 				303238772A00A876008A8093 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -131,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				303238762A00A876008A8093 /* ForJOY.app */,
+				5BF13D992A137846002DF1FA /* ForJoyWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -138,6 +193,7 @@
 		303238782A00A876008A8093 /* ForJOY */ = {
 			isa = PBXGroup;
 			children = (
+				5BF13DAF2A139ED9002DF1FA /* Info.plist */,
 				303238792A00A876008A8093 /* ForJOYApp.swift */,
 				3032387B2A00A876008A8093 /* ContentView.swift */,
 				307814402A08A18000231E6F /* ColorExtension.swift */,
@@ -257,6 +313,28 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		5BF13D622A1373C5002DF1FA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5BF13D632A1373C5002DF1FA /* WidgetKit.framework */,
+				5BF13D652A1373C5002DF1FA /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5BF13D9C2A137846002DF1FA /* ForJoyWidget */ = {
+			isa = PBXGroup;
+			children = (
+				5BF13D9D2A137846002DF1FA /* ForJoyWidgetBundle.swift */,
+				5BF13D9F2A137846002DF1FA /* ForJoyWidgetLiveActivity.swift */,
+				5BF13DA12A137846002DF1FA /* ForJoyWidget.swift */,
+				5BF13DA32A137846002DF1FA /* ForJoyWidget.intentdefinition */,
+				5BF13DA42A137847002DF1FA /* Assets.xcassets */,
+				5BF13DA62A137847002DF1FA /* Info.plist */,
+			);
+			path = ForJoyWidget;
+			sourceTree = "<group>";
+		};
 		BECC97382A05A64300E27120 /* Carousel */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,10 +357,12 @@
 				303238722A00A876008A8093 /* Sources */,
 				303238732A00A876008A8093 /* Frameworks */,
 				303238742A00A876008A8093 /* Resources */,
+				5BF13D772A1373C6002DF1FA /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5BF13DAA2A137847002DF1FA /* PBXTargetDependency */,
 			);
 			name = ForJOY;
 			packageProductDependencies = (
@@ -294,6 +374,23 @@
 			productReference = 303238762A00A876008A8093 /* ForJOY.app */;
 			productType = "com.apple.product-type.application";
 		};
+		5BF13D982A137846002DF1FA /* ForJoyWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5BF13DAC2A137847002DF1FA /* Build configuration list for PBXNativeTarget "ForJoyWidgetExtension" */;
+			buildPhases = (
+				5BF13D952A137846002DF1FA /* Sources */,
+				5BF13D962A137846002DF1FA /* Frameworks */,
+				5BF13D972A137846002DF1FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ForJoyWidgetExtension;
+			productName = ForJoyWidgetExtension;
+			productReference = 5BF13D992A137846002DF1FA /* ForJoyWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -301,11 +398,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1420;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					303238752A00A876008A8093 = {
 						CreatedOnToolsVersion = 14.2;
+					};
+					5BF13D982A137846002DF1FA = {
+						CreatedOnToolsVersion = 14.3;
 					};
 				};
 			};
@@ -327,6 +427,7 @@
 			projectRoot = "";
 			targets = (
 				303238752A00A876008A8093 /* ForJOY */,
+				5BF13D982A137846002DF1FA /* ForJoyWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -348,6 +449,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5BF13D972A137846002DF1FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BF13DA52A137847002DF1FA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -357,6 +466,7 @@
 			files = (
 				0E4E7DE22A111CDE00D72E66 /* Tag.swift in Sources */,
 				3063F2CC2A0E1BAA00C56EBA /* (null) in Sources */,
+				5BF13DA82A137847002DF1FA /* ForJoyWidget.intentdefinition in Sources */,
 				AAA673042A0C81AD00F85491 /* RemainingTimeModel.swift in Sources */,
 				3063F2CE2A0E1BB500C56EBA /* (null) in Sources */,
 				30BDADE72A034DB7000BDA8F /* VoiceViewModel.swift in Sources */,
@@ -386,7 +496,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5BF13D952A137846002DF1FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BF13D9E2A137846002DF1FA /* ForJoyWidgetBundle.swift in Sources */,
+				5BF13DA22A137846002DF1FA /* ForJoyWidget.swift in Sources */,
+				5BF13DA02A137846002DF1FA /* ForJoyWidgetLiveActivity.swift in Sources */,
+				5BF13DA72A137847002DF1FA /* ForJoyWidget.intentdefinition in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5BF13DAA2A137847002DF1FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5BF13D982A137846002DF1FA /* ForJoyWidgetExtension */;
+			targetProxy = 5BF13DA92A137847002DF1FA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		303238822A00A876008A8093 /* Debug */ = {
@@ -506,6 +635,7 @@
 		303238852A00A876008A8093 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -514,6 +644,7 @@
 				DEVELOPMENT_TEAM = 5Z238234D5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ForJOY/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "권한을 허용해주세요";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
@@ -539,6 +670,7 @@
 		303238862A00A876008A8093 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -547,6 +679,7 @@
 				DEVELOPMENT_TEAM = 5Z238234D5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ForJOY/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "권한을 허용해주세요";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
@@ -563,6 +696,62 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = papajoy.newyork.ForJOY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5BF13DAD2A137847002DF1FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5Z238234D5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ForJoyWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ForJoyWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = papajoy.newyork.ForJOY.ForJoyWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5BF13DAE2A137847002DF1FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5Z238234D5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ForJoyWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ForJoyWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = papajoy.newyork.ForJOY.ForJoyWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -586,6 +775,15 @@
 			buildConfigurations = (
 				303238852A00A876008A8093 /* Debug */,
 				303238862A00A876008A8093 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5BF13DAC2A137847002DF1FA /* Build configuration list for PBXNativeTarget "ForJoyWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BF13DAD2A137847002DF1FA /* Debug */,
+				5BF13DAE2A137847002DF1FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
