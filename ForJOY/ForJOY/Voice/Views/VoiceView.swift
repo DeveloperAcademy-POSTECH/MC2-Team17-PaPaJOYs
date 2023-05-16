@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import PhotosUI
 
 struct VoiceView: View {
     // VoiceViewModel의 인스턴스를 생성하여 관찰합니다.
@@ -19,7 +19,6 @@ struct VoiceView: View {
     @State private var effect2 = false
     @State var recording: URL?
     @State var isButtonOn = false
-    @State var showingSheet = false
 
     var body: some View {
         NavigationStack{
@@ -32,31 +31,22 @@ struct VoiceView: View {
                 VStack {
                     Spacer()
                     Button(action: {
-                        showingSheet = true
                     }, label: {
-                        if !voiceViewModel.isRecording && voiceViewModel.isEndRecording {
-                            Text("사진 고르러 가기")
-                                .foregroundColor(Color("JoyDarkG"))
-                                .background(RoundedRectangle(cornerRadius: 12)
-                                    .fill(Color("JoyWhite"))
-                                    .frame(width: 150, height: 50))
+                        NavigationLink(
+                            destination: CameraView(recording: $recording)
+                        ) {
+                            if !voiceViewModel.isRecording && voiceViewModel.isEndRecording {
+                                Text("사진 고르러 가기")
+                                    .foregroundColor(Color("JoyDarkG"))
+                                    .background(RoundedRectangle(cornerRadius: 12)
+                                        .fill(Color("JoyWhite"))
+                                        .frame(width: 150, height: 50))
+                            }
                         }
+                        .isDetailLink(false)
                     })
                     .onChange(of: voiceViewModel.recording) { newValue in
                         recording = newValue
-                    }
-                    .confirmationDialog("타이틀", isPresented: $showingSheet) {
-                        NavigationLink(destination: {
-                            CameraView(recording: $recording)
-                        }, label: {
-                            Text("카메라")
-                        })
-                        
-                        NavigationLink(destination: {
-                            Test()
-                        }, label: {
-                            Text("테스트")
-                        })
                     }
                 }
                 .frame(width: 400, height: 400)
