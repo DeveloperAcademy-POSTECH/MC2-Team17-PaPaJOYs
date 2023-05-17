@@ -53,7 +53,7 @@ struct VoiceView: View {
                     .confirmationDialog("test", isPresented: $isShowActionSheet) {
                         NavigationLink(destination: CameraView(recording: $recording), label: {
                             Button(action: {
-                                
+                                isHeiddentButton = false
                             }, label: {
                                 Text("사진 찍으러 가기")
                                     .foregroundColor(Color("JoyBlue"))
@@ -64,6 +64,7 @@ struct VoiceView: View {
                         
                         Button(action: {
                             isShowPhotoPicker.toggle()
+                            isHeiddentButton = false
                         }, label: {
                             Text("사진 고르러 가기")
                                 .foregroundColor(Color("JoyBlue"))
