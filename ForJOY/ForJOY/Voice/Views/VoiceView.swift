@@ -26,6 +26,7 @@ struct VoiceView: View {
     @State private var selectedImage: UIImage?
     @State var isChoosen = false
     @StateObject var realmManger = RealmManger()
+    @State var isHeiddentButton = false
     
     var body: some View {
         NavigationStack{
@@ -35,8 +36,9 @@ struct VoiceView: View {
                     Spacer()
                     Button(action: {
                         isShowActionSheet = true
+                        isHeiddentButton = true
                     }, label: {
-                        if !voiceViewModel.isRecording && voiceViewModel.isEndRecording {
+                        if !voiceViewModel.isRecording && voiceViewModel.isEndRecording && !isHeiddentButton{
                             RoundedRectangle(cornerRadius: 15)
                                 .fill(Color("JoyWhite"))
                                 .frame(width: screenWidth * 0.9, height: 60)
@@ -71,6 +73,13 @@ struct VoiceView: View {
                                 .foregroundColor(Color("JoyBlue"))
                         })
                         .background(Color("JoyWhite"))
+                        
+                        
+                        Button(role: .cancel, action: {
+                            isHeiddentButton = false
+                        }, label: {
+                            Text("Cancel")
+                        })
                     }
                     .photosPicker(
                         isPresented: $isShowPhotoPicker,
