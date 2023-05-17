@@ -28,7 +28,7 @@ struct InfoView: View {
                 if selectedImage != nil {
                     Image(uiImage: selectedImage!)
                         .resizable()
-                        .aspectRatio(3/4, contentMode: .fit)
+                        .aspectRatio(contentMode: .fit)
                 } else {
                     Text("No image")
                 }
@@ -91,9 +91,7 @@ struct InfoView: View {
                                         .onAppear(){
                                             if !isAddData {
                                                 if title != "" {
-                                                    let dateFormatter = DateFormatter()
-                                                    dateFormatter.dateFormat = "yyyy"
-                                                    let year = Int(dateFormatter.string(from: date))!
+                                                    let year = Int(date.toString(dateFormat: "yyyy"))!
                                                     
                                                     realmManger.addMemories(Memory(value: [
                                                         "title": title,
