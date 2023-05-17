@@ -89,7 +89,6 @@
 		0E4E7DB42A10EDA800D72E66 /* RealmManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManger.swift; sourceTree = "<group>"; };
 		0E4E7DB82A10EDDA00D72E66 /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
 		0E4E7DE12A111CDE00D72E66 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
-		0E5D436A2A13B54A00B50A61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		300D732A2A11D8A2007D38E9 /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		303238762A00A876008A8093 /* ForJOY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForJOY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		303238792A00A876008A8093 /* ForJOYApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForJOYApp.swift; sourceTree = "<group>"; };
@@ -642,7 +641,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ForJOY/Preview Content\"";
-				DEVELOPMENT_TEAM = FJ72KV3U2A;
+				DEVELOPMENT_TEAM = HQS8MXQ7B5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJOY/Info.plist;
@@ -659,7 +658,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ash.ForJOY;
+				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ForJOY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -676,7 +675,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ForJOY/Preview Content\"";
-				DEVELOPMENT_TEAM = FJ72KV3U2A;
+				DEVELOPMENT_TEAM = HQS8MXQ7B5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJOY/Info.plist;
@@ -693,7 +692,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ash.ForJOY;
+				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ForJOY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -708,7 +707,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5Z238234D5;
+				DEVELOPMENT_TEAM = HQS8MXQ7B5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJoyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ForJoyWidget;
@@ -720,7 +719,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = papajoy.newyork.ForJOY.ForJoyWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ForJOY.ForJoyWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -736,7 +735,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5Z238234D5;
+				DEVELOPMENT_TEAM = HQS8MXQ7B5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJoyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ForJoyWidget;
@@ -748,7 +747,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = papajoy.newyork.ForJOY.ForJoyWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ForJOY.ForJoyWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;

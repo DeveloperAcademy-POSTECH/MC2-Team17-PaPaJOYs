@@ -58,7 +58,9 @@ struct VoiceView: View {
                                 
                             }, label: {
                                 Text("사진 찍으러 가기")
+                                    .foregroundColor(Color("JoyBlue"))
                             })
+                            .background(Color("JoyWhite"))
                         })
                         
                         
@@ -66,7 +68,9 @@ struct VoiceView: View {
                             isShowPhotoPicker.toggle()
                         }, label: {
                             Text("사진 고르러 가기")
+                                .foregroundColor(Color("JoyBlue"))
                         })
+                        .background(Color("JoyWhite"))
                     }
                     .photosPicker(
                         isPresented: $isShowPhotoPicker,

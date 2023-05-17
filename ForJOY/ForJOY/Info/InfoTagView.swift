@@ -24,7 +24,7 @@ struct InfoTagView: View {
                             HStack {
                                 Text(t.tagName)
                                     .tag(t.tagName)
-                                Spacer(minLength: 210)
+                                Spacer(minLength: 150)
                                 Image(systemName: "checkmark")
                                     .multilineTextAlignment(.trailing)
                             }
