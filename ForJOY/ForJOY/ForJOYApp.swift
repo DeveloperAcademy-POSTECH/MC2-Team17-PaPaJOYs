@@ -9,11 +9,24 @@ import SwiftUI
 
 @main
 struct ForJOYApp: App {
+    @State var linkActive = false
+    
     var body: some Scene {
         WindowGroup {
-            SelectYearView()
-                .accentColor(.white)
-                .background(Color("JoyDarkG"))
+            NavigationStack {
+                NavigationLink(destination: VoiceView()
+                    .navigationBarBackButtonHidden(),
+                               isActive: $linkActive) {
+                    EmptyView()
+                }
+                SelectYearView()
+                    .background(Color("JoyDarkG"))
+            }
+            .accentColor(Color("JoyWhite"))
+            .onOpenURL { url in
+                guard url.scheme == "forjoy" else { return }
+                linkActive = true
+            }
         }
     }
 }

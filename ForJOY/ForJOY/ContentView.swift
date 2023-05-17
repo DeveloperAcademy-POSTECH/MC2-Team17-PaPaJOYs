@@ -11,14 +11,14 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+    @AppStorage("widgetLaunched") private var widgetLaunched = false
+        
+        var body: some View {
+            if widgetLaunched {
+                VoiceView()
+            } else {
+                SelectYearView()
         }
-        .padding()
     }
 }
 
