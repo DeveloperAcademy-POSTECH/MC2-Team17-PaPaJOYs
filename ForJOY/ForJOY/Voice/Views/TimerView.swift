@@ -169,10 +169,13 @@ struct TimerView: View {
                                     vm.isEndRecording = true
                                     vm.stopRecording()
                                     progressOpacity = 0
-                                }){
-                                    Text("   ")
+                                }, label: {
+                                    Image(systemName: "stop.fill")
+                                        .foregroundColor(Color("JoyWhite"))
+                                        .font(.system(size: 50))
+                                        .opacity(0.6)
                                         .padding(120)
-                                }
+                                })
                             }else if !vm.isRecording && vm.isEndRecording {
                                 ZStack{
                                     LottieView(jsonName: "RecComplete2")
