@@ -60,7 +60,9 @@ struct VoiceView: View {
                             })
                             .background(Color("JoyWhite"))
                         })
-                        
+                        .onAppear(){
+                            isHeiddentButton = false
+                        }
                         
                         Button(action: {
                             isShowPhotoPicker.toggle()
