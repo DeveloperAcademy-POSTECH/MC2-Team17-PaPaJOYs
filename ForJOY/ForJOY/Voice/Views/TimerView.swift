@@ -175,9 +175,6 @@ struct TimerView: View {
                                         .font(.system(size: 50))
                                         .opacity(0.6)
                                         .padding(120)
-                                    
-//                                    Text("   ")
-//                                        .padding(120)
                                 })
                             }else if !vm.isRecording && vm.isEndRecording {
                                 ZStack{
