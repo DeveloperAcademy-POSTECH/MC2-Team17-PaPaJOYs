@@ -22,7 +22,7 @@ struct VoiceView: View {
     @State private var selectedItem = [PhotosPickerItem]()
     @State private var selectedImage: UIImage?
     @State var isChoosen = false
-    @State var isHeiddentButton = false
+    @State var isHiddentButton = false
     
     var body: some View {
         NavigationStack{
@@ -32,9 +32,9 @@ struct VoiceView: View {
                     Spacer()
                     Button(action: {
                         isShowActionSheet = true
-                        isHeiddentButton = true
+                        isHiddentButton = true
                     }, label: {
-                        if !voiceViewModel.isRecording && voiceViewModel.isEndRecording && !isHeiddentButton{
+                        if !voiceViewModel.isRecording && voiceViewModel.isEndRecording && !isHiddentButton{
                             RoundedRectangle(cornerRadius: 15)
                                 .fill(Color("JoyWhite"))
                                 .frame(width: screenWidth * 0.9, height: 60)
@@ -53,7 +53,7 @@ struct VoiceView: View {
                     .confirmationDialog("test", isPresented: $isShowActionSheet) {
                         NavigationLink(destination: CameraView(recording: $recording), label: {
                             Button(action: {
-                                isHeiddentButton = false
+                                isHiddentButton = false
                             }, label: {
                                 Text("사진 찍으러 가기")
                                     .foregroundColor(Color("JoyBlue"))
@@ -61,12 +61,12 @@ struct VoiceView: View {
                             .background(Color("JoyWhite"))
                         })
                         .onAppear(){
-                            isHeiddentButton = false
+                            isHiddentButton = false
                         }
                         
                         Button(action: {
                             isShowPhotoPicker.toggle()
-                            isHeiddentButton = false
+                            isHiddentButton = false
                         }, label: {
                             Text("사진 고르러 가기")
                                 .foregroundColor(Color("JoyBlue"))
@@ -75,7 +75,7 @@ struct VoiceView: View {
                         
                         
                         Button(role: .cancel, action: {
-                            isHeiddentButton = false
+                            isHiddentButton = false
                         }, label: {
                             Text("Cancel")
                         })
