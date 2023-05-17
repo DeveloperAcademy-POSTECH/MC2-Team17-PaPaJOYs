@@ -10,8 +10,9 @@ import SwiftUI
 struct InfoTagView: View {
     @State var addTag: Bool = false
     @State var newTag: String = ""
-    @Binding var selectTag: String?
     @State private var tags = [Tag]()
+    @State private var isValueSet: Bool = false
+    @Binding var selectTag: String?
     @FocusState private var textFieldIsFocused: Bool
     
     var body: some View {
@@ -23,8 +24,9 @@ struct InfoTagView: View {
                             HStack {
                                 Text(t.tagName)
                                     .tag(t.tagName)
-                                Spacer(minLength: 220)
+                                Spacer(minLength: 210)
                                 Image(systemName: "checkmark")
+                                    .multilineTextAlignment(.trailing)
                             }
                             .listRowBackground(Color("JoyWhite"))
                         }else{
@@ -75,6 +77,14 @@ struct InfoTagView: View {
                     }
                     return []
                 }()
+                isValueSet = UserDefaults.standard.bool(forKey: "IsValueSet")
+                if isValueSet == false {
+                    UserDefaults.standard.set(true, forKey: "IsValueSet")
+                    tags.append(Tag(tagName: "우리 공주님"))
+                    tags.append(Tag(tagName: "우리 왕자님"))
+                    tags.append(Tag(tagName: "우리집"))
+                }
+                
                 if tags.isEmpty {
                     addTag = true
                     textFieldIsFocused = true
@@ -93,6 +103,7 @@ struct InfoTagView: View {
                 self.newTag = ""
             }
         }
+        selectTag = newTag
         addTag  = false
     }
     
