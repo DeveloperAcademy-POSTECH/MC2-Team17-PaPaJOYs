@@ -16,6 +16,7 @@ struct SelectYearView: View {
             ZStack {
                 Color("JoyDarkG")
                     .ignoresSafeArea()
+                
                 VStack(spacing: 20) {
                     HeaderView(isNewest: $isNewest)
                     HStack {
@@ -40,39 +41,51 @@ struct HeaderView: View {
     @Binding var isNewest: Bool
     
     var body: some View {
-        VStack(spacing: 10) {
-            HStack {
-                Spacer()
-                NavigationLink(destination: VoiceView()) {
-                    Image(systemName: "mic.circle.fill")
-                        .font(.title)
-                        .foregroundColor(Color(hex: "659BD5"))
-                }
-                .isDetailLink(false)
-                Menu {
-                    Button(action: {isNewest = true}) {
-                        HStack {
-                            Text("최근부터 보기")
-                            Spacer()
-                            if isNewest {
-                                Image(systemName: "checkmark")
-                            }
-                        }
-                    }
-                    Button(action: {isNewest = false}) {
-                        Text("과거부터 보기")
+        HStack(alignment: .center) {
+            Menu {
+                Button(action: {isNewest = true}) {
+                    HStack {
+                        Text("최근부터 보기")
                         Spacer()
-                        if !isNewest {
+                        if isNewest {
                             Image(systemName: "checkmark")
                         }
                     }
-                } label: {
-                    Image(systemName: "slider.horizontal.3")
-                        .font(.title)
-                        .foregroundColor(Color(hex: "659BD5"))
                 }
-                .padding(.trailing, 20)
+                Button(action: {isNewest = false}) {
+                    Text("과거부터 보기")
+                    Spacer()
+                    if !isNewest {
+                        Image(systemName: "checkmark")
+                    }
+                }
+            } label: {
+                Image(systemName: "slider.horizontal.3")
+                    .font(.system(size: 25))
+                    .foregroundColor(Color(hex: "659BD5"))
             }
+            .padding(.leading, 20)
+            
+            Spacer()
+            
+            NavigationLink(destination: VoiceView()) {
+                Capsule()
+                    .fill(Color("JoyYellow"))
+                    .frame(width: 105, height: 40)
+                    .overlay {
+                        HStack {
+                            Image(systemName: "mic.fill")
+                                .font(.system(size: 15))
+                                .foregroundColor(Color("JoyDarkG"))
+                            Text("녹음하기")
+                                .font(.system(size: 15))
+                                .fontWeight(.bold)
+                                .foregroundColor(Color("JoyDarkG"))
+                        }
+                    }
+            }
+            .isDetailLink(false)
+            .padding(.trailing, 20)
         }
     }
 }
@@ -89,17 +102,19 @@ struct TagView: View {
                     selectedTag = "All"
                     isAllSelect = true
                 } label: {
-                    RoundedRectangle(cornerRadius: 10)
+                    Text("모든 태그")
+                        .font(.system(size: 14))
+                        .fontWeight(.semibold)
+                        .lineLimit(1)
                         .frame(width: 75, height: 30)
-                        .foregroundColor(isAllSelect ? Color("JoyYellow") : Color(hex: "F2F2F7"))
-                        .opacity(0.9)
+                        .background(isAllSelect ? Color("JoyBlue") : Color("JoyDarkG"))
+                        .clipShape(RoundedRectangle(cornerRadius: 7))
                         .overlay(
-                            Text("모든태그")
-                                .font(.subheadline)
-                                .foregroundColor(.black)
-                                .lineLimit(1)
+                            RoundedRectangle(cornerRadius: 7)
+                                .strokeBorder(isAllSelect ? Color("Joyblue") : Color("JoyWhite"), lineWidth: 1)
                         )
                 }
+
                 let tags = realmManger.uniqueTags
                 
                 ForEach( Array(tags.sorted().filter{$0 != "기본"}) , id: \.self) { i in
@@ -107,15 +122,16 @@ struct TagView: View {
                         selectedTag = i
                         isAllSelect = false
                     } label: {
-                        RoundedRectangle(cornerRadius: 10)
+                        Text("#" + i)
+                            .font(.system(size: 14))
+                            .fontWeight(.semibold)
+                            .lineLimit(1)
                             .frame(width: 75, height: 30)
-                            .foregroundColor(isAllSelect ? Color(hex: "F2F2F7") : (selectedTag == i ? Color("JoyYellow") : Color(hex: "F2F2F7")))
-                            .opacity(0.9)
+                            .background(isAllSelect ? Color("JoyDarkG") : (selectedTag == i ? Color("JoyBlue") : Color("JoyDarkG")))
+                            .clipShape(RoundedRectangle(cornerRadius: 7))
                             .overlay(
-                                Text("#" + i)
-                                    .font(.subheadline)
-                                    .foregroundColor(.black)
-                                    .lineLimit(1)
+                                RoundedRectangle(cornerRadius: 7)
+                                    .strokeBorder(isAllSelect ? Color("JoyWhite") : (selectedTag == i ? Color("JoyBlue") : Color("JoyWhite")))
                             )
                     }
                 }
@@ -126,9 +142,7 @@ struct TagView: View {
 
 struct AlbumView: View {
     @StateObject var realmManger = RealmManger()
-    
     @State var memories = [Int: [Memory]]()
-    
     @Binding var isNewest: Bool
     @Binding var selectedTag: String
     

@@ -11,6 +11,7 @@ import Combine
 import PhotosUI
 
 struct CameraView: View {
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel = CameraViewModel()
     @StateObject var realmManger = RealmManger()
     @StateObject var voiceViewModel = VoiceViewModel()
@@ -71,45 +72,11 @@ struct CameraView: View {
                             .frame(height: 130)
                             .opacity(0.5)
                         HStack {
-                            // 미리보기 -> 갤러리
-                            PhotosPicker(selection: $selectedItem, maxSelectionCount: 1, matching: .images) {
-                                if let previewImage = viewModel.recentImage {
-                                    Image(uiImage: previewImage)
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 65, height: 65)
-                                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                                        .aspectRatio(1, contentMode: .fit)
-                                        .padding()
-                                } else {
-                                    RoundedRectangle(cornerRadius: 15)
-                                        .stroke(lineWidth:  3)
-                                        .foregroundColor(.white)
-                                        .frame(width: 65, height: 65)
-                                }
-                            }
-                            .preferredColorScheme(.dark)
-                            .tint(Color("JoyBlue"))
-                            
-                            .onChange(of: selectedItem) { newValue in
-                                guard let item = selectedItem.first else { return }
-                                item.loadTransferable(type: Data.self) { result in
-                                    switch result {
-                                    case .success(let data):
-                                        if let data = data {
-                                            self.data = data
-                                            selectedImage = UIImage(data: data)
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                                isChoosen = true
-                                            }
-                                        } else {
-                                            print("Data is nill!")
-                                        }
-                                    case .failure(let failure):
-                                        fatalError("\(failure)")
-                                    }
-                                }
-                            }
+                            Button(action: {
+                                self.presentationMode.wrappedValue.dismiss()
+                            }, label: {
+                                Text("Cancel")
+                            })
                             .frame(width: 100, height: 100)
                             
                             Spacer()
@@ -171,9 +138,6 @@ struct CameraView: View {
             .background(Color("JoyDarkG"))
             .opacity(viewModel.shutterEffect ? 0 : 1)
             .navigationBarBackButtonHidden()
-//            .onDisappear() {
-//                viewModel.stopSession()
-//            }
         }
     }
 }

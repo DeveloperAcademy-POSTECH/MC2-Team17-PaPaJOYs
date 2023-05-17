@@ -108,7 +108,6 @@ struct InfoView: View {
                                                         "image": selectedImage!.jpegData(compressionQuality: 0.5),
                                                         "voice": recording!.absoluteString
                                                     ] ))
-                                                    //                                                dismiss()
                                                     isAddData = true
                                                 }
                                             }
