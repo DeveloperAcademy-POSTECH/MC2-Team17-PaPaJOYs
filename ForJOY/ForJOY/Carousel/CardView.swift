@@ -29,7 +29,7 @@ struct CardView: View {
             .onDisappear {
                 for p in players {
                     p.pause()
-                    p.currentItem?.seek(to: CMTime.zero)
+                    p.currentItem?.seek(to: CMTime.zero, completionHandler: nil)
                 }
                 isPlaying = false
             }
