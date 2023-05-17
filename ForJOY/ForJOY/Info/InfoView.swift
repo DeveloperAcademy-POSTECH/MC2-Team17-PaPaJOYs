@@ -49,7 +49,6 @@ struct InfoView: View {
                         Text("태그")
                             .frame(width: 60, alignment: .leading)
                         Spacer(minLength: 190)
-                        Spacer(minLength: 190)
                         NavigationLink(destination: InfoTagView(selectTag: $tag), label: {
                             if tag == nil {
                                 Text("없음")
@@ -101,9 +100,9 @@ struct InfoView: View {
                                                         "year": year,
                                                         "date": date,
                                                         "tag": tag ?? "기본",
-                                                        "image": selectedImage!.jpegData(compressionQuality: 0.5),
+                                                        "image": selectedImage!.jpegData(compressionQuality: 0.5)!,
                                                         "voice": recording!.absoluteString
-                                                    ] ))
+                                                    ] as [String : Any] ))
                                                     isAddData = true
                                                 }
                                             }
