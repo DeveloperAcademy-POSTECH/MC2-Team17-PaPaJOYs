@@ -27,13 +27,12 @@
 		3063F2D52A0FEE4900C56EBA /* panpare.json in Resources */ = {isa = PBXBuildFile; fileRef = 3063F2D32A0FEE4800C56EBA /* panpare.json */; };
 		3063F2D62A0FEE4900C56EBA /* RecComplete2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3063F2D42A0FEE4900C56EBA /* RecComplete2.json */; };
 		30BDADE62A034DB7000BDA8F /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADDA2A034DB7000BDA8F /* CircularProgressView.swift */; };
-		30BDADE72A034DB7000BDA8F /* VoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADDB2A034DB7000BDA8F /* VoiceViewModel.swift */; };
-		30BDADE92A034DB7000BDA8F /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADDF2A034DB7000BDA8F /* Date.swift */; };
-		30BDADEA2A034DB7000BDA8F /* convertSecToMinAndHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADE02A034DB7000BDA8F /* convertSecToMinAndHour.swift */; };
+		30BDADE92A034DB7000BDA8F /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADDF2A034DB7000BDA8F /* Date+.swift */; };
 		30BDADEC2A034DB7000BDA8F /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADE32A034DB7000BDA8F /* TimerView.swift */; };
 		30BDADEE2A034DB7000BDA8F /* VoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADE52A034DB7000BDA8F /* VoiceView.swift */; };
 		30C74FA52A0D06EB0099DC1B /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C74FA42A0D06EB0099DC1B /* InfoView.swift */; };
 		30C74FA72A0D06FE0099DC1B /* InfoTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C74FA62A0D06FE0099DC1B /* InfoTagView.swift */; };
+		5B08A50B2A147CB000496242 /* VoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08A50A2A147CB000496242 /* VoiceViewModel.swift */; };
 		5B52BECC2A0358EA00320ECD /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52BECB2A0358EA00320ECD /* Camera.swift */; };
 		5B52BECE2A03590900320ECD /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52BECD2A03590900320ECD /* CameraViewModel.swift */; };
 		5B52BED02A03592400320ECD /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52BECF2A03592400320ECD /* CameraView.swift */; };
@@ -93,13 +92,12 @@
 		3063F2D32A0FEE4800C56EBA /* panpare.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = panpare.json; sourceTree = "<group>"; };
 		3063F2D42A0FEE4900C56EBA /* RecComplete2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RecComplete2.json; sourceTree = "<group>"; };
 		30BDADDA2A034DB7000BDA8F /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
-		30BDADDB2A034DB7000BDA8F /* VoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceViewModel.swift; sourceTree = "<group>"; };
-		30BDADDF2A034DB7000BDA8F /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		30BDADE02A034DB7000BDA8F /* convertSecToMinAndHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = convertSecToMinAndHour.swift; sourceTree = "<group>"; };
+		30BDADDF2A034DB7000BDA8F /* Date+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		30BDADE32A034DB7000BDA8F /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		30BDADE52A034DB7000BDA8F /* VoiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceView.swift; sourceTree = "<group>"; };
 		30C74FA42A0D06EB0099DC1B /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		30C74FA62A0D06FE0099DC1B /* InfoTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTagView.swift; sourceTree = "<group>"; };
+		5B08A50A2A147CB000496242 /* VoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceViewModel.swift; sourceTree = "<group>"; };
 		5B52BECB2A0358EA00320ECD /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		5B52BECD2A03590900320ECD /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		5B52BECF2A03592400320ECD /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
@@ -186,9 +184,8 @@
 			children = (
 				5BF13DAF2A139ED9002DF1FA /* Info.plist */,
 				303238792A00A876008A8093 /* ForJOYApp.swift */,
-				3063F2D32A0FEE4800C56EBA /* panpare.json */,
-				3063F2D42A0FEE4900C56EBA /* RecComplete2.json */,
-				D9BEE7CF2A11DD0500868C80 /* SaveComplete2.json */,
+				30BDADDE2A034DB7000BDA8F /* Extensions */,
+				5B08A5042A147BFE00496242 /* LottieFiles */,
 				3032387D2A00A876008A8093 /* Assets.xcassets */,
 				0E4E7DB32A10ED8500D72E66 /* Data */,
 				0ECFA0222A0B3027009D3C5B /* Info */,
@@ -231,7 +228,6 @@
 			isa = PBXGroup;
 			children = (
 				30BDADD92A034DB7000BDA8F /* ViewModels */,
-				30BDADDE2A034DB7000BDA8F /* Extensions */,
 				30BDADE12A034DB7000BDA8F /* Views */,
 			);
 			name = Voice;
@@ -241,7 +237,7 @@
 		30BDADD92A034DB7000BDA8F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				30BDADDB2A034DB7000BDA8F /* VoiceViewModel.swift */,
+				5B08A50A2A147CB000496242 /* VoiceViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -249,8 +245,7 @@
 		30BDADDE2A034DB7000BDA8F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				30BDADDF2A034DB7000BDA8F /* Date.swift */,
-				30BDADE02A034DB7000BDA8F /* convertSecToMinAndHour.swift */,
+				30BDADDF2A034DB7000BDA8F /* Date+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -264,6 +259,16 @@
 				30BDADE52A034DB7000BDA8F /* VoiceView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		5B08A5042A147BFE00496242 /* LottieFiles */ = {
+			isa = PBXGroup;
+			children = (
+				3063F2D32A0FEE4800C56EBA /* panpare.json */,
+				3063F2D42A0FEE4900C56EBA /* RecComplete2.json */,
+				D9BEE7CF2A11DD0500868C80 /* SaveComplete2.json */,
+			);
+			path = LottieFiles;
 			sourceTree = "<group>";
 		};
 		5B52BEB72A03575500320ECD /* Camera */ = {
@@ -451,7 +456,6 @@
 				3063F2CC2A0E1BAA00C56EBA /* (null) in Sources */,
 				5BF13DA82A137847002DF1FA /* ForJoyWidget.intentdefinition in Sources */,
 				3063F2CE2A0E1BB500C56EBA /* (null) in Sources */,
-				30BDADE72A034DB7000BDA8F /* VoiceViewModel.swift in Sources */,
 				303238882A00B3BB008A8093 /* SelectYearView.swift in Sources */,
 				3032387A2A00A876008A8093 /* ForJOYApp.swift in Sources */,
 				5B52BECE2A03590900320ECD /* CameraViewModel.swift in Sources */,
@@ -459,7 +463,6 @@
 				30C74FA72A0D06FE0099DC1B /* InfoTagView.swift in Sources */,
 				0E40FB022A0C904C00AFA66D /* AddDoneView.swift in Sources */,
 				30BDADEC2A034DB7000BDA8F /* TimerView.swift in Sources */,
-				30BDADEA2A034DB7000BDA8F /* convertSecToMinAndHour.swift in Sources */,
 				30BDADEE2A034DB7000BDA8F /* VoiceView.swift in Sources */,
 				30BDADE62A034DB7000BDA8F /* CircularProgressView.swift in Sources */,
 				5B52BED02A03592400320ECD /* CameraView.swift in Sources */,
@@ -470,8 +473,9 @@
 				5B52BECC2A0358EA00320ECD /* Camera.swift in Sources */,
 				3032388B2A00B89E008A8093 /* Ref.swift in Sources */,
 				0E4E7DB92A10EDDA00D72E66 /* Memory.swift in Sources */,
+				5B08A50B2A147CB000496242 /* VoiceViewModel.swift in Sources */,
 				300D732B2A11D8A2007D38E9 /* Players.swift in Sources */,
-				30BDADE92A034DB7000BDA8F /* Date.swift in Sources */,
+				30BDADE92A034DB7000BDA8F /* Date+.swift in Sources */,
 				D92951642A0F643A00D7A7A7 /* LottieView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
