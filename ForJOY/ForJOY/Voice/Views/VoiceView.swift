@@ -30,25 +30,25 @@ struct VoiceView: View {
     var body: some View {
         NavigationStack{
             ZStack{
-                VStack{
-                    ZStack {
-                        TimerView(vm: voiceViewModel)
-                    }
-                }
+                TimerView(vm: voiceViewModel)
                 VStack {
                     Spacer()
                     Button(action: {
                         isShowActionSheet = true
                     }, label: {
                         if !voiceViewModel.isRecording && voiceViewModel.isEndRecording {
-                            Text("사진 담기")
-                                .foregroundColor(Color("JoyDarkG"))
-                                .background(RoundedRectangle(cornerRadius: 12)
-                                    .fill(Color("JoyWhite"))
-                                    .frame(width: 150, height: 50))
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(Color("JoyWhite"))
+                                .frame(width: screenWidth * 0.9, height: 60)
+                                .overlay(
+                                    Text("사진 담기")
+                                        .font(.system(size: 16))
+                                        .fontWeight(.bold)
+                                        .foregroundColor(Color("JoyDarkG"))
+                                )
                         }
                     })
-                    .frame(width: 400, height: 400)
+                    .frame(width: 400, height: 250)
                     .onChange(of: voiceViewModel.recording) { newValue in
                         recording = newValue
                     }
