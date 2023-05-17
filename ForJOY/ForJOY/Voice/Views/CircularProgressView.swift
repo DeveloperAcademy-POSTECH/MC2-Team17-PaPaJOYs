@@ -12,13 +12,14 @@ struct CircularProgressView: View {
 
     var body: some View {
         ZStack{
-            Circle() // Progress 1
+            Circle()
                 .stroke(
                     Color("JoyBlue").opacity(progressOpacity),
                     lineWidth: 1
                 )
                 .frame(width: 260)
-            Circle() // Progress 2
+            
+            Circle() 
                 .trim(from: 0, to: recProgress)
                 .stroke(
                     Color("JoyBlue").opacity(progressOpacity),

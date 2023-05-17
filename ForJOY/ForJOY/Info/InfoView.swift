@@ -29,7 +29,6 @@ struct InfoView: View {
                     Image(uiImage: selectedImage!)
                         .resizable()
                         .aspectRatio(3/4, contentMode: .fit)
-
                 } else {
                     Text("No image")
                 }
@@ -42,15 +41,14 @@ struct InfoView: View {
                             .multilineTextAlignment(.trailing)
                             .onChange(of: title) { newValue in
                                 title = String(newValue.prefix(20))
-                                
                             }
-                            
                     }
                     .listRowBackground(Color("JoyWhite"))
                     
                     HStack(){
                         Text("태그")
                             .frame(width: 60, alignment: .leading)
+                        Spacer(minLength: 190)
                         Spacer(minLength: 190)
                         NavigationLink(destination: InfoTagView(selectTag: $tag), label: {
                             if tag == nil {
@@ -98,8 +96,6 @@ struct InfoView: View {
                                                     dateFormatter.dateFormat = "yyyy"
                                                     let year = Int(dateFormatter.string(from: date))!
                                                     
-                                                    print("음성 \(recording)")
-                                                    
                                                     realmManger.addMemories(Memory(value: [
                                                         "title": title,
                                                         "year": year,
@@ -127,11 +123,11 @@ struct InfoView: View {
             .tint(Color("JoyBlue"))
             .gesture(DragGesture(minimumDistance: 3.0,
                                  coordinateSpace: .local)
-                .onEnded({ (value) in
-                    if value.translation.width > 0 {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }
-                }))
+            .onEnded({ (value) in
+                if value.translation.width > 0 {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            }))
         }
     }
 }

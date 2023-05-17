@@ -112,5 +112,4 @@ struct InfoTagView: View {
             UserDefaults.standard.set(data, forKey: "tags")
         }
     }
-
 }

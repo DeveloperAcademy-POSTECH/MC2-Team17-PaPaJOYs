@@ -67,8 +67,6 @@ class RealmManger: ObservableObject{
             }catch {
                 print("Error adding Realm: \(error)")
             }
-        }else{
-            print("주소")
         }
     }
 }
