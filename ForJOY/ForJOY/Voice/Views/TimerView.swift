@@ -34,12 +34,12 @@ struct TimerView: View {
    
     
     let audioRecorder = try! AVAudioRecorder(
-        url: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("audio.m4a"), // 녹음 파일의 저장 경로
+        url: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("audio.m4a"),
         settings: [
-            AVFormatIDKey: Int(kAudioFormatMPEG4AAC), // 오디오 인코딩 포맷 설정
-            AVSampleRateKey: 44100, // 샘플 레이트 설정
-            AVNumberOfChannelsKey: 1, // 채널 수 설정
-            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue // 오디오 인코딩 품질 설정
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            AVSampleRateKey: 44100,
+            AVNumberOfChannelsKey: 1,
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
         ]
     )
     
@@ -70,38 +70,33 @@ struct TimerView: View {
         return String(format: "%02d:%02d", minutes, seconds)
     }
     
-    func setUpRecord() { // 녹음 세팅을 설정하는 함수
-        try! AVAudioSession.sharedInstance().setCategory(.record) // 녹음 모드로 세팅
-        try! AVAudioSession.sharedInstance().setActive(true) // 오디오 세션 활성화
-        audioRecorder.prepareToRecord() // 녹음 준비
-        audioRecorder.isMeteringEnabled = true // 녹음 시 미터링 기능 사용
-        audioRecorder.record() // 녹음 시작
+    func setUpRecord() {
+        try! AVAudioSession.sharedInstance().setCategory(.record)
+        try! AVAudioSession.sharedInstance().setActive(true)
+        audioRecorder.prepareToRecord()
+        audioRecorder.isMeteringEnabled = true
+        audioRecorder.record()
         
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in // 0.1초 간격으로 실행되는 타이머 생성
             record()
         }
     }
     
-       // MARK: 새로 END를 설정했음요
-    func setEndRecord() { // 녹음 세팅을 설정하는 함수
-        try! AVAudioSession.sharedInstance().setActive(false) // 오디오 세션 활성화
-      // 녹음 준비
-        audioRecorder.isMeteringEnabled = false // 녹음 시 미터링 기능 사용
-       // 녹음 시작
+    func setEndRecord() {
+        try! AVAudioSession.sharedInstance().setActive(false)
+        audioRecorder.isMeteringEnabled = false
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in // 0.1초 간격으로 실행되는 타이머 생성
         }
     }
     
-    func record() { // 녹음을 실행하고 데시벨 값을 업데이트하는 함수
-        audioRecorder.updateMeters() // 미터링 값을 업데이트
+    func record() {
+        audioRecorder.updateMeters()
         decibels = 100+CGFloat(audioRecorder.averagePower(forChannel: 0))
-        // 현재 데시벨 값을 decibels 속성에 저장
         withAnimation(Animation.easeInOut(duration: 2)) {
             circleSize()
         }
     }
     
-    // 제자리로 돌아가는 함수
     func endButton() {
         withAnimation(Animation.easeInOut(duration: 2.1)) {
             blueCircleOffset = .init(width: -40, height: -30)

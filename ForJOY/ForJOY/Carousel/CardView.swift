@@ -3,7 +3,6 @@ import SwiftUI
 import AVFoundation
 
 struct CardView: View {
-//    @StateObject var players = Players()
     @Binding var players: [AVPlayer]
     @State var isPlaying = false
     
@@ -78,7 +77,6 @@ struct CardSubView: View {
                 .padding()
                 .padding(.top)
                 .scaleEffect(1 + currentAmount)
-            // Pinch Zoom
                 .gesture(
                     MagnificationGesture()
                         .onChanged { value in

@@ -24,7 +24,6 @@ struct GalleryView: View {
         
         players.makePlayers(filteredData: self.album)
         
-        // 네비게이션바 투명
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         UINavigationBar.appearance().shadowImage = UIImage()
     }
@@ -73,12 +72,11 @@ struct GalleryView: View {
                 }
             }
             .toolbar {
-                //TODO: VoiceView와 연동
                 Button(action: {}) {
                     NavigationLink(destination: VoiceView()) {
                         Image(systemName: "mic.circle.fill")
                             .font(.title2)
-                            .foregroundColor(Color(hex: "659BD5"))
+                            .foregroundColor(Color("JoyBlue"))
                     }
                     .isDetailLink(false)
                 }

@@ -41,12 +41,13 @@ struct AddDoneView: View {
                 }
             }
             .background(
-                NavigationLink(destination: SelectYearView()
-                    .navigationBarBackButtonHidden(),
-                               isActive: $isActive,
-                               label: {
-                                   EmptyView()
-                               }
+                NavigationLink(
+                    destination: SelectYearView()
+                                    .navigationBarBackButtonHidden(),
+                    isActive: $isActive,
+                    label: {
+                        EmptyView()
+                    }
                 )
             )
         }

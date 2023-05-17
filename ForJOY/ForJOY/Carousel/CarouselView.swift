@@ -34,7 +34,6 @@ struct CarouselView: View {
                         ForEach(0..<views.count) {i in
                             VStack {
                                 Spacer()
-                                
                                 self.views[i]
                                     .frame(width: 330, height: self.getHeight(i))
                                     .animation(.interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
@@ -49,17 +48,17 @@ struct CarouselView: View {
                                 Spacer()
                             }
                         }
-                    }.gesture(
-                        
+                    }
+                    .gesture(
                         DragGesture()
                             .updating($dragState) { drag, state, transaction in
                                 state = .dragging(translation: drag.translation)
                             }
                             .onEnded(onDragEnded)
                     )
-                    
                     Spacer()
                 }
+                
                 VStack {
                     Spacer()
                     Spacer().frame(height: itemHeight + 90)

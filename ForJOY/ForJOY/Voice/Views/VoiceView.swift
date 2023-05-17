@@ -9,23 +9,19 @@ import SwiftUI
 import PhotosUI
 
 struct VoiceView: View {
-    // VoiceViewModel의 인스턴스를 생성하여 관찰합니다.
     @StateObject var voiceViewModel = VoiceViewModel()
-    // 삭제 경고 메시지를 보여줄지 여부를 나타내는 상태 변수입니다.
+    @StateObject var realmManger = RealmManger()
+    
     @State private var showingAlert = false
-    // 효과음1을 재생할지 여부를 나타내는 상태 변수입니다.
     @State private var effect1 = false
-    // 효과음2을 재생할지 여부를 나타내는 상태 변수입니다.
     @State private var effect2 = false
     @State var recording: URL?
     @State var isButtonOn = false
-    
     @State var isShowActionSheet = false
     @State var isShowPhotoPicker = false
     @State private var selectedItem = [PhotosPickerItem]()
     @State private var selectedImage: UIImage?
     @State var isChoosen = false
-    @StateObject var realmManger = RealmManger()
     @State var isHeiddentButton = false
     
     var body: some View {

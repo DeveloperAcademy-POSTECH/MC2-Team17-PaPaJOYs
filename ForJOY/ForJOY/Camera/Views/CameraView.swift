@@ -167,6 +167,5 @@ struct CameraPreviewView: UIViewRepresentable {
         return view
     }
     func updateUIView(_ uiView: VideoPreviewView, context: Context) {
-        //지우면 안됨
     }
 }

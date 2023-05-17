@@ -62,7 +62,7 @@ struct HeaderView: View {
             } label: {
                 Image(systemName: "slider.horizontal.3")
                     .font(.system(size: 25))
-                    .foregroundColor(Color(hex: "659BD5"))
+                    .foregroundColor(Color("JoyBlue"))
             }
             .padding(.leading, 20)
             
