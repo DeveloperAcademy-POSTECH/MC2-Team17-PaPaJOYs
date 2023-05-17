@@ -26,9 +26,15 @@ struct InfoView: View {
         NavigationStack {
             VStack{
                 if selectedImage != nil {
-                    Image(uiImage: selectedImage!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
+                    GeometryReader { geometry in
+                        Image(uiImage: selectedImage!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: geometry.size.width - 30, height: geometry.size.height)
+                            .clipped()
+                            .padding(.horizontal, 15)
+                            .padding(.top, 25)
+                    }
                 } else {
                     Text("No image")
                 }
