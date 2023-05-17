@@ -22,7 +22,7 @@ struct ForJOYApp: App {
                 SelectYearView()
                     .background(Color("JoyDarkG"))
             }
-            .accentColor(Color("JoyBlue"))
+            .accentColor(Color("JoyWhite"))
             .onOpenURL { url in
                 guard url.scheme == "forjoy" else { return }
                 linkActive = true
