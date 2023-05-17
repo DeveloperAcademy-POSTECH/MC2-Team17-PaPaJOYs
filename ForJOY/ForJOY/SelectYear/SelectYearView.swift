@@ -22,13 +22,13 @@ struct SelectYearView: View {
                     HStack {
                         Spacer()
                         TagView(selectedTag: $selectedTag)
-
+                        
                         Spacer()
                     }
                     HStack {
                         Spacer()
                         AlbumView(isNewest: $isNewest, selectedTag: $selectedTag)
-
+                        
                         Spacer()
                     }
                 }

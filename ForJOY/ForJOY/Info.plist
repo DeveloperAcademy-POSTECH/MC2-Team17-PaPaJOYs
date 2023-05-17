@@ -2,14 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UILaunchScreen</key>
-	<dict>
-		<key>UIImageName</key>
-		<string>LaunchScreen</string>
-		<key>UIImageRespectsSafeAreaInsets</key>
-		<false/>
-		<key>UIColorName</key>
-		<string>JoyDarkG</string>
-	</dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>forjoy</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>forjoy</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
