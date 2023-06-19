@@ -5,6 +5,8 @@
 //  Created by Chaeeun Shin on 2023/05/02.
 //
 
+// 2023/06/19 dev 브랜치 생성
+
 import SwiftUI
 
 @main
