@@ -14,7 +14,7 @@ struct CardView: View {
             return []
         } else {
             return filteredData.enumerated().map { (i, post) in
-                return AnyView(CardSubView(imageName: post.image, title: post.title, date: post.date.toString(dateFormat: "yyyy.MM.dd"), player: players[i], isPlaying: $isPlaying))
+                return AnyView(CardContentView(imageName: post.image, title: post.title, date: post.date.toString(dateFormat: "yyyy.MM.dd"), player: players[i], isPlaying: $isPlaying))
             }
         }
     }
@@ -37,13 +37,11 @@ struct CardView: View {
     }
 }
 
-struct CardSubView: View {
+struct CardContentView: View {
     @State private var currentTime: Double = 0.0
     @State private var remainingTime: Double = 0.0
-    @State private var currentAmount: CGFloat = 0
     
     @Binding var isPlaying: Bool
-    
     
     let imageName: Data
     let title: String
@@ -67,25 +65,7 @@ struct CardSubView: View {
     
     var body: some View {
         VStack{
-            Image(uiImage: UIImage(data: imageName)!)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 300, height: 400)
-                .clipped()
-                .cornerRadius(10)
-                .shadow(radius: 3)
-                .padding()
-                .padding(.top)
-                .scaleEffect(1 + currentAmount)
-                .gesture(
-                    MagnificationGesture()
-                        .onChanged { value in
-                            currentAmount = value - 1
-                        }
-                        .onEnded { value in
-                            currentAmount = 0
-                        }
-                )
+            ImageView(imageName: imageName)
             
             HStack(alignment: .center, spacing: 0) {
                 VStack(alignment: .leading, spacing: 3) {
@@ -117,11 +97,21 @@ struct CardSubView: View {
             Spacer()
         }
     }
-     
-    func timeString(time: Double) -> String {
-        let minutes = Int(time) / 60
-        let seconds = Int(time) % 60
-        return String(format: "%d:%02d", minutes, seconds)
+}
+
+struct ImageView: View {
+    let imageName: Data
+    
+    var body: some View {
+        Image(uiImage: UIImage(data: imageName)!)
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .frame(width: 300, height: 400)
+            .clipped()
+            .cornerRadius(10)
+            .shadow(radius: 3)
+            .padding()
+            .padding(.top)
     }
 }
 
