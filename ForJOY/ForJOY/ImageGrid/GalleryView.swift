@@ -11,7 +11,7 @@ import AVFoundation
 struct GalleryView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var players = Players()
-    @State var offset = CGSize(width: 0.0, height: screenHeight * 0.07)
+    @State var offset: CGSize = CGSize(width: 0.0, height: screenHeight * 0.07)
     
     var tagName: String
     var year: Int
@@ -31,7 +31,7 @@ struct GalleryView: View {
     var columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 3), count: 3)
     
     var body: some View {
-        NavigationStack {
+        NavigationStack{
             ZStack {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 3) {
@@ -71,16 +71,16 @@ struct GalleryView: View {
                     Spacer()
                 }
             }
-            .toolbar {
-                Button(action: {}) {
-                    NavigationLink(destination: VoiceView()) {
-                        Image(systemName: "mic.circle.fill")
-                            .font(.title2)
-                            .foregroundColor(Color("JoyBlue"))
-                    }
-                    .isDetailLink(false)
-                }
-            }
+//            .toolbar {
+//                Button(action: {}) {
+//                    NavigationLink(destination: VoiceView(selectedImage: s)) {
+//                        Image(systemName: "mic.circle.fill")
+//                            .font(.title2)
+//                            .foregroundColor(Color("JoyBlue"))
+//                    }
+//                    .isDetailLink(false)
+//                }
+//            }
         }
     }
 }

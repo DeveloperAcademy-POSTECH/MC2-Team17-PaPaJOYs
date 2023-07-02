@@ -1,3 +1,5 @@
+// 전체 구조 수정 필요
+
 
 import SwiftUI
 import AVKit

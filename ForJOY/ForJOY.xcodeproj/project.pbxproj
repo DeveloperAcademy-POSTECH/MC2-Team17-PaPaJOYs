@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E40FB022A0C904C00AFA66D /* AddDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40FB012A0C904C00AFA66D /* AddDoneView.swift */; };
+		0E484E292A515E96002F9C9A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E484E282A515E96002F9C9A /* ImagePicker.swift */; };
 		0E4E7DB52A10EDA800D72E66 /* RealmManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E7DB42A10EDA800D72E66 /* RealmManger.swift */; };
 		0E4E7DB92A10EDDA00D72E66 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E7DB82A10EDDA00D72E66 /* Memory.swift */; };
 		0E4E7DBE2A10EF3F00D72E66 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0E4E7DBD2A10EF3F00D72E66 /* Realm */; };
@@ -78,6 +79,7 @@
 
 /* Begin PBXFileReference section */
 		0E40FB012A0C904C00AFA66D /* AddDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDoneView.swift; sourceTree = "<group>"; };
+		0E484E282A515E96002F9C9A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		0E4E7DB42A10EDA800D72E66 /* RealmManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManger.swift; sourceTree = "<group>"; };
 		0E4E7DB82A10EDDA00D72E66 /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
 		0E4E7DE12A111CDE00D72E66 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 		5B52BEB72A03575500320ECD /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				0E484E282A515E96002F9C9A /* ImagePicker.swift */,
 				5B52BEBA2A03576F00320ECD /* Models */,
 				5B52BEB92A03576300320ECD /* ViewModels */,
 				5B52BEB82A03575D00320ECD /* Views */,
@@ -465,6 +468,7 @@
 				30BDADEC2A034DB7000BDA8F /* TimerView.swift in Sources */,
 				30BDADEE2A034DB7000BDA8F /* VoiceView.swift in Sources */,
 				30BDADE62A034DB7000BDA8F /* CircularProgressView.swift in Sources */,
+				0E484E292A515E96002F9C9A /* ImagePicker.swift in Sources */,
 				5B52BED02A03592400320ECD /* CameraView.swift in Sources */,
 				BE522DFD2A05A48D00D4AEEA /* CarouselView.swift in Sources */,
 				BECC97372A05A54700E27120 /* CardView.swift in Sources */,
@@ -625,14 +629,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ForJOY/Preview Content\"";
-				DEVELOPMENT_TEAM = 5Z238234D5;
+				DEVELOPMENT_TEAM = HQS8MXQ7B5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJOY/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your photo library to save images.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "권한을 허용해주세요";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app saves screenshots to your photo library.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -642,7 +645,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = papajoy.newyork.ForJOY;
+				PRODUCT_BUNDLE_IDENTIFIER = papajoy.helia.ForJOY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -659,14 +662,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ForJOY/Preview Content\"";
-				DEVELOPMENT_TEAM = 5Z238234D5;
+				DEVELOPMENT_TEAM = HQS8MXQ7B5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJOY/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your photo library to save images.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "권한을 허용해주세요";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app saves screenshots to your photo library.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -676,7 +678,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = papajoy.newyork.ForJOY;
+				PRODUCT_BUNDLE_IDENTIFIER = papajoy.helia.ForJOY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -691,7 +693,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5Z238234D5;
+				DEVELOPMENT_TEAM = HQS8MXQ7B5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJoyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ForJoyWidget;
@@ -703,7 +705,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = papajoy.newyork.ForJOY.ForJoyWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = papajoy.helia.ForJOY.ForJoyWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -719,7 +721,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5Z238234D5;
+				DEVELOPMENT_TEAM = HQS8MXQ7B5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJoyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ForJoyWidget;
@@ -731,7 +733,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = papajoy.newyork.ForJOY.ForJoyWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = papajoy.helia.ForJOY.ForJoyWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;

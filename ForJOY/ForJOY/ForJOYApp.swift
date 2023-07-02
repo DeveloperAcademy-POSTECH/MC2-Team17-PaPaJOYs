@@ -5,8 +5,11 @@
 //  Created by Chaeeun Shin on 2023/05/02.
 //
 
+// 2023/06/19 dev 브랜치 생성
+
 import SwiftUI
 
+//TODO: 온보딩 끝나고 필요한 권한 받기
 @main
 struct ForJOYApp: App {
     @State var linkActive = false
@@ -14,7 +17,7 @@ struct ForJOYApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                NavigationLink(destination: VoiceView()
+                NavigationLink(destination: VoiceView(selectedImage: .constant(nil))
                     .navigationBarBackButtonHidden(),
                                isActive: $linkActive) {
                     EmptyView()

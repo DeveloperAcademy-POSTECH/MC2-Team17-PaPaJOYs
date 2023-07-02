@@ -21,8 +21,6 @@ struct CameraView: View {
     @State var isChoosen = false
     @State var isTaken = false
     
-    @Binding var recording: URL?
-    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -105,7 +103,7 @@ struct CameraView: View {
                             .frame(width: 100, height: 100)
                             
                             NavigationLink(
-                                destination: InfoView(selectedImage: $selectedImage, recording: $recording)
+                                destination: InfoView(selectedImage: $selectedImage, recording: .constant(nil))
                                     .navigationBarBackButtonHidden()
                                     .environmentObject(realmManger)
                                     .environmentObject(voiceViewModel)
@@ -119,7 +117,7 @@ struct CameraView: View {
                                 }
                             
                             NavigationLink(
-                                destination: InfoView(selectedImage: $selectedImage, recording: $recording)
+                                destination: InfoView(selectedImage: $selectedImage, recording: .constant(nil))
                                     .navigationBarBackButtonHidden()
                                     .environmentObject(realmManger)
                                     .environmentObject(voiceViewModel)
