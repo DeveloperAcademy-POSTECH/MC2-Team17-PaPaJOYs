@@ -6,10 +6,19 @@
 //
 
 import SwiftUI
+import PhotosUI
 
+//TODO: db 비어있으면 비어있다고 알려주기
 struct SelectYearView: View {
     @State private var isNewest = true
     @State private var selectedTag = "All"
+    
+    @State var isShowActionSheet = false
+    @State private var selectedImage: UIImage? = nil
+    @State private var isShowingActionSheet = false
+    @State private var isShowingCameraPicker = false
+    @State private var isShowingPhotoLibraryPicker = false
+    @State private var isChoosen = false
     
     var body: some View {
         NavigationStack {
@@ -18,30 +27,116 @@ struct SelectYearView: View {
                     .ignoresSafeArea()
                 
                 VStack(spacing: 20) {
-                    HeaderView(isNewest: $isNewest)
-                    HStack {
-                        Spacer()
-                        TagView(selectedTag: $selectedTag)
-                        
-                        Spacer()
-                    }
+                    HeaderView(isNewest: $isNewest, selectedTag: $selectedTag)
                     HStack {
                         Spacer()
                         AlbumView(isNewest: $isNewest, selectedTag: $selectedTag)
                         
                         Spacer()
                     }
+                    Button(action: {
+                        isShowActionSheet = true
+                    }, label: {
+                        Capsule()
+                            .fill(Color("JoyYellow"))
+                            .frame(width: 300, height: 40)
+                            .overlay {
+                                HStack {
+                                    Image(systemName: "plus")
+                                        .font(.system(size: 15))
+                                        .foregroundColor(Color("JoyDarkG"))
+                                    Text("새로운 추억 기록하기")
+                                        .font(.system(size: 15))
+                                        .fontWeight(.bold)
+                                        .foregroundColor(Color("JoyDarkG"))
+                                }
+                            }
+                    })
+                    .padding(.trailing, 20)
+                    .confirmationDialog("photo", isPresented: $isShowActionSheet) {
+                        Button(action: {
+                            isShowingCameraPicker = true
+                        }, label: {
+                            Text("사진 찍으러 가기")
+                                .foregroundColor(Color("JoyBlue"))
+                        })
+                        .background(Color("JoyWhite"))
+
+                        Button(action: {
+                            isShowingPhotoLibraryPicker = true
+                        }, label: {
+                            Text("사진 고르러 가기")
+                                .foregroundColor(Color("JoyBlue"))
+                        })
+                        .background(Color("JoyWhite"))
+                        
+                        
+                        Button(role: .cancel, action: {
+                        }, label: {
+                            Text("Cancel")
+                        })
+                    }
+                    .sheet(isPresented: $isShowingCameraPicker, onDismiss: loadImage) {
+                        ImagePicker(selectedImage: $selectedImage, sourceType: .camera)
+                            .ignoresSafeArea()
+                    }
+                    .sheet(isPresented: $isShowingPhotoLibraryPicker, onDismiss: loadImage) {
+                        ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
+                            .background(Color("JoyDarkG"))
+                            .tint(Color("JoyBlue"))
+                    }
                 }
+                
+                NavigationLink(
+                    destination: VoiceView(selectedImage: $selectedImage)
+                        .navigationBarBackButtonHidden(),
+                    isActive: $isChoosen
+                ){}
+                .isDetailLink(false)
             }
+        }
+    }
+    
+    func loadImage() {
+        if let image = selectedImage {
+            saveImage(image)
+            isChoosen.toggle()
+        }
+    }
+    func saveImage(_ image: UIImage) {
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+            return
+        }
+        
+        let folderName = "ForJoy"
+        
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.predicate = NSPredicate(format: "title = %@", folderName)
+        let folders = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: fetchOptions)
+        
+        if let folder = folders.firstObject {
+            // Folder found, save the image to the folder
+            PHPhotoLibrary.shared().performChanges {
+                let creationRequest = PHAssetCreationRequest.forAsset()
+                creationRequest.addResource(with: .photo, data: imageData, options: nil)
+                let placeholder = creationRequest.placeholderForCreatedAsset
+                let albumChangeRequest = PHAssetCollectionChangeRequest(for: folder)
+                albumChangeRequest?.addAssets([placeholder] as NSFastEnumeration)
+            } completionHandler: { _, _ in
+                // Image saved successfully to the folder
+            }
+        } else {
+            // Folder not found, display an error or create the folder
         }
     }
 }
 
 struct HeaderView: View {
     @Binding var isNewest: Bool
+    @Binding var selectedTag: String
     
     var body: some View {
-        HStack(alignment: .center) {
+        HStack() {
             Menu {
                 Button(action: {isNewest = true}) {
                     HStack {
@@ -66,26 +161,10 @@ struct HeaderView: View {
             }
             .padding(.leading, 20)
             
-            Spacer()
+            Spacer(minLength: 250)
             
-            NavigationLink(destination: VoiceView()) {
-                Capsule()
-                    .fill(Color("JoyYellow"))
-                    .frame(width: 105, height: 40)
-                    .overlay {
-                        HStack {
-                            Image(systemName: "mic.fill")
-                                .font(.system(size: 15))
-                                .foregroundColor(Color("JoyDarkG"))
-                            Text("녹음하기")
-                                .font(.system(size: 15))
-                                .fontWeight(.bold)
-                                .foregroundColor(Color("JoyDarkG"))
-                        }
-                    }
-            }
-            .isDetailLink(false)
-            .padding(.trailing, 20)
+            TagView(selectedTag: $selectedTag)
+                .frame(alignment: .trailing)
         }
     }
 }
@@ -111,7 +190,7 @@ struct TagView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 7))
                         .overlay(
                             RoundedRectangle(cornerRadius: 7)
-                                .strokeBorder(isAllSelect ? Color("Joyblue") : Color("JoyWhite"), lineWidth: 1)
+                                .strokeBorder(isAllSelect ? Color("JoyBlue") : Color("JoyWhite"), lineWidth: 1)
                         )
                 }
 
