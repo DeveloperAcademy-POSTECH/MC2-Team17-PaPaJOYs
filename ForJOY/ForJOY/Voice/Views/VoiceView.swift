@@ -49,9 +49,7 @@ struct VoiceView: View {
                 NavigationLink(
                     destination: InfoView(selectedImage: $selectedImage, recording: $recording)
                         .navigationBarBackButtonHidden()
-                        .environmentObject(realmManger)
-                        .environmentObject(voiceViewModel)
-                    ,
+                        .environmentObject(realmManger),
                     isActive: $isChoosen
                 ){}
                 .isDetailLink(false)

@@ -9,9 +9,6 @@ import SwiftUI
 
 struct InfoView: View {
     @EnvironmentObject var realmManger: RealmManger
-    @EnvironmentObject var voiceViewModel: VoiceViewModel
-    @Environment(\.presentationMode) var presentationMode
-    @Environment(\.dismiss) var dismiss
     
     @State var title: String = ""
     @State var date = Date()
@@ -93,7 +90,6 @@ struct InfoView: View {
                                 destination:  {
                                     AddDoneView()
                                         .navigationBarBackButtonHidden()
-                                        .environmentObject(realmManger)
                                         .onAppear(){
                                             if !isAddData {
                                                 if title != "" {
@@ -124,13 +120,6 @@ struct InfoView: View {
                 }
             }
             .tint(Color("JoyBlue"))
-            .gesture(DragGesture(minimumDistance: 3.0,
-                                 coordinateSpace: .local)
-            .onEnded({ (value) in
-                if value.translation.width > 0 {
-                    self.presentationMode.wrappedValue.dismiss()
-                }
-            }))
         }
     }
 }

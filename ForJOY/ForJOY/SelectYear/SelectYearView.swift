@@ -126,7 +126,23 @@ struct SelectYearView: View {
                 // Image saved successfully to the folder
             }
         } else {
-            // Folder not found, display an error or create the folder
+            PHPhotoLibrary.shared().performChanges {
+                PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: folderName)
+            } completionHandler: { success, error in
+                if success {
+                    let fetchOptions = PHFetchOptions()
+                    fetchOptions.predicate = NSPredicate(format: "title = %@", folderName)
+                    let createdFolders = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: fetchOptions)
+                    if let createdFolder = createdFolders.firstObject {
+                        let creationRequest = PHAssetCreationRequest.forAsset()
+                        creationRequest.addResource(with: .photo, data: imageData, options: nil)
+                        let placeholder = creationRequest.placeholderForCreatedAsset
+                        let albumChangeRequest = PHAssetCollectionChangeRequest(for: createdFolder)
+                        albumChangeRequest?.addAssets([placeholder] as NSFastEnumeration)
+                    }
+                } else {
+                }
+            }
         }
     }
 }
