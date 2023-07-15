@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct AddDoneView: View {
+    @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentationMode
+    
     @State private var isActive = false
     
     var body: some View {
@@ -19,7 +21,7 @@ struct AddDoneView: View {
                 ZStack{
                     VStack{
                         Spacer()
-                        LottieView(jsonName: "SaveComplete2")
+//                        LottieView(jsonName: "SaveComplete2")
                             .frame(width: 500, height: 500)
                     }
                     .frame(width: 400, height: 650)
@@ -43,7 +45,8 @@ struct AddDoneView: View {
             .background(
                 NavigationLink(
                     destination: SelectYearView()
-                                    .navigationBarBackButtonHidden(),
+                        .environment(\.managedObjectContext, viewContext)
+                        .navigationBarBackButtonHidden(),
                     isActive: $isActive,
                     label: {
                         EmptyView()

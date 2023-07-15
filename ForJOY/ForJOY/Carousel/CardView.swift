@@ -43,12 +43,12 @@ struct CardContentView: View {
     
     @Binding var isPlaying: Bool
     
-    let imageName: Data
+    let imageName: String
     let title: String
     let date: String
     var player: AVPlayer
     
-    init(imageName: Data, title: String, date: String, player: AVPlayer, isPlaying: Binding<Bool>) {
+    init(imageName: String, title: String, date: String, player: AVPlayer, isPlaying: Binding<Bool>) {
         self.imageName = imageName
         self.title = title
         self.date = date
@@ -100,10 +100,10 @@ struct CardContentView: View {
 }
 
 struct ImageView: View {
-    let imageName: Data
+    let imageName: String
     
     var body: some View {
-        Image(uiImage: UIImage(data: imageName)!)
+        Image(uiImage: UIImage(data: Data(base64Encoded: imageName)!)!)
             .resizable()
             .aspectRatio(contentMode: .fill)
             .frame(width: 300, height: 400)

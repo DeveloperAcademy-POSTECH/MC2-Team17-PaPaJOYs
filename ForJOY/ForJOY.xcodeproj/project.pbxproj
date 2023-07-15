@@ -34,6 +34,7 @@
 		30C74FA52A0D06EB0099DC1B /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C74FA42A0D06EB0099DC1B /* InfoView.swift */; };
 		30C74FA72A0D06FE0099DC1B /* InfoTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C74FA62A0D06FE0099DC1B /* InfoTagView.swift */; };
 		5B08A50B2A147CB000496242 /* VoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08A50A2A147CB000496242 /* VoiceViewModel.swift */; };
+		5B33825A2A617ED90091229E /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5B3382582A617ED90091229E /* DataModel.xcdatamodeld */; };
 		5B52BECC2A0358EA00320ECD /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52BECB2A0358EA00320ECD /* Camera.swift */; };
 		5B52BECE2A03590900320ECD /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52BECD2A03590900320ECD /* CameraViewModel.swift */; };
 		5B52BED02A03592400320ECD /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B52BECF2A03592400320ECD /* CameraView.swift */; };
@@ -100,6 +101,8 @@
 		30C74FA42A0D06EB0099DC1B /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		30C74FA62A0D06FE0099DC1B /* InfoTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTagView.swift; sourceTree = "<group>"; };
 		5B08A50A2A147CB000496242 /* VoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceViewModel.swift; sourceTree = "<group>"; };
+		5B3382592A617ED90091229E /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		5B33825B2A6321270091229E /* ForJOY.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ForJOY.entitlements; sourceTree = "<group>"; };
 		5B52BECB2A0358EA00320ECD /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		5B52BECD2A03590900320ECD /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		5B52BECF2A03592400320ECD /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
@@ -165,6 +168,7 @@
 		3032386D2A00A876008A8093 = {
 			isa = PBXGroup;
 			children = (
+				5B3382582A617ED90091229E /* DataModel.xcdatamodeld */,
 				303238782A00A876008A8093 /* ForJOY */,
 				5BF13D9C2A137846002DF1FA /* ForJoyWidget */,
 				5BF13D622A1373C5002DF1FA /* Frameworks */,
@@ -184,6 +188,7 @@
 		303238782A00A876008A8093 /* ForJOY */ = {
 			isa = PBXGroup;
 			children = (
+				5B33825B2A6321270091229E /* ForJOY.entitlements */,
 				5BF13DAF2A139ED9002DF1FA /* Info.plist */,
 				303238792A00A876008A8093 /* ForJOYApp.swift */,
 				30BDADDE2A034DB7000BDA8F /* Extensions */,
@@ -479,6 +484,7 @@
 				0E4E7DB92A10EDDA00D72E66 /* Memory.swift in Sources */,
 				5B08A50B2A147CB000496242 /* VoiceViewModel.swift in Sources */,
 				300D732B2A11D8A2007D38E9 /* Players.swift in Sources */,
+				5B33825A2A617ED90091229E /* DataModel.xcdatamodeld in Sources */,
 				30BDADE92A034DB7000BDA8F /* Date+.swift in Sources */,
 				D92951642A0F643A00D7A7A7 /* LottieView.swift in Sources */,
 			);
@@ -626,10 +632,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ForJOY/ForJOY.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ForJOY/Preview Content\"";
-				DEVELOPMENT_TEAM = HQS8MXQ7B5;
+				DEVELOPMENT_TEAM = 5Z238234D5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJOY/Info.plist;
@@ -659,10 +666,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ForJOY/ForJOY.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ForJOY/Preview Content\"";
-				DEVELOPMENT_TEAM = HQS8MXQ7B5;
+				DEVELOPMENT_TEAM = 5Z238234D5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJOY/Info.plist;
@@ -693,7 +701,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HQS8MXQ7B5;
+				DEVELOPMENT_TEAM = 5Z238234D5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJoyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ForJoyWidget;
@@ -721,7 +729,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HQS8MXQ7B5;
+				DEVELOPMENT_TEAM = 5Z238234D5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJoyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ForJoyWidget;
@@ -810,6 +818,19 @@
 			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		5B3382582A617ED90091229E /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5B3382592A617ED90091229E /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 5B3382592A617ED90091229E /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3032386E2A00A876008A8093 /* Project object */;
 }

@@ -8,8 +8,15 @@
 import SwiftUI
 import PhotosUI
 
-//TODO: db 비어있으면 비어있다고 알려주기
 struct SelectYearView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "date", ascending: false)])
+    private var memories: FetchedResults<Memories>
+    
+    @State var uniqueTags = [String]()
+    @State var yearlyMemories = [Int: [Memory]]()
+    
     @State private var isNewest = true
     @State private var selectedTag = "All"
     
@@ -27,11 +34,18 @@ struct SelectYearView: View {
                     .ignoresSafeArea()
                 
                 VStack(spacing: 20) {
-                    HeaderView(isNewest: $isNewest, selectedTag: $selectedTag)
+                    HeaderView(tags: $uniqueTags, isNewest: $isNewest, selectedTag: $selectedTag)
+                        .environment(\.managedObjectContext, viewContext)
                     HStack {
                         Spacer()
-                        AlbumView(isNewest: $isNewest, selectedTag: $selectedTag)
-                        
+                        if memories.count != 0 {
+                            AlbumView(memories: $yearlyMemories, isNewest: $isNewest, selectedTag: $selectedTag)
+                                .environment(\.managedObjectContext, viewContext)
+                        } else {
+                            Text("추억을 추가해 주세요.")
+                                .foregroundColor(Color("JoyWhite"))
+                                .frame(maxHeight: .infinity)
+                        }
                         Spacer()
                     }
                     Button(action: {
@@ -78,10 +92,13 @@ struct SelectYearView: View {
                     }
                     .sheet(isPresented: $isShowingCameraPicker, onDismiss: loadImage) {
                         ImagePicker(selectedImage: $selectedImage, sourceType: .camera)
+                            .environment(\.managedObjectContext, viewContext)
                             .ignoresSafeArea()
                     }
                     .sheet(isPresented: $isShowingPhotoLibraryPicker, onDismiss: loadImage) {
                         ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
+                            .environment(\.managedObjectContext, viewContext)
+                            .ignoresSafeArea()
                             .background(Color("JoyDarkG"))
                             .tint(Color("JoyBlue"))
                     }
@@ -89,11 +106,33 @@ struct SelectYearView: View {
                 
                 NavigationLink(
                     destination: VoiceView(selectedImage: $selectedImage)
+                        .environment(\.managedObjectContext, viewContext)
                         .navigationBarBackButtonHidden(),
                     isActive: $isChoosen
                 ){}
                 .isDetailLink(false)
             }
+        }
+        .onAppear {
+            getLoad()
+        }
+    }
+    
+    func getLoad() {
+        getUniqueTags()
+        getYearlyMemories()
+    }
+    
+    func getUniqueTags() {
+        let distinctTags = Set(memories.compactMap { $0.tag })
+        uniqueTags = Array(distinctTags)
+    }
+    
+    func getYearlyMemories() {
+        yearlyMemories = Dictionary(grouping: memories.map { memory -> Memory in
+            return Memory(title: memory.title ?? "", year: Int(memory.year), date: memory.date ?? Date(), tag: memory.tag ?? "", image: memory.image ?? "", voice: memory.voice ?? "")
+        }) { memory -> Int in
+            return Int(memory.year)
         }
     }
     
@@ -132,6 +171,9 @@ struct SelectYearView: View {
 }
 
 struct HeaderView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @Binding var tags: Array<String>
     @Binding var isNewest: Bool
     @Binding var selectedTag: String
     
@@ -160,17 +202,17 @@ struct HeaderView: View {
                     .foregroundColor(Color("JoyBlue"))
             }
             .padding(.leading, 20)
+            .frame(maxWidth: .infinity, alignment: .leading)
             
-            Spacer(minLength: 250)
-            
-            TagView(selectedTag: $selectedTag)
-                .frame(alignment: .trailing)
+            TagView(tags: $tags, selectedTag: $selectedTag)
+                .environment(\.managedObjectContext, viewContext)
+                .frame(maxWidth: .infinity, alignment: .trailing)
         }
     }
 }
 
 struct TagView: View {
-    @StateObject var realmManger = RealmManger()
+    @Binding var tags: Array<String>
     @Binding var selectedTag: String
     @State var isAllSelect = true
 
@@ -193,8 +235,6 @@ struct TagView: View {
                                 .strokeBorder(isAllSelect ? Color("JoyBlue") : Color("JoyWhite"), lineWidth: 1)
                         )
                 }
-
-                let tags = realmManger.uniqueTags
                 
                 ForEach( Array(tags.sorted().filter{$0 != "기본"}) , id: \.self) { i in
                     Button {
@@ -220,8 +260,9 @@ struct TagView: View {
 }
 
 struct AlbumView: View {
-    @StateObject var realmManger = RealmManger()
-    @State var memories = [Int: [Memory]]()
+    @Environment(\.managedObjectContext) private var viewContext
+
+    @Binding var memories: [Int: [Memory]]
     @Binding var isNewest: Bool
     @Binding var selectedTag: String
     
@@ -230,13 +271,13 @@ struct AlbumView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 15) {
-                let memories = realmManger.yearlyMemories
                 
                 if selectedTag == "All" {
                     ForEach(Array(isNewest ? memories.keys.sorted(by: >) : memories.keys.sorted()), id: \.self) { key in
                         NavigationLink(destination: GalleryView(tagName: selectedTag, year: key, album: memories[key]!)
-                            .environmentObject(realmManger)) {
+                            .environment(\.managedObjectContext, viewContext)) {
                                 AlbumSubView(post: memories[key]!.first!)
+                                    .environment(\.managedObjectContext, viewContext)
                             }
                     }
                 }else {
@@ -249,8 +290,9 @@ struct AlbumView: View {
                     
                     ForEach(Array(isNewest ? filterMemories.keys.sorted(by: >) : filterMemories.keys.sorted()), id: \.self) { key in
                         NavigationLink(destination: GalleryView(tagName: selectedTag, year: key, album: filterMemories[key]!)
-                            .environmentObject(realmManger)) {
+                            .environment(\.managedObjectContext, viewContext)) {
                                 AlbumSubView(post: filterMemories[key]!.first!)
+                                    .environment(\.managedObjectContext, viewContext)
                             }
                     }
                     
@@ -266,7 +308,7 @@ struct AlbumSubView: View {
         ZStack {
             Color("JoyWhite")
             VStack {
-                Image(uiImage: UIImage(data: post.image) ?? UIImage(systemName: "house")!)
+                Image(uiImage: UIImage(data: Data(base64Encoded: post.image)!)!)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: screenWidth * 0.4, height: screenWidth * 0.4)

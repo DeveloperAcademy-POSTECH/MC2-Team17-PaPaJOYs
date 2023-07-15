@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct InfoView: View {
-    @EnvironmentObject var realmManger: RealmManger
     @EnvironmentObject var voiceViewModel: VoiceViewModel
+    
+    @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.dismiss) var dismiss
     
@@ -25,25 +26,23 @@ struct InfoView: View {
     var body: some View {
         NavigationStack {
             VStack{
-                if selectedImage != nil {
-                    GeometryReader { geometry in
-                        Image(uiImage: selectedImage!)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: geometry.size.width - 30, height: geometry.size.height)
-                            .clipped()
-                            .padding(.horizontal, 15)
-                            .padding(.top, 25)
-                    }
-                } else {
-                    Text("No image")
+                GeometryReader { geometry in
+                    Image(uiImage: selectedImage!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: geometry.size.width - 30, height: geometry.size.height)
+                        .clipped()
+                        .cornerRadius(10)
+                        .padding(.horizontal, 15)
+                        .padding(.top, 25)
                 }
                 
                 List {
                     HStack{
                         Text("제목")
-                        Spacer(minLength: 100)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         TextField("제목", text: $title)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
                             .multilineTextAlignment(.trailing)
                             .onChange(of: title) { newValue in
                                 title = String(newValue.prefix(20))
@@ -53,15 +52,14 @@ struct InfoView: View {
                     
                     HStack(){
                         Text("태그")
-                            .frame(width: 60, alignment: .leading)
-                        Spacer(minLength: 190)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         NavigationLink(destination: InfoTagView(selectTag: $tag), label: {
                             if tag == nil {
                                 Text("없음")
-                                    .frame(width: 60, alignment: .trailing)
-                            }else {
+                                    .frame(maxWidth: .infinity, alignment: .trailing)
+                            } else {
                                 Text(tag!)
-                                    .frame(width: 60, alignment: .trailing)
+                                    .frame(maxWidth: .infinity, alignment: .trailing)
                             }
                         })
                     }
@@ -92,21 +90,15 @@ struct InfoView: View {
                                 isActive: $toAddDoneView,
                                 destination:  {
                                     AddDoneView()
+                                        .environment(\.managedObjectContext, viewContext)
                                         .navigationBarBackButtonHidden()
-                                        .environmentObject(realmManger)
-                                        .onAppear(){
+                                        .onAppear() {
                                             if !isAddData {
                                                 if title != "" {
                                                     let year = Int(date.toString(dateFormat: "yyyy"))!
                                                     
-                                                    realmManger.addMemories(Memory(value: [
-                                                        "title": title,
-                                                        "year": year,
-                                                        "date": date,
-                                                        "tag": tag ?? "기본",
-                                                        "image": selectedImage!.jpegData(compressionQuality: 0.5)!,
-                                                        "voice": recording!.absoluteString
-                                                    ] as [String : Any] ))
+                                                    addMemory(title, Int16(year), date, tag ?? "기본", selectedImage!.jpegData(compressionQuality: 0.8)!.base64EncodedString(), recording!.absoluteString)
+                                                    
                                                     isAddData = true
                                                 }
                                             }
@@ -126,11 +118,32 @@ struct InfoView: View {
             .tint(Color("JoyBlue"))
             .gesture(DragGesture(minimumDistance: 3.0,
                                  coordinateSpace: .local)
-            .onEnded({ (value) in
-                if value.translation.width > 0 {
-                    self.presentationMode.wrappedValue.dismiss()
-                }
-            }))
+                .onEnded({ (value) in
+                    if value.translation.width > 0 {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                }))
+        }
+    }
+    
+    func addMemory(_ title: String, _ year: Int16, _ date: Date, _ tag: String, _ image: String, _ voice: String) {
+        let memory = Memories(context: viewContext)
+        
+        memory.title = title
+        memory.year = year
+        memory.date = date
+        memory.tag = tag
+        memory.image = image
+        memory.voice = voice
+        
+        saveContext()
+    }
+    
+    func saveContext() {
+        do {
+            try viewContext.save()
+        } catch {
+            print("Error saving managed object context: \(error)")
         }
     }
 }

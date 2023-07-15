@@ -9,8 +9,9 @@ import SwiftUI
 import PhotosUI
 
 struct VoiceView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    
     @StateObject var voiceViewModel = VoiceViewModel()
-    @StateObject var realmManger = RealmManger()
     
     @State private var effect1 = false
     @State private var effect2 = false
@@ -49,7 +50,7 @@ struct VoiceView: View {
                 NavigationLink(
                     destination: InfoView(selectedImage: $selectedImage, recording: $recording)
                         .navigationBarBackButtonHidden()
-                        .environmentObject(realmManger)
+                        .environment(\.managedObjectContext, viewContext)
                         .environmentObject(voiceViewModel)
                     ,
                     isActive: $isChoosen

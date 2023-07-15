@@ -8,12 +8,20 @@
 import Foundation
 import RealmSwift
 
-class Memory: Object, ObjectKeyIdentifiable {
-    @Persisted(primaryKey: true) var id: ObjectId
-    @Persisted var title: String = ""
-    @Persisted var year: Int
-    @Persisted var date = Date()
-    @Persisted var tag: String = ""
-    @Persisted var image: Data
-    @Persisted var voice: String = ""
+class Memory: ObservableObject {
+    @Published var title: String = ""
+    @Published var year: Int
+    @Published var date = Date()
+    @Published var tag: String = ""
+    @Published var image: String = ""
+    @Published var voice: String = ""
+    
+    init(title: String, year: Int, date: Date, tag: String, image: String, voice: String) {
+        self.title = title
+        self.year = year
+        self.date = date
+        self.tag = tag
+        self.image = image
+        self.voice = voice
+    }
 }

@@ -171,14 +171,15 @@ struct TimerView: View {
                                         .opacity(0.6)
                                         .padding(120)
                                 })
-                            }else if !vm.isRecording && vm.isEndRecording {
-                                ZStack{
-                                    LottieView(jsonName: "RecComplete2")
-                                        .frame(width: 910, height: 910)
-                                    LottieView(jsonName: "panpare")
-                                        .frame(width: 900, height: 900)
-                                }
                             }
+//                            }else if !vm.isRecording && vm.isEndRecording {
+//                                ZStack{
+//                                    LottieView(jsonName: "RecComplete2")
+//                                        .frame(width: 910, height: 910)
+//                                    LottieView(jsonName: "panpare")
+//                                        .frame(width: 900, height: 900)
+//                                }
+//                            }
 
                         }
                     }
