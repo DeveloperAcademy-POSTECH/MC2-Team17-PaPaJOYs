@@ -13,135 +13,26 @@ struct SelectYearView: View {
     @State private var isNewest = true
     @State private var selectedTag = "All"
     
-    @State var isShowActionSheet = false
-    @State private var selectedImage: UIImage? = nil
-    @State private var isShowingActionSheet = false
-    @State private var isShowingCameraPicker = false
-    @State private var isShowingPhotoLibraryPicker = false
-    @State private var isChoosen = false
-    
     var body: some View {
         NavigationStack {
             ZStack {
                 Color("JoyDarkG")
+//                Color.white // 버튼 테스트용 배경
                     .ignoresSafeArea()
                 
-                VStack(spacing: 20) {
+                VStack() {
                     HeaderView(isNewest: $isNewest, selectedTag: $selectedTag)
-                    HStack {
-                        Spacer()
-                        AlbumView(isNewest: $isNewest, selectedTag: $selectedTag)
-                        
-                        Spacer()
-                    }
-                    Button(action: {
-                        isShowActionSheet = true
-                    }, label: {
-                        Capsule()
-                            .fill(Color("JoyYellow"))
-                            .frame(width: 300, height: 40)
-                            .overlay {
-                                HStack {
-                                    Image(systemName: "plus")
-                                        .font(.system(size: 15))
-                                        .foregroundColor(Color("JoyDarkG"))
-                                    Text("새로운 추억 기록하기")
-                                        .font(.system(size: 15))
-                                        .fontWeight(.bold)
-                                        .foregroundColor(Color("JoyDarkG"))
-                                }
-                            }
-                    })
-                    .padding(.trailing, 20)
-                    .confirmationDialog("photo", isPresented: $isShowActionSheet) {
-                        Button(action: {
-                            isShowingCameraPicker = true
-                        }, label: {
-                            Text("사진 찍으러 가기")
-                                .foregroundColor(Color("JoyBlue"))
-                        })
-                        .background(Color("JoyWhite"))
-
-                        Button(action: {
-                            isShowingPhotoLibraryPicker = true
-                        }, label: {
-                            Text("사진 고르러 가기")
-                                .foregroundColor(Color("JoyBlue"))
-                        })
-                        .background(Color("JoyWhite"))
-                        
-                        
-                        Button(role: .cancel, action: {
-                        }, label: {
-                            Text("Cancel")
-                        })
-                    }
-                    .sheet(isPresented: $isShowingCameraPicker, onDismiss: loadImage) {
-                        ImagePicker(selectedImage: $selectedImage, sourceType: .camera)
-                            .ignoresSafeArea()
-                    }
-                    .sheet(isPresented: $isShowingPhotoLibraryPicker, onDismiss: loadImage) {
-                        ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
-                            .background(Color("JoyDarkG"))
-                            .tint(Color("JoyBlue"))
-                    }
+                        .padding(.top, 5)
+                    AlbumView(isNewest: $isNewest, selectedTag: $selectedTag)
+                        .padding(10)
+                        .ignoresSafeArea()
                 }
                 
-                NavigationLink(
-                    destination: VoiceView(selectedImage: $selectedImage)
-                        .navigationBarBackButtonHidden(),
-                    isActive: $isChoosen
-                ){}
-                .isDetailLink(false)
-            }
-        }
-    }
-    
-    func loadImage() {
-        if let image = selectedImage {
-            saveImage(image)
-            isChoosen.toggle()
-        }
-    }
-    func saveImage(_ image: UIImage) {
-        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
-            return
-        }
-        
-        let folderName = "ForJoy"
-        
-        let fetchOptions = PHFetchOptions()
-        fetchOptions.predicate = NSPredicate(format: "title = %@", folderName)
-        let folders = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: fetchOptions)
-        
-        if let folder = folders.firstObject {
-            // Folder found, save the image to the folder
-            PHPhotoLibrary.shared().performChanges {
-                let creationRequest = PHAssetCreationRequest.forAsset()
-                creationRequest.addResource(with: .photo, data: imageData, options: nil)
-                let placeholder = creationRequest.placeholderForCreatedAsset
-                let albumChangeRequest = PHAssetCollectionChangeRequest(for: folder)
-                albumChangeRequest?.addAssets([placeholder] as NSFastEnumeration)
-            } completionHandler: { _, _ in
-                // Image saved successfully to the folder
-            }
-        } else {
-            PHPhotoLibrary.shared().performChanges {
-                PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: folderName)
-            } completionHandler: { success, error in
-                if success {
-                    let fetchOptions = PHFetchOptions()
-                    fetchOptions.predicate = NSPredicate(format: "title = %@", folderName)
-                    let createdFolders = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: fetchOptions)
-                    if let createdFolder = createdFolders.firstObject {
-                        let creationRequest = PHAssetCreationRequest.forAsset()
-                        creationRequest.addResource(with: .photo, data: imageData, options: nil)
-                        let placeholder = creationRequest.placeholderForCreatedAsset
-                        let albumChangeRequest = PHAssetCollectionChangeRequest(for: createdFolder)
-                        albumChangeRequest?.addAssets([placeholder] as NSFastEnumeration)
-                    }
-                } else {
+                VStack() {
+                    Spacer()
+                    PhotoSelectButton()
                 }
+                .ignoresSafeArea()
             }
         }
     }
@@ -152,7 +43,7 @@ struct HeaderView: View {
     @Binding var selectedTag: String
     
     var body: some View {
-        HStack() {
+        HStack(spacing: 50) {
             Menu {
                 Button(action: {isNewest = true}) {
                     HStack {
@@ -175,9 +66,7 @@ struct HeaderView: View {
                     .font(.system(size: 25))
                     .foregroundColor(Color("JoyBlue"))
             }
-            .padding(.leading, 20)
-            
-            Spacer(minLength: 250)
+            .padding(.leading, 10)
             
             TagView(selectedTag: $selectedTag)
                 .frame(alignment: .trailing)
@@ -229,6 +118,129 @@ struct TagView: View {
                                     .strokeBorder(isAllSelect ? Color("JoyWhite") : (selectedTag == i ? Color("JoyBlue") : Color("JoyWhite")))
                             )
                     }
+                }
+            }
+        }
+    }
+}
+
+struct PhotoSelectButton: View {
+    @State var isShowActionSheet = false
+    @State private var selectedImage: UIImage? = nil
+    @State private var isShowingActionSheet = false
+    @State private var isShowingCameraPicker = false
+    @State private var isShowingPhotoLibraryPicker = false
+    @State private var isChoosen = false
+    
+    var body: some View {
+        ZStack {
+            LinearGradient(colors: [Color("JoyDarkG").opacity(0), Color("JoyDarkG")], startPoint: .top, endPoint: .bottom)
+            
+            Button(action: {
+                isShowActionSheet = true
+            }, label: {
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color("JoyYellow"))
+                    .frame(width: 350, height: 55)
+                    .overlay {
+                        HStack {
+                            Image(systemName: "plus")
+                                .font(.system(size: 15))
+                                .foregroundColor(Color("JoyDarkG"))
+                            Text("새로운 추억 기록하기")
+                                .font(.system(size: 15))
+                                .fontWeight(.bold)
+                                .foregroundColor(Color("JoyDarkG"))
+                        }
+                    }
+            })
+            .confirmationDialog("photo", isPresented: $isShowActionSheet) {
+                Button(action: {
+                    isShowingCameraPicker = true
+                }, label: {
+                    Text("사진 찍으러 가기")
+                        .foregroundColor(Color("JoyBlue"))
+                })
+                .background(Color("JoyWhite"))
+
+                Button(action: {
+                    isShowingPhotoLibraryPicker = true
+                }, label: {
+                    Text("사진 고르러 가기")
+                        .foregroundColor(Color("JoyBlue"))
+                })
+                .background(Color("JoyWhite"))
+                
+                
+                Button(role: .cancel, action: {
+                }, label: {
+                    Text("Cancel")
+                })
+            }
+            .sheet(isPresented: $isShowingCameraPicker, onDismiss: loadImage) {
+                ImagePicker(selectedImage: $selectedImage, sourceType: .camera)
+                    .ignoresSafeArea()
+            }
+            .sheet(isPresented: $isShowingPhotoLibraryPicker, onDismiss: loadImage) {
+                ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
+                    .ignoresSafeArea()
+                    .tint(Color("JoyBlue"))
+            }
+        }
+        .frame(height: 130)
+        
+        NavigationLink(
+            destination: VoiceView(selectedImage: $selectedImage)
+                .navigationBarBackButtonHidden(),
+            isActive: $isChoosen
+        ){}
+        .isDetailLink(false)
+    }
+    
+    func loadImage() {
+        if let image = selectedImage {
+            saveImage(image)
+            isChoosen.toggle()
+        }
+    }
+    func saveImage(_ image: UIImage) {
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+            return
+        }
+        
+        let folderName = "ForJoy"
+        
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.predicate = NSPredicate(format: "title = %@", folderName)
+        let folders = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: fetchOptions)
+        
+        if let folder = folders.firstObject {
+            // Folder found, save the image to the folder
+            PHPhotoLibrary.shared().performChanges {
+                let creationRequest = PHAssetCreationRequest.forAsset()
+                creationRequest.addResource(with: .photo, data: imageData, options: nil)
+                let placeholder = creationRequest.placeholderForCreatedAsset
+                let albumChangeRequest = PHAssetCollectionChangeRequest(for: folder)
+                albumChangeRequest?.addAssets([placeholder] as NSFastEnumeration)
+            } completionHandler: { _, _ in
+                // Image saved successfully to the folder
+            }
+        } else {
+            PHPhotoLibrary.shared().performChanges {
+                PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: folderName)
+            } completionHandler: { success, error in
+                if success {
+                    let fetchOptions = PHFetchOptions()
+                    fetchOptions.predicate = NSPredicate(format: "title = %@", folderName)
+                    let createdFolders = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: fetchOptions)
+                    if let createdFolder = createdFolders.firstObject {
+                        let creationRequest = PHAssetCreationRequest.forAsset()
+                        creationRequest.addResource(with: .photo, data: imageData, options: nil)
+                        let placeholder = creationRequest.placeholderForCreatedAsset
+                        let albumChangeRequest = PHAssetCollectionChangeRequest(for: createdFolder)
+                        albumChangeRequest?.addAssets([placeholder] as NSFastEnumeration)
+                    }
+                } else {
                 }
             }
         }
