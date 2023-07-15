@@ -62,7 +62,7 @@ struct HeaderView: View {
                     }
                 }
             } label: {
-                Image(systemName: "slider.horizontal.3")
+                Image(systemName: "chevron.up.chevron.down")
                     .font(.system(size: 25))
                     .foregroundColor(Color("JoyBlue"))
             }
@@ -90,7 +90,9 @@ struct TagView: View {
                         .font(.system(size: 14))
                         .fontWeight(.semibold)
                         .lineLimit(1)
-                        .frame(width: 75, height: 30)
+                        .frame(height: 30)
+                        .padding(.leading, 5)
+                        .padding(.trailing, 5)
                         .background(isAllSelect ? Color("JoyBlue") : Color("JoyDarkG"))
                         .clipShape(RoundedRectangle(cornerRadius: 7))
                         .overlay(
@@ -110,7 +112,9 @@ struct TagView: View {
                             .font(.system(size: 14))
                             .fontWeight(.semibold)
                             .lineLimit(1)
-                            .frame(width: 75, height: 30)
+                            .frame(height: 30)
+                            .padding(.leading, 5)
+                            .padding(.trailing, 5)
                             .background(isAllSelect ? Color("JoyDarkG") : (selectedTag == i ? Color("JoyBlue") : Color("JoyDarkG")))
                             .clipShape(RoundedRectangle(cornerRadius: 7))
                             .overlay(
