@@ -257,6 +257,9 @@ struct AlbumView: View {
     @Binding var isNewest: Bool
     @Binding var selectedTag: String
     
+    //TODO: GalleryView에 정렬 옵션 주기 - 변수 생성 및 바인딩 완료, 데이터 정렬 필요
+    @State private var isNewestDay = true
+    
     var columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 12), count: 2)
     
     var body: some View {
@@ -266,7 +269,7 @@ struct AlbumView: View {
                 
                 if selectedTag == "All" {
                     ForEach(Array(isNewest ? memories.keys.sorted(by: >) : memories.keys.sorted()), id: \.self) { key in
-                        NavigationLink(destination: GalleryView(tagName: selectedTag, year: key, album: memories[key]!)
+                        NavigationLink(destination: GalleryView(tagName: selectedTag, year: key, album: memories[key]!, isNewestDay: $isNewestDay)
                             .environmentObject(realmManger)) {
                                 AlbumSubView(post: memories[key]!.first!)
                             }
@@ -280,7 +283,7 @@ struct AlbumView: View {
                     }
                     
                     ForEach(Array(isNewest ? filterMemories.keys.sorted(by: >) : filterMemories.keys.sorted()), id: \.self) { key in
-                        NavigationLink(destination: GalleryView(tagName: selectedTag, year: key, album: filterMemories[key]!)
+                        NavigationLink(destination: GalleryView(tagName: selectedTag, year: key, album: filterMemories[key]!, isNewestDay: $isNewestDay)
                             .environmentObject(realmManger)) {
                                 AlbumSubView(post: filterMemories[key]!.first!)
                             }

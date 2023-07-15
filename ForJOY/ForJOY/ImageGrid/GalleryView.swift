@@ -11,16 +11,19 @@ import AVFoundation
 struct GalleryView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var players = Players()
+    @Binding var isNewestDay: Bool
     @State var offset: CGSize = CGSize(width: 0.0, height: screenHeight * 0.07)
     
     var tagName: String
     var year: Int
     var album: [Memory]
     
-    init(tagName: String, year: Int, album: [Memory]) {
+    
+    init(tagName: String, year: Int, album: [Memory], isNewestDay: Binding<Bool>) {
         self.tagName = tagName
         self.year = year
         self.album = album
+        self._isNewestDay = isNewestDay
         
         players.makePlayers(filteredData: self.album)
         
@@ -71,16 +74,29 @@ struct GalleryView: View {
                     Spacer()
                 }
             }
-//            .toolbar {
-//                Button(action: {}) {
-//                    NavigationLink(destination: VoiceView(selectedImage: s)) {
-//                        Image(systemName: "mic.circle.fill")
-//                            .font(.title2)
-//                            .foregroundColor(Color("JoyBlue"))
-//                    }
-//                    .isDetailLink(false)
-//                }
-//            }
+            .toolbar {
+                Menu {
+                    Button(action: {isNewestDay = true}) {
+                        HStack {
+                            Text("최근부터 보기")
+                            Spacer()
+                            if isNewestDay {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                    }
+                    Button(action: {isNewestDay = false}) {
+                        Text("과거부터 보기")
+                        Spacer()
+                        if !isNewestDay {
+                            Image(systemName: "checkmark")
+                        }
+                    }
+                } label: {
+                    Image(systemName: "chevron.up.chevron.down")
+                        .foregroundColor(Color("JoyBlue"))
+                }
+            }
         }
     }
 }
