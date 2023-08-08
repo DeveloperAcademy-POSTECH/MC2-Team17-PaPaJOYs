@@ -45,15 +45,14 @@ struct VoiceView: View {
                         recording = newValue
                     }
                 }
-
                 NavigationLink(
                     destination: InfoView(selectedImage: $selectedImage, recording: $recording)
-                        .navigationBarBackButtonHidden()
                         .environmentObject(realmManger),
                     isActive: $isChoosen
                 ){}
                 .isDetailLink(false)
             }
+            .navigationBarBackButtonHidden()
         }
         
     }

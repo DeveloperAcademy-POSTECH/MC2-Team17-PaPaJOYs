@@ -32,7 +32,7 @@ struct SelectYearView: View {
                     Spacer()
                     PhotoSelectButton()
                 }
-                .ignoresSafeArea()
+                .edgesIgnoringSafeArea([.bottom])
             }
         }
     }
@@ -65,8 +65,8 @@ struct HeaderView: View {
                 Image(systemName: "chevron.up.chevron.down")
                     .font(.system(size: 25))
                     .foregroundColor(Color("JoyBlue"))
+                    .padding(.leading, 20)
             }
-            .padding(.leading, 10)
             
             TagView(selectedTag: $selectedTag)
                 .frame(alignment: .trailing)
@@ -81,22 +81,21 @@ struct TagView: View {
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 5) {
+            HStack(spacing: 10) {
                 Button {
                     selectedTag = "All"
                     isAllSelect = true
                 } label: {
                     Text("모든 태그")
-                        .font(.system(size: 14))
+                        .font(.system(size: 15))
                         .fontWeight(.semibold)
                         .lineLimit(1)
-                        .frame(height: 30)
-                        .padding(.leading, 5)
-                        .padding(.trailing, 5)
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 10)
                         .background(isAllSelect ? Color("JoyBlue") : Color("JoyDarkG"))
-                        .clipShape(RoundedRectangle(cornerRadius: 7))
+                        .clipShape(RoundedRectangle(cornerRadius: 6))
                         .overlay(
-                            RoundedRectangle(cornerRadius: 7)
+                            RoundedRectangle(cornerRadius: 6)
                                 .strokeBorder(isAllSelect ? Color("JoyBlue") : Color("JoyWhite"), lineWidth: 1)
                         )
                 }
@@ -109,16 +108,15 @@ struct TagView: View {
                         isAllSelect = false
                     } label: {
                         Text("#" + i)
-                            .font(.system(size: 14))
+                            .font(.system(size: 15))
                             .fontWeight(.semibold)
                             .lineLimit(1)
-                            .frame(height: 30)
-                            .padding(.leading, 5)
-                            .padding(.trailing, 5)
+                            .padding(.vertical, 5)
+                            .padding(.horizontal, 5)
                             .background(isAllSelect ? Color("JoyDarkG") : (selectedTag == i ? Color("JoyBlue") : Color("JoyDarkG")))
-                            .clipShape(RoundedRectangle(cornerRadius: 7))
+                            .clipShape(RoundedRectangle(cornerRadius: 6))
                             .overlay(
-                                RoundedRectangle(cornerRadius: 7)
+                                RoundedRectangle(cornerRadius: 6)
                                     .strokeBorder(isAllSelect ? Color("JoyWhite") : (selectedTag == i ? Color("JoyBlue") : Color("JoyWhite")))
                             )
                     }
@@ -145,18 +143,23 @@ struct PhotoSelectButton: View {
             }, label: {
                 RoundedRectangle(cornerRadius: 16)
                     .fill(Color("JoyYellow"))
-                    .frame(width: 350, height: 55)
+                    .frame(height: screenHeight * 0.065)
                     .overlay {
                         HStack {
                             Image(systemName: "plus")
-                                .font(.system(size: 15))
-                                .foregroundColor(Color("JoyDarkG"))
+//                                .font(.system(size: 15))
+//                                .foregroundColor(Color("JoyDarkG"))
                             Text("새로운 추억 기록하기")
-                                .font(.system(size: 15))
-                                .fontWeight(.bold)
-                                .foregroundColor(Color("JoyDarkG"))
+//                                .font(.system(size: 15))
+//                                .fontWeight(.bold)
+//                                .foregroundColor(Color("JoyDarkG"))
                         }
+                        .foregroundColor(Color("JoyDarkG"))
+                        .fontWeight(.bold)
+                        .font(.headline)
+                        // 다양한 기기 대응을 위해 폰트 크기가 아닌 .headline 사용
                     }
+                    .padding(.horizontal, 20)
             })
             .confirmationDialog("photo", isPresented: $isShowActionSheet) {
                 Button(action: {
@@ -191,12 +194,11 @@ struct PhotoSelectButton: View {
                     .tint(Color("JoyBlue"))
             }
         }
-        .frame(height: 130)
-        
+        .frame(height: screenHeight * 0.15)
+
         NavigationLink(
-            destination: VoiceView(selectedImage: $selectedImage)
-                .navigationBarBackButtonHidden(),
-            isActive: $isChoosen
+            destination: VoiceView(selectedImage: $selectedImage),
+            isActive: $isChoosen    // VoiceView가 isActive로 동작중, InfoView에서 돌아오기 위해서도 필요함..
         ){}
         .isDetailLink(false)
     }
@@ -260,11 +262,11 @@ struct AlbumView: View {
     //TODO: GalleryView에 정렬 옵션 주기 - 변수 생성 및 바인딩 완료, 데이터 정렬 필요
     @State private var isNewestDay = true
     
-    var columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 12), count: 2)
+    var columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 10), count: 2)
     
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: columns, spacing: 15) {
+            LazyVGrid(columns: columns, spacing: 10) {
                 let memories = realmManger.yearlyMemories
                 
                 if selectedTag == "All" {
@@ -291,6 +293,7 @@ struct AlbumView: View {
                     
                 }
             }
+            .padding(.horizontal, 10)
         }
     }
 }
@@ -300,23 +303,28 @@ struct AlbumSubView: View {
     var body: some View {
         ZStack {
             Color("JoyWhite")
-            VStack {
+            VStack(spacing: -10) {
+//                GeometryReader { proxy in
+//                    
+//                    
+//                }
+                
                 Image(uiImage: UIImage(data: post.image) ?? UIImage(systemName: "house")!)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: screenWidth * 0.4, height: screenWidth * 0.4)
                     .clipped()
-                    .cornerRadius(10)
-                    .padding(10)
+                    .cornerRadius(9)
+                    .padding(12)
+                
+                
                 HStack {
                     Spacer()
                     Text("\(post.year)".replacingOccurrences(of: ",", with: ""))
                         .font(.headline)
                         .foregroundColor(Color("JoyDarkG"))
-                        .padding(.top, -10)
-                        .padding(.trailing, 15)
+                        .padding(12)
                 }
-                .padding(.bottom, 10)
             }
         }
         .cornerRadius(10)
