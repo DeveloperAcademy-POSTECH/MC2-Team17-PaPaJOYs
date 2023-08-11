@@ -13,11 +13,12 @@ import SwiftUI
 @main
 struct ForJOYApp: App {
     @State var linkActive = false
+    @State var image: UIImage? = nil
     
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                NavigationLink(destination: VoiceView(selectedImage: .constant(nil))
+                NavigationLink(destination: VoiceView(selectedImage: $image)
                     .navigationBarBackButtonHidden(),
                                isActive: $linkActive) {
                     EmptyView()

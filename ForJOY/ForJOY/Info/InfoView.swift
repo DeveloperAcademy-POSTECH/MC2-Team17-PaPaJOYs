@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct InfoView: View {
-    @EnvironmentObject var realmManger: RealmManger
-    
     @State var title: String = ""
     @State var date = Date()
     @State var tag: String?
@@ -95,14 +93,7 @@ struct InfoView: View {
                                                 if title != "" {
                                                     let year = Int(date.toString(dateFormat: "yyyy"))!
                                                     
-                                                    realmManger.addMemories(Memory(value: [
-                                                        "title": title,
-                                                        "year": year,
-                                                        "date": date,
-                                                        "tag": tag ?? "기본",
-                                                        "image": selectedImage!.jpegData(compressionQuality: 0.5)!,
-                                                        "voice": recording!.absoluteString
-                                                    ] as [String : Any] ))
+                                                    CoreDataManager.coreDM.addMemory(title, Int16(year), date, tag ?? "기본", selectedImage!.jpegData(compressionQuality: 0.8)!.base64EncodedString(), recording!.absoluteString)
                                                     isAddData = true
                                                 }
                                             }

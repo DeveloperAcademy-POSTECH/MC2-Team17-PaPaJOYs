@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0E40FB022A0C904C00AFA66D /* AddDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40FB012A0C904C00AFA66D /* AddDoneView.swift */; };
 		0E484E292A515E96002F9C9A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E484E282A515E96002F9C9A /* ImagePicker.swift */; };
-		0E4E7DB52A10EDA800D72E66 /* RealmManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E7DB42A10EDA800D72E66 /* RealmManger.swift */; };
 		0E4E7DB92A10EDDA00D72E66 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E7DB82A10EDDA00D72E66 /* Memory.swift */; };
 		0E4E7DBE2A10EF3F00D72E66 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0E4E7DBD2A10EF3F00D72E66 /* Realm */; };
 		0E4E7DC02A10EF3F00D72E66 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0E4E7DBF2A10EF3F00D72E66 /* RealmSwift */; };
@@ -34,6 +33,8 @@
 		30C74FA52A0D06EB0099DC1B /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C74FA42A0D06EB0099DC1B /* InfoView.swift */; };
 		30C74FA72A0D06FE0099DC1B /* InfoTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C74FA62A0D06FE0099DC1B /* InfoTagView.swift */; };
 		5B08A50B2A147CB000496242 /* VoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08A50A2A147CB000496242 /* VoiceViewModel.swift */; };
+		5BB7EF6C2A7FAAB6008E772A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7EF6B2A7FAAB6008E772A /* CoreDataManager.swift */; };
+		5BB7EF6F2A7FAACB008E772A /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7EF6D2A7FAACB008E772A /* DataModel.xcdatamodeld */; };
 		5BF13D9A2A137846002DF1FA /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF13D632A1373C5002DF1FA /* WidgetKit.framework */; };
 		5BF13D9B2A137846002DF1FA /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF13D652A1373C5002DF1FA /* SwiftUI.framework */; };
 		5BF13D9E2A137846002DF1FA /* ForJoyWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF13D9D2A137846002DF1FA /* ForJoyWidgetBundle.swift */; };
@@ -77,7 +78,6 @@
 /* Begin PBXFileReference section */
 		0E40FB012A0C904C00AFA66D /* AddDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDoneView.swift; sourceTree = "<group>"; };
 		0E484E282A515E96002F9C9A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
-		0E4E7DB42A10EDA800D72E66 /* RealmManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManger.swift; sourceTree = "<group>"; };
 		0E4E7DB82A10EDDA00D72E66 /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
 		0E4E7DE12A111CDE00D72E66 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		300D732A2A11D8A2007D38E9 /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
@@ -97,6 +97,10 @@
 		30C74FA42A0D06EB0099DC1B /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		30C74FA62A0D06FE0099DC1B /* InfoTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTagView.swift; sourceTree = "<group>"; };
 		5B08A50A2A147CB000496242 /* VoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceViewModel.swift; sourceTree = "<group>"; };
+		5BB7EF6B2A7FAAB6008E772A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		5BB7EF6E2A7FAACB008E772A /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		5BB7EF702A834D0A008E772A /* ForJOYRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ForJOYRelease.entitlements; sourceTree = "<group>"; };
+		5BB7EF712A8391D2008E772A /* ForJOYDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ForJOYDebug.entitlements; sourceTree = "<group>"; };
 		5BF13D632A1373C5002DF1FA /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		5BF13D652A1373C5002DF1FA /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		5BF13D992A137846002DF1FA /* ForJoyWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ForJoyWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,7 +143,7 @@
 		0E4E7DB32A10ED8500D72E66 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				0E4E7DB42A10EDA800D72E66 /* RealmManger.swift */,
+				5BB7EF6B2A7FAAB6008E772A /* CoreDataManager.swift */,
 				0E4E7DB82A10EDDA00D72E66 /* Memory.swift */,
 			);
 			path = Data;
@@ -178,7 +182,10 @@
 		303238782A00A876008A8093 /* ForJOY */ = {
 			isa = PBXGroup;
 			children = (
+				5BB7EF712A8391D2008E772A /* ForJOYDebug.entitlements */,
+				5BB7EF702A834D0A008E772A /* ForJOYRelease.entitlements */,
 				5BF13DAF2A139ED9002DF1FA /* Info.plist */,
+				5BB7EF6D2A7FAACB008E772A /* DataModel.xcdatamodeld */,
 				303238792A00A876008A8093 /* ForJOYApp.swift */,
 				30BDADDE2A034DB7000BDA8F /* Extensions */,
 				5B08A5042A147BFE00496242 /* LottieFiles */,
@@ -428,6 +435,7 @@
 				3063F2CE2A0E1BB500C56EBA /* (null) in Sources */,
 				303238882A00B3BB008A8093 /* SelectYearView.swift in Sources */,
 				3032387A2A00A876008A8093 /* ForJOYApp.swift in Sources */,
+				5BB7EF6C2A7FAAB6008E772A /* CoreDataManager.swift in Sources */,
 				3037CB862A09DFF200E6A92E /* GalleryView.swift in Sources */,
 				30C74FA72A0D06FE0099DC1B /* InfoTagView.swift in Sources */,
 				0E40FB022A0C904C00AFA66D /* AddDoneView.swift in Sources */,
@@ -438,10 +446,10 @@
 				BE522DFD2A05A48D00D4AEEA /* CarouselView.swift in Sources */,
 				BECC97372A05A54700E27120 /* CardView.swift in Sources */,
 				30C74FA52A0D06EB0099DC1B /* InfoView.swift in Sources */,
-				0E4E7DB52A10EDA800D72E66 /* RealmManger.swift in Sources */,
 				3032388B2A00B89E008A8093 /* Ref.swift in Sources */,
 				0E4E7DB92A10EDDA00D72E66 /* Memory.swift in Sources */,
 				5B08A50B2A147CB000496242 /* VoiceViewModel.swift in Sources */,
+				5BB7EF6F2A7FAACB008E772A /* DataModel.xcdatamodeld in Sources */,
 				300D732B2A11D8A2007D38E9 /* Players.swift in Sources */,
 				30BDADE92A034DB7000BDA8F /* Date+.swift in Sources */,
 				D92951642A0F643A00D7A7A7 /* LottieView.swift in Sources */,
@@ -590,10 +598,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ForJOY/ForJOYDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ForJOY/Preview Content\"";
-				DEVELOPMENT_TEAM = HQS8MXQ7B5;
+				DEVELOPMENT_TEAM = 5Z238234D5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJOY/Info.plist;
@@ -609,7 +618,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ash.ForJOY;
+				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ny.ForJOY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -623,10 +632,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ForJOY/ForJOYRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ForJOY/Preview Content\"";
-				DEVELOPMENT_TEAM = HQS8MXQ7B5;
+				DEVELOPMENT_TEAM = 5Z238234D5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJOY/Info.plist;
@@ -642,7 +652,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ash.ForJOY;
+				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ny.ForJoy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -657,7 +667,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HQS8MXQ7B5;
+				DEVELOPMENT_TEAM = 5Z238234D5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJoyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ForJoyWidget;
@@ -669,7 +679,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ash.ForJOY.ForJoyWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ny.ForJOY.ForJoyWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -685,7 +695,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HQS8MXQ7B5;
+				DEVELOPMENT_TEAM = 5Z238234D5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJoyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ForJoyWidget;
@@ -697,7 +707,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ash.ForJOY.ForJoyWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ny.ForJOY.ForJoyWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -774,6 +784,19 @@
 			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		5BB7EF6D2A7FAACB008E772A /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5BB7EF6E2A7FAACB008E772A /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 5BB7EF6E2A7FAACB008E772A /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3032386E2A00A876008A8093 /* Project object */;
 }

@@ -35,9 +35,9 @@ struct GalleryView: View {
             ZStack {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 3) {
-                        ForEach(Array(album.enumerated()), id: \.1) { i, post in
+                        ForEach(Array(album.enumerated()), id: \.0) { i, post in
                             NavigationLink(destination: CardView(players: $players.players, filteredData: album ,order: i)) {
-                                Image(uiImage: UIImage(data: post.image) ?? UIImage(systemName: "house")!)
+                                Image(uiImage: UIImage(data: Data(base64Encoded: post.image)!) ?? UIImage(systemName: "house")!)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: screenWidth / 3 - 3, height: screenWidth / 3 - 3)
