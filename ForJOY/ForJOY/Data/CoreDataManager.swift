@@ -13,9 +13,6 @@ class CoreDataManager: ObservableObject {
     
     let persistentContainer: NSPersistentContainer
     
-//    @Published var uniqueTags = [String]()
-//    @Published var yearlyMemories = [Int: [Memory]]()
-    
     init() {
         persistentContainer = NSPersistentContainer(name: "DataModel")
         persistentContainer.loadPersistentStores {(description, error) in
@@ -63,49 +60,36 @@ class CoreDataManager: ObservableObject {
         memory.image = image
         memory.voice = voice
         
-        do {
-            try persistentContainer.viewContext.save()
-        } catch {
-            print("Failed to save context \(error)")
-        }
+        saveContext()
     }
     
     // 상위 뷰에서 title
     // 수정하려는 뷰에서 newTitle, newTag, newDate
     func updateMemory(_ id: NSManagedObjectID, _ newTitle: String, _ newTag: String, _ newDate: Date) {
-        let year = Int(newDate.toString(dateFormat: "yyyy"))!
+        let newYear = Int16(newDate.toString(dateFormat: "yyyy"))!
         
-        do {
-            let objectUpdate = try persistentContainer.viewContext.existingObject(with: id)
-            objectUpdate.setValue("\(newTitle)", forKey: "title")
-            objectUpdate.setValue("\(newTag)", forKey: "tag")
-            objectUpdate.setValue("\(newDate)", forKey: "date")
-            objectUpdate.setValue("\(year)", forKey: "year")
-            do {
-                try persistentContainer.viewContext.save()
-            } catch {
-                print(error)
-            }
-        } catch {
-            persistentContainer.viewContext.rollback()
-            print("Failed to save context \(error)")
+        if let data = try? persistentContainer.viewContext.existingObject(with: id) as? Memories {
+            data.title = newTitle
+            data.tag = newTag
+            data.date = newDate
+            data.year = newYear
+            saveContext()
         }
     }
     
     func deleteMemory(_ id: NSManagedObjectID) {
-        do {
-            let objectToDelete = try persistentContainer.viewContext.existingObject(with: id)
-            persistentContainer.viewContext.delete(objectToDelete)
-            do {
-                try persistentContainer.viewContext.save()
-            } catch {
-                print(error)
-            }
-        } catch {
-            persistentContainer.viewContext.rollback()
-            print("Failed to save context \(error)")
+        if let data = try? persistentContainer.viewContext.existingObject(with: id) as? Memories {
+            persistentContainer.viewContext.delete(data)
+            saveContext()
         }
     }
     
-    //TODO: save function 추가
+    func saveContext() {
+        do {
+            try persistentContainer.viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }
 }

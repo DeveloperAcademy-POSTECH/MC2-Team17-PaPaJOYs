@@ -10,8 +10,6 @@
 		0E40FB022A0C904C00AFA66D /* AddDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40FB012A0C904C00AFA66D /* AddDoneView.swift */; };
 		0E484E292A515E96002F9C9A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E484E282A515E96002F9C9A /* ImagePicker.swift */; };
 		0E4E7DB92A10EDDA00D72E66 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E7DB82A10EDDA00D72E66 /* Memory.swift */; };
-		0E4E7DBE2A10EF3F00D72E66 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0E4E7DBD2A10EF3F00D72E66 /* Realm */; };
-		0E4E7DC02A10EF3F00D72E66 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0E4E7DBF2A10EF3F00D72E66 /* RealmSwift */; };
 		0E4E7DE22A111CDE00D72E66 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E7DE12A111CDE00D72E66 /* Tag.swift */; };
 		300D732B2A11D8A2007D38E9 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D732A2A11D8A2007D38E9 /* Players.swift */; };
 		3032387A2A00A876008A8093 /* ForJOYApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303238792A00A876008A8093 /* ForJOYApp.swift */; };
@@ -35,6 +33,7 @@
 		5B08A50B2A147CB000496242 /* VoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08A50A2A147CB000496242 /* VoiceViewModel.swift */; };
 		5BB7EF6C2A7FAAB6008E772A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7EF6B2A7FAAB6008E772A /* CoreDataManager.swift */; };
 		5BB7EF6F2A7FAACB008E772A /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7EF6D2A7FAACB008E772A /* DataModel.xcdatamodeld */; };
+		5BB7EF932A87B0EE008E772A /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7EF922A87B0EE008E772A /* Test.swift */; };
 		5BF13D9A2A137846002DF1FA /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF13D632A1373C5002DF1FA /* WidgetKit.framework */; };
 		5BF13D9B2A137846002DF1FA /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF13D652A1373C5002DF1FA /* SwiftUI.framework */; };
 		5BF13D9E2A137846002DF1FA /* ForJoyWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF13D9D2A137846002DF1FA /* ForJoyWidgetBundle.swift */; };
@@ -101,6 +100,7 @@
 		5BB7EF6E2A7FAACB008E772A /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		5BB7EF702A834D0A008E772A /* ForJOYRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ForJOYRelease.entitlements; sourceTree = "<group>"; };
 		5BB7EF712A8391D2008E772A /* ForJOYDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ForJOYDebug.entitlements; sourceTree = "<group>"; };
+		5BB7EF922A87B0EE008E772A /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		5BF13D632A1373C5002DF1FA /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		5BF13D652A1373C5002DF1FA /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		5BF13D992A137846002DF1FA /* ForJoyWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ForJoyWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,8 +122,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E4E7DC02A10EF3F00D72E66 /* RealmSwift in Frameworks */,
-				0E4E7DBE2A10EF3F00D72E66 /* Realm in Frameworks */,
 				D92951672A0F648F00D7A7A7 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,6 +143,7 @@
 			children = (
 				5BB7EF6B2A7FAAB6008E772A /* CoreDataManager.swift */,
 				0E4E7DB82A10EDDA00D72E66 /* Memory.swift */,
+				5BB7EF922A87B0EE008E772A /* Test.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -334,8 +333,6 @@
 			name = ForJOY;
 			packageProductDependencies = (
 				D92951662A0F648F00D7A7A7 /* Lottie */,
-				0E4E7DBD2A10EF3F00D72E66 /* Realm */,
-				0E4E7DBF2A10EF3F00D72E66 /* RealmSwift */,
 			);
 			productName = ForJOY;
 			productReference = 303238762A00A876008A8093 /* ForJOY.app */;
@@ -387,7 +384,6 @@
 			mainGroup = 3032386D2A00A876008A8093;
 			packageReferences = (
 				D92951652A0F648F00D7A7A7 /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				0E4E7DBC2A10EF3F00D72E66 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 303238772A00A876008A8093 /* Products */;
 			projectDirPath = "";
@@ -451,6 +447,7 @@
 				5B08A50B2A147CB000496242 /* VoiceViewModel.swift in Sources */,
 				5BB7EF6F2A7FAACB008E772A /* DataModel.xcdatamodeld in Sources */,
 				300D732B2A11D8A2007D38E9 /* Players.swift in Sources */,
+				5BB7EF932A87B0EE008E772A /* Test.swift in Sources */,
 				30BDADE92A034DB7000BDA8F /* Date+.swift in Sources */,
 				D92951642A0F643A00D7A7A7 /* LottieView.swift in Sources */,
 			);
@@ -749,14 +746,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0E4E7DBC2A10EF3F00D72E66 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		D92951652A0F648F00D7A7A7 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -768,16 +757,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0E4E7DBD2A10EF3F00D72E66 /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0E4E7DBC2A10EF3F00D72E66 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = Realm;
-		};
-		0E4E7DBF2A10EF3F00D72E66 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0E4E7DBC2A10EF3F00D72E66 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
 		D92951662A0F648F00D7A7A7 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D92951652A0F648F00D7A7A7 /* XCRemoteSwiftPackageReference "lottie-ios" */;

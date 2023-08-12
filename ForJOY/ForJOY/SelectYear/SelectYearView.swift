@@ -33,7 +33,13 @@ struct SelectYearView: View {
                     HStack {
                         Spacer()
                         
-                        AlbumView(isNewest: $isNewest, selectedTag: $selectedTag)
+                        if memories.count != 0 {
+                            AlbumView(isNewest: $isNewest, selectedTag: $selectedTag)
+                        } else {
+                            Text("추억을 추가해 보세요.")
+                                .foregroundColor(Color("JoyWhite"))
+                                .frame(maxHeight: .infinity)
+                        }
                         
                         Spacer()
                     }
