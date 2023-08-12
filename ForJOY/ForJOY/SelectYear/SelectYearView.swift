@@ -10,6 +10,8 @@ import PhotosUI
 
 //TODO: db 비어있으면 비어있다고 알려주기
 struct SelectYearView: View {
+    @State private var tags: [String] = []
+    @State private var memories: [Int: [Memory]] = [:]
     @State private var isNewest = true
     @State private var selectedTag = "All"
     
@@ -30,7 +32,14 @@ struct SelectYearView: View {
                     HeaderView(isNewest: $isNewest, selectedTag: $selectedTag)
                     HStack {
                         Spacer()
-                        AlbumView(isNewest: $isNewest, selectedTag: $selectedTag)
+                        
+                        if memories.count != 0 {
+                            AlbumView(isNewest: $isNewest, selectedTag: $selectedTag)
+                        } else {
+                            Text("추억을 추가해 보세요.")
+                                .foregroundColor(Color("JoyWhite"))
+                                .frame(maxHeight: .infinity)
+                        }
                         
                         Spacer()
                     }
@@ -95,6 +104,14 @@ struct SelectYearView: View {
                 .isDetailLink(false)
             }
         }
+        .onAppear {
+            getLoad()
+        }
+    }
+    
+    func getLoad() {
+        tags = CoreDataManager.coreDM.getUniqueTags()
+        memories = CoreDataManager.coreDM.getYearlyMemories()
     }
     
     func loadImage() {
@@ -103,6 +120,8 @@ struct SelectYearView: View {
             isChoosen.toggle()
         }
     }
+    
+    //TODO: 추억 저장이 완료되면 추가되도록 수정
     func saveImage(_ image: UIImage) {
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
             return
@@ -186,7 +205,6 @@ struct HeaderView: View {
 }
 
 struct TagView: View {
-    @StateObject var realmManger = RealmManger()
     @Binding var selectedTag: String
     @State var isAllSelect = true
 
@@ -209,8 +227,8 @@ struct TagView: View {
                                 .strokeBorder(isAllSelect ? Color("JoyBlue") : Color("JoyWhite"), lineWidth: 1)
                         )
                 }
-
-                let tags = realmManger.uniqueTags
+                
+                let tags = CoreDataManager.coreDM.getUniqueTags()
                 
                 ForEach( Array(tags.sorted().filter{$0 != "기본"}) , id: \.self) { i in
                     Button {
@@ -236,8 +254,6 @@ struct TagView: View {
 }
 
 struct AlbumView: View {
-    @StateObject var realmManger = RealmManger()
-    @State var memories = [Int: [Memory]]()
     @Binding var isNewest: Bool
     @Binding var selectedTag: String
     
@@ -246,12 +262,12 @@ struct AlbumView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 15) {
-                let memories = realmManger.yearlyMemories
+                let memories = CoreDataManager.coreDM.getYearlyMemories()
                 
                 if selectedTag == "All" {
                     ForEach(Array(isNewest ? memories.keys.sorted(by: >) : memories.keys.sorted()), id: \.self) { key in
                         NavigationLink(destination: GalleryView(tagName: selectedTag, year: key, album: memories[key]!)
-                            .environmentObject(realmManger)) {
+                        ) {
                                 AlbumSubView(post: memories[key]!.first!)
                             }
                     }
@@ -265,7 +281,7 @@ struct AlbumView: View {
                     
                     ForEach(Array(isNewest ? filterMemories.keys.sorted(by: >) : filterMemories.keys.sorted()), id: \.self) { key in
                         NavigationLink(destination: GalleryView(tagName: selectedTag, year: key, album: filterMemories[key]!)
-                            .environmentObject(realmManger)) {
+                            ) {
                                 AlbumSubView(post: filterMemories[key]!.first!)
                             }
                     }
@@ -282,7 +298,8 @@ struct AlbumSubView: View {
         ZStack {
             Color("JoyWhite")
             VStack {
-                Image(uiImage: UIImage(data: post.image) ?? UIImage(systemName: "house")!)
+                // TODO: 대체 이미지 ("house" 말고)
+                Image(uiImage: UIImage(data: Data(base64Encoded: post.image)!) ?? UIImage(systemName: "house")!)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: screenWidth * 0.4, height: screenWidth * 0.4)

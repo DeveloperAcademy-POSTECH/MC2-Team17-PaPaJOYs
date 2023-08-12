@@ -30,7 +30,10 @@ class VoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
             print("Cannot setup the Recording")
         }
         
-        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        guard let path = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.forJoy") else {
+                    print("Failed to access app group identifier")
+                    return
+                }
         recording = path.appendingPathComponent("\(Date().toString(dateFormat: "YY-MM-dd-HH-mm-ss")).m4a")
         
         let settings = [
@@ -41,7 +44,7 @@ class VoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
         ]
         
         do {
-            audioRecorder = try AVAudioRecorder(url: (recording ?? URL(string: "Overnight.mp3")!), settings: settings)
+            audioRecorder = try AVAudioRecorder(url: recording!, settings: settings)
             audioRecorder.prepareToRecord()
             audioRecorder.record()
             isRecording = true
