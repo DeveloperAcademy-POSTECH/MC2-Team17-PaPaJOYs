@@ -60,27 +60,27 @@ struct GalleryView: View {
                 
                 HStack {
                     VStack {
-                        Text("#" + tagName + " " + "\(year)")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+                        if tagName == "All" {
+                            Text("#" + year.description)
+                                .font(.title2)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                        } else {
+                            Text("#" + tagName + " " + year.description)
+                                .font(.title2)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                            
+                        }
+                        
                         Spacer()
                     }
                     .padding(.top)
                     .padding(.leading)
+                    
                     Spacer()
                 }
             }
-//            .toolbar {
-//                Button(action: {}) {
-//                    NavigationLink(destination: VoiceView(selectedImage: s)) {
-//                        Image(systemName: "mic.circle.fill")
-//                            .font(.title2)
-//                            .foregroundColor(Color("JoyBlue"))
-//                    }
-//                    .isDetailLink(false)
-//                }
-//            }
         }
     }
 }
