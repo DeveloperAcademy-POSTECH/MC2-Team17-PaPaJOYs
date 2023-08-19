@@ -8,19 +8,15 @@
 import SwiftUI
 import PhotosUI
 
-//TODO: db 비어있으면 비어있다고 알려주기
 struct SelectYearView: View {
     @State private var tags: [String] = []
     @State private var memories: [Int: [Memory]] = [:]
+    
     @State private var isNewest = true
+    @State private var isAllSelect = true
     @State private var selectedTag = "All"
     
-    @State var isShowActionSheet = false
-    @State private var selectedImage: UIImage? = nil
-    @State private var isShowingActionSheet = false
-    @State private var isShowingCameraPicker = false
-    @State private var isShowingPhotoLibraryPicker = false
-    @State private var isChoosen = false
+//    @State private var offset: CGSize = CGSize(width: 100, height: 0.0)
     
     var body: some View {
         NavigationStack {
@@ -28,80 +24,26 @@ struct SelectYearView: View {
                 Color("JoyDarkG")
                     .ignoresSafeArea()
                 
-                VStack(spacing: 20) {
-                    HeaderView(isNewest: $isNewest, selectedTag: $selectedTag)
-                    HStack {
-                        Spacer()
+                if memories.count > 0 {
+                    VStack(spacing: 15) {
+                        HeaderView
+                            .padding(.top, 5)
                         
-                        if memories.count != 0 {
-                            AlbumView(isNewest: $isNewest, selectedTag: $selectedTag)
-                        } else {
-                            Text("추억을 추가해 보세요.")
-                                .foregroundColor(Color("JoyWhite"))
-                                .frame(maxHeight: .infinity)
-                        }
-                        
-                        Spacer()
-                    }
-                    Button(action: {
-                        isShowActionSheet = true
-                    }, label: {
-                        Capsule()
-                            .fill(Color("JoyYellow"))
-                            .frame(width: 300, height: 40)
-                            .overlay {
-                                HStack {
-                                    Image(systemName: "plus")
-                                        .font(.system(size: 15))
-                                        .foregroundColor(Color("JoyDarkG"))
-                                    Text("새로운 추억 기록하기")
-                                        .font(.system(size: 15))
-                                        .fontWeight(.bold)
-                                        .foregroundColor(Color("JoyDarkG"))
-                                }
-                            }
-                    })
-                    .padding(.trailing, 20)
-                    .confirmationDialog("photo", isPresented: $isShowActionSheet) {
-                        Button(action: {
-                            isShowingCameraPicker = true
-                        }, label: {
-                            Text("사진 찍으러 가기")
-                                .foregroundColor(Color("JoyBlue"))
-                        })
-                        .background(Color("JoyWhite"))
-
-                        Button(action: {
-                            isShowingPhotoLibraryPicker = true
-                        }, label: {
-                            Text("사진 고르러 가기")
-                                .foregroundColor(Color("JoyBlue"))
-                        })
-                        .background(Color("JoyWhite"))
-                        
-                        
-                        Button(role: .cancel, action: {
-                        }, label: {
-                            Text("Cancel")
-                        })
-                    }
-                    .sheet(isPresented: $isShowingCameraPicker, onDismiss: loadImage) {
-                        ImagePicker(selectedImage: $selectedImage, sourceType: .camera)
+                        AlbumView(isNewest: $isNewest, selectedTag: $selectedTag)
+                            .padding(10)
                             .ignoresSafeArea()
                     }
-                    .sheet(isPresented: $isShowingPhotoLibraryPicker, onDismiss: loadImage) {
-                        ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
-                            .background(Color("JoyDarkG"))
-                            .tint(Color("JoyBlue"))
-                    }
+                } else {
+                    Text("아직 저장된 추억이 없어요")
+                        .font(.headline)
+                        .foregroundColor(.white)
                 }
                 
-                NavigationLink(
-                    destination: VoiceView(selectedImage: $selectedImage)
-                        .navigationBarBackButtonHidden(),
-                    isActive: $isChoosen
-                ){}
-                .isDetailLink(false)
+                VStack() {
+                    Spacer()
+                    PhotoSelectButton()
+                }
+                .edgesIgnoringSafeArea([.bottom])
             }
         }
         .onAppear {
@@ -114,64 +56,17 @@ struct SelectYearView: View {
         memories = CoreDataManager.coreDM.getYearlyMemories()
     }
     
-    func loadImage() {
-        if let image = selectedImage {
-            saveImage(image)
-            isChoosen.toggle()
+    private var InfoButton: some View {
+        Button {
+            
+        } label: {
+            Image(systemName: "info.circle")
         }
-    }
-    
-    //TODO: 추억 저장이 완료되면 추가되도록 수정
-    func saveImage(_ image: UIImage) {
-        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
-            return
-        }
-        
-        let folderName = "ForJoy"
-        
-        let fetchOptions = PHFetchOptions()
-        fetchOptions.predicate = NSPredicate(format: "title = %@", folderName)
-        let folders = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: fetchOptions)
-        
-        if let folder = folders.firstObject {
-            // Folder found, save the image to the folder
-            PHPhotoLibrary.shared().performChanges {
-                let creationRequest = PHAssetCreationRequest.forAsset()
-                creationRequest.addResource(with: .photo, data: imageData, options: nil)
-                let placeholder = creationRequest.placeholderForCreatedAsset
-                let albumChangeRequest = PHAssetCollectionChangeRequest(for: folder)
-                albumChangeRequest?.addAssets([placeholder] as NSFastEnumeration)
-            } completionHandler: { _, _ in
-                // Image saved successfully to the folder
-            }
-        } else {
-            PHPhotoLibrary.shared().performChanges {
-                PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: folderName)
-            } completionHandler: { success, error in
-                if success {
-                    let fetchOptions = PHFetchOptions()
-                    fetchOptions.predicate = NSPredicate(format: "title = %@", folderName)
-                    let createdFolders = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: fetchOptions)
-                    if let createdFolder = createdFolders.firstObject {
-                        let creationRequest = PHAssetCreationRequest.forAsset()
-                        creationRequest.addResource(with: .photo, data: imageData, options: nil)
-                        let placeholder = creationRequest.placeholderForCreatedAsset
-                        let albumChangeRequest = PHAssetCollectionChangeRequest(for: createdFolder)
-                        albumChangeRequest?.addAssets([placeholder] as NSFastEnumeration)
-                    }
-                } else {
-                }
-            }
-        }
-    }
-}
 
-struct HeaderView: View {
-    @Binding var isNewest: Bool
-    @Binding var selectedTag: String
+    }
     
-    var body: some View {
-        HStack() {
+    private var HeaderView: some View {
+        HStack(spacing: 50) {
             Menu {
                 Button(action: {isNewest = true}) {
                     HStack {
@@ -190,65 +85,59 @@ struct HeaderView: View {
                     }
                 }
             } label: {
-                Image(systemName: "slider.horizontal.3")
+                Image(systemName: "chevron.up.chevron.down")
                     .font(.system(size: 25))
                     .foregroundColor(Color("JoyBlue"))
+                    .padding(.leading, 20)
             }
-            .padding(.leading, 20)
             
-            Spacer(minLength: 250)
-            
-            TagView(selectedTag: $selectedTag)
+            TagView
                 .frame(alignment: .trailing)
         }
     }
-}
-
-struct TagView: View {
-    @Binding var selectedTag: String
-    @State var isAllSelect = true
-
-    var body: some View {
+    
+    private var TagView: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 5) {
+            HStack(spacing: 10) {
                 Button {
                     selectedTag = "All"
                     isAllSelect = true
                 } label: {
                     Text("모든 태그")
-                        .font(.system(size: 14))
+                        .font(.system(size: 15))
                         .fontWeight(.semibold)
                         .lineLimit(1)
-                        .frame(width: 75, height: 30)
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 10)
                         .background(isAllSelect ? Color("JoyBlue") : Color("JoyDarkG"))
-                        .clipShape(RoundedRectangle(cornerRadius: 7))
+                        .clipShape(RoundedRectangle(cornerRadius: 6))
                         .overlay(
-                            RoundedRectangle(cornerRadius: 7)
+                            RoundedRectangle(cornerRadius: 6)
                                 .strokeBorder(isAllSelect ? Color("JoyBlue") : Color("JoyWhite"), lineWidth: 1)
                         )
                 }
-                
-                let tags = CoreDataManager.coreDM.getUniqueTags()
-                
+
                 ForEach( Array(tags.sorted().filter{$0 != "기본"}) , id: \.self) { i in
                     Button {
                         selectedTag = i
                         isAllSelect = false
                     } label: {
                         Text("#" + i)
-                            .font(.system(size: 14))
+                            .font(.system(size: 15))
                             .fontWeight(.semibold)
                             .lineLimit(1)
-                            .frame(width: 75, height: 30)
+                            .padding(.vertical, 5)
+                            .padding(.horizontal, 10)
                             .background(isAllSelect ? Color("JoyDarkG") : (selectedTag == i ? Color("JoyBlue") : Color("JoyDarkG")))
-                            .clipShape(RoundedRectangle(cornerRadius: 7))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 7)
+                            .clipShape(RoundedRectangle(cornerRadius: 6))
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 6)
                                     .strokeBorder(isAllSelect ? Color("JoyWhite") : (selectedTag == i ? Color("JoyBlue") : Color("JoyWhite")))
-                            )
+                            }
                     }
                 }
             }
+//            .offset(self.offset)
         }
     }
 }
@@ -257,21 +146,20 @@ struct AlbumView: View {
     @Binding var isNewest: Bool
     @Binding var selectedTag: String
     
-    var columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 12), count: 2)
+    var columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 10), count: 2)
     
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: columns, spacing: 15) {
+            LazyVGrid(columns: columns, spacing: 10) {
                 let memories = CoreDataManager.coreDM.getYearlyMemories()
                 
                 if selectedTag == "All" {
                     ForEach(Array(isNewest ? memories.keys.sorted(by: >) : memories.keys.sorted()), id: \.self) { key in
-                        NavigationLink(destination: GalleryView(tagName: selectedTag, year: key, album: memories[key]!)
-                        ) {
+                        NavigationLink(destination: GalleryView(tagName: selectedTag, year: key, album: memories[key]!)) {
                                 AlbumSubView(post: memories[key]!.first!)
-                            }
+                        }
                     }
-                }else {
+                } else {
                     let filterMemories = memories.reduce(into: [Int: [Memory]]()){ result, entry in
                         let filterdMemories = entry.value.filter {$0.tag == selectedTag}
                         if !filterdMemories.isEmpty {
@@ -280,14 +168,13 @@ struct AlbumView: View {
                     }
                     
                     ForEach(Array(isNewest ? filterMemories.keys.sorted(by: >) : filterMemories.keys.sorted()), id: \.self) { key in
-                        NavigationLink(destination: GalleryView(tagName: selectedTag, year: key, album: filterMemories[key]!)
-                            ) {
+                        NavigationLink(destination: GalleryView(tagName: selectedTag, year: key, album: filterMemories[key]!)) {
                                 AlbumSubView(post: filterMemories[key]!.first!)
-                            }
+                        }
                     }
-                    
                 }
             }
+            .padding(.horizontal, 10)
         }
     }
 }
@@ -297,25 +184,21 @@ struct AlbumSubView: View {
     var body: some View {
         ZStack {
             Color("JoyWhite")
-            VStack {
-                // TODO: 대체 이미지 ("house" 말고)
+            VStack(alignment: .trailing, spacing: 0) {
                 Image(uiImage: UIImage(data: Data(base64Encoded: post.image)!) ?? UIImage(systemName: "house")!)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: screenWidth * 0.4, height: screenWidth * 0.4)
+                    .frame(width: screenWidth * 0.38, height: screenWidth * 0.38)
                     .clipped()
-                    .cornerRadius(10)
-                    .padding(10)
-                HStack {
-                    Spacer()
-                    Text("\(post.year)".replacingOccurrences(of: ",", with: ""))
-                        .font(.headline)
-                        .foregroundColor(Color("JoyDarkG"))
-                        .padding(.top, -10)
-                        .padding(.trailing, 15)
-                }
-                .padding(.bottom, 10)
+                    .cornerRadius(9)
+                    .padding(.top, 13)
+                
+                Text("\(post.year)".replacingOccurrences(of: ",", with: ""))
+                    .font(.system(size: 20, weight: .semibold))
+                    .foregroundColor(Color("JoyDarkG"))
+                    .padding(.vertical, 10)
             }
+            .padding(.horizontal, 12)
         }
         .cornerRadius(10)
     }
