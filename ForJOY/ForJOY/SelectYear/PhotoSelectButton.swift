@@ -11,7 +11,7 @@ import PhotosUI
 
 struct PhotoSelectButton: View {
     @State private var isShowActionSheet = false
-    @State private var selectedImage: UIImage? = nil
+    @State private var selectedImage: UIImage?
     @State private var isShowingActionSheet = false
     @State private var isShowingCameraPicker = false
     @State private var isShowingPhotoLibraryPicker = false
@@ -77,17 +77,15 @@ struct PhotoSelectButton: View {
                 .frame(height: screenHeight * 0.04)
         }
         .frame(height: screenHeight * 0.15)
-
-        NavigationLink(
-            destination: VoiceView(selectedImage: $selectedImage),
-            isActive: $isChoosen    // VoiceView가 isActive로 동작중, InfoView에서 돌아오기 위해서도 필요함..
-        ){}
-        .isDetailLink(false)
+        
+        .fullScreenCover(isPresented: $isChoosen) {
+            RecordingAndInfoView(selectedImage: $selectedImage)
+        }
     }
     
     func loadImage() {
         if let image = selectedImage {
-            saveImage(image)
+            saveImage(image)    // -> 재녹음 할 때 마다 이미지 쌓일지도..?!
             isChoosen.toggle()
         }
     }

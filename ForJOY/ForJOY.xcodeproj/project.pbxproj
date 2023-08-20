@@ -13,6 +13,7 @@
 		0E4E7DE22A111CDE00D72E66 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E7DE12A111CDE00D72E66 /* Tag.swift */; };
 		300D732B2A11D8A2007D38E9 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D732A2A11D8A2007D38E9 /* Players.swift */; };
 		301576B72A88B7D200BBA5A8 /* PhotoSelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301576B62A88B7D200BBA5A8 /* PhotoSelectButton.swift */; };
+		301576F62A90BF0100BBA5A8 /* RecordingAndInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301576F52A90BF0100BBA5A8 /* RecordingAndInfoView.swift */; };
 		3032387A2A00A876008A8093 /* ForJOYApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303238792A00A876008A8093 /* ForJOYApp.swift */; };
 		3032387E2A00A876008A8093 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3032387D2A00A876008A8093 /* Assets.xcassets */; };
 		303238812A00A876008A8093 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 303238802A00A876008A8093 /* Preview Assets.xcassets */; };
@@ -82,6 +83,7 @@
 		0E4E7DE12A111CDE00D72E66 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		300D732A2A11D8A2007D38E9 /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		301576B62A88B7D200BBA5A8 /* PhotoSelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectButton.swift; sourceTree = "<group>"; };
+		301576F52A90BF0100BBA5A8 /* RecordingAndInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingAndInfoView.swift; sourceTree = "<group>"; };
 		303238762A00A876008A8093 /* ForJOY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForJOY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		303238792A00A876008A8093 /* ForJOYApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForJOYApp.swift; sourceTree = "<group>"; };
 		3032387D2A00A876008A8093 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				3032388A2A00B89E008A8093 /* Ref.swift */,
 				303238872A00B3BB008A8093 /* SelectYearView.swift */,
 				301576B62A88B7D200BBA5A8 /* PhotoSelectButton.swift */,
+				301576F52A90BF0100BBA5A8 /* RecordingAndInfoView.swift */,
 			);
 			path = SelectYear;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				301576B72A88B7D200BBA5A8 /* PhotoSelectButton.swift in Sources */,
 				BE522DFD2A05A48D00D4AEEA /* CarouselView.swift in Sources */,
 				BECC97372A05A54700E27120 /* CardView.swift in Sources */,
+				301576F62A90BF0100BBA5A8 /* RecordingAndInfoView.swift in Sources */,
 				30C74FA52A0D06EB0099DC1B /* InfoView.swift in Sources */,
 				3032388B2A00B89E008A8093 /* Ref.swift in Sources */,
 				0E4E7DB92A10EDDA00D72E66 /* Memory.swift in Sources */,
@@ -604,7 +608,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ForJOY/Preview Content\"";
-				DEVELOPMENT_TEAM = JRW96JDSZ5;
+				DEVELOPMENT_TEAM = FJ72KV3U2A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJOY/Info.plist;
@@ -621,7 +625,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ny.ForJOY;
+				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ash2.ForJOY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -640,7 +644,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ForJOY/Preview Content\"";
-				DEVELOPMENT_TEAM = JRW96JDSZ5;
+				DEVELOPMENT_TEAM = FJ72KV3U2A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJOY/Info.plist;
@@ -657,7 +661,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ny.ForJoy;
+				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ash2.ForJOY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -670,9 +674,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JRW96JDSZ5;
+				DEVELOPMENT_TEAM = FJ72KV3U2A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJoyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ForJoyWidget;
@@ -684,8 +689,9 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ny.ForJOY.ForJoyWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ash2.ForJOY.ForJoyWidgetExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -698,9 +704,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JRW96JDSZ5;
+				DEVELOPMENT_TEAM = FJ72KV3U2A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJoyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ForJoyWidget;
@@ -712,8 +719,9 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ny.ForJOY.ForJoyWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ash2.ForJOY.ForJoyWidgetExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

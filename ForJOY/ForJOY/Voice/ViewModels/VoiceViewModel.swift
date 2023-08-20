@@ -30,7 +30,7 @@ class VoiceViewModel : NSObject, ObservableObject , AVAudioPlayerDelegate{
             print("Cannot setup the Recording")
         }
         
-        guard let path = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.forJoy") else {
+        guard let path = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.for.joy") else {
                     print("Failed to access app group identifier")
                     return
                 }

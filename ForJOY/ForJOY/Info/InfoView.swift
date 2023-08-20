@@ -13,9 +13,11 @@ struct InfoView: View {
     @State var tag: String?
     @State var toAddDoneView = false
     @State var isAddData: Bool = false
+    @State private var pushBackButton = false
     
     @Binding var selectedImage: UIImage?
     @Binding var recording: URL?
+    @Binding var pageNumber: Int
     
     var body: some View {
         NavigationStack {
@@ -76,41 +78,40 @@ struct InfoView: View {
             .background(Color("JoyDarkG"))
             .foregroundColor(.black)
             .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(
-                        action: {
-                            toAddDoneView = true
-                        },
-                        label: {
-                            NavigationLink(
-                                isActive: $toAddDoneView,
-                                destination:  {
-                                    AddDoneView()
-                                        .navigationBarBackButtonHidden()
-                                        .onAppear(){
-                                            if !isAddData {
-                                                if title != "" {
-                                                    let year = Int(date.toString(dateFormat: "yyyy"))!
-                                                    
-                                                    CoreDataManager.coreDM.addMemory(title, Int16(year), date, tag ?? "기본", selectedImage!.jpegData(compressionQuality: 0.8)!.base64EncodedString(), recording!.absoluteString)
-                                                    isAddData = true
-                                                }
-                                            }
-                                        }
-                                },
-                                label: {
-                                    Text("Done")
-                                }
-                            )
-                            .isDetailLink(false)
-                            .background(Color("JoyDarkG"))
-                        }
-                    )
-                    .disabled(title == "")
+            .navigationBarItems(leading: BackButton)
+            .navigationBarItems(trailing: DoneButton)
+            
+            .alert("다시 녹음하시겠습니까?", isPresented: $pushBackButton, actions: {
+                Button("취소", role: .cancel) { }
+                Button("다시 녹음", role: .destructive) { pageNumber = 0 }
+            }, message: {
+                Text("재녹음 시 이전에 녹음된 정보는 삭제됩니다.")
+            })
+        }
+    }
+    
+    private var BackButton: some View {
+        Button {
+            pushBackButton = true
+        } label: {
+            Text("\(Image(systemName: "chevron.backward")) 다시 녹음")
+        }
+    }
+    
+    private var DoneButton: some View {
+        Button {
+            if !isAddData {
+                if title != "" {
+                    let year = Int(date.toString(dateFormat: "yyyy"))!
+                    
+                    CoreDataManager.coreDM.addMemory(title, Int16(year), date, tag ?? "기본", selectedImage!.jpegData(compressionQuality: 0.8)!.base64EncodedString(), recording!.absoluteString)
+                    isAddData = true
                 }
             }
-            .tint(Color("JoyBlue"))
+            pageNumber = 2
+        } label: {
+            Text("완료")
         }
+        .disabled(title == "")
     }
 }
