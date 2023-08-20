@@ -13,6 +13,7 @@ struct InfoView: View {
     @State var tag: String?
     @State var toAddDoneView = false
     @State var isAddData: Bool = false
+    @State private var pushBackButton = false
     
     @Binding var selectedImage: UIImage?
     @Binding var recording: URL?
@@ -78,6 +79,12 @@ struct InfoView: View {
             .foregroundColor(.black)
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: BackButton)
+            .alert("다시 녹음하시겠습니까?", isPresented: $pushBackButton, actions: {
+                Button("취소", role: .cancel) { }
+                Button("다시 녹음", role: .destructive) { pageNumber = 0 }
+            }, message: {
+                Text("재녹음 시 이전에 녹음된 정보는 삭제됩니다.")
+            })
             
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -90,7 +97,6 @@ struct InfoView: View {
                                 isActive: $toAddDoneView,
                                 destination:  {
                                     AddDoneView()
-                                        .navigationBarBackButtonHidden()
                                         .onAppear(){
                                             if !isAddData {
                                                 if title != "" {
@@ -119,7 +125,7 @@ struct InfoView: View {
     
     private var BackButton: some View {
         Button {
-            pageNumber = 0
+            pushBackButton = true
         } label: {
             Text("\(Image(systemName: "chevron.backward")) 다시 녹음")
         }

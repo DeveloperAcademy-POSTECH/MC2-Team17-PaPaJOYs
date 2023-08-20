@@ -15,11 +15,9 @@ struct VoiceView: View {
     @StateObject var voiceViewModel = VoiceViewModel()
     
     // 효과 상태 (현재 사용되지 않음)
-    @State private var effect1 = false
-    @State private var effect2 = false
+//    @State private var effect1 = false
+//    @State private var effect2 = false
 
-//    // 다음 화면으로 이동하기 위한 상태 변수
-//    @State var endRecording = false
     
     // 선택된 이미지 (부모 뷰에서 전달 받을 값)
     @Binding var selectedImage: UIImage?
@@ -59,9 +57,6 @@ struct VoiceView: View {
                         
                         Button(action: {
                             pageNumber = 1
-//                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-//
-//                                }
                         }, label: {
                             if !voiceViewModel.isRecording && voiceViewModel.isEndRecording {
                                 ZStack {

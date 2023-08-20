@@ -137,7 +137,6 @@ struct SelectYearView: View {
                     }
                 }
             }
-//            .offset(self.offset)
         }
     }
 }
