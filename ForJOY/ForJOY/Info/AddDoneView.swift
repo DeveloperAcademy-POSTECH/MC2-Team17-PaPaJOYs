@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct AddDoneView: View {
-//    @Environment(\.presentationMode) var presentationMode
-    @State private var isActive = false
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         NavigationStack {
@@ -35,20 +34,9 @@ struct AddDoneView: View {
             }
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    isActive = true
+                    dismiss()
                 }
             }
-            .background {
-                NavigationLink(
-                    destination: SelectYearView()
-                        .navigationBarBackButtonHidden(),
-                    isActive: $isActive,
-                    label: {
-                        EmptyView()
-                    }
-                )
-            }
-            
             .navigationBarBackButtonHidden()
         }
     }

@@ -19,6 +19,8 @@ struct RecordingAndInfoView: View {
                 VoiceView(selectedImage: $selectedImage, recording: $recording, pageNumber: $pageNumber)
             } else if pageNumber == 1 {
                 InfoView(selectedImage: $selectedImage, recording: $recording, pageNumber: $pageNumber)
+            } else {
+                AddDoneView()
             }
         }
     }
