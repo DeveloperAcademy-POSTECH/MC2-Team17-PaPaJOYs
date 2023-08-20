@@ -16,6 +16,7 @@ struct InfoView: View {
     
     @Binding var selectedImage: UIImage?
     @Binding var recording: URL?
+    @Binding var pageNumber: Int
     
     var body: some View {
         NavigationStack {
@@ -76,6 +77,8 @@ struct InfoView: View {
             .background(Color("JoyDarkG"))
             .foregroundColor(.black)
             .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: BackButton)
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(
@@ -111,6 +114,14 @@ struct InfoView: View {
                 }
             }
             .tint(Color("JoyBlue"))
+        }
+    }
+    
+    private var BackButton: some View {
+        Button {
+            pageNumber = 0
+        } label: {
+            Text("\(Image(systemName: "chevron.backward")) 다시 녹음")
         }
     }
 }

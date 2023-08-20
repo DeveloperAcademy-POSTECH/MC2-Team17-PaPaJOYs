@@ -18,19 +18,18 @@ struct ForJOYApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                NavigationLink(destination: VoiceView(selectedImage: $image)
-                    .navigationBarBackButtonHidden(),
-                               isActive: $linkActive) {
-                    EmptyView()
-                }
+//                NavigationLink(destination: VoiceView(selectedImage: $image)),
+//                               isActive: $linkActive) {
+//                    EmptyView()
+//                }
                 SelectYearView()
                     .background(Color("JoyDarkG"))
             }
             .accentColor(Color("JoyWhite"))
-            .onOpenURL { url in
-                guard url.scheme == "forjoy" else { return }
-                linkActive = true
-            }
+//            .onOpenURL { url in
+//                guard url.scheme == "forjoy" else { return }
+//                linkActive = true
+//            }
         }
     }
 }
