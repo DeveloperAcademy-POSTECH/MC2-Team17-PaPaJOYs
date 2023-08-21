@@ -43,7 +43,7 @@ class CoreDataManager: ObservableObject {
     func getYearlyMemories() -> [Int: [Memory]] {
         let memories = readAllMemories()
         let yearlyMemories = Dictionary(grouping: memories.map { memory -> Memory in
-            return Memory(objectID: memory.objectID ,title: memory.title ?? "", year: Int(memory.year), date: memory.date ?? Date(), tag: memory.tag ?? "", image: memory.image ?? "", voice: memory.voice ?? "")
+            return Memory(title: memory.title ?? "", year: Int(memory.year), date: memory.date ?? Date(), tag: memory.tag ?? "", image: memory.image ?? "", voice: memory.voice ?? "")
         }) { memory -> Int in
             return Int(memory.year)
         }
