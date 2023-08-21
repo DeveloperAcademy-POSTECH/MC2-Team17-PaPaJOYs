@@ -5,9 +5,11 @@ import AVFoundation
 struct CardView: View {
     @Binding var players: [AVPlayer]
     @State var isPlaying = false
+    @State var moveToInfoView = false
+    @State var isShowAlert = false
+    @State var order: Int
     
     var filteredData: [Memory]
-    let order: Int
     
     var cardGroup: [AnyView] {
         if filteredData.isEmpty {
@@ -24,7 +26,16 @@ struct CardView: View {
             ZStack {
                 Color("JoyDarkG")
                     .ignoresSafeArea()
-                CarouselView(carouselLocation: order, players: $players, isPlaying: $isPlaying, itemHeight: 520, views: cardGroup)
+                CarouselView(carouselLocation: $order, players: $players, isPlaying: $isPlaying, itemHeight: 520, views: cardGroup)
+                
+                NavigationLink(
+                    isActive: $moveToInfoView,
+                    destination: {
+                        EditInfoView(selectedData: filteredData[order%filteredData.count])
+                    },
+                    label: {
+                        EmptyView()
+                    })
             }
             .onDisappear {
                 for p in players {
@@ -32,6 +43,62 @@ struct CardView: View {
                     p.currentItem?.seek(to: CMTime.zero, completionHandler: nil)
                 }
                 isPlaying = false
+            }
+            
+            .alert(
+                "정말로 삭제하시겠습니까?",
+                isPresented: $isShowAlert,
+                actions: {
+                    Button("취소", role: .cancel) {
+                        isShowAlert = false
+                    }
+                    Button("삭제", role: .destructive) {
+                        //TODO: DB 삭제
+                        CoreDataManager.coreDM.deleteMemory(filteredData[order].objectID)
+                    }
+                }, message: {
+                    Text("한 번 삭제된 추억은 복구가 불가능합니다.")
+                }
+            )
+            
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    //TODO: Dissmiss
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Menu {
+                        Button(
+                            action: {
+                                moveToInfoView = true
+                            }, label: {
+                                HStack {
+                                    Text("편집")
+                                    Spacer(minLength: 0)
+                                    Image(systemName: "square.and.pencil")
+                                        .font(.system(size: 17))
+                                }
+                            }
+                        )
+                        
+                        Button(
+                            role: .destructive,
+                            action: {
+                                isShowAlert = true
+                            }, label: {
+                                HStack {
+                                    Text("삭제")
+                                    Spacer(minLength: 0)
+                                    Image(systemName: "trash")
+                                        .font(.system(size: 17))
+                                }
+                            }
+                        )
+                    } label: {
+                        Image(systemName: "ellipsis")
+                            .font(.system(size: 25))
+                            .foregroundColor(Color("JoyBlue"))
+                    }
+                }
             }
         }
     }
@@ -115,4 +182,3 @@ struct ImageView: View {
             .padding(.top)
     }
 }
-

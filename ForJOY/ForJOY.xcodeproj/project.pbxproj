@@ -11,6 +11,8 @@
 		0E484E292A515E96002F9C9A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E484E282A515E96002F9C9A /* ImagePicker.swift */; };
 		0E4E7DB92A10EDDA00D72E66 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E7DB82A10EDDA00D72E66 /* Memory.swift */; };
 		0E4E7DE22A111CDE00D72E66 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E7DE12A111CDE00D72E66 /* Tag.swift */; };
+		0E58F5952A93625E00A600CF /* EditInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E58F5942A93625E00A600CF /* EditInfoView.swift */; };
+		0E58F5972A9362D700A600CF /* PermissionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E58F5962A9362D700A600CF /* PermissionHandler.swift */; };
 		300D732B2A11D8A2007D38E9 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D732A2A11D8A2007D38E9 /* Players.swift */; };
 		301576B72A88B7D200BBA5A8 /* PhotoSelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301576B62A88B7D200BBA5A8 /* PhotoSelectButton.swift */; };
 		301576F62A90BF0100BBA5A8 /* RecordingAndInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301576F52A90BF0100BBA5A8 /* RecordingAndInfoView.swift */; };
@@ -81,6 +83,8 @@
 		0E484E282A515E96002F9C9A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		0E4E7DB82A10EDDA00D72E66 /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
 		0E4E7DE12A111CDE00D72E66 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		0E58F5942A93625E00A600CF /* EditInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditInfoView.swift; path = "../../../../../../.Trash/MC2-Team17-PaPaJOYs 오후 6.06.01/ForJOY/ForJOY/Info/EditInfoView.swift"; sourceTree = "<group>"; };
+		0E58F5962A9362D700A600CF /* PermissionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PermissionHandler.swift; path = "../../../../../.Trash/MC2-Team17-PaPaJOYs 오후 6.06.01/ForJOY/ForJOY/PermissionHandler.swift"; sourceTree = "<group>"; };
 		300D732A2A11D8A2007D38E9 /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		301576B62A88B7D200BBA5A8 /* PhotoSelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectButton.swift; sourceTree = "<group>"; };
 		301576F52A90BF0100BBA5A8 /* RecordingAndInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingAndInfoView.swift; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 				0E40FB012A0C904C00AFA66D /* AddDoneView.swift */,
 				30C74FA42A0D06EB0099DC1B /* InfoView.swift */,
 				30C74FA62A0D06FE0099DC1B /* InfoTagView.swift */,
+				0E58F5942A93625E00A600CF /* EditInfoView.swift */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 				5BF13DAF2A139ED9002DF1FA /* Info.plist */,
 				5BB7EF6D2A7FAACB008E772A /* DataModel.xcdatamodeld */,
 				303238792A00A876008A8093 /* ForJOYApp.swift */,
+				0E58F5962A9362D700A600CF /* PermissionHandler.swift */,
 				30BDADDE2A034DB7000BDA8F /* Extensions */,
 				5B08A5042A147BFE00496242 /* LottieFiles */,
 				3032387D2A00A876008A8093 /* Assets.xcassets */,
@@ -433,6 +439,7 @@
 			files = (
 				0E4E7DE22A111CDE00D72E66 /* Tag.swift in Sources */,
 				3063F2CC2A0E1BAA00C56EBA /* (null) in Sources */,
+				0E58F5952A93625E00A600CF /* EditInfoView.swift in Sources */,
 				5BF13DA82A137847002DF1FA /* ForJoyWidget.intentdefinition in Sources */,
 				3063F2CE2A0E1BB500C56EBA /* (null) in Sources */,
 				303238882A00B3BB008A8093 /* SelectYearView.swift in Sources */,
@@ -452,6 +459,7 @@
 				30C74FA52A0D06EB0099DC1B /* InfoView.swift in Sources */,
 				3032388B2A00B89E008A8093 /* Ref.swift in Sources */,
 				0E4E7DB92A10EDDA00D72E66 /* Memory.swift in Sources */,
+				0E58F5972A9362D700A600CF /* PermissionHandler.swift in Sources */,
 				5B08A50B2A147CB000496242 /* VoiceViewModel.swift in Sources */,
 				5BB7EF6F2A7FAACB008E772A /* DataModel.xcdatamodeld in Sources */,
 				300D732B2A11D8A2007D38E9 /* Players.swift in Sources */,
