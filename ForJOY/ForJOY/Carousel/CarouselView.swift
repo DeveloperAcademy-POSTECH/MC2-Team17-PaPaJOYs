@@ -6,7 +6,7 @@ import AVKit
 
 struct CarouselView: View {
     @GestureState private var dragState = DragState.inactive
-    @State var carouselLocation: Int
+    @Binding var carouselLocation: Int
     @Binding var players: [AVPlayer]
     @Binding var isPlaying: Bool
     

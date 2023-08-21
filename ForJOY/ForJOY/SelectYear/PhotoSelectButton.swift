@@ -80,5 +80,10 @@ struct PhotoSelectButton: View {
             RecordingAndInfoView(selectedImage: $selectedImage)
         }
     }
+    
+    func loadImage() {
+        if let image = selectedImage {
+            isChoosen.toggle()
+        }
+    }
 }
-
