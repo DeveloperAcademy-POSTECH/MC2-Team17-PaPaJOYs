@@ -60,11 +60,11 @@ struct PhotoSelectButton: View {
                         Text("Cancel")
                     })
                 }
-                .sheet(isPresented: $isShowingCameraPicker, onDismiss: loadImage) {
+                .sheet(isPresented: $isShowingCameraPicker, onDismiss: { isChoosen.toggle() }) {
                     ImagePicker(selectedImage: $selectedImage, sourceType: .camera)
                         .ignoresSafeArea()
                 }
-                .sheet(isPresented: $isShowingPhotoLibraryPicker, onDismiss: loadImage) {
+                .sheet(isPresented: $isShowingPhotoLibraryPicker, onDismiss: { isChoosen.toggle() }) {
                     ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
                         .ignoresSafeArea()
                         .tint(Color("JoyBlue"))
@@ -77,11 +77,11 @@ struct PhotoSelectButton: View {
         }
         .frame(height: screenHeight * 0.15)
         
-        .fullScreenCover(isPresented: $isChoosen) {
+        .fullScreenCover(isPresented: $isChoosen, onDismiss: { /* TODO: SelectYearView를 강제 갱신시킬 메서드 필요!! */}) {
             RecordingAndInfoView(selectedImage: $selectedImage)
         }
     }
-    
+      
     func loadImage() {
         if let image = selectedImage {
             isChoosen.toggle()
