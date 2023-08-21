@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct InfoView: View {
     @State var title: String = ""
@@ -100,6 +101,8 @@ struct InfoView: View {
     
     private var DoneButton: some View {
         Button {
+            saveImage()
+            
             if !isAddData {
                 if title != "" {
                     let year = Int(date.toString(dateFormat: "yyyy"))!
@@ -113,5 +116,48 @@ struct InfoView: View {
             Text("완료")
         }
         .disabled(title == "")
+    }
+    
+    func saveImage() {
+        guard let imageData = selectedImage!.jpegData(compressionQuality: 0.8) else {
+            return
+        }
+        
+        let folderName = "ForJoy"
+        
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.predicate = NSPredicate(format: "title = %@", folderName)
+        let folders = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: fetchOptions)
+        
+        if let folder = folders.firstObject {
+            // Folder found, save the image to the folder
+            PHPhotoLibrary.shared().performChanges {
+                let creationRequest = PHAssetCreationRequest.forAsset()
+                creationRequest.addResource(with: .photo, data: imageData, options: nil)
+                let placeholder = creationRequest.placeholderForCreatedAsset
+                let albumChangeRequest = PHAssetCollectionChangeRequest(for: folder)
+                albumChangeRequest?.addAssets([placeholder] as NSFastEnumeration)
+            } completionHandler: { _, _ in
+                // Image saved successfully to the folder
+            }
+        } else {
+            PHPhotoLibrary.shared().performChanges {
+                PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: folderName)
+            } completionHandler: { success, error in
+                if success {
+                    let fetchOptions = PHFetchOptions()
+                    fetchOptions.predicate = NSPredicate(format: "title = %@", folderName)
+                    let createdFolders = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: fetchOptions)
+                    if let createdFolder = createdFolders.firstObject {
+                        let creationRequest = PHAssetCreationRequest.forAsset()
+                        creationRequest.addResource(with: .photo, data: imageData, options: nil)
+                        let placeholder = creationRequest.placeholderForCreatedAsset
+                        let albumChangeRequest = PHAssetCollectionChangeRequest(for: createdFolder)
+                        albumChangeRequest?.addAssets([placeholder] as NSFastEnumeration)
+                    }
+                } else {
+                }
+            }
+        }
     }
 }
