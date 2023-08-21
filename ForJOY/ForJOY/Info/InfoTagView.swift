@@ -89,11 +89,16 @@ struct InfoTagView: View {
                     addTag = true
                     textFieldIsFocused = true
                 }
+                
+                if let selectTag = selectTag, !tags.contains(where: { $0.tagName == selectTag }) {
+                    tags.append(Tag(tagName: selectTag))
+                }
             }
         }
         .navigationTitle("Tag")
         .tint(Color("JoyBlue"))
     }
+    
     
     func addNewTag() {
         if newTag != "" {
