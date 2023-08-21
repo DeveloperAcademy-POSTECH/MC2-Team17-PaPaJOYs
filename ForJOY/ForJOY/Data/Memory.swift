@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import CoreData
 
 class Memory: ObservableObject {
+    @Published var objectID = NSManagedObjectID()
     @Published var title: String = ""
     @Published var year: Int
     @Published var date = Date()
@@ -15,7 +17,8 @@ class Memory: ObservableObject {
     @Published var image: String = ""
     @Published var voice: String = ""
     
-    init(title: String, year: Int, date: Date, tag: String, image: String, voice: String) {
+    init(objectID: NSManagedObjectID, title: String, year: Int, date: Date, tag: String, image: String, voice: String) {
+        self.objectID = objectID
         self.title = title
         self.year = year
         self.date = date

@@ -12,6 +12,7 @@ import SwiftUI
 //TODO: 온보딩 끝나고 필요한 권한 받기
 @main
 struct ForJOYApp: App {
+    @StateObject var permissionHandler = PermissionHandler()
     @State var linkActive = false
     @State var image: UIImage? = nil
     
@@ -22,10 +23,15 @@ struct ForJOYApp: App {
 //                               isActive: $linkActive) {
 //                    EmptyView()
 //                }
-                SelectYearView()
-                    .background(Color("JoyDarkG"))
+                if permissionHandler.areAllPermissionsGranted {
+                    SelectYearView()
+                        .background(Color("JoyDarkG"))
+                }
             }
             .accentColor(Color("JoyWhite"))
+            .onAppear {
+                permissionHandler.requestPermissions()
+            }
 //            .onOpenURL { url in
 //                guard url.scheme == "forjoy" else { return }
 //                linkActive = true
