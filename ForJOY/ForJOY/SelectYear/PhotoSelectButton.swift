@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import PhotosUI
-
 
 struct PhotoSelectButton: View {
     @State private var isShowActionSheet = false
@@ -61,11 +59,11 @@ struct PhotoSelectButton: View {
                         Text("Cancel")
                     })
                 }
-                .sheet(isPresented: $isShowingCameraPicker, onDismiss: loadImage) {
+                .sheet(isPresented: $isShowingCameraPicker, onDismiss: { isChoosen.toggle() }) {
                     ImagePicker(selectedImage: $selectedImage, sourceType: .camera)
                         .ignoresSafeArea()
                 }
-                .sheet(isPresented: $isShowingPhotoLibraryPicker, onDismiss: loadImage) {
+                .sheet(isPresented: $isShowingPhotoLibraryPicker, onDismiss: { isChoosen.toggle() }) {
                     ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
                         .ignoresSafeArea()
                         .tint(Color("JoyBlue"))
@@ -78,57 +76,8 @@ struct PhotoSelectButton: View {
         }
         .frame(height: screenHeight * 0.15)
         
-        .fullScreenCover(isPresented: $isChoosen) {
+        .fullScreenCover(isPresented: $isChoosen, onDismiss: { /* TODO: SelectYearView를 강제 갱신시킬 메서드 필요!! */}) {
             RecordingAndInfoView(selectedImage: $selectedImage)
-        }
-    }
-    
-    func loadImage() {
-        if let image = selectedImage {
-            saveImage(image)    // -> 재녹음 할 때 마다 이미지 쌓일지도..?!
-            isChoosen.toggle()
-        }
-    }
-    func saveImage(_ image: UIImage) {
-        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
-            return
-        }
-        
-        let folderName = "ForJoy"
-        
-        let fetchOptions = PHFetchOptions()
-        fetchOptions.predicate = NSPredicate(format: "title = %@", folderName)
-        let folders = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: fetchOptions)
-        
-        if let folder = folders.firstObject {
-            // Folder found, save the image to the folder
-            PHPhotoLibrary.shared().performChanges {
-                let creationRequest = PHAssetCreationRequest.forAsset()
-                creationRequest.addResource(with: .photo, data: imageData, options: nil)
-                let placeholder = creationRequest.placeholderForCreatedAsset
-                let albumChangeRequest = PHAssetCollectionChangeRequest(for: folder)
-                albumChangeRequest?.addAssets([placeholder] as NSFastEnumeration)
-            } completionHandler: { _, _ in
-                // Image saved successfully to the folder
-            }
-        } else {
-            PHPhotoLibrary.shared().performChanges {
-                PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: folderName)
-            } completionHandler: { success, error in
-                if success {
-                    let fetchOptions = PHFetchOptions()
-                    fetchOptions.predicate = NSPredicate(format: "title = %@", folderName)
-                    let createdFolders = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: fetchOptions)
-                    if let createdFolder = createdFolders.firstObject {
-                        let creationRequest = PHAssetCreationRequest.forAsset()
-                        creationRequest.addResource(with: .photo, data: imageData, options: nil)
-                        let placeholder = creationRequest.placeholderForCreatedAsset
-                        let albumChangeRequest = PHAssetCollectionChangeRequest(for: createdFolder)
-                        albumChangeRequest?.addAssets([placeholder] as NSFastEnumeration)
-                    }
-                } else {
-                }
-            }
         }
     }
 }
