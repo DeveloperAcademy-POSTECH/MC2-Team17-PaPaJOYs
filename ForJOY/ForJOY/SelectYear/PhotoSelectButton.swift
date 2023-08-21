@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import PhotosUI
 
 struct PhotoSelectButton: View {
     @State private var isShowActionSheet = false
@@ -79,12 +78,6 @@ struct PhotoSelectButton: View {
         
         .fullScreenCover(isPresented: $isChoosen, onDismiss: { /* TODO: SelectYearView를 강제 갱신시킬 메서드 필요!! */}) {
             RecordingAndInfoView(selectedImage: $selectedImage)
-        }
-    }
-      
-    func loadImage() {
-        if let image = selectedImage {
-            isChoosen.toggle()
         }
     }
 }

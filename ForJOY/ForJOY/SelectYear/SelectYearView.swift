@@ -117,7 +117,7 @@ struct SelectYearView: View {
                         )
                 }
 
-                ForEach( Array(tags.sorted().filter{$0 != "없음"}) , id: \.self) { i in
+                ForEach( Array(tags.sorted().filter{$0 != "기본"}) , id: \.self) { i in
                     Button {
                         selectedTag = i
                         isAllSelect = false
