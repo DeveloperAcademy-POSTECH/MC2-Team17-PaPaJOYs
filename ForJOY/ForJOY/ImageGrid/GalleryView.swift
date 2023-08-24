@@ -36,7 +36,7 @@ struct GalleryView: View {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 3) {
                         ForEach(Array(album.enumerated()), id: \.0) { i, post in
-                            NavigationLink(destination: CardView(players: $players.players, filteredData: album ,order: i)) {
+                            NavigationLink(destination: CardView(players: $players.players, order: i, filteredData: album)) {
                                 Image(uiImage: UIImage(data: Data(base64Encoded: post.image)!) ?? UIImage(systemName: "house")!)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
