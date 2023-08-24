@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PhotoSelectButton: View {
+    @Binding var memories: [Int: [Memory]]
     @State private var isShowActionSheet = false
     @State private var selectedImage: UIImage?
     @State private var isShowingActionSheet = false
@@ -76,7 +77,8 @@ struct PhotoSelectButton: View {
         }
         .frame(height: screenHeight * 0.15)
         
-        .fullScreenCover(isPresented: $isChoosen, onDismiss: { /* TODO: SelectYearView를 강제 갱신시킬 메서드 필요!! */}) {
+        .fullScreenCover(isPresented: $isChoosen, onDismiss: {
+            memories = CoreDataManager.coreDM.getYearlyMemories() }) {
             RecordingAndInfoView(selectedImage: $selectedImage)
         }
     }

@@ -41,7 +41,7 @@ struct SelectYearView: View {
                 
                 VStack() {
                     Spacer()
-                    PhotoSelectButton()
+                    PhotoSelectButton(memories: $memories)
                 }
                 .edgesIgnoringSafeArea([.bottom])
             }
