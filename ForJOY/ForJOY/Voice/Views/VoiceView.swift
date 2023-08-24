@@ -14,17 +14,20 @@ struct VoiceView: View {
     // 목소리 녹음과 관련된 뷰 모델
     @StateObject var voiceViewModel = VoiceViewModel()
     
+    // SoundVisualizer 활성화/비활성화 상태 변수 추가
+    @State private var soundVisualizerActive: Bool = false
+    
     // 효과 상태 (현재 사용되지 않음)
-//    @State private var effect1 = false
-//    @State private var effect2 = false
-
+    //    @State private var effect1 = false
+    //    @State private var effect2 = false
+    
     
     // 선택된 이미지 (부모 뷰에서 전달 받을 값)
     @Binding var selectedImage: UIImage?
     // 녹음 파일의 URL
     @Binding var recording: URL?
     @Binding var pageNumber: Int
-
+    
     
     var body: some View {
         NavigationStack{
@@ -43,11 +46,7 @@ struct VoiceView: View {
                             .cornerRadius(10)
                     }
                     
-                    Image("Waves")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 218, height: 35)
-                        .clipped()
+                    SoundVisualizer()
                         .padding(.top, 30)
                     
                     ZStack {
@@ -89,7 +88,7 @@ struct VoiceView: View {
         Button {
             dismiss()
         } label: {
-            Text("\(Image(systemName: "chevron.backward")) 사진 선택")
+            Text("\(Image(systemName: "chevron.backward")) 작성 취소")
         }
     }
 }

@@ -25,6 +25,8 @@ struct TimerView: View {
     // 1초 간격으로 업데이트하는 타이머
     @State var timer2 = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
+    @State var soundVisualizerOnOff: Bool = false
+    
     // 애니메이션을 위한 원의 위치, 크기 및 블러 설정
 //    @State var blueCircleOffset: CGSize = .init(width: -40, height: 0)
 //    @State var yellowCircleOffset: CGSize = .init(width: 80, height: 40)
@@ -143,6 +145,7 @@ struct TimerView: View {
                     if !vm.isRecording && !vm.isEndRecording {
                         Button(action: {
                             vm.startRecording()  // 녹음 시작
+                            soundVisualizerOnOff = true // 비주얼라이저 활성화
                         }){
                             ZStack{
                                 // 녹음 버튼의 배경 원
@@ -164,6 +167,7 @@ struct TimerView: View {
                         if vm.isRecording && !vm.isEndRecording {
                             Button(action: {
                                 // 녹음 종료 관련 애니메이션 및 로직
+                                soundVisualizerOnOff = false // 비주얼라이저 비활성화
 //                                    endButton()
 //                                    maskFrameSize = 50
                                 remainingTime = 0.0
