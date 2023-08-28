@@ -47,6 +47,9 @@
 		5BF13DA72A137847002DF1FA /* ForJoyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 5BF13DA32A137846002DF1FA /* ForJoyWidget.intentdefinition */; };
 		5BF13DA82A137847002DF1FA /* ForJoyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 5BF13DA32A137846002DF1FA /* ForJoyWidget.intentdefinition */; };
 		5BF13DAB2A137847002DF1FA /* ForJoyWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5BF13D992A137846002DF1FA /* ForJoyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA5154EE2A974B0900C4DC7D /* MicrophoneMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5154ED2A974B0900C4DC7D /* MicrophoneMonitor.swift */; };
+		AA5154F02A974C9A00C4DC7D /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5154EF2A974C9A00C4DC7D /* BarView.swift */; };
+		AA5154F22A974DEA00C4DC7D /* SoundVisualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5154F12A974DEA00C4DC7D /* SoundVisualizer.swift */; };
 		BE522DFD2A05A48D00D4AEEA /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE522DFC2A05A48D00D4AEEA /* CarouselView.swift */; };
 		BECC97372A05A54700E27120 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC97362A05A54700E27120 /* CardView.swift */; };
 		D92951642A0F643A00D7A7A7 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92951632A0F643A00D7A7A7 /* LottieView.swift */; };
@@ -119,6 +122,9 @@
 		5BF13DA42A137847002DF1FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5BF13DA62A137847002DF1FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BF13DAF2A139ED9002DF1FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AA5154ED2A974B0900C4DC7D /* MicrophoneMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneMonitor.swift; sourceTree = "<group>"; };
+		AA5154EF2A974C9A00C4DC7D /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
+		AA5154F12A974DEA00C4DC7D /* SoundVisualizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundVisualizer.swift; sourceTree = "<group>"; };
 		BE522DFC2A05A48D00D4AEEA /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		BECC97362A05A54700E27120 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		D92951632A0F643A00D7A7A7 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
@@ -206,6 +212,7 @@
 				30BDADD82A034DB7000BDA8F /* Voice */,
 				30BDADD72A034D7D000BDA8F /* SelectYear */,
 				3037CB872A09DFF800E6A92E /* ImageGrid */,
+				AA5154EC2A974AA200C4DC7D /* SoundVisualizer */,
 				3032387F2A00A876008A8093 /* Preview Content */,
 			);
 			path = ForJOY;
@@ -313,6 +320,16 @@
 				5BF13DA62A137847002DF1FA /* Info.plist */,
 			);
 			path = ForJoyWidget;
+			sourceTree = "<group>";
+		};
+		AA5154EC2A974AA200C4DC7D /* SoundVisualizer */ = {
+			isa = PBXGroup;
+			children = (
+				AA5154ED2A974B0900C4DC7D /* MicrophoneMonitor.swift */,
+				AA5154EF2A974C9A00C4DC7D /* BarView.swift */,
+				AA5154F12A974DEA00C4DC7D /* SoundVisualizer.swift */,
+			);
+			path = SoundVisualizer;
 			sourceTree = "<group>";
 		};
 		BECC97382A05A64300E27120 /* Carousel */ = {
@@ -444,7 +461,9 @@
 				303238882A00B3BB008A8093 /* SelectYearView.swift in Sources */,
 				3032387A2A00A876008A8093 /* ForJOYApp.swift in Sources */,
 				5BB7EF6C2A7FAAB6008E772A /* CoreDataManager.swift in Sources */,
+				AA5154F22A974DEA00C4DC7D /* SoundVisualizer.swift in Sources */,
 				0E4533D82A95E6FD00661D8B /* EditInfoView.swift in Sources */,
+				AA5154EE2A974B0900C4DC7D /* MicrophoneMonitor.swift in Sources */,
 				3037CB862A09DFF200E6A92E /* GalleryView.swift in Sources */,
 				30C74FA72A0D06FE0099DC1B /* InfoTagView.swift in Sources */,
 				0E40FB022A0C904C00AFA66D /* AddDoneView.swift in Sources */,
@@ -462,6 +481,7 @@
 				0E4533DA2A95E73500661D8B /* PermissionHandler.swift in Sources */,
 				5B08A50B2A147CB000496242 /* VoiceViewModel.swift in Sources */,
 				5BB7EF6F2A7FAACB008E772A /* DataModel.xcdatamodeld in Sources */,
+				AA5154F02A974C9A00C4DC7D /* BarView.swift in Sources */,
 				300D732B2A11D8A2007D38E9 /* Players.swift in Sources */,
 				5BB7EF932A87B0EE008E772A /* Test.swift in Sources */,
 				30BDADE92A034DB7000BDA8F /* Date+.swift in Sources */,
@@ -616,7 +636,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ForJOY/Preview Content\"";
-				DEVELOPMENT_TEAM = FJ72KV3U2A;
+				DEVELOPMENT_TEAM = JRW96JDSZ5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJOY/Info.plist;
@@ -633,7 +653,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ash2.ForJOY;
+				PRODUCT_BUNDLE_IDENTIFIER = com.papajoy.forjoy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -649,10 +669,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ForJOY/ForJOYRelease.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ForJOY/Preview Content\"";
-				DEVELOPMENT_TEAM = FJ72KV3U2A;
+				DEVELOPMENT_TEAM = JRW96JDSZ5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJOY/Info.plist;
@@ -669,8 +690,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ash2.ForJOY;
+				PRODUCT_BUNDLE_IDENTIFIER = com.papajoy.forjoy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -685,7 +707,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FJ72KV3U2A;
+				DEVELOPMENT_TEAM = JRW96JDSZ5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJoyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ForJoyWidget;
@@ -697,7 +719,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ash2.ForJOY.ForJoyWidgetExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.papajoy.forjoy.ForJoyWidgetExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -715,7 +737,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FJ72KV3U2A;
+				DEVELOPMENT_TEAM = JRW96JDSZ5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForJoyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ForJoyWidget;
@@ -727,7 +749,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = papajoy.ash2.ForJOY.ForJoyWidgetExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.papajoy.forjoy.ForJoyWidgetExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
