@@ -10,7 +10,7 @@ import SwiftUI
 let svNumberOfSamples: Int = 40
 
 struct SoundVisualizer: View {
-    @ObservedObject private var mic = MicrophoneMonitor(numberOfSamples: svNumberOfSamples)
+    @StateObject private var mic = MicrophoneMonitor(numberOfSamples: svNumberOfSamples)
     
     private func svNormalizeSoundLevel(level: Float) -> CGFloat {
         let level = max(0.2, CGFloat(level) + 50) / 4 // between 0.1 and 25
