@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.for.joy</string>
+		<string>group.com.papajoy.forjoy</string>
 	</array>
 </dict>
 </plist>
