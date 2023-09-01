@@ -9,12 +9,13 @@ import SwiftUI
 import Photos
 
 struct InfoView: View {
-    @State var title: String = ""
-    @State var date = Date()
-    @State var tag: String?
-    @State var toAddDoneView = false
-    @State var isAddData: Bool = false
+    @State private var title: String = ""
+    @State private var date = Date()
+    @State private var tag: String?
+    @State private var toAddDoneView = false
+    @State private var isAddData: Bool = false
     @State private var pushBackButton = false
+    @State private var showTagView = false
     
     @Binding var selectedImage: UIImage?
     @Binding var recording: URL?
@@ -29,6 +30,7 @@ struct InfoView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: geometry.size.width - 30, height: geometry.size.height)
+                            .cornerRadius(10)
                             .clipped()
                             .padding(.horizontal, 15)
                             .padding(.top, 25)
@@ -40,43 +42,52 @@ struct InfoView: View {
                 List {
                     HStack{
                         Text("제목")
-                        Spacer(minLength: 100)
+                        Spacer(minLength: 0)
                         TextField("제목", text: $title)
+                            .font(.system(size: (17.0 - CGFloat(title.count)*0.3)))
                             .multilineTextAlignment(.trailing)
                             .onChange(of: title) { newValue in
                                 title = String(newValue.prefix(20))
                             }
+                            .padding(.trailing, 4)
                     }
-                    .listRowBackground(Color("JoyWhite"))
+                    .listRowBackground(Color.joyWhite)
                     
                     HStack(){
                         Text("태그")
                             .frame(width: 60, alignment: .leading)
-                        Spacer(minLength: 190)
-                        NavigationLink(destination: InfoTagView(selectTag: $tag), label: {
-                            if tag == nil {
-                                Text("없음")
-                                    .frame(width: 60, alignment: .trailing)
-                            }else {
-                                Text(tag!)
-                                    .frame(width: 60, alignment: .trailing)
+                        
+                        Spacer(minLength: 0)
+                        
+                        Button(
+                            action: {showTagView = true},
+                            label: {
+                                if tag == nil {
+                                    Text("없음 \(Image(systemName: "chevron.right"))")
+                                        .frame(maxWidth: 250, alignment: .trailing)
+                                        .foregroundColor(.black)
+                                }else {
+                                    Text("\(tag!)\(Image(systemName: "chevron.right"))")
+                                        .frame(maxWidth: 250, alignment: .trailing)
+                                        .foregroundColor(.black)
+                                }
                             }
-                        })
+                        )
                     }
-                    .listRowBackground(Color("JoyWhite"))
+                    .listRowBackground(Color.joyWhite)
                     
                     DatePicker(
                         "날짜",
                         selection: $date,
                         displayedComponents: [.date]
                     )
-                    .tint(Color("JoyBlue"))
-                    .listRowBackground(Color("JoyWhite"))
+                    .tint(Color.joyBlue)
+                    .listRowBackground(Color.joyWhite)
                 }
                 .scrollContentBackground(.hidden)
                 .scrollDisabled(true)
             }
-            .background(Color("JoyDarkG"))
+            .background(Color.joyDarkG)
             .foregroundColor(.black)
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: BackButton)
@@ -88,6 +99,11 @@ struct InfoView: View {
             }, message: {
                 Text("재녹음 시 이전에 녹음된 정보는 삭제됩니다.")
             })
+            
+            .sheet(isPresented: $showTagView) {
+                InfoTagView(selectTag: $tag, showTagView: $showTagView)
+                    .presentationDragIndicator(.visible)
+            }
         }
     }
     
@@ -96,6 +112,7 @@ struct InfoView: View {
             pushBackButton = true
         } label: {
             Text("\(Image(systemName: "chevron.backward")) 다시 녹음")
+                .foregroundColor(.joyBlue)
         }
     }
     
@@ -110,6 +127,7 @@ struct InfoView: View {
             pageNumber = 2
         } label: {
             Text("완료")
+                .foregroundColor(title == "" ? .gray : Color.joyBlue)
         }
         .disabled(title == "")
     }

@@ -13,7 +13,7 @@ struct AddDoneView: View {
     var body: some View {
         NavigationStack {
             ZStack{
-                Color("JoyDarkG")
+                Color.joyDarkG
                     .ignoresSafeArea()
                 ZStack{
                     VStack{
@@ -26,7 +26,7 @@ struct AddDoneView: View {
                     VStack{
                         Spacer()
                         Text("소중한 추억이 인화되었어요")
-                            .foregroundColor(Color("JoyWhite"))
+                            .foregroundColor(Color.joyWhite)
                         
                     }
                     .frame(width: 400, height: 300)
