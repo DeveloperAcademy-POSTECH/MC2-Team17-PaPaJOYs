@@ -41,31 +41,34 @@ struct VoiceView: View {
                             .cornerRadius(10)
                     }
                     
-                    SoundVisualizer().opacity(voiceViewModel.isRecording && !voiceViewModel.isEndRecording ? 1 : 0)
+                    SoundVisualizer()
+                        .opacity(voiceViewModel.isRecording && !voiceViewModel.isEndRecording ? 1 : 0)
+                        .offset(y: voiceViewModel.isRecording && !voiceViewModel.isEndRecording ? 0 : -50)
                         .padding(.top, 30)
-                    
+                        .animation(.easeInOut(duration: 0.5))
+
                     ZStack {
                         
                         // 녹음 타이머 표시 뷰
-                        TimerView(vm: voiceViewModel)
-                        
-                        Button(action: {
-                            pageNumber = 1
-                        }, label: {
-                            if !voiceViewModel.isRecording && voiceViewModel.isEndRecording {
-                                ZStack {
-                                    Circle()
-                                        .fill(Color("JoyBlue"))
-                                        .frame(width: 57)
-                                    
-                                    Image(systemName: "checkmark")
-                                        .resizable()
-                                        .frame(width: 22, height: 22)
-                                        .foregroundColor(Color("JoyDarkG"))
-                                }
-                            }
-                        })
-                        .frame(width: 50, height: 50)
+                        TimerView(vm: voiceViewModel, recording: $recording, pageNumber: $pageNumber)
+
+//                        Button(action: {
+//                            pageNumber = 1
+//                        }, label: {
+//                            if !voiceViewModel.isRecording && voiceViewModel.isEndRecording {
+//                                ZStack {
+//                                    Circle()
+//                                        .fill(Color("JoyBlue"))
+//                                        .frame(width: 57)
+//                                    
+//                                    Image(systemName: "checkmark")
+//                                        .resizable()
+//                                        .frame(width: 22, height: 22)
+//                                        .foregroundColor(Color("JoyDarkG"))
+//                                }
+//                            }
+//                        })
+//                        .frame(width: 50, height: 50)
                         // 녹음 파일의 URL 값이 변경될 때, recording 변수에 저장
                         .onChange(of: voiceViewModel.recording) { newValue in
                             recording = newValue
