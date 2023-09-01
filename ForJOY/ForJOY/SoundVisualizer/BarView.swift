@@ -17,7 +17,7 @@ struct BarView: View {
                 .fill(LinearGradient(gradient: Gradient(colors: [index % 2 == 0 ? Color("JoyBlue") : Color("JoyYellow"), index % 2 == 0 ? Color("JoyBlue") : Color("JoyYellow")]),
                                      startPoint: .top,
                                      endPoint: .bottom))
-                .frame(width: 4, height: value)
+                .frame(width: 2, height: value)
         }
     }
 }
