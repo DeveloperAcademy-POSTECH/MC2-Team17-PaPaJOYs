@@ -8,63 +8,78 @@
 import SwiftUI
 
 struct InfoTagView: View {
-    @State var addTag: Bool = false
-    @State var newTag: String = ""
+    @State private var addTag: Bool = false
+    @State private var newTag: String = ""
     @State private var tags = [Tag]()
     @State private var isValueSet: Bool = false
+    
     @Binding var selectTag: String?
-    @FocusState private var textFieldIsFocused: Bool
+    @Binding var showTagView: Bool
     
     var body: some View {
         NavigationStack{
             VStack{
                 List(selection: $selectTag){
-                    ForEach(tags) { t in
-                        if t.tagName == selectTag {
+                    ForEach(0...min(tags.count, 9), id: \.self) { index in
+                        if tags.count < 10 && index == tags.count {
                             HStack {
-                                Text(t.tagName)
-                                    .tag(t.tagName)
-                                Spacer(minLength: 150)
-                                Image(systemName: "checkmark")
-                                    .multilineTextAlignment(.trailing)
+                                TextField("새로운 태그", text: $newTag)
+                                    .onChange(of: newTag) { newValue in
+                                        newTag = String(newValue.prefix(20))
+                                    }
+                                    .onSubmit {
+                                        if !tags.contains(where: {$0.tagName == newTag}){
+                                            tags.append(Tag(tagName: newTag))
+                                        }
+                                        newTag = ""
+                                    }
+                                
+                                Spacer(minLength: 0)
+                                
+                                Button(
+                                    action: {newTag = ""},
+                                    label: {
+                                        Image(systemName: "x.circle.fill")
+                                            .font(Font.system(size: 16, weight: .semibold))
+                                            .foregroundColor(.gray.opacity(0.5))
+                                    }
+                                )
                             }
-                            .listRowBackground(Color("JoyWhite"))
-                        }else{
-                            Text(t.tagName)
-                                .tag(t.tagName)
-                                .listRowBackground(Color("JoyWhite"))
+                            .listRowBackground(Color.joyWhite)
+                        }
+                        else {
+                            Button(
+                                action: {
+                                    selectTag = (selectTag == tags[index].tagName) ? nil : tags[index].tagName
+                                }, label: {
+                                    HStack {
+                                        Text(tags[index].tagName)
+                                            .tag(tags[index].tagName)
+                                            .foregroundColor(Color.black)
+                                        
+                                        Spacer(minLength: 0)
+                                        
+                                        if tags[index].tagName == selectTag {
+                                            Image(systemName: "checkmark")
+                                                .multilineTextAlignment(.trailing)
+                                                .font(Font.system(size: 17, weight: .semibold))
+                                                .foregroundColor(Color.joyBlue)
+                                        }
+                                    }
+                                }
+                            )
+                            .listRowBackground(Color.joyWhite)
                         }
                     }
                     .onDelete{ index in
                         tags.remove(atOffsets: index)
                         saveTags()
-                        if tags.isEmpty {
-                            addTag = true
-                            textFieldIsFocused = true
-                        }
-                    }
-            
-                    if addTag{
-                        TextField("태그", text: $newTag, onCommit: {addNewTag()})
-                            .listRowBackground(Color("JoyWhite"))
-                            .focused($textFieldIsFocused)
                     }
                 }
                 .scrollContentBackground(.hidden)
-                
-                Button(action: {
-                    addTag = true
-                    textFieldIsFocused = true
-                }, label: {
-                    HStack{
-                        Image(systemName: "plus.circle.fill")
-                        Text("Add tag")
-                    }
-                    .foregroundColor(Color("JoyBlue"))
-                })
             }
             .padding(8)
-            .background(Color("JoyDarkG"))
+            .background(Color.joyDarkG)
             .foregroundColor(.black)
             .onDisappear() {
                 saveTags()
@@ -77,6 +92,7 @@ struct InfoTagView: View {
                     }
                     return []
                 }()
+                
                 isValueSet = UserDefaults.standard.bool(forKey: "IsValueSet")
                 if isValueSet == false {
                     UserDefaults.standard.set(true, forKey: "IsValueSet")
@@ -87,29 +103,30 @@ struct InfoTagView: View {
                 
                 if tags.isEmpty {
                     addTag = true
-                    textFieldIsFocused = true
                 }
                 
                 if let selectTag = selectTag, !tags.contains(where: { $0.tagName == selectTag }) {
                     tags.append(Tag(tagName: selectTag))
                 }
             }
-        }
-        .navigationTitle("Tag")
-        .tint(Color("JoyBlue"))
-    }
-    
-    
-    func addNewTag() {
-        if newTag != "" {
-            textFieldIsFocused = true
-            tags.append(Tag(tagName: newTag))
-            DispatchQueue.main.async {
-                self.newTag = ""
+            .navigationTitle("태그")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbarBackground(Color.joyDarkG)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(
+                        action: {showTagView.toggle()},
+                        label: {
+                            Image(systemName: "x.circle.fill")
+                                .font(Font.system(size: 16, weight: .semibold))
+                                .foregroundColor(.gray)
+                        })
+                }
             }
         }
-        selectTag = newTag
-        addTag  = false
+        .tint(Color.joyBlue)
     }
     
     func saveTags() {

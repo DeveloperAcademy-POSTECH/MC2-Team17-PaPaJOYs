@@ -14,6 +14,7 @@ struct EditInfoView: View {
     @State private var tag: String?
     @State private var date = Date()
     @State private var isShowAlert = false
+    @State private var showTagView = false
     
     var selectedData: Memory
     
@@ -25,6 +26,7 @@ struct EditInfoView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: geometry.size.width - 30, height: geometry.size.height)
+                        .cornerRadius(10)
                         .clipped()
                         .padding(.horizontal, 15)
                         .padding(.top, 25)
@@ -33,44 +35,45 @@ struct EditInfoView: View {
                 List {
                     HStack{
                         Text("제목")
-                        Spacer(minLength: 100)
+                        Spacer(minLength: 0)
                         TextField("\(selectedData.title)", text: $title)
+                            .font(.system(size: (17.0 - CGFloat(selectedData.title.count)*0.3)))
                             .multilineTextAlignment(.trailing)
                             .onChange(of: selectedData.title) { newValue in
                                 selectedData.title = String(newValue.prefix(20))
                             }
+                            .padding(.trailing, 4)
                     }
-                    .listRowBackground(Color("JoyWhite"))
+                    .listRowBackground(Color.joyWhite)
                     
                     HStack {
                         Text("태그")
                             .frame(width: 60, alignment: .leading)
-                        Spacer(minLength: 190)
-                        NavigationLink(
-                            destination: InfoTagView(selectTag: $tag),
+                        
+                        Spacer(minLength: 0)
+                        
+                        Button(
+                            action: {showTagView = true},
                             label: {
                                 Text(tag == nil ? selectedData.tag : tag ?? "")
-                                    .frame(width: 60, alignment: .trailing)
+                                    .frame(maxWidth: 250, alignment: .trailing)
                             }
                         )
-                        .onChange(of: tag) { t in
-                            selectedData.tag = t ?? ""
-                        }
                     }
-                    .listRowBackground(Color("JoyWhite"))
+                    .listRowBackground(Color.joyWhite)
                     
                     DatePicker(
                         "날짜",
                         selection: $date,
                         displayedComponents: [.date]
                     )
-                    .tint(Color("JoyBlue"))
-                    .listRowBackground(Color("JoyWhite"))
+                    .tint(Color.joyBlue)
+                    .listRowBackground(Color.joyWhite)
                 }
                 .scrollContentBackground(.hidden)
                 .scrollDisabled(true)
             }
-            .background(Color("JoyDarkG"))
+            .background(Color.joyDarkG)
             .foregroundColor(.black)
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: BackButton)
@@ -82,19 +85,19 @@ struct EditInfoView: View {
                 date = selectedData.date
             }
             
-            .alert(
-                "편집을 취소하시겠습니까?",
-                isPresented: $isShowAlert,
-                actions: {
-                    Button("이어서 편집") { isShowAlert = false }
-                    Button("편집 취소") {
-                        dismiss()
-                    }
-                }, message: {
-                    Text("편집이 취소되면 수정 사항이 저장되지 않습니다.")
-                }
-            )
+            .alert("편집을 취소하시겠습니까?", isPresented: $isShowAlert, actions: {
+                Button("이어서 편집", role: .cancel) { }
+                Button("편집 취소", role: .destructive) { dismiss() }
+            }, message: {
+                Text("편집이 취소되면 수정 사항이 저장되지 않습니다.")
+            })
             
+            .sheet(isPresented: $showTagView) {
+                InfoTagView(selectTag: $tag, showTagView: $showTagView)
+                    .onChange(of: tag) { t in
+                        selectedData.tag = t ?? ""
+                    }
+            }
         }
     }
     
@@ -110,12 +113,11 @@ struct EditInfoView: View {
     private var DoneButton: some View {
         Button(
             action: {
-                //TODO: Update DB
                 CoreDataManager.coreDM.updateMemory(selectedData.objectID, title, tag ?? "없음", date)
                 dismiss()
             }, label: {
                 Text("저장")
-                    .foregroundColor(.blue)
+                    .foregroundColor(Color.joyBlue)
             })
     }
 }
