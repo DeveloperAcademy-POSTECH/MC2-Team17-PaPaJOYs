@@ -9,6 +9,8 @@ import SwiftUI
 
 struct PhotoSelectButton: View {
     @Binding var memories: [Int: [Memory]]
+    @Binding var tags: [String]
+    
     @State private var isShowActionSheet = false
     @State private var selectedImage: UIImage?
     @State private var isShowingActionSheet = false
@@ -21,28 +23,30 @@ struct PhotoSelectButton: View {
             ZStack(alignment: .bottom) {
                 LinearGradient(colors: [Color("JoyDarkG").opacity(0), Color("JoyDarkG")], startPoint: .top, endPoint: .bottom)
                 
-                Button(action: {
+                Button {
                     isShowActionSheet = true
-                }, label: {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color("JoyYellow"))
-                        .frame(height: screenHeight * 0.065)
-                        .overlay {
-                            HStack {
-                                Image(systemName: "plus")
-                                Text("새로운 추억 기록하기")
-                            }
-                            .foregroundColor(Color("JoyDarkG"))
-                            .fontWeight(.bold)
-                            .font(.headline)
-                        }
-                        .padding(.horizontal, 20)
-                })
+                } label: {
+                    HStack {
+                        Image(systemName: "plus")
+                        Text("새로운 추억 기록하기")
+                    }
+                    .frame(maxWidth: .infinity)
+                    .foregroundColor(Color("JoyDarkG"))
+                    .fontWeight(.bold)
+                    .font(.headline)
+                    .padding(.vertical, 18)
+                    .background {
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(Color("JoyYellow"))
+                    }
+                    .padding(.horizontal, 16)
+                }
+
                 .confirmationDialog("photo", isPresented: $isShowActionSheet) {
                     Button(action: {
                         isShowingCameraPicker = true
                     }, label: {
-                        Text("사진 찍으러 가기")
+                        Text("사진 촬영")
                             .foregroundColor(Color("JoyBlue"))
                     })
                     .background(Color("JoyWhite"))
@@ -50,7 +54,7 @@ struct PhotoSelectButton: View {
                     Button(action: {
                         isShowingPhotoLibraryPicker = true
                     }, label: {
-                        Text("사진 고르러 가기")
+                        Text("사진 선택")
                             .foregroundColor(Color("JoyBlue"))
                     })
                     .background(Color("JoyWhite"))
@@ -73,19 +77,23 @@ struct PhotoSelectButton: View {
             
             Rectangle()
                 .foregroundColor(Color("JoyDarkG"))
-                .frame(height: screenHeight * 0.04)
+                .frame(height: UIScreen.height * 0.04)
         }
-        .frame(height: screenHeight * 0.15)
+        .frame(height: UIScreen.height * 0.15)
         
-        .fullScreenCover(isPresented: $isChoosen, onDismiss: {
-            memories = CoreDataManager.coreDM.getYearlyMemories() }) {
+        .fullScreenCover(isPresented: $isChoosen, onDismiss: { updateData() }) {
             RecordingAndInfoView(selectedImage: $selectedImage)
         }
     }
     
     func loadImage() {
-        if let image = selectedImage {
+        if selectedImage != nil {
             isChoosen.toggle()
         }
+    }
+    
+    func updateData() {
+        tags = CoreDataManager.coreDM.getUniqueTags()
+        memories = CoreDataManager.coreDM.getYearlyMemories()
     }
 }
