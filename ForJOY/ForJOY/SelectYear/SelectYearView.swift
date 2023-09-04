@@ -34,7 +34,6 @@ struct SelectYearView: View {
                         Text("아직 저장된 추억이 없어요")
                             .font(.headline)
                             .foregroundColor(.white)
-//                            .padding(.bottom, 450)
                     }
                 }
 

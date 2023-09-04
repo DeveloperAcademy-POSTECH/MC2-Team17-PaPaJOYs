@@ -37,16 +37,32 @@ struct GalleryView: View {
                     ScrollView {
                         LazyVGrid(columns: columns, spacing: 4.5) {
                             // TODO: 정렬하기..
-                            ForEach(Array(album.enumerated()), id: \.0) { i, post in
-                                NavigationLink(destination: CardView(players: $players.players, order: i, filteredData: album)) {
-                                    Image(uiImage: UIImage(data: Data(base64Encoded: post.image)!) ?? UIImage(systemName: "house")!)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: imageSize, height: imageSize)
-                                        .clipped()
-                                        .cornerRadius(10)
+
+//
+                            if isNewest {
+                                ForEach(Array(album.sorted{ $0.date > $1.date }.enumerated()), id: \.0) { i, post in
+                                    NavigationLink(destination: CardView(players: $players.players, order: i, filteredData: album.sorted{ $0.date > $1.date })) {
+                                        Image(uiImage: UIImage(data: Data(base64Encoded: post.image)!) ?? UIImage(systemName: "house")!)
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width: imageSize, height: imageSize)
+                                            .clipped()
+                                            .cornerRadius(10)
+                                    }
+                                }
+                            } else {
+                                ForEach(Array(album.sorted{ $0.date < $1.date }.enumerated()), id: \.0) { i, post in
+                                    NavigationLink(destination: CardView(players: $players.players, order: i, filteredData: album.sorted{ $0.date < $1.date })) {
+                                        Image(uiImage: UIImage(data: Data(base64Encoded: post.image)!) ?? UIImage(systemName: "house")!)
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width: imageSize, height: imageSize)
+                                            .clipped()
+                                            .cornerRadius(10)
+                                    }
                                 }
                             }
+                            
                         }
                         .offset(self.offset)
                     }
