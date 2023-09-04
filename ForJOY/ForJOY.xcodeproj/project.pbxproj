@@ -21,7 +21,6 @@
 		3032387E2A00A876008A8093 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3032387D2A00A876008A8093 /* Assets.xcassets */; };
 		303238812A00A876008A8093 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 303238802A00A876008A8093 /* Preview Assets.xcassets */; };
 		303238882A00B3BB008A8093 /* SelectYearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303238872A00B3BB008A8093 /* SelectYearView.swift */; };
-		3032388B2A00B89E008A8093 /* Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3032388A2A00B89E008A8093 /* Ref.swift */; };
 		3037CB862A09DFF200E6A92E /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3037CB852A09DFF200E6A92E /* GalleryView.swift */; };
 		3063F2C92A0E1B5900C56EBA /* (null) in Resources */ = {isa = PBXBuildFile; };
 		3063F2CA2A0E1B5900C56EBA /* (null) in Resources */ = {isa = PBXBuildFile; };
@@ -29,6 +28,8 @@
 		3063F2CE2A0E1BB500C56EBA /* (null) in Sources */ = {isa = PBXBuildFile; };
 		3063F2D52A0FEE4900C56EBA /* panpare.json in Resources */ = {isa = PBXBuildFile; fileRef = 3063F2D32A0FEE4800C56EBA /* panpare.json */; };
 		3063F2D62A0FEE4900C56EBA /* RecComplete2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3063F2D42A0FEE4900C56EBA /* RecComplete2.json */; };
+		30B9FE392AA03B2B00205BB7 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9FE382AA03B2B00205BB7 /* UIScreen+.swift */; };
+		30B9FE3B2AA24A4E00205BB7 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9FE3A2AA24A4E00205BB7 /* UINavigationController+.swift */; };
 		30BDADE62A034DB7000BDA8F /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADDA2A034DB7000BDA8F /* CircularProgressView.swift */; };
 		30BDADE92A034DB7000BDA8F /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADDF2A034DB7000BDA8F /* Date+.swift */; };
 		30BDADEC2A034DB7000BDA8F /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADE32A034DB7000BDA8F /* TimerView.swift */; };
@@ -98,10 +99,11 @@
 		3032387D2A00A876008A8093 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		303238802A00A876008A8093 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		303238872A00B3BB008A8093 /* SelectYearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectYearView.swift; sourceTree = "<group>"; };
-		3032388A2A00B89E008A8093 /* Ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ref.swift; sourceTree = "<group>"; };
 		3037CB852A09DFF200E6A92E /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
 		3063F2D32A0FEE4800C56EBA /* panpare.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = panpare.json; sourceTree = "<group>"; };
 		3063F2D42A0FEE4900C56EBA /* RecComplete2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RecComplete2.json; sourceTree = "<group>"; };
+		30B9FE382AA03B2B00205BB7 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
+		30B9FE3A2AA24A4E00205BB7 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		30BDADDA2A034DB7000BDA8F /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		30BDADDF2A034DB7000BDA8F /* Date+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		30BDADE32A034DB7000BDA8F /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
@@ -239,7 +241,6 @@
 		30BDADD72A034D7D000BDA8F /* SelectYear */ = {
 			isa = PBXGroup;
 			children = (
-				3032388A2A00B89E008A8093 /* Ref.swift */,
 				303238872A00B3BB008A8093 /* SelectYearView.swift */,
 				301576B62A88B7D200BBA5A8 /* PhotoSelectButton.swift */,
 				301576F52A90BF0100BBA5A8 /* RecordingAndInfoView.swift */,
@@ -269,6 +270,8 @@
 			isa = PBXGroup;
 			children = (
 				30BDADDF2A034DB7000BDA8F /* Date+.swift */,
+				30B9FE382AA03B2B00205BB7 /* UIScreen+.swift */,
+				30B9FE3A2AA24A4E00205BB7 /* UINavigationController+.swift */,
 				0E641AB72AA2536E00FE69FE /* Color+.swift */,
 			);
 			path = Extensions;
@@ -474,18 +477,19 @@
 				30BDADEE2A034DB7000BDA8F /* VoiceView.swift in Sources */,
 				30BDADE62A034DB7000BDA8F /* CircularProgressView.swift in Sources */,
 				0E484E292A515E96002F9C9A /* ImagePicker.swift in Sources */,
+				30B9FE3B2AA24A4E00205BB7 /* UINavigationController+.swift in Sources */,
 				301576B72A88B7D200BBA5A8 /* PhotoSelectButton.swift in Sources */,
 				BE522DFD2A05A48D00D4AEEA /* CarouselView.swift in Sources */,
 				0E641AB82AA2536E00FE69FE /* Color+.swift in Sources */,
 				BECC97372A05A54700E27120 /* CardView.swift in Sources */,
 				301576F62A90BF0100BBA5A8 /* RecordingAndInfoView.swift in Sources */,
 				30C74FA52A0D06EB0099DC1B /* InfoView.swift in Sources */,
-				3032388B2A00B89E008A8093 /* Ref.swift in Sources */,
 				0E4E7DB92A10EDDA00D72E66 /* Memory.swift in Sources */,
 				0E4533DA2A95E73500661D8B /* PermissionHandler.swift in Sources */,
 				5B08A50B2A147CB000496242 /* VoiceViewModel.swift in Sources */,
 				5BB7EF6F2A7FAACB008E772A /* DataModel.xcdatamodeld in Sources */,
 				AA5154F02A974C9A00C4DC7D /* BarView.swift in Sources */,
+				30B9FE392AA03B2B00205BB7 /* UIScreen+.swift in Sources */,
 				300D732B2A11D8A2007D38E9 /* Players.swift in Sources */,
 				5BB7EF932A87B0EE008E772A /* Test.swift in Sources */,
 				30BDADE92A034DB7000BDA8F /* Date+.swift in Sources */,

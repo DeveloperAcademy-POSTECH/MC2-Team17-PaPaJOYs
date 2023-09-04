@@ -16,35 +16,37 @@ struct SelectYearView: View {
     @State private var isAllSelect = true
     @State private var selectedTag = "All"
     
-//    @State private var offset: CGSize = CGSize(width: 100, height: 0.0)
-    
     var body: some View {
         NavigationStack {
             ZStack {
                 Color("JoyDarkG")
                     .ignoresSafeArea()
-                
+
                 if memories.count > 0 {
-                    VStack(spacing: 15) {
-                        HeaderView
-                            .padding(.top, 5)
+                    AlbumView(memories: $memories, isNewest: $isNewest, selectedTag: $selectedTag)
+                        .padding(.horizontal)
+                        .padding(.top, 20)
                         
-                        AlbumView(isNewest: $isNewest, selectedTag: $selectedTag)
-                            .padding(10)
-                            .ignoresSafeArea()
-                    }
                 } else {
-                    Text("아직 저장된 추억이 없어요")
-                        .font(.headline)
-                        .foregroundColor(.white)
+                    VStack {
+                        // TODO: 폴라로이드 이미지 필요
+                        
+                        Text("아직 저장된 추억이 없어요")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                    }
                 }
+
                 
                 VStack() {
                     Spacer()
-                    PhotoSelectButton(memories: $memories)
+                    PhotoSelectButton(memories: $memories, tags: $tags)
                 }
-                .edgesIgnoringSafeArea([.bottom])
             }
+            .edgesIgnoringSafeArea([.bottom])
+            
+            .navigationBarItems(leading: TagView)
+            .navigationBarItems(trailing: SortButton)
         }
         .onAppear {
             getLoad()
@@ -56,102 +58,88 @@ struct SelectYearView: View {
         memories = CoreDataManager.coreDM.getYearlyMemories()
     }
     
-    private var InfoButton: some View {
-        Button {
-            
-        } label: {
-            Image(systemName: "info.circle")
-        }
-
-    }
-    
-    private var HeaderView: some View {
-        HStack(spacing: 50) {
-            Menu {
-                Button(action: {isNewest = true}) {
-                    HStack {
-                        Text("최근부터 보기")
-                        Spacer()
-                        if isNewest {
-                            Image(systemName: "checkmark")
+    private var TagView: some View {
+        ScrollViewReader { proxy in
+            ScrollView(.horizontal, showsIndicators: false) {
+                 HStack(spacing: 10) {
+                     Button {
+                         selectedTag = "All"
+                         isAllSelect = true
+                     } label: {
+                         Text("모든 태그")
+                             .font(.system(size: 15))
+                             .fontWeight(.semibold)
+                             .lineLimit(1)
+                             .padding(.vertical, 5)
+                             .padding(.horizontal, 10)
+                             .background(isAllSelect ? Color("JoyBlue") : Color("JoyDarkG"))
+                             .clipShape(RoundedRectangle(cornerRadius: 6))
+                             .overlay {
+                                 RoundedRectangle(cornerRadius: 6)
+                                     .strokeBorder(isAllSelect ? Color("JoyBlue") : Color("JoyWhite"), lineWidth: 1)
+                             }
+                     }
+                     
+                    ForEach( Array(tags.sorted().filter{$0 != "없음"}) , id: \.self) { i in
+                        Button {
+                            selectedTag = i
+                            isAllSelect = false
+                        } label: {
+                            Text("#" + i)
+                                .font(.system(size: 15))
+                                .fontWeight(.semibold)
+                                .lineLimit(1)
+                                .padding(.vertical, 5)
+                                .padding(.horizontal, 10)
+                                .background(isAllSelect ? Color("JoyDarkG") : (selectedTag == i ? Color("JoyBlue") : Color("JoyDarkG")))
+                                .clipShape(RoundedRectangle(cornerRadius: 6))
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 6)
+                                        .strokeBorder(isAllSelect ? Color("JoyWhite") : (selectedTag == i ? Color("JoyBlue") : Color("JoyWhite")))
+                                }
                         }
                     }
                 }
-                Button(action: {isNewest = false}) {
-                    Text("과거부터 보기")
-                    Spacer()
-                    if !isNewest {
-                        Image(systemName: "checkmark")
-                    }
-                }
-            } label: {
-                Image(systemName: "chevron.up.chevron.down")
-                    .font(.system(size: 25))
-                    .foregroundColor(Color("JoyBlue"))
-                    .padding(.leading, 20)
             }
-            
-            TagView
-                .frame(alignment: .trailing)
+            .frame(width: UIScreen.width - 116)
         }
     }
     
-    private var TagView: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 10) {
-                Button {
-                    selectedTag = "All"
-                    isAllSelect = true
-                } label: {
-                    Text("모든 태그")
-                        .font(.system(size: 15))
-                        .fontWeight(.semibold)
-                        .lineLimit(1)
-                        .padding(.vertical, 5)
-                        .padding(.horizontal, 10)
-                        .background(isAllSelect ? Color("JoyBlue") : Color("JoyDarkG"))
-                        .clipShape(RoundedRectangle(cornerRadius: 6))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 6)
-                                .strokeBorder(isAllSelect ? Color("JoyBlue") : Color("JoyWhite"), lineWidth: 1)
-                        )
-                }
-
-                ForEach( Array(tags.sorted().filter{$0 != "없음"}) , id: \.self) { i in
-                    Button {
-                        selectedTag = i
-                        isAllSelect = false
-                    } label: {
-                        Text("#" + i)
-                            .font(.system(size: 15))
-                            .fontWeight(.semibold)
-                            .lineLimit(1)
-                            .padding(.vertical, 5)
-                            .padding(.horizontal, 10)
-                            .background(isAllSelect ? Color("JoyDarkG") : (selectedTag == i ? Color("JoyBlue") : Color("JoyDarkG")))
-                            .clipShape(RoundedRectangle(cornerRadius: 6))
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 6)
-                                    .strokeBorder(isAllSelect ? Color("JoyWhite") : (selectedTag == i ? Color("JoyBlue") : Color("JoyWhite")))
-                            }
+    private var SortButton: some View {
+        Menu {
+            Button(action: {isNewest = true}) {
+                HStack {
+                    Text("최신 항목 순으로")
+                    Spacer()
+                    if isNewest {
+                        Image(systemName: "checkmark")
                     }
                 }
             }
+            Button(action: {isNewest = false}) {
+                Text("오래된 항목 순으로")
+                Spacer()
+                if !isNewest {
+                    Image(systemName: "checkmark")
+                }
+            }
+        } label: {
+            Image(systemName: "chevron.up.chevron.down")
+                .foregroundColor(Color("JoyBlue"))
         }
     }
 }
 
 struct AlbumView: View {
+    @Binding var memories: [Int: [Memory]]
     @Binding var isNewest: Bool
     @Binding var selectedTag: String
     
-    var columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 10), count: 2)
+    var columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 20), count: 2)
     
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: columns, spacing: 10) {
-                let memories = CoreDataManager.coreDM.getYearlyMemories()
-                
+            LazyVGrid(columns: columns, spacing: 20) {
                 if selectedTag == "All" {
                     ForEach(Array(isNewest ? memories.keys.sorted(by: >) : memories.keys.sorted()), id: \.self) { key in
                         NavigationLink(destination: GalleryView(tagName: selectedTag, year: key, album: memories[key]!)) {
@@ -173,13 +161,15 @@ struct AlbumView: View {
                     }
                 }
             }
-            .padding(.horizontal, 10)
         }
     }
 }
 
 struct AlbumSubView: View {
     let post: Memory
+    
+    private let imageSize = UIScreen.width / 2 - 52
+    
     var body: some View {
         ZStack {
             Color("JoyWhite")
@@ -187,7 +177,7 @@ struct AlbumSubView: View {
                 Image(uiImage: UIImage(data: Data(base64Encoded: post.image)!) ?? UIImage(systemName: "house")!)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: screenWidth * 0.38, height: screenWidth * 0.38)
+                    .frame(width: imageSize, height: imageSize)
                     .clipped()
                     .cornerRadius(9)
                     .padding(.top, 13)
@@ -195,9 +185,9 @@ struct AlbumSubView: View {
                 Text("\(post.year)".replacingOccurrences(of: ",", with: ""))
                     .font(.system(size: 20, weight: .semibold))
                     .foregroundColor(Color("JoyDarkG"))
-                    .padding(.vertical, 10)
+                    .padding(10)
             }
-            .padding(.horizontal, 12)
+            .padding(.horizontal, 13)
         }
         .cornerRadius(10)
     }
