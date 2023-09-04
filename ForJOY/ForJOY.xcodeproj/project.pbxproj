@@ -13,6 +13,7 @@
 		0E484E292A515E96002F9C9A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E484E282A515E96002F9C9A /* ImagePicker.swift */; };
 		0E4E7DB92A10EDDA00D72E66 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E7DB82A10EDDA00D72E66 /* Memory.swift */; };
 		0E4E7DE22A111CDE00D72E66 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4E7DE12A111CDE00D72E66 /* Tag.swift */; };
+		0E641AB82AA2536E00FE69FE /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E641AB72AA2536E00FE69FE /* Color+.swift */; };
 		300D732B2A11D8A2007D38E9 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D732A2A11D8A2007D38E9 /* Players.swift */; };
 		301576B72A88B7D200BBA5A8 /* PhotoSelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301576B62A88B7D200BBA5A8 /* PhotoSelectButton.swift */; };
 		301576F62A90BF0100BBA5A8 /* RecordingAndInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301576F52A90BF0100BBA5A8 /* RecordingAndInfoView.swift */; };
@@ -89,6 +90,7 @@
 		0E484E282A515E96002F9C9A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		0E4E7DB82A10EDDA00D72E66 /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
 		0E4E7DE12A111CDE00D72E66 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		0E641AB72AA2536E00FE69FE /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		300D732A2A11D8A2007D38E9 /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		301576B62A88B7D200BBA5A8 /* PhotoSelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectButton.swift; sourceTree = "<group>"; };
 		301576F52A90BF0100BBA5A8 /* RecordingAndInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingAndInfoView.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				30BDADDF2A034DB7000BDA8F /* Date+.swift */,
 				30B9FE382AA03B2B00205BB7 /* UIScreen+.swift */,
 				30B9FE3A2AA24A4E00205BB7 /* UINavigationController+.swift */,
+				0E641AB72AA2536E00FE69FE /* Color+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				30B9FE3B2AA24A4E00205BB7 /* UINavigationController+.swift in Sources */,
 				301576B72A88B7D200BBA5A8 /* PhotoSelectButton.swift in Sources */,
 				BE522DFD2A05A48D00D4AEEA /* CarouselView.swift in Sources */,
+				0E641AB82AA2536E00FE69FE /* Color+.swift in Sources */,
 				BECC97372A05A54700E27120 /* CardView.swift in Sources */,
 				301576F62A90BF0100BBA5A8 /* RecordingAndInfoView.swift in Sources */,
 				30C74FA52A0D06EB0099DC1B /* InfoView.swift in Sources */,

@@ -11,6 +11,7 @@ import AVFoundation
 
 struct TimerView: View {
     @ObservedObject var vm: VoiceViewModel
+    //    @Environment(\.dismiss) private var dismiss
     
     // 목소리 녹음과 관련된 뷰 모델
     @StateObject var voiceViewModel = VoiceViewModel()
@@ -25,22 +26,11 @@ struct TimerView: View {
     // 1초 간격으로 업데이트하는 타이머
     @State var timer2 = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
-    // 애니메이션을 위한 원의 위치, 크기 및 블러 설정
-//    @State var blueCircleOffset: CGSize = .init(width: -40, height: 0)
-//    @State var yellowCircleOffset: CGSize = .init(width: 80, height: 40)
-//    @State var blurSize : Double = 20
-//    @State var circle1: Double = 1.0
-//    @State var circle2: Double = 1.0
-//    @State var progressOpacity = 1.0
-//    @State var showLottieView = true
-//    @State var maskFrameSize : CGFloat = 50  // 마스크의 프레임 크기
+    @State private var animationTriggered = false
     
-    // 녹음 파일 저장 URL
-//    @State var recording: URL?
-    // 다음 화면으로 이동하기 위한 상태 변수
-//    @State var isChoosen = false
-//    @State var navigateToInfoView: Bool = false
-    
+    // 녹음 파일의 URL
+    @Binding var recording: URL?
+    @Binding var pageNumber: Int
     
     // 오디오 녹음기 설정
     let audioRecorder = try! AVAudioRecorder(
@@ -53,27 +43,6 @@ struct TimerView: View {
         ]
     )
     
-    // 무작위 위치 값을 반환
-//    func getRandomOffset() -> CGSize {
-//        let x = CGFloat.random(in: -50...80)
-//        let y = CGFloat.random(in: -60...60)
-//        return CGSize(width: x, height: y)
-//    }
-    // 데시벨 값에 따라 원의 크기를 조절
-//    func circleSize(){
-//        if vm.isRecording == true {
-//            if decibels > 70 {
-//                circle1 = 0.8
-//                circle2 = 1.2
-//            }else{
-//                circle1 = 1.0
-//                circle2 = 1.0
-//            }
-//        }else if vm.isEndRecording == true {
-//            circle1 = 1.0
-//            circle2 = 1.0
-//        }
-//    }
     // TimeInterval 값을 분:초 형식의 문자열로 변환
     func timeString(from time: TimeInterval) -> String {
         let minutes = Int(time) / 60 % 60
@@ -109,28 +78,15 @@ struct TimerView: View {
             // Timer logic here
         }
     }
-
+    
     
     // 녹음 중 데시벨을 업데이트하고 원 크기 조절
     func record() {
         // 데시벨 값 업데이트 및 원 크기 조절 애니메이션
         audioRecorder.updateMeters()
         decibels = 100+CGFloat(audioRecorder.averagePower(forChannel: 0))
-//        withAnimation(Animation.easeInOut(duration: 2)) {
-//            circleSize()
-//        }
     }
-    // 녹음 종료 버튼 애니메이션 설정
-//    func endButton() {
-//        // 버튼 관련 애니메이션 설정
-//        withAnimation(Animation.easeInOut(duration: 2.1)) {
-//            blueCircleOffset = .init(width: -40, height: -30)
-//            yellowCircleOffset = .init(width: 73, height: 37.5)
-//            blurSize = 0
-//        }
-//
-//    }
-
+    
     // 뷰 본문 정의
     var body: some View {
         // 전체 뷰를 구성하는 UI 요소와 로직
@@ -141,44 +97,39 @@ struct TimerView: View {
             Color("JoyDarkG")
                 .ignoresSafeArea()
             
-            // 중앙 정렬을 위한 VStack
             VStack{
                 // 녹음 진행도와 관련된 UI를 그룹화하는 ZStack
                 ZStack{
                     
                     // 녹음이 아직 시작되지 않았을 때의 녹음 버튼
+                    // 1번
                     if !vm.isRecording && !vm.isEndRecording {
                         Button(action: {
-                            vm.startRecording()  // 녹음 시작
+                            vm.startRecording()
                         }){
                             ZStack{
-                                // 녹음 버튼의 배경 원
                                 Circle()
                                     .fill(Color("JoyYellow"))
                                     .frame(width: 57)
                                 
-                                // 마이크 아이콘
                                 Image(systemName: "mic.fill")
                                     .resizable()
                                     .frame(width: 20, height: 30)
                                     .foregroundColor(Color("JoyDarkG"))
                             }
                         }
-                        
                     } else {
                         // 녹음 중과 녹음 종료 시의 UI
                         // 녹음 중일 때의 녹음 종료 버튼
+                        // 2번
                         if vm.isRecording && !vm.isEndRecording {
                             Button(action: {
-                                // 녹음 종료 관련 애니메이션 및 로직
-//                                    endButton()
-//                                    maskFrameSize = 50
                                 remainingTime = 0.0
                                 recProgress = 1.0
                                 vm.isRecording = false
                                 vm.isEndRecording = true
                                 vm.stopRecording()
-//                                    progressOpacity = 0
+                                //                                pageNumber = 1
                             }, label: {
                                 ZStack{
                                     Circle()
@@ -189,9 +140,30 @@ struct TimerView: View {
                                         .resizable()
                                         .frame(width: 22, height: 22)
                                         .foregroundColor(Color("JoyDarkG"))
-                                    
                                 }
                             })
+                        }
+                    }
+                    // 3번
+                    if !vm.isRecording && vm.isEndRecording {
+                        ZStack {
+                            Circle()
+                                .fill(Color("JoyBlue"))
+                                .frame(width: 57)
+                            
+                            Image(systemName: "checkmark")
+                                .resizable()
+                                .frame(width: 22, height: 22)
+                                .foregroundColor(Color("JoyDarkG"))
+                                .scaleEffect(animationTriggered ? 1.0 : 0.1)
+                                .opacity(animationTriggered ? 1.0 : 0.0)
+                                .animation(Animation.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.5).delay(0.1))
+                        }
+                        .onAppear() {
+                            animationTriggered = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                pageNumber += 1  // Navigate to the next page
+                            }
                         }
                     }
                 }
@@ -209,10 +181,16 @@ struct TimerView: View {
                 }
                 
                 // 타이머를 표시하는 Text 뷰 추가
-                Text(timeString(from: remainingTime))
-                    .font(.system(size: 16))
-                    .foregroundColor(.white)
-                    .padding(.top, 8) // 원과의 간격을 조정
+                if !(vm.isEndRecording) {
+                    Text(timeString(from: remainingTime))
+                        .font(.system(size: 16))
+                        .foregroundColor(.white)
+                        .padding(.top, 8)
+                } else {
+                    Text("")
+                        .font(.system(size: 16))
+                        .padding(.top, 8)
+                }
             }
         }
         // 1초마다 업데이트하는 로직
@@ -224,23 +202,11 @@ struct TimerView: View {
                     remainingTime -= 1
                     recProgress += (1/settingTime)
                     
-//                    withAnimation(Animation.easeInOut(duration: 9)) {
-//                        blueCircleOffset = getRandomOffset()
-//                        yellowCircleOffset = getRandomOffset()
-//
-//                        if Int(remainingTime) % 7 == 0 {
-//                            blurSize = (remainingTime/7) + 0
-//                        }
-//                    }
-                    
                 } else if remainingTime <= 0 {
                     
-//                    endButton()
                     vm.isRecording = false
                     vm.isEndRecording = true
                     vm.stopRecording()
-//                    progressOpacity = 0
-//                    maskFrameSize = 50
                 }
             }
         }

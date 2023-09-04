@@ -17,11 +17,12 @@ struct PhotoSelectButton: View {
     @State private var isShowingCameraPicker = false
     @State private var isShowingPhotoLibraryPicker = false
     @State private var isChoosen = false
+    @State private var showRecordingAndInfoView = false
     
     var body: some View {
         VStack(spacing: 0) {
             ZStack(alignment: .bottom) {
-                LinearGradient(colors: [Color("JoyDarkG").opacity(0), Color("JoyDarkG")], startPoint: .top, endPoint: .bottom)
+                LinearGradient(colors: [Color.joyDarkG.opacity(0), Color.joyDarkG], startPoint: .top, endPoint: .bottom)
                 
                 Button {
                     isShowActionSheet = true
@@ -41,47 +42,49 @@ struct PhotoSelectButton: View {
                     }
                     .padding(.horizontal, 16)
                 }
-
                 .confirmationDialog("photo", isPresented: $isShowActionSheet) {
                     Button(action: {
                         isShowingCameraPicker = true
                     }, label: {
                         Text("사진 촬영")
                             .foregroundColor(Color("JoyBlue"))
-                    })
-                    .background(Color("JoyWhite"))
+                    .background(Color.joyWhite)
 
                     Button(action: {
                         isShowingPhotoLibraryPicker = true
                     }, label: {
                         Text("사진 선택")
-                            .foregroundColor(Color("JoyBlue"))
+                            .foregroundColor(Color.joyBlue)
                     })
-                    .background(Color("JoyWhite"))
+                    .background(Color.joyWhite)
                     
                     Button(role: .cancel, action: {
                     }, label: {
                         Text("Cancel")
                     })
                 }
-                .sheet(isPresented: $isShowingCameraPicker, onDismiss: { isChoosen.toggle() }) {
+                .fullScreenCover(isPresented: $isShowingCameraPicker, onDismiss: { isChoosen.toggle() }) {
                     ImagePicker(selectedImage: $selectedImage, sourceType: .camera)
                         .ignoresSafeArea()
                 }
                 .sheet(isPresented: $isShowingPhotoLibraryPicker, onDismiss: { isChoosen.toggle() }) {
                     ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
                         .ignoresSafeArea()
-                        .tint(Color("JoyBlue"))
+                        .tint(Color.joyBlue)
                 }
             }
             
             Rectangle()
-                .foregroundColor(Color("JoyDarkG"))
-                .frame(height: UIScreen.height * 0.04)
+                .foregroundColor(Color.joyDarkG)
+                .frame(height: screenHeight * 0.04)
         }
-        .frame(height: UIScreen.height * 0.15)
+        .frame(height: screenHeight * 0.15)
+        .onChange(of: selectedImage) { _ in
+            showRecordingAndInfoView.toggle()
+        }
         
-        .fullScreenCover(isPresented: $isChoosen, onDismiss: { updateData() }) {
+        .fullScreenCover(isPresented: $showRecordingAndInfoView, onDismiss: {
+            memories = CoreDataManager.coreDM.getYearlyMemories() }) {
             RecordingAndInfoView(selectedImage: $selectedImage)
         }
     }

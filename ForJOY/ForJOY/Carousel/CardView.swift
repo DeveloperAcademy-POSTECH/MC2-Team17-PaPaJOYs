@@ -104,6 +104,21 @@ struct CardView: View {
     }
 }
 
+class AudioPlayerDelegate: NSObject, AVAudioPlayerDelegate {
+    @Binding var isPlaying: Bool
+    
+    init(isPlaying: Binding<Bool>) {
+        _isPlaying = isPlaying
+        super.init()
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        if flag {
+            isPlaying = false
+        }
+    }
+}
+
 struct CardContentView: View {
     @State private var currentTime: Double = 0.0
     @State private var remainingTime: Double = 0.0
@@ -130,6 +145,9 @@ struct CardContentView: View {
         }
     }
     
+    @State private var audioDelegate: AudioPlayerDelegate? = nil
+
+    
     var body: some View {
         VStack{
             ImageView(imageName: imageName)
@@ -146,10 +164,15 @@ struct CardContentView: View {
                 }
                 .padding(.leading, 20)
                 Spacer()
+                //여기아래부터수정할거
                 Button(action: {
                     if isPlaying {
                         player.pause()
                     } else {
+                        // If player finished playing, seek to the beginning
+                        if player.currentTime() == player.currentItem?.duration {
+                            player.seek(to: CMTime.zero)
+                        }
                         player.play()
                     }
                     isPlaying.toggle()
@@ -160,6 +183,12 @@ struct CardContentView: View {
                         .foregroundColor(isPlaying ? Color("JoyYellow") : Color("JoyBlue"))
                 }
                 .padding(.trailing, 20)
+                .onAppear {
+                    // Add notification to handle playback finished
+                    NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: player.currentItem, queue: .main) { _ in
+                        isPlaying = false
+                    }
+                }
             }
             Spacer()
         }
