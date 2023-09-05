@@ -24,7 +24,7 @@ struct CardView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color("JoyDarkG")
+                Color.joyDarkG
                     .ignoresSafeArea()
                 CarouselView(carouselLocation: $order, players: $players, isPlaying: $isPlaying, itemHeight: 520, views: cardGroup)
                 
@@ -160,7 +160,7 @@ struct CardContentView: View {
                         .bold()
                         .allowsTightening(true)
                     Text(date)
-                        .foregroundColor(Color("JoyLightG"))
+                        .foregroundColor(Color.joyLightG)
                 }
                 .padding(.leading, 20)
                 Spacer()
