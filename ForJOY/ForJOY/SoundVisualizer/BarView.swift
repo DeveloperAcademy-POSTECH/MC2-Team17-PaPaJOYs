@@ -14,7 +14,7 @@ struct BarView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
-                .fill(LinearGradient(gradient: Gradient(colors: [index % 2 == 0 ? Color.joyBlue : Color.joyYellow, index % 2 == 0 ? Color.joyBlue : Color.joyYellow]),
+                .fill(LinearGradient(gradient: Gradient(colors: [index % 2 == 0 ? Color("JoyBlue") : Color("JoyYellow"), index % 2 == 0 ? Color("JoyBlue") : Color("JoyYellow")]),
                                      startPoint: .top,
                                      endPoint: .bottom))
                 .frame(width: 2, height: value)

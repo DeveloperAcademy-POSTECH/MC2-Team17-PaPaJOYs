@@ -27,16 +27,16 @@ struct VoiceView: View {
     var body: some View {
         NavigationStack{
             ZStack {
-                Color.joyDarkG
+                Color("JoyDarkG")
                     .ignoresSafeArea()
                 
-                VStack(spacing: 30) {
+                VStack {
                     // 중앙에 이미지 표시
                     if let image = selectedImage {
                         Image(uiImage: image)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: UIScreen.width - 40, height: (UIScreen.width - 40) / 3 * 4)
+                            .frame(width: 350, height: 466)
                             .clipped()
                             .cornerRadius(10)
                     }
@@ -44,16 +44,38 @@ struct VoiceView: View {
                     SoundVisualizer()
                         .opacity(voiceViewModel.isRecording && !voiceViewModel.isEndRecording ? 1 : 0)
                         .offset(y: voiceViewModel.isRecording && !voiceViewModel.isEndRecording ? 0 : -50)
+                        .padding(.top, 30)
                         .animation(.easeInOut(duration: 0.5))
 
-                    // 녹음 타이머 표시 뷰
-                    TimerView(vm: voiceViewModel, recording: $recording, pageNumber: $pageNumber)
-                    // 녹음 파일의 URL 값이 변경될 때, recording 변수에 저장
-                    .onChange(of: voiceViewModel.recording) { newValue in
-                        recording = newValue
+                    ZStack {
+                        
+                        // 녹음 타이머 표시 뷰
+                        TimerView(vm: voiceViewModel, recording: $recording, pageNumber: $pageNumber)
+
+//                        Button(action: {
+//                            pageNumber = 1
+//                        }, label: {
+//                            if !voiceViewModel.isRecording && voiceViewModel.isEndRecording {
+//                                ZStack {
+//                                    Circle()
+//                                        .fill(Color("JoyBlue"))
+//                                        .frame(width: 57)
+//                                    
+//                                    Image(systemName: "checkmark")
+//                                        .resizable()
+//                                        .frame(width: 22, height: 22)
+//                                        .foregroundColor(Color("JoyDarkG"))
+//                                }
+//                            }
+//                        })
+//                        .frame(width: 50, height: 50)
+                        // 녹음 파일의 URL 값이 변경될 때, recording 변수에 저장
+                        .onChange(of: voiceViewModel.recording) { newValue in
+                            recording = newValue
+                        }
                     }
                 }
-                .padding(.top, 30)
+                .padding(.top, 20)
             }
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: BackButton)
@@ -64,8 +86,7 @@ struct VoiceView: View {
         Button {
             dismiss()
         } label: {
-            Text("작성 취소")
-                .foregroundColor(.joyBlueL)
+            Text("\(Image(systemName: "chevron.backward")) 작성 취소")
         }
     }
 }
