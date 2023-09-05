@@ -32,13 +32,13 @@ struct PhotoSelectButton: View {
                         Text("새로운 추억 기록하기")
                     }
                     .frame(maxWidth: .infinity)
-                    .foregroundColor(Color.joyDarkG)
+                    .foregroundColor(Color("JoyDarkG"))
                     .fontWeight(.bold)
                     .font(.headline)
                     .padding(.vertical, 18)
                     .background {
                         RoundedRectangle(cornerRadius: 16)
-                            .fill(Color.joyYellow)
+                            .fill(Color("JoyYellow"))
                     }
                     .padding(.horizontal, 16)
                 }
@@ -47,8 +47,7 @@ struct PhotoSelectButton: View {
                         isShowingCameraPicker = true
                     }, label: {
                         Text("사진 촬영")
-                            .foregroundColor(Color.joyBlue)
-                    })
+                            .foregroundColor(Color("JoyBlue"))
                     .background(Color.joyWhite)
 
                     Button(action: {
