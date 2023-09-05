@@ -11,7 +11,7 @@ struct CarouselView: View {
     @Binding var isPlaying: Bool
     
     var itemHeight: CGFloat
-    var views: [AnyView]
+    @Binding var views: [Memory]
     
     private func onDragEnded(drag: DragGesture.Value) {
         let dragThreshold:CGFloat = 200
@@ -33,10 +33,10 @@ struct CarouselView: View {
             ZStack {
                 VStack {
                     ZStack {
-                        ForEach(0..<views.count) {i in
+                        ForEach(views.indices, id: \.self) {i in
                             VStack {
                                 Spacer()
-                                self.views[i]
+                                drawCard(views)[i]
                                     .frame(width: 330, height: self.getHeight(i))
                                     .animation(.interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
                                     .background(Color.white)
@@ -74,8 +74,12 @@ struct CarouselView: View {
         }
     }
     
-    func relativeLoc() -> Int{
-        return ((views.count * 10000) + carouselLocation) % views.count
+    func relativeLoc() -> Int {
+        if views.count != 0 {
+            return ((views.count * 10000) + carouselLocation) % views.count
+        } else {
+            return 0
+        }
     }
     
     func getHeight(_ i:Int) -> CGFloat{
@@ -158,6 +162,18 @@ struct CarouselView: View {
     }
 }
 
+extension CarouselView {
+    func drawCard(_ data: [Memory]) -> [AnyView] {
+        if data.isEmpty {
+            return []
+        } else {
+            let contents = data.enumerated().map { (i, post) in
+                return AnyView(CardContentView(imageName: post.image, title: post.title, date: post.date.toString(dateFormat: "yyyy.MM.dd"), player: players[i], isPlaying: $isPlaying))
+            }
+            return contents
+        }
+    }
+}
 
 enum DragState {
     case inactive

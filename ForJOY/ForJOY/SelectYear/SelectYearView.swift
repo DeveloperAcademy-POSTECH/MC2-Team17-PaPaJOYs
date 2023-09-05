@@ -143,7 +143,7 @@ struct AlbumView: View {
             LazyVGrid(columns: columns, spacing: 20) {
                 if selectedTag == "All" {
                     ForEach(Array(isNewest ? memories.keys.sorted(by: >) : memories.keys.sorted()), id: \.self) { key in
-                        NavigationLink(destination: GalleryView(tagName: selectedTag, year: key, album: memories[key]!)) {
+                        NavigationLink(destination: GalleryView(year: key, tagName: $selectedTag, album: memories[key]!)) {
                                 AlbumSubView(post: memories[key]!.first!)
                         }
                     }
@@ -156,7 +156,7 @@ struct AlbumView: View {
                     }
                     
                     ForEach(Array(isNewest ? filterMemories.keys.sorted(by: >) : filterMemories.keys.sorted()), id: \.self) { key in
-                        NavigationLink(destination: GalleryView(tagName: selectedTag, year: key, album: filterMemories[key]!)) {
+                        NavigationLink(destination: GalleryView(year: key, tagName: $selectedTag, album: filterMemories[key]!)) {
                                 AlbumSubView(post: filterMemories[key]!.first!)
                         }
                     }

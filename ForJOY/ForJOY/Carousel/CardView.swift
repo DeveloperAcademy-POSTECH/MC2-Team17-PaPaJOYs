@@ -3,13 +3,16 @@ import SwiftUI
 import AVFoundation
 
 struct CardView: View {
+    @Environment(\.dismiss) var dismiss
+    
     @Binding var players: [AVPlayer]
     @State var isPlaying = false
     @State var moveToInfoView = false
     @State var isShowAlert = false
     @State var order: Int
     
-    var filteredData: [Memory]
+    //
+    @Binding var filteredData: [Memory]
     
     var cardGroup: [AnyView] {
         if filteredData.isEmpty {
@@ -26,16 +29,7 @@ struct CardView: View {
             ZStack {
                 Color("JoyDarkG")
                     .ignoresSafeArea()
-                CarouselView(carouselLocation: $order, players: $players, isPlaying: $isPlaying, itemHeight: 520, views: cardGroup)
-                
-                NavigationLink(
-                    isActive: $moveToInfoView,
-                    destination: {
-                        EditInfoView(selectedData: filteredData[order%filteredData.count])
-                    },
-                    label: {
-                        EmptyView()
-                    })
+                CarouselView(carouselLocation: $order, players: $players, isPlaying: $isPlaying, itemHeight: 520, views: $filteredData)
             }
             .onDisappear {
                 for p in players {
@@ -53,8 +47,11 @@ struct CardView: View {
                         isShowAlert = false
                     }
                     Button("삭제", role: .destructive) {
-                        //TODO: DB 삭제
                         CoreDataManager.coreDM.deleteMemory(filteredData[order].objectID)
+                        dismiss()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            filteredData.remove(at: order)
+                        }
                     }
                 }, message: {
                     Text("한 번 삭제된 추억은 복구가 불가능합니다.")
@@ -67,18 +64,21 @@ struct CardView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
-                        Button(
-                            action: {
-                                moveToInfoView = true
-                            }, label: {
-                                HStack {
-                                    Text("편집")
-                                    Spacer(minLength: 0)
-                                    Image(systemName: "square.and.pencil")
-                                        .font(.system(size: 17))
-                                }
-                            }
-                        )
+                        if filteredData.count > 0 {
+                            NavigationLink(destination: EditInfoView(selectedData: filteredData[order%filteredData.count])) {
+                                Button(
+                                    action: {
+                                        moveToInfoView = true
+                                    }, label: {
+                                        HStack {
+                                            Text("편집")
+                                            Spacer(minLength: 0)
+                                            Image(systemName: "square.and.pencil")
+                                                .font(.system(size: 17))
+                                        }
+                                    }
+                                )}
+                        }
                         
                         Button(
                             role: .destructive,

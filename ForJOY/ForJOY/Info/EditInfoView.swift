@@ -37,6 +37,7 @@ struct EditInfoView: View {
                         Text("제목")
                         Spacer(minLength: 0)
                         TextField("\(selectedData.title)", text: $title)
+                            .accentColor(.joyBlue)
                             .font(.system(size: (17.0 - CGFloat(selectedData.title.count)*0.3)))
                             .multilineTextAlignment(.trailing)
                             .onChange(of: selectedData.title) { newValue in
@@ -114,6 +115,11 @@ struct EditInfoView: View {
         Button(
             action: {
                 CoreDataManager.coreDM.updateMemory(selectedData.objectID, title, tag ?? "없음", date)
+                
+                selectedData.title = title
+                selectedData.tag = tag ?? "없음"
+                selectedData.date = date
+                
                 dismiss()
             }, label: {
                 Text("저장")
