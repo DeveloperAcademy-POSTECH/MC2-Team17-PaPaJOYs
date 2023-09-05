@@ -94,7 +94,7 @@ struct TimerView: View {
         // 배경 색상과 중앙에 배치된 녹음 UI를 포함하는 ZStack
         ZStack{
             // 전체 배경색을 설정
-            Color.joyDarkG
+            Color("JoyDarkG")
                 .ignoresSafeArea()
             
             VStack{
@@ -109,13 +109,13 @@ struct TimerView: View {
                         }){
                             ZStack{
                                 Circle()
-                                    .fill(Color.joyYellow)
+                                    .fill(Color("JoyYellow"))
                                     .frame(width: 57)
                                 
                                 Image(systemName: "mic.fill")
                                     .resizable()
                                     .frame(width: 20, height: 30)
-                                    .foregroundColor(Color.joyDarkG)
+                                    .foregroundColor(Color("JoyDarkG"))
                             }
                         }
                     } else {
@@ -133,13 +133,13 @@ struct TimerView: View {
                             }, label: {
                                 ZStack{
                                     Circle()
-                                        .fill(Color.joyWhite)
+                                        .fill(Color("JoyWhite"))
                                         .frame(width: 57)
                                     
                                     Image(systemName: "stop.fill")
                                         .resizable()
                                         .frame(width: 22, height: 22)
-                                        .foregroundColor(Color.joyDarkG)
+                                        .foregroundColor(Color("JoyDarkG"))
                                 }
                             })
                         }
@@ -148,13 +148,13 @@ struct TimerView: View {
                     if !vm.isRecording && vm.isEndRecording {
                         ZStack {
                             Circle()
-                                .fill(Color.joyBlue)
+                                .fill(Color("JoyBlue"))
                                 .frame(width: 57)
                             
                             Image(systemName: "checkmark")
                                 .resizable()
                                 .frame(width: 22, height: 22)
-                                .foregroundColor(Color.joyDarkG)
+                                .foregroundColor(Color("JoyDarkG"))
                                 .scaleEffect(animationTriggered ? 1.0 : 0.1)
                                 .opacity(animationTriggered ? 1.0 : 0.0)
                                 .animation(Animation.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.5).delay(0.1))
@@ -184,7 +184,7 @@ struct TimerView: View {
                 if !(vm.isEndRecording) {
                     Text(timeString(from: remainingTime))
                         .font(.system(size: 16))
-                        .foregroundColor(Color.joyWhite)
+                        .foregroundColor(.white)
                         .padding(.top, 8)
                 } else {
                     Text("")

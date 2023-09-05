@@ -19,7 +19,7 @@ struct SelectYearView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.joyDarkG
+                Color("JoyDarkG")
                     .ignoresSafeArea()
 
                 if memories.count > 0 {
@@ -33,7 +33,7 @@ struct SelectYearView: View {
                         
                         Text("아직 저장된 추억이 없어요")
                             .font(.headline)
-                            .foregroundColor(Color.joyWhite)
+                            .foregroundColor(.white)
                     }
                 }
 
@@ -72,11 +72,11 @@ struct SelectYearView: View {
                              .lineLimit(1)
                              .padding(.vertical, 5)
                              .padding(.horizontal, 10)
-                             .background(isAllSelect ? Color.joyBlue : Color.joyDarkG)
+                             .background(isAllSelect ? Color("JoyBlue") : Color("JoyDarkG"))
                              .clipShape(RoundedRectangle(cornerRadius: 6))
                              .overlay {
                                  RoundedRectangle(cornerRadius: 6)
-                                     .strokeBorder(isAllSelect ? Color.joyBlue : Color.joyWhite, lineWidth: 1)
+                                     .strokeBorder(isAllSelect ? Color("JoyBlue") : Color("JoyWhite"), lineWidth: 1)
                              }
                      }
                      
@@ -91,17 +91,16 @@ struct SelectYearView: View {
                                 .lineLimit(1)
                                 .padding(.vertical, 5)
                                 .padding(.horizontal, 10)
-                                .background(isAllSelect ? Color.joyDarkG : (selectedTag == i ? Color.joyBlue : Color.joyDarkG))
+                                .background(isAllSelect ? Color("JoyDarkG") : (selectedTag == i ? Color("JoyBlue") : Color("JoyDarkG")))
                                 .clipShape(RoundedRectangle(cornerRadius: 6))
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 6)
-                                        .strokeBorder(isAllSelect ? Color.joyWhite : (selectedTag == i ? Color.joyBlue : Color.joyWhite))
+                                        .strokeBorder(isAllSelect ? Color("JoyWhite") : (selectedTag == i ? Color("JoyBlue") : Color("JoyWhite")))
                                 }
                         }
                     }
                 }
             }
-//            .scrollIndicators(.nevesr)
             .frame(width: UIScreen.width - 116)
         }
     }
@@ -126,7 +125,7 @@ struct SelectYearView: View {
             }
         } label: {
             Image(systemName: "chevron.up.chevron.down")
-                .foregroundColor(Color.joyBlue)
+                .foregroundColor(Color("JoyBlue"))
         }
     }
 }
@@ -173,7 +172,7 @@ struct AlbumSubView: View {
     
     var body: some View {
         ZStack {
-            Color.joyWhite
+            Color("JoyWhite")
             VStack(alignment: .trailing, spacing: 0) {
                 Image(uiImage: UIImage(data: Data(base64Encoded: post.image)!) ?? UIImage(systemName: "house")!)
                     .resizable()
@@ -185,7 +184,7 @@ struct AlbumSubView: View {
                 
                 Text("\(post.year)".replacingOccurrences(of: ",", with: ""))
                     .font(.system(size: 20, weight: .semibold))
-                    .foregroundColor(Color.joyDarkG)
+                    .foregroundColor(Color("JoyDarkG"))
                     .padding(10)
             }
             .padding(.horizontal, 13)
