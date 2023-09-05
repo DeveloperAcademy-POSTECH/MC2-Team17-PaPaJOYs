@@ -14,19 +14,12 @@ struct GalleryView: View {
     @State private var offset: CGSize = CGSize(width: 0.0, height: UIScreen.height * 0.07)
     @State private var isNewest = true
     
-    var tagName: String
+    //
     var year: Int
-    var album: [Memory]
+    @Binding var tagName: String
+    @State var album: [Memory]
 
     private let imageSize = (UIScreen.width - 9) / 3
-    
-//    init(tagName: String, year: Int, album: [Memory]) {
-//        self.tagName = tagName
-//        self.year = year
-//        self.album = album
-//
-//        players.makePlayers(filteredData: self.album)
-//    }
     
     var columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 4.5), count: 3)
     
@@ -39,9 +32,9 @@ struct GalleryView: View {
                             // TODO: 정렬하기..
 
 //
-                            if isNewest {
-                                ForEach(Array(album.sorted{ $0.date > $1.date }.enumerated()), id: \.0) { i, post in
-                                    NavigationLink(destination: CardView(players: $players.players, order: i, filteredData: album.sorted{ $0.date > $1.date })) {
+//                            if isNewest {
+                                ForEach(Array(album.enumerated()), id: \.0) { i, post in
+                                    NavigationLink(destination: CardView(players: $players.players, order: i, filteredData: $album)) {
                                         Image(uiImage: UIImage(data: Data(base64Encoded: post.image)!) ?? UIImage(systemName: "house")!)
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
@@ -50,18 +43,18 @@ struct GalleryView: View {
                                             .cornerRadius(10)
                                     }
                                 }
-                            } else {
-                                ForEach(Array(album.sorted{ $0.date < $1.date }.enumerated()), id: \.0) { i, post in
-                                    NavigationLink(destination: CardView(players: $players.players, order: i, filteredData: album.sorted{ $0.date < $1.date })) {
-                                        Image(uiImage: UIImage(data: Data(base64Encoded: post.image)!) ?? UIImage(systemName: "house")!)
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .frame(width: imageSize, height: imageSize)
-                                            .clipped()
-                                            .cornerRadius(10)
-                                    }
-                                }
-                            }
+//                            } else {
+//                                ForEach(Array(album.sorted{ $0.date < $1.date }.enumerated()), id: \.0) { i, post in
+//                                    NavigationLink(destination: CardView(players: $players.players, order: i, filteredData: $album.sorted{ $0.date < $1.date })) {
+//                                        Image(uiImage: UIImage(data: Data(base64Encoded: post.image)!) ?? UIImage(systemName: "house")!)
+//                                            .resizable()
+//                                            .aspectRatio(contentMode: .fill)
+//                                            .frame(width: imageSize, height: imageSize)
+//                                            .clipped()
+//                                            .cornerRadius(10)
+//                                    }
+//                                }
+//                            }
                             
                         }
                         .offset(self.offset)
@@ -124,7 +117,11 @@ struct GalleryView: View {
     
     private var SortButton: some View {
         Menu {
-            Button(action: {isNewest = true}) {
+            Button(action: {
+                isNewest = true
+                //
+                album = album.sorted{ $0.date > $1.date }
+            }) {
                 HStack {
                     Text("최신 항목 순으로")
                     Spacer()
@@ -133,7 +130,11 @@ struct GalleryView: View {
                     }
                 }
             }
-            Button(action: {isNewest = false}) {
+            Button(action: {
+                isNewest = false
+                //
+                album = album.sorted{ $0.date < $1.date }
+            }) {
                 Text("오래된 항목 순으로")
                 Spacer()
                 if !isNewest {
