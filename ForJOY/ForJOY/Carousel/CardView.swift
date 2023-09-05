@@ -160,7 +160,7 @@ struct CardContentView: View {
                         .bold()
                         .allowsTightening(true)
                     Text(date)
-                        .foregroundColor(Color("JoyLightG"))
+                        .foregroundColor(Color.joyLightG)
                 }
                 .padding(.leading, 20)
                 Spacer()
