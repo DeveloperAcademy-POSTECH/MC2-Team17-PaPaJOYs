@@ -67,10 +67,10 @@ struct GalleryView: View {
                         .offset(self.offset)
                     }
                 }
-                .background(Color("JoyDarkG"))
+                .background(Color.joyDarkG)
                 
                 VStack {
-                    Color("JoyDarkG")
+                    Color.joyDarkG
                         .ignoresSafeArea()
                         .opacity(0.5)
                         .blur(radius: 10)
@@ -85,12 +85,12 @@ struct GalleryView: View {
                             Text(year.description)
                                 .font(.title2)
                                 .fontWeight(.bold)
-                                .foregroundColor(.white)
+                                .foregroundColor(Color.joyWhite)
                         } else {
                             Text(tagName + " " + year.description)
                                 .font(.title2)
                                 .fontWeight(.bold)
-                                .foregroundColor(.white)
+                                .foregroundColor(Color.joyWhite)
                             
                         }
                         
@@ -118,7 +118,7 @@ struct GalleryView: View {
             dismiss()
         } label: {
             Image(systemName: "chevron.backward")
-                .foregroundColor(Color("JoyBlue"))
+                .foregroundColor(Color.joyBlue)
         }
     }
     
@@ -142,7 +142,7 @@ struct GalleryView: View {
             }
         } label: {
             Image(systemName: "chevron.up.chevron.down")
-                .foregroundColor(Color("JoyBlue"))
+                .foregroundColor(Color.joyBlue)
         }
     }
     
