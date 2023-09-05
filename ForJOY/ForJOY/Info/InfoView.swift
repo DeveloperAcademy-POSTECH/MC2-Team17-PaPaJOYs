@@ -23,23 +23,24 @@ struct InfoView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
+            VStack{
                 if selectedImage != nil {
-                    Image(uiImage: selectedImage!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: UIScreen.width - 40, height: (UIScreen.width - 40) / 3 * 4)
-                        .cornerRadius(10)
-                        .clipped()
-                        .padding(.horizontal, 15)
-                        .padding(.top, 25)
-
+                    GeometryReader { geometry in
+                        Image(uiImage: selectedImage!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: geometry.size.width - 30, height: geometry.size.height)
+                            .cornerRadius(10)
+                            .clipped()
+                            .padding(.horizontal, 15)
+                            .padding(.top, 25)
+                    }
                 } else {
                     Text("No image")
                 }
                 
                 List {
-                    HStack {
+                    HStack{
                         Text("제목")
                         Spacer(minLength: 0)
                         TextField("제목", text: $title)

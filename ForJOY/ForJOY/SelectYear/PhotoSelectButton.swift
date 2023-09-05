@@ -77,14 +77,15 @@ struct PhotoSelectButton: View {
             
             Rectangle()
                 .foregroundColor(Color.joyDarkG)
-                .frame(height: UIScreen.height * 0.04)
+                .frame(height: screenHeight * 0.04)
         }
-        .frame(height: UIScreen.height * 0.15)
+        .frame(height: screenHeight * 0.15)
         .onChange(of: selectedImage) { _ in
             showRecordingAndInfoView.toggle()
         }
         
-        .fullScreenCover(isPresented: $showRecordingAndInfoView, onDismiss: { updateData() }) {
+        .fullScreenCover(isPresented: $showRecordingAndInfoView, onDismiss: {
+            memories = CoreDataManager.coreDM.getYearlyMemories() }) {
             RecordingAndInfoView(selectedImage: $selectedImage)
         }
     }
