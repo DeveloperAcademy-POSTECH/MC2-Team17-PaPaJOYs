@@ -25,10 +25,10 @@ struct ForJOYApp: App {
 //                }
                 if permissionHandler.areAllPermissionsGranted {
                     SelectYearView()
-                        .background(Color("JoyDarkG"))
+                        .background(Color.joyDarkG)
                 }
             }
-            .accentColor(Color("JoyWhite"))
+            .accentColor(Color.joyWhite)
             .onAppear {
                 permissionHandler.requestPermissions()
             }
