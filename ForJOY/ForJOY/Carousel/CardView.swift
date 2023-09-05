@@ -96,7 +96,7 @@ struct CardView: View {
                     } label: {
                         Image(systemName: "ellipsis")
                             .font(.system(size: 25))
-                            .foregroundColor(Color("JoyBlue"))
+                            .foregroundColor(Color.joyBlue)
                     }
                 }
             }
@@ -156,7 +156,7 @@ struct CardContentView: View {
                 VStack(alignment: .leading, spacing: 3) {
                     Text(title)
                         .font(.title3)
-                        .foregroundColor(Color("JoyDarkG"))
+                        .foregroundColor(Color.joyDarkG)
                         .bold()
                         .allowsTightening(true)
                     Text(date)
@@ -180,7 +180,7 @@ struct CardContentView: View {
                     Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
                         .labelStyle(.iconOnly)
                         .font(.system(size: 40))
-                        .foregroundColor(isPlaying ? Color("JoyYellow") : Color("JoyBlue"))
+                        .foregroundColor(isPlaying ? Color.joyYellow : Color.joyBlue)
                 }
                 .padding(.trailing, 20)
                 .onAppear {
