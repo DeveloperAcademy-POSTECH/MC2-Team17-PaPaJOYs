@@ -39,16 +39,6 @@
 		5B08A50B2A147CB000496242 /* VoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08A50A2A147CB000496242 /* VoiceViewModel.swift */; };
 		5BB7EF6C2A7FAAB6008E772A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7EF6B2A7FAAB6008E772A /* CoreDataManager.swift */; };
 		5BB7EF6F2A7FAACB008E772A /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7EF6D2A7FAACB008E772A /* DataModel.xcdatamodeld */; };
-		5BB7EF932A87B0EE008E772A /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7EF922A87B0EE008E772A /* Test.swift */; };
-		5BF13D9A2A137846002DF1FA /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF13D632A1373C5002DF1FA /* WidgetKit.framework */; };
-		5BF13D9B2A137846002DF1FA /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BF13D652A1373C5002DF1FA /* SwiftUI.framework */; };
-		5BF13D9E2A137846002DF1FA /* ForJoyWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF13D9D2A137846002DF1FA /* ForJoyWidgetBundle.swift */; };
-		5BF13DA02A137846002DF1FA /* ForJoyWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF13D9F2A137846002DF1FA /* ForJoyWidgetLiveActivity.swift */; };
-		5BF13DA22A137846002DF1FA /* ForJoyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF13DA12A137846002DF1FA /* ForJoyWidget.swift */; };
-		5BF13DA52A137847002DF1FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BF13DA42A137847002DF1FA /* Assets.xcassets */; };
-		5BF13DA72A137847002DF1FA /* ForJoyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 5BF13DA32A137846002DF1FA /* ForJoyWidget.intentdefinition */; };
-		5BF13DA82A137847002DF1FA /* ForJoyWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 5BF13DA32A137846002DF1FA /* ForJoyWidget.intentdefinition */; };
-		5BF13DAB2A137847002DF1FA /* ForJoyWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5BF13D992A137846002DF1FA /* ForJoyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AA5154EE2A974B0900C4DC7D /* MicrophoneMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5154ED2A974B0900C4DC7D /* MicrophoneMonitor.swift */; };
 		AA5154F02A974C9A00C4DC7D /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5154EF2A974C9A00C4DC7D /* BarView.swift */; };
 		AA5154F22A974DEA00C4DC7D /* SoundVisualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5154F12A974DEA00C4DC7D /* SoundVisualizer.swift */; };
@@ -59,16 +49,6 @@
 		D9BEE7D02A11DD0500868C80 /* SaveComplete2.json in Resources */ = {isa = PBXBuildFile; fileRef = D9BEE7CF2A11DD0500868C80 /* SaveComplete2.json */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		5BF13DA92A137847002DF1FA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3032386E2A00A876008A8093 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5BF13D982A137846002DF1FA;
-			remoteInfo = ForJoyWidgetExtension;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		5BF13D772A1373C6002DF1FA /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -76,7 +56,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				5BF13DAB2A137847002DF1FA /* ForJoyWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,16 +94,6 @@
 		5BB7EF6E2A7FAACB008E772A /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		5BB7EF702A834D0A008E772A /* ForJOYRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ForJOYRelease.entitlements; sourceTree = "<group>"; };
 		5BB7EF712A8391D2008E772A /* ForJOYDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ForJOYDebug.entitlements; sourceTree = "<group>"; };
-		5BB7EF922A87B0EE008E772A /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
-		5BF13D632A1373C5002DF1FA /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
-		5BF13D652A1373C5002DF1FA /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		5BF13D992A137846002DF1FA /* ForJoyWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ForJoyWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		5BF13D9D2A137846002DF1FA /* ForJoyWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForJoyWidgetBundle.swift; sourceTree = "<group>"; };
-		5BF13D9F2A137846002DF1FA /* ForJoyWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForJoyWidgetLiveActivity.swift; sourceTree = "<group>"; };
-		5BF13DA12A137846002DF1FA /* ForJoyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForJoyWidget.swift; sourceTree = "<group>"; };
-		5BF13DA32A137846002DF1FA /* ForJoyWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = ForJoyWidget.intentdefinition; sourceTree = "<group>"; };
-		5BF13DA42A137847002DF1FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5BF13DA62A137847002DF1FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BF13DAF2A139ED9002DF1FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AA5154ED2A974B0900C4DC7D /* MicrophoneMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneMonitor.swift; sourceTree = "<group>"; };
 		AA5154EF2A974C9A00C4DC7D /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
@@ -144,24 +113,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5BF13D962A137846002DF1FA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5BF13D9B2A137846002DF1FA /* SwiftUI.framework in Frameworks */,
-				5BF13D9A2A137846002DF1FA /* WidgetKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		0E4E7DB32A10ED8500D72E66 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				5BB7EF6B2A7FAAB6008E772A /* CoreDataManager.swift */,
-				0E4E7DB82A10EDDA00D72E66 /* Memory.swift */,
-				5BB7EF922A87B0EE008E772A /* Test.swift */,
+				5B58228C2AA9ADC30059804F /* DataModels */,
+				5BB7EF6D2A7FAACB008E772A /* DataModel.xcdatamodeld */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -182,8 +141,6 @@
 			isa = PBXGroup;
 			children = (
 				303238782A00A876008A8093 /* ForJOY */,
-				5BF13D9C2A137846002DF1FA /* ForJoyWidget */,
-				5BF13D622A1373C5002DF1FA /* Frameworks */,
 				303238772A00A876008A8093 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -192,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				303238762A00A876008A8093 /* ForJOY.app */,
-				5BF13D992A137846002DF1FA /* ForJoyWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -203,12 +159,10 @@
 				5BB7EF712A8391D2008E772A /* ForJOYDebug.entitlements */,
 				5BB7EF702A834D0A008E772A /* ForJOYRelease.entitlements */,
 				5BF13DAF2A139ED9002DF1FA /* Info.plist */,
-				5BB7EF6D2A7FAACB008E772A /* DataModel.xcdatamodeld */,
 				303238792A00A876008A8093 /* ForJOYApp.swift */,
 				0E4533D92A95E73500661D8B /* PermissionHandler.swift */,
 				30BDADDE2A034DB7000BDA8F /* Extensions */,
-				5B08A5042A147BFE00496242 /* LottieFiles */,
-				3032387D2A00A876008A8093 /* Assets.xcassets */,
+				5B58228B2AA9AB930059804F /* Resources */,
 				0E4E7DB32A10ED8500D72E66 /* Data */,
 				0ECFA0222A0B3027009D3C5B /* Info */,
 				BECC97382A05A64300E27120 /* Carousel */,
@@ -306,26 +260,22 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
-		5BF13D622A1373C5002DF1FA /* Frameworks */ = {
+		5B58228B2AA9AB930059804F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5BF13D632A1373C5002DF1FA /* WidgetKit.framework */,
-				5BF13D652A1373C5002DF1FA /* SwiftUI.framework */,
+				5B08A5042A147BFE00496242 /* LottieFiles */,
+				3032387D2A00A876008A8093 /* Assets.xcassets */,
 			);
-			name = Frameworks;
+			path = Resources;
 			sourceTree = "<group>";
 		};
-		5BF13D9C2A137846002DF1FA /* ForJoyWidget */ = {
+		5B58228C2AA9ADC30059804F /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
-				5BF13D9D2A137846002DF1FA /* ForJoyWidgetBundle.swift */,
-				5BF13D9F2A137846002DF1FA /* ForJoyWidgetLiveActivity.swift */,
-				5BF13DA12A137846002DF1FA /* ForJoyWidget.swift */,
-				5BF13DA32A137846002DF1FA /* ForJoyWidget.intentdefinition */,
-				5BF13DA42A137847002DF1FA /* Assets.xcassets */,
-				5BF13DA62A137847002DF1FA /* Info.plist */,
+				5BB7EF6B2A7FAAB6008E772A /* CoreDataManager.swift */,
+				0E4E7DB82A10EDDA00D72E66 /* Memory.swift */,
 			);
-			path = ForJoyWidget;
+			path = DataModels;
 			sourceTree = "<group>";
 		};
 		AA5154EC2A974AA200C4DC7D /* SoundVisualizer */ = {
@@ -363,7 +313,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				5BF13DAA2A137847002DF1FA /* PBXTargetDependency */,
 			);
 			name = ForJOY;
 			packageProductDependencies = (
@@ -372,23 +321,6 @@
 			productName = ForJOY;
 			productReference = 303238762A00A876008A8093 /* ForJOY.app */;
 			productType = "com.apple.product-type.application";
-		};
-		5BF13D982A137846002DF1FA /* ForJoyWidgetExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5BF13DAC2A137847002DF1FA /* Build configuration list for PBXNativeTarget "ForJoyWidgetExtension" */;
-			buildPhases = (
-				5BF13D952A137846002DF1FA /* Sources */,
-				5BF13D962A137846002DF1FA /* Frameworks */,
-				5BF13D972A137846002DF1FA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = ForJoyWidgetExtension;
-			productName = ForJoyWidgetExtension;
-			productReference = 5BF13D992A137846002DF1FA /* ForJoyWidgetExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -402,9 +334,6 @@
 				TargetAttributes = {
 					303238752A00A876008A8093 = {
 						CreatedOnToolsVersion = 14.2;
-					};
-					5BF13D982A137846002DF1FA = {
-						CreatedOnToolsVersion = 14.3;
 					};
 				};
 			};
@@ -425,7 +354,6 @@
 			projectRoot = "";
 			targets = (
 				303238752A00A876008A8093 /* ForJOY */,
-				5BF13D982A137846002DF1FA /* ForJoyWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -445,14 +373,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5BF13D972A137846002DF1FA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5BF13DA52A137847002DF1FA /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -462,7 +382,6 @@
 			files = (
 				0E4E7DE22A111CDE00D72E66 /* Tag.swift in Sources */,
 				3063F2CC2A0E1BAA00C56EBA /* (null) in Sources */,
-				5BF13DA82A137847002DF1FA /* ForJoyWidget.intentdefinition in Sources */,
 				3063F2CE2A0E1BB500C56EBA /* (null) in Sources */,
 				303238882A00B3BB008A8093 /* SelectYearView.swift in Sources */,
 				3032387A2A00A876008A8093 /* ForJOYApp.swift in Sources */,
@@ -491,32 +410,12 @@
 				AA5154F02A974C9A00C4DC7D /* BarView.swift in Sources */,
 				30B9FE392AA03B2B00205BB7 /* UIScreen+.swift in Sources */,
 				300D732B2A11D8A2007D38E9 /* Players.swift in Sources */,
-				5BB7EF932A87B0EE008E772A /* Test.swift in Sources */,
 				30BDADE92A034DB7000BDA8F /* Date+.swift in Sources */,
 				D92951642A0F643A00D7A7A7 /* LottieView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5BF13D952A137846002DF1FA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5BF13D9E2A137846002DF1FA /* ForJoyWidgetBundle.swift in Sources */,
-				5BF13DA22A137846002DF1FA /* ForJoyWidget.swift in Sources */,
-				5BF13DA02A137846002DF1FA /* ForJoyWidgetLiveActivity.swift in Sources */,
-				5BF13DA72A137847002DF1FA /* ForJoyWidget.intentdefinition in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		5BF13DAA2A137847002DF1FA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5BF13D982A137846002DF1FA /* ForJoyWidgetExtension */;
-			targetProxy = 5BF13DA92A137847002DF1FA /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		303238822A00A876008A8093 /* Debug */ = {
@@ -636,7 +535,6 @@
 		303238852A00A876008A8093 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ForJOY/ForJOYDebug.entitlements;
@@ -673,7 +571,6 @@
 		303238862A00A876008A8093 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ForJOY/ForJOYRelease.entitlements;
@@ -707,66 +604,6 @@
 			};
 			name = Release;
 		};
-		5BF13DAD2A137847002DF1FA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JRW96JDSZ5;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ForJoyWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ForJoyWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.papajoy.forjoy.ForJoyWidgetExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		5BF13DAE2A137847002DF1FA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JRW96JDSZ5;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ForJoyWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ForJoyWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.papajoy.forjoy.ForJoyWidgetExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -784,15 +621,6 @@
 			buildConfigurations = (
 				303238852A00A876008A8093 /* Debug */,
 				303238862A00A876008A8093 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5BF13DAC2A137847002DF1FA /* Build configuration list for PBXNativeTarget "ForJoyWidgetExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5BF13DAD2A137847002DF1FA /* Debug */,
-				5BF13DAE2A137847002DF1FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
