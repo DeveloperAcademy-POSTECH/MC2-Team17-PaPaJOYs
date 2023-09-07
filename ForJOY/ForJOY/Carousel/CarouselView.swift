@@ -10,6 +10,7 @@ struct CarouselView: View {
     @Binding var players: [AVPlayer]
     @Binding var isPlaying: Bool
     
+    var itemWidth: CGFloat
     var itemHeight: CGFloat
     var views: [AnyView]
     
@@ -37,7 +38,7 @@ struct CarouselView: View {
                             VStack {
                                 Spacer()
                                 self.views[i]
-                                    .frame(width: 330, height: self.getHeight(i))
+                                    .frame(width: itemWidth, height: self.getHeight(i))
                                     .animation(.interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
                                     .background(Color.white)
                                     .cornerRadius(20)
@@ -115,25 +116,25 @@ struct CarouselView: View {
         else if (i) == relativeLoc() + 1
                 || (relativeLoc() == views.count - 1 && i == 0)
         {
-            return self.dragState.translation.width + (300 + 50)
+            return self.dragState.translation.width + (itemWidth + 18)
         }
         else if (i) == relativeLoc() - 1
                 || (relativeLoc() == 0 && (i) == views.count - 1)
         {
-            return self.dragState.translation.width - (300 + 50)
+            return self.dragState.translation.width - (itemWidth + 18)
         }
     
         else if (i) == relativeLoc() + 2
                 || (relativeLoc() == views.count - 1 && i == 1)
                 || (relativeLoc() == views.count - 2 && i == 0)
         {
-            return self.dragState.translation.width + (2 * (300 + 50))
+            return self.dragState.translation.width + (2 * (itemWidth + 18))
         }
         else if (i) == relativeLoc() - 2
                 || (relativeLoc() == 1 && i == views.count - 1)
                 || (relativeLoc() == 0 && i == views.count - 2)
         {
-            return self.dragState.translation.width - (2 * (300 + 50))
+            return self.dragState.translation.width - (2 * (itemWidth + 18))
         }
         
         else if (i) == relativeLoc() + 3
@@ -141,7 +142,7 @@ struct CarouselView: View {
                 || (relativeLoc() == views.count - 2 && i == 1)
                 || (relativeLoc() == views.count - 3 && i == 0)
         {
-            return self.dragState.translation.width + (3 * (300 + 50))
+            return self.dragState.translation.width + (3 * (itemWidth + 18))
         }
         
         else if (i) == relativeLoc() - 3
@@ -149,7 +150,7 @@ struct CarouselView: View {
                 || (relativeLoc() == 1 && i == views.count - 2)
                 || (relativeLoc() == 0 && i == views.count - 3)
         {
-            return self.dragState.translation.width - (3 * (300 + 50))
+            return self.dragState.translation.width - (3 * (itemWidth + 18))
         }
         
         else {

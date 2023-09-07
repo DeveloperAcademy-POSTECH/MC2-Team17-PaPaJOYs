@@ -3,11 +3,15 @@ import SwiftUI
 import AVFoundation
 
 struct CardView: View {
+    @Environment(\.dismiss) private var dismiss
     @Binding var players: [AVPlayer]
     @State var isPlaying = false
     @State var moveToInfoView = false
     @State var isShowAlert = false
     @State var order: Int
+    
+    let cardWidth = UIScreen.width - 70
+    let cardHeight = (UIScreen.width - 104) / 3 * 4 + 132
     
     var filteredData: [Memory]
     
@@ -26,7 +30,13 @@ struct CardView: View {
             ZStack {
                 Color("JoyDarkG")
                     .ignoresSafeArea()
-                CarouselView(carouselLocation: $order, players: $players, isPlaying: $isPlaying, itemHeight: 520, views: cardGroup)
+                
+                VStack {
+                    CarouselView(carouselLocation: $order, players: $players, isPlaying: $isPlaying, itemWidth: cardWidth, itemHeight: cardHeight, views: cardGroup)
+                        .padding(.top, -50)
+                    
+                    Spacer()
+                }
                 
                 NavigationLink(
                     isActive: $moveToInfoView,
@@ -60,46 +70,52 @@ struct CardView: View {
                     Text("한 번 삭제된 추억은 복구가 불가능합니다.")
                 }
             )
-            
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    //TODO: Dissmiss
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Menu {
-                        Button(
-                            action: {
-                                moveToInfoView = true
-                            }, label: {
-                                HStack {
-                                    Text("편집")
-                                    Spacer(minLength: 0)
-                                    Image(systemName: "square.and.pencil")
-                                        .font(.system(size: 17))
-                                }
-                            }
-                        )
-                        
-                        Button(
-                            role: .destructive,
-                            action: {
-                                isShowAlert = true
-                            }, label: {
-                                HStack {
-                                    Text("삭제")
-                                    Spacer(minLength: 0)
-                                    Image(systemName: "trash")
-                                        .font(.system(size: 17))
-                                }
-                            }
-                        )
-                    } label: {
-                        Image(systemName: "ellipsis")
-                            .font(.system(size: 25))
-                            .foregroundColor(Color.joyBlue)
+            .navigationBarBackButtonHidden()
+            .navigationBarItems(leading: BackButton)
+            .navigationBarItems(trailing: EditButton)
+        }
+    }
+    
+    private var BackButton: some View {
+        Button {
+            dismiss()
+        } label: {
+            Image(systemName: "chevron.backward")
+                .foregroundColor(.joyBlueL)
+        }
+    }
+    
+    private var EditButton: some View {
+        Menu {
+            Button(
+                action: {
+                    moveToInfoView = true
+                }, label: {
+                    HStack {
+                        Text("편집")
+                        Spacer(minLength: 0)
+                        Image(systemName: "square.and.pencil")
+                            .font(.system(size: 17))
                     }
                 }
-            }
+            )
+            
+            Button(
+                role: .destructive,
+                action: {
+                    isShowAlert = true
+                }, label: {
+                    HStack {
+                        Text("삭제")
+                        Spacer(minLength: 0)
+                        Image(systemName: "trash")
+                            .font(.system(size: 17))
+                    }
+                }
+            )
+        } label: {
+            Image(systemName: "ellipsis")
+                .foregroundColor(Color.joyBlue)
         }
     }
 }
@@ -149,22 +165,25 @@ struct CardContentView: View {
 
     
     var body: some View {
-        VStack{
+        VStack(spacing: 7) {
             ImageView(imageName: imageName)
             
             HStack(alignment: .center, spacing: 0) {
-                VStack(alignment: .leading, spacing: 3) {
+                VStack(alignment: .leading) {
                     Text(title)
                         .font(.title3)
                         .foregroundColor(Color.joyDarkG)
                         .bold()
-                        .allowsTightening(true)
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(2)
+                    
                     Text(date)
                         .foregroundColor(Color.joyLightG)
                 }
-                .padding(.leading, 20)
+                .padding(.leading, 27)
+                
                 Spacer()
-                //여기아래부터수정할거
+
                 Button(action: {
                     if isPlaying {
                         player.pause()
@@ -179,7 +198,7 @@ struct CardContentView: View {
                 }) {
                     Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
                         .labelStyle(.iconOnly)
-                        .font(.system(size: 40))
+                        .font(.system(size: 50))
                         .foregroundColor(isPlaying ? Color.joyYellow : Color.joyBlue)
                 }
                 .padding(.trailing, 20)
@@ -190,24 +209,24 @@ struct CardContentView: View {
                     }
                 }
             }
-            Spacer()
+            .padding(.bottom, 21)
         }
     }
 }
 
 struct ImageView: View {
     let imageName: String
-    
+    let imageWidth = UIScreen.width - 104
     var body: some View {
         //TODO: 대체 이미지 ("house" 말고)
         Image(uiImage: UIImage(data: Data(base64Encoded: imageName)!) ?? UIImage(systemName: "house")!)
             .resizable()
             .aspectRatio(contentMode: .fill)
-            .frame(width: 300, height: 400)
+            .frame(width: imageWidth, height: imageWidth / 3 * 4)
             .clipped()
             .cornerRadius(10)
             .shadow(radius: 3)
-            .padding()
-            .padding(.top)
+            .padding(17)
+    
     }
 }
