@@ -29,33 +29,16 @@ struct GalleryView: View {
                 ScrollViewReader { value in
                     ScrollView {
                         LazyVGrid(columns: columns, spacing: 4.5) {
-                            // TODO: 정렬하기..
-
-//
-//                            if isNewest {
-                                ForEach(Array(album.enumerated()), id: \.0) { i, post in
-                                    NavigationLink(destination: CardView(players: $players.players, order: i, filteredData: $album)) {
-                                        Image(uiImage: UIImage(data: Data(base64Encoded: post.image)!) ?? UIImage(systemName: "house")!)
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .frame(width: imageSize, height: imageSize)
-                                            .clipped()
-                                            .cornerRadius(10)
-                                    }
+                            ForEach(Array(album.enumerated()), id: \.0) { i, post in
+                                NavigationLink(destination: CardView(players: $players.players, order: i, filteredData: $album)) {
+                                    Image(uiImage: UIImage(data: Data(base64Encoded: post.image)!) ?? UIImage(named: "EmptyMemory")!)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: imageSize, height: imageSize)
+                                        .clipped()
+                                        .cornerRadius(10)
                                 }
-//                            } else {
-//                                ForEach(Array(album.sorted{ $0.date < $1.date }.enumerated()), id: \.0) { i, post in
-//                                    NavigationLink(destination: CardView(players: $players.players, order: i, filteredData: $album.sorted{ $0.date < $1.date })) {
-//                                        Image(uiImage: UIImage(data: Data(base64Encoded: post.image)!) ?? UIImage(systemName: "house")!)
-//                                            .resizable()
-//                                            .aspectRatio(contentMode: .fill)
-//                                            .frame(width: imageSize, height: imageSize)
-//                                            .clipped()
-//                                            .cornerRadius(10)
-//                                    }
-//                                }
-//                            }
-                            
+                            }
                         }
                         .offset(self.offset)
                     }
@@ -119,8 +102,7 @@ struct GalleryView: View {
         Menu {
             Button(action: {
                 isNewest = true
-                //
-                album = album.sorted{ $0.date > $1.date }
+                album = album.sorted{ $0.date < $1.date }
             }) {
                 HStack {
                     Text("최신 항목 순으로")
@@ -132,8 +114,7 @@ struct GalleryView: View {
             }
             Button(action: {
                 isNewest = false
-                //
-                album = album.sorted{ $0.date < $1.date }
+                album = album.sorted{ $0.date > $1.date }
             }) {
                 Text("오래된 항목 순으로")
                 Spacer()
@@ -143,9 +124,7 @@ struct GalleryView: View {
             }
         } label: {
             Image(systemName: "chevron.up.chevron.down")
-                .foregroundColor(Color.joyBlue)
         }
+        .foregroundColor(Color.joyBlue)
     }
-    
-    
 }

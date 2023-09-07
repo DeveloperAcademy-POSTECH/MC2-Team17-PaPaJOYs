@@ -19,6 +19,8 @@ struct PhotoSelectButton: View {
     @State private var isChoosen = false
     @State private var showRecordingAndInfoView = false
     
+    let addNewMemoryButtonLabel = "새로운 추억 기록하기"
+    
     var body: some View {
         VStack(spacing: 0) {
             ZStack(alignment: .bottom) {
@@ -29,12 +31,11 @@ struct PhotoSelectButton: View {
                 } label: {
                     HStack {
                         Image(systemName: "plus")
-                        Text("새로운 추억 기록하기")
+                        Text(addNewMemoryButtonLabel)
                     }
                     .frame(maxWidth: .infinity)
+                    .fontWeight(.semibold)
                     .foregroundColor(Color.joyDarkG)
-                    .fontWeight(.bold)
-                    .font(.headline)
                     .padding(.vertical, 18)
                     .background {
                         RoundedRectangle(cornerRadius: 16)
@@ -47,7 +48,6 @@ struct PhotoSelectButton: View {
                         isShowingCameraPicker = true
                     }, label: {
                         Text("사진 촬영")
-                            .foregroundColor(Color.joyBlue)
                     })
                     .background(Color.joyWhite)
 
@@ -55,13 +55,12 @@ struct PhotoSelectButton: View {
                         isShowingPhotoLibraryPicker = true
                     }, label: {
                         Text("사진 선택")
-                            .foregroundColor(Color.joyBlue)
                     })
                     .background(Color.joyWhite)
                     
                     Button(role: .cancel, action: {
                     }, label: {
-                        Text("Cancel")
+                        Text("취소")
                     })
                 }
                 .fullScreenCover(isPresented: $isShowingCameraPicker, onDismiss: { isChoosen.toggle() }) {
@@ -72,6 +71,7 @@ struct PhotoSelectButton: View {
                     ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
                         .ignoresSafeArea()
                         .tint(Color.joyBlue)
+                        .preferredColorScheme(.dark)
                 }
             }
             

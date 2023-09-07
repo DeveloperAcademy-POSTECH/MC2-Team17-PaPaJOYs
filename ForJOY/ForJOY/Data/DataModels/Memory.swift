@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 
+// 기본 데이터 구조
 class Memory: ObservableObject {
     @Published var objectID = NSManagedObjectID()
     @Published var title: String = ""
