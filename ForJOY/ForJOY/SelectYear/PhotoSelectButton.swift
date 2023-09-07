@@ -13,9 +13,11 @@ struct PhotoSelectButton: View {
     
     @State private var isShowActionSheet = false
     @State private var selectedImage: UIImage?
+    @State private var croppedImage: UIImage?
     @State private var isShowingActionSheet = false
     @State private var isShowingCameraPicker = false
     @State private var isShowingPhotoLibraryPicker = false
+    @State private var showCropView = false
     @State private var isChoosen = false
     @State private var showRecordingAndInfoView = false
     
@@ -72,6 +74,19 @@ struct PhotoSelectButton: View {
                     ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
                         .ignoresSafeArea()
                         .tint(Color.joyBlue)
+                        .preferredColorScheme(.dark)
+                }
+                .sheet(isPresented: $showCropView) {
+                    showCropView = false
+                    isShowingPhotoLibraryPicker = false
+                    isShowingCameraPicker = false
+                    showRecordingAndInfoView.toggle()
+                } content: {
+                    CropView(image:selectedImage, showCropView: $showCropView) { croppedImage, status in
+                        if let croppedImage {
+                            self.croppedImage = croppedImage
+                        }
+                    }
                 }
             }
             
@@ -81,17 +96,10 @@ struct PhotoSelectButton: View {
         }
         .frame(height: UIScreen.height * 0.15)
         .onChange(of: selectedImage) { _ in
-            showRecordingAndInfoView.toggle()
+            showCropView.toggle()
         }
-        
         .fullScreenCover(isPresented: $showRecordingAndInfoView, onDismiss: { updateData() }) {
-            RecordingAndInfoView(selectedImage: $selectedImage)
-        }
-    }
-    
-    func loadImage() {
-        if selectedImage != nil {
-            isChoosen.toggle()
+            RecordingAndInfoView(selectedImage: $croppedImage)
         }
     }
     
