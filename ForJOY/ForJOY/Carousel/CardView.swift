@@ -4,7 +4,7 @@ import AVFoundation
 
 struct CardView: View {
     @Environment(\.dismiss) private var dismiss
-
+  
     @Binding var players: [AVPlayer]
     @State var isPlaying = false
     @State var moveToInfoView = false
