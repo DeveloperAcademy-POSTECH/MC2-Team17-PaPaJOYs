@@ -4,27 +4,18 @@ import AVFoundation
 
 struct CardView: View {
     @Environment(\.dismiss) private var dismiss
+
     @Binding var players: [AVPlayer]
     @State var isPlaying = false
     @State var moveToInfoView = false
     @State var isShowAlert = false
     @State var order: Int
     
+    @Binding var filteredData: [Memory]
+    
     let cardWidth = UIScreen.width - 70
     let cardHeight = (UIScreen.width - 104) / 3 * 4 + 132
-    
-    var filteredData: [Memory]
-    
-    var cardGroup: [AnyView] {
-        if filteredData.isEmpty {
-            return []
-        } else {
-            return filteredData.enumerated().map { (i, post) in
-                return AnyView(CardContentView(imageName: post.image, title: post.title, date: post.date.toString(dateFormat: "yyyy.MM.dd"), player: players[i], isPlaying: $isPlaying))
-            }
-        }
-    }
-    
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -32,20 +23,11 @@ struct CardView: View {
                     .ignoresSafeArea()
                 
                 VStack {
-                    CarouselView(carouselLocation: $order, players: $players, isPlaying: $isPlaying, itemWidth: cardWidth, itemHeight: cardHeight, views: cardGroup)
+                    CarouselView(carouselLocation: $order, players: $players, isPlaying: $isPlaying, itemWidth: cardWidth, itemHeight: cardHeight, views: $filteredData)
                         .padding(.top, -50)
                     
                     Spacer()
                 }
-                
-                NavigationLink(
-                    isActive: $moveToInfoView,
-                    destination: {
-                        EditInfoView(selectedData: filteredData[order%filteredData.count])
-                    },
-                    label: {
-                        EmptyView()
-                    })
             }
             .onDisappear {
                 for p in players {
@@ -63,8 +45,11 @@ struct CardView: View {
                         isShowAlert = false
                     }
                     Button("삭제", role: .destructive) {
-                        //TODO: DB 삭제
                         CoreDataManager.coreDM.deleteMemory(filteredData[order].objectID)
+                        dismiss()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            filteredData.remove(at: order)
+                        }
                     }
                 }, message: {
                     Text("한 번 삭제된 추억은 복구가 불가능합니다.")
@@ -87,18 +72,21 @@ struct CardView: View {
     
     private var EditButton: some View {
         Menu {
-            Button(
-                action: {
-                    moveToInfoView = true
-                }, label: {
-                    HStack {
-                        Text("편집")
-                        Spacer(minLength: 0)
-                        Image(systemName: "square.and.pencil")
-                            .font(.system(size: 17))
-                    }
-                }
-            )
+            if filteredData.count > 0 {
+                NavigationLink(destination: EditInfoView(selectedData: filteredData[order%filteredData.count])) {
+                    Button(
+                        action: {
+                            moveToInfoView = true
+                        }, label: {
+                            HStack {
+                                Text("편집")
+                                Spacer(minLength: 0)
+                                Image(systemName: "square.and.pencil")
+                                    .font(.system(size: 17))
+                            }
+                        }
+                    )}
+            }
             
             Button(
                 role: .destructive,
@@ -115,6 +103,7 @@ struct CardView: View {
             )
         } label: {
             Image(systemName: "ellipsis")
+                .font(.system(size: 25))
                 .foregroundColor(Color.joyBlue)
         }
     }
