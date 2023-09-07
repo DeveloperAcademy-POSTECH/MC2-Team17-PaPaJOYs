@@ -16,6 +16,13 @@ struct SelectYearView: View {
     @State private var isAllSelect = true
     @State private var selectedTag = "All"
     
+    @State private var contentWidth = 0.0
+    @State private var scrollID = UUID()
+    
+    private let descriptionForNil = "아직 저장된 추억이 없어요"
+    private let imageForNil = "EmptyMemory"
+    private let imageForNilSize = 200.0
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -28,19 +35,24 @@ struct SelectYearView: View {
                         .padding(.top, 20)
                         
                 } else {
-                    VStack {
-                        // TODO: 폴라로이드 이미지 필요
+                    VStack(spacing: 25) {
+                        Image(imageForNil)
+                            .resizable()
+                            .frame(width: imageForNilSize, height: imageForNilSize)
                         
-                        Text("아직 저장된 추억이 없어요")
-                            .font(.headline)
+                        Text(descriptionForNil)
+                            .font(.system(size: 15))
                             .foregroundColor(Color.joyWhite)
+                        
+                        Spacer()
                     }
+                    .padding(.top, 140)
                 }
 
-                
                 VStack() {
                     Spacer()
                     PhotoSelectButton(memories: $memories, tags: $tags)
+                        .padding(.bottom, 34)
                 }
             }
             .edgesIgnoringSafeArea([.bottom])
@@ -61,25 +73,8 @@ struct SelectYearView: View {
     private var TagView: some View {
         ScrollViewReader { proxy in
             ScrollView(.horizontal, showsIndicators: false) {
-                 HStack(spacing: 10) {
-                     Button {
-                         selectedTag = "All"
-                         isAllSelect = true
-                     } label: {
-                         Text("모든 태그")
-                             .font(.system(size: 15))
-                             .fontWeight(.semibold)
-                             .lineLimit(1)
-                             .padding(.vertical, 5)
-                             .padding(.horizontal, 10)
-                             .background(isAllSelect ? Color.joyBlue : Color.joyDarkG)
-                             .clipShape(RoundedRectangle(cornerRadius: 6))
-                             .overlay {
-                                 RoundedRectangle(cornerRadius: 6)
-                                     .strokeBorder(isAllSelect ? Color.joyBlue : Color.joyWhite, lineWidth: 1)
-                             }
-                     }
-                     
+                HStack(spacing: 10) {
+                    
                     ForEach( Array(tags.sorted().filter{$0 != "없음"}) , id: \.self) { i in
                         Button {
                             selectedTag = i
@@ -87,9 +82,9 @@ struct SelectYearView: View {
                         } label: {
                             Text("#" + i)
                                 .font(.system(size: 15))
-                                .fontWeight(.semibold)
+                                .fontWeight(.medium)
                                 .lineLimit(1)
-                                .padding(.vertical, 5)
+                                .padding(.vertical, 6)
                                 .padding(.horizontal, 10)
                                 .background(isAllSelect ? Color.joyDarkG : (selectedTag == i ? Color.joyBlue : Color.joyDarkG))
                                 .clipShape(RoundedRectangle(cornerRadius: 6))
@@ -99,9 +94,30 @@ struct SelectYearView: View {
                                 }
                         }
                     }
+
+                    Button {
+                        selectedTag = "All"
+                        isAllSelect = true
+                    } label: {
+                        Text("모든 태그")
+                            .font(.system(size: 15))
+                            .fontWeight(.medium)
+                            .lineLimit(1)
+                            .padding(.vertical, 6)
+                            .padding(.horizontal, 10)
+                            .background(isAllSelect ? Color.joyBlue : Color.joyDarkG)
+                            .clipShape(RoundedRectangle(cornerRadius: 6))
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 6)
+                                    .strokeBorder(isAllSelect ? Color.joyBlue : Color.joyWhite, lineWidth: 1)
+                            }
+                            .id("all")
+                    }
+                }
+                .onAppear {
+                    proxy.scrollTo("all")
                 }
             }
-//            .scrollIndicators(.nevesr)
             .frame(width: UIScreen.width - 116)
         }
     }
@@ -126,7 +142,9 @@ struct SelectYearView: View {
             }
         } label: {
             Image(systemName: "chevron.up.chevron.down")
+//                .font(.system(size: 24))
                 .foregroundColor(Color.joyBlue)
+                .padding(.leading, 60)
         }
     }
 }
@@ -169,13 +187,14 @@ struct AlbumView: View {
 struct AlbumSubView: View {
     let post: Memory
     
+    private let imageForNil = "EmptyMemory"
     private let imageSize = UIScreen.width / 2 - 52
     
     var body: some View {
         ZStack {
             Color.joyWhite
             VStack(alignment: .trailing, spacing: 0) {
-                Image(uiImage: UIImage(data: Data(base64Encoded: post.image)!) ?? UIImage(systemName: "house")!)
+                Image(uiImage: UIImage(data: Data(base64Encoded: post.image)!) ?? UIImage(named: imageForNil)!)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: imageSize, height: imageSize)
