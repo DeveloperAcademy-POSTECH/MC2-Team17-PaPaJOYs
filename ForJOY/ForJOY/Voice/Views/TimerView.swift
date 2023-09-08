@@ -107,16 +107,9 @@ struct TimerView: View {
                         Button(action: {
                             vm.startRecording()
                         }){
-                            ZStack{
-                                Circle()
-                                    .fill(Color.joyYellow)
-                                    .frame(width: 57)
-                                
-                                Image(systemName: "mic.fill")
-                                    .resizable()
-                                    .frame(width: 20, height: 30)
-                                    .foregroundColor(Color.joyDarkG)
-                            }
+                            Image(systemName: "mic.circle.fill")
+                                .font(.system(size: 48))
+                                .foregroundColor(Color.joyYellow)
                         }
                     } else {
                         // 녹음 중과 녹음 종료 시의 UI
@@ -131,40 +124,23 @@ struct TimerView: View {
                                 vm.stopRecording()
                                 //                                pageNumber = 1
                             }, label: {
-                                ZStack{
-                                    Circle()
-                                        .fill(Color.joyWhite)
-                                        .frame(width: 57)
-                                    
-                                    Image(systemName: "stop.fill")
-                                        .resizable()
-                                        .frame(width: 22, height: 22)
-                                        .foregroundColor(Color.joyDarkG)
-                                }
+                                Image(systemName: "stop.circle.fill")
+                                    .font(.system(size: 48))
+                                    .foregroundColor(Color.joyWhite)
                             })
                         }
                     }
                     // 3번
                     if !vm.isRecording && vm.isEndRecording {
-                        ZStack {
-                            Circle()
-                                .fill(Color.joyBlue)
-                                .frame(width: 57)
-                            
-                            Image(systemName: "checkmark")
-                                .resizable()
-                                .frame(width: 22, height: 22)
-                                .foregroundColor(Color.joyDarkG)
-                                .scaleEffect(animationTriggered ? 1.0 : 0.1)
-                                .opacity(animationTriggered ? 1.0 : 0.0)
-                                .animation(Animation.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.5).delay(0.1))
-                        }
-                        .onAppear() {
-                            animationTriggered = true
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                pageNumber += 1  // Navigate to the next page
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.system(size: 48))
+                            .foregroundColor(Color.joyBlue)
+                            .onAppear() {
+                                animationTriggered = true
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    pageNumber += 1  // Navigate to the next page
+                                }
                             }
-                        }
                     }
                 }
                 // 녹음이 시작될 때의 설정
