@@ -21,87 +21,94 @@ struct InfoView: View {
     @Binding var recording: URL?
     @Binding var pageNumber: Int
     
+    let padding = UIScreen.height/844
+    
     var body: some View {
         NavigationStack {
-            VStack {
-                if selectedImage != nil {
-                    Image(uiImage: selectedImage!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: UIScreen.width - 40, height: (UIScreen.width - 40) / 3 * 4)
-                        .cornerRadius(10)
-                        .clipped()
-                        .padding(.horizontal, 15)
-                        .padding(.top, 25)
-
-                } else {
-                    Text("No image")
-                }
+            ZStack {
+                Color.joyDarkG
+                    .ignoresSafeArea()
                 
-                List {
-                    HStack {
-                        Text("제목")
-                        Spacer(minLength: 0)
-                        TextField("제목", text: $title)
-                            .font(.system(size: (17.0 - CGFloat(title.count)*0.3)))
-                            .multilineTextAlignment(.trailing)
-                            .onChange(of: title) { newValue in
-                                title = String(newValue.prefix(20))
-                            }
-                            .padding(.trailing, 4)
+                VStack {
+                    if selectedImage != nil {
+                        Image(uiImage: selectedImage!)
+                            .resizable()
+                            .aspectRatio(CGSize(width: 3, height: 4), contentMode: .fill)
+                            .frame(width: 350*padding, height: 466*padding)
+                            .cornerRadius(10)
+                            .clipped()
+                            .padding(.horizontal, 15)
+                            .padding(.top, 30*padding)
+                    } else {
+                        Text("No image")
                     }
-                    .listRowBackground(Color.joyWhite)
                     
-                    HStack(){
-                        Text("태그")
-                            .frame(width: 60, alignment: .leading)
-                        
-                        Spacer(minLength: 0)
-                        
-                        Button(
-                            action: {showTagView = true},
-                            label: {
-                                if tag == nil {
-                                    Text("없음 \(Image(systemName: "chevron.right"))")
-                                        .frame(maxWidth: 250, alignment: .trailing)
-                                        .foregroundColor(.black)
-                                }else {
-                                    Text("\(tag!)\(Image(systemName: "chevron.right"))")
-                                        .frame(maxWidth: 250, alignment: .trailing)
-                                        .foregroundColor(.black)
+                    List {
+                        HStack {
+                            Text("제목")
+                            Spacer(minLength: 0)
+                            TextField("제목", text: $title)
+                                .font(.system(size: (17.0 - CGFloat(title.count)*0.3)))
+                                .multilineTextAlignment(.trailing)
+                                .onChange(of: title) { newValue in
+                                    title = String(newValue.prefix(20))
                                 }
-                            }
+                                .padding(.trailing, 4)
+                        }
+                        .listRowBackground(Color.joyWhite)
+                        
+                        HStack(){
+                            Text("태그")
+                                .frame(width: 60, alignment: .leading)
+                            
+                            Spacer(minLength: 0)
+                            
+                            Button(
+                                action: {showTagView = true},
+                                label: {
+                                    if tag == nil {
+                                        Text("없음 \(Image(systemName: "chevron.right"))")
+                                            .frame(maxWidth: 250, alignment: .trailing)
+                                            .foregroundColor(.black)
+                                    }else {
+                                        Text("\(tag!)\(Image(systemName: "chevron.right"))")
+                                            .frame(maxWidth: 250, alignment: .trailing)
+                                            .foregroundColor(.black)
+                                    }
+                                }
+                            )
+                        }
+                        .listRowBackground(Color.joyWhite)
+                        
+                        DatePicker(
+                            "날짜",
+                            selection: $date,
+                            displayedComponents: [.date]
                         )
+                        .tint(Color.joyBlue)
+                        .listRowBackground(Color.joyWhite)
                     }
-                    .listRowBackground(Color.joyWhite)
-                    
-                    DatePicker(
-                        "날짜",
-                        selection: $date,
-                        displayedComponents: [.date]
-                    )
-                    .tint(Color.joyBlue)
-                    .listRowBackground(Color.joyWhite)
+//                    .frame(width: 390*padding)
+                    .scrollContentBackground(.hidden)
+                    .scrollDisabled(true)
                 }
-                .scrollContentBackground(.hidden)
-                .scrollDisabled(true)
-            }
-            .background(Color.joyDarkG)
-            .foregroundColor(.black)
-            .navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: BackButton)
-            .navigationBarItems(trailing: DoneButton)
-            
-            .alert("다시 녹음하시겠습니까?", isPresented: $pushBackButton, actions: {
-                Button("취소", role: .cancel) { }
-                Button("다시 녹음", role: .destructive) { pageNumber = 0 }
-            }, message: {
-                Text("재녹음 시 이전에 녹음된 정보는 삭제됩니다.")
-            })
-            
-            .sheet(isPresented: $showTagView) {
-                InfoTagView(selectTag: $tag, showTagView: $showTagView)
-                    .presentationDragIndicator(.visible)
+                .background(Color.joyDarkG)
+                .foregroundColor(.black)
+                .navigationBarBackButtonHidden(true)
+                .navigationBarItems(leading: BackButton)
+                .navigationBarItems(trailing: DoneButton)
+                
+                .alert("다시 녹음하시겠습니까?", isPresented: $pushBackButton, actions: {
+                    Button("취소", role: .cancel) { }
+                    Button("다시 녹음", role: .destructive) { pageNumber = 0 }
+                }, message: {
+                    Text("재녹음 시 이전에 녹음된 정보는 삭제됩니다.")
+                })
+                
+                .sheet(isPresented: $showTagView) {
+                    InfoTagView(selectTag: $tag, showTagView: $showTagView)
+                        .presentationDragIndicator(.visible)
+                }
             }
         }
     }

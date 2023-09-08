@@ -24,36 +24,42 @@ struct VoiceView: View {
     @Binding var recording: URL?
     @Binding var pageNumber: Int
     
+    let padding = UIScreen.height/844
+    
     var body: some View {
         NavigationStack{
             ZStack {
                 Color.joyDarkG
                     .ignoresSafeArea()
-                
-                VStack(spacing: 30) {
+               
+                VStack {
                     // 중앙에 이미지 표시
                     if let image = selectedImage {
                         Image(uiImage: image)
                             .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: UIScreen.width - 40, height: (UIScreen.width - 40) / 3 * 4)
+                            .aspectRatio(CGSize(width: 3, height: 4), contentMode: .fill)
+                            .frame(width: 350*padding, height: 466*padding)
                             .clipped()
                             .cornerRadius(10)
+                            .padding(.horizontal, 20)
+                            .padding(.bottom, 30)
                     }
                     
                     SoundVisualizer()
+                        .frame(width: 217*padding, height: 35*padding)
                         .opacity(voiceViewModel.isRecording && !voiceViewModel.isEndRecording ? 1 : 0)
                         .offset(y: voiceViewModel.isRecording && !voiceViewModel.isEndRecording ? 0 : -50)
                         .animation(.easeInOut(duration: 0.5))
-
+                        .padding(.bottom, 20*padding)
+                    
                     // 녹음 타이머 표시 뷰
                     TimerView(vm: voiceViewModel, recording: $recording, pageNumber: $pageNumber)
+                        .frame(width: 57*padding, height: 94*padding)
                     // 녹음 파일의 URL 값이 변경될 때, recording 변수에 저장
-                    .onChange(of: voiceViewModel.recording) { newValue in
-                        recording = newValue
-                    }
+                        .onChange(of: voiceViewModel.recording) { newValue in
+                            recording = newValue
+                        }
                 }
-                .padding(.top, 30)
             }
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: BackButton)

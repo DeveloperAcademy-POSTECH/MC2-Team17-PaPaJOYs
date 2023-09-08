@@ -17,20 +17,19 @@ struct EditInfoView: View {
     @State private var showTagView = false
     
     var selectedData: Memory
+    let padding = UIScreen.height/844
     
     var body: some View {
         NavigationStack {
             VStack {
-                GeometryReader { geometry in
-                    Image(uiImage: UIImage(data: Data(base64Encoded: selectedData.image)!) ?? UIImage(systemName: "house")!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: geometry.size.width - 30, height: geometry.size.height)
-                        .cornerRadius(10)
-                        .clipped()
-                        .padding(.horizontal, 15)
-                        .padding(.top, 25)
-                }
+                Image(uiImage: UIImage(data: Data(base64Encoded: selectedData.image)!) ?? UIImage(named: "test")!)
+                    .resizable()
+                    .aspectRatio(CGSize(width: 3, height: 4), contentMode: .fill)
+                    .frame(width: 350*padding, height: 466*padding)
+                    .cornerRadius(10)
+                    .clipped()
+                    .padding(.horizontal, 15)
+                    .padding(.top, 30*padding)
                 
                 List {
                     HStack{

@@ -13,13 +13,13 @@ struct PhotoSelectButton: View {
     
     @State private var isShowActionSheet = false
     @State private var selectedImage: UIImage?
+    @State private var croppedImage: UIImage?
     @State private var isShowingActionSheet = false
     @State private var isShowingCameraPicker = false
     @State private var isShowingPhotoLibraryPicker = false
+    @State private var showCropView = false
     @State private var isChoosen = false
     @State private var showRecordingAndInfoView = false
-    
-    let addNewMemoryButtonLabel = "새로운 추억 기록하기"
     
     var body: some View {
         VStack(spacing: 0) {
@@ -31,11 +31,12 @@ struct PhotoSelectButton: View {
                 } label: {
                     HStack {
                         Image(systemName: "plus")
-                        Text(addNewMemoryButtonLabel)
+                        Text("새로운 추억 기록하기")
                     }
                     .frame(maxWidth: .infinity)
-                    .fontWeight(.semibold)
                     .foregroundColor(Color.joyDarkG)
+                    .fontWeight(.bold)
+                    .font(.headline)
                     .padding(.vertical, 18)
                     .background {
                         RoundedRectangle(cornerRadius: 16)
@@ -48,6 +49,7 @@ struct PhotoSelectButton: View {
                         isShowingCameraPicker = true
                     }, label: {
                         Text("사진 촬영")
+                            .foregroundColor(Color.joyBlue)
                     })
                     .background(Color.joyWhite)
 
@@ -55,12 +57,13 @@ struct PhotoSelectButton: View {
                         isShowingPhotoLibraryPicker = true
                     }, label: {
                         Text("사진 선택")
+                            .foregroundColor(Color.joyBlue)
                     })
                     .background(Color.joyWhite)
                     
                     Button(role: .cancel, action: {
                     }, label: {
-                        Text("취소")
+                        Text("Cancel")
                     })
                 }
                 .fullScreenCover(isPresented: $isShowingCameraPicker, onDismiss: { isChoosen.toggle() }) {
@@ -73,6 +76,18 @@ struct PhotoSelectButton: View {
                         .tint(Color.joyBlue)
                         .preferredColorScheme(.dark)
                 }
+                .sheet(isPresented: $showCropView) {
+                    showCropView = false
+                    isShowingPhotoLibraryPicker = false
+                    isShowingCameraPicker = false
+                    showRecordingAndInfoView.toggle()
+                } content: {
+                    CropView(image:selectedImage, showCropView: $showCropView) { croppedImage, status in
+                        if let croppedImage {
+                            self.croppedImage = croppedImage
+                        }
+                    }
+                }
             }
             
             Rectangle()
@@ -81,17 +96,10 @@ struct PhotoSelectButton: View {
         }
         .frame(height: UIScreen.height * 0.15)
         .onChange(of: selectedImage) { _ in
-            showRecordingAndInfoView.toggle()
+            showCropView.toggle()
         }
-        
         .fullScreenCover(isPresented: $showRecordingAndInfoView, onDismiss: { updateData() }) {
-            RecordingAndInfoView(selectedImage: $selectedImage)
-        }
-    }
-    
-    func loadImage() {
-        if selectedImage != nil {
-            isChoosen.toggle()
+            RecordingAndInfoView(selectedImage: $croppedImage)
         }
     }
     
