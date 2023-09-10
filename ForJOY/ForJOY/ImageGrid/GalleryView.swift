@@ -57,18 +57,9 @@ struct GalleryView: View {
                 
                 HStack {
                     VStack {
-                        if tagName == "All" {
-                            Text(year.description)
-                                .font(.title2)
-                                .fontWeight(.bold)
-                                .foregroundColor(Color.joyWhite)
-                        } else {
-                            Text(tagName + " " + year.description)
-                                .font(.title2)
-                                .fontWeight(.bold)
-                                .foregroundColor(Color.joyWhite)
-                            
-                        }
+                        Text(year.description)
+                            .font(Font.largeTitle)
+                            .foregroundColor(Color.joyWhite)
                         
                         Spacer()
                     }
