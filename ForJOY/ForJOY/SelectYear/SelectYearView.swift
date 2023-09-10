@@ -19,7 +19,7 @@ struct SelectYearView: View {
     @State private var contentWidth = 0.0
     @State private var scrollID = UUID()
     
-    private let descriptionForNil = "아직 저장된 추억이 없어요"
+    private let descriptionForNil = "첫 기록을 기다리고 있어요"
     private let imageForNil = "EmptyMemory"
     private let imageForNilSize = 200.0 * UIScreen.main.bounds.height / 844
     
