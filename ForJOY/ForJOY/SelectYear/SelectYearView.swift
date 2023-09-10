@@ -41,7 +41,7 @@ struct SelectYearView: View {
                             .frame(width: imageForNilSize, height: imageForNilSize)
                         
                         Text(descriptionForNil)
-                            .font(.system(size: 15))
+                            .font(Font.body2Kor)
                             .foregroundColor(Color.joyWhite)
                         
                         Spacer()
@@ -81,8 +81,7 @@ struct SelectYearView: View {
                             isAllSelect = false
                         } label: {
                             Text("#" + i)
-                                .font(.system(size: 15))
-                                .fontWeight(.medium)
+                                .font(Font.body2Kor)
                                 .lineLimit(1)
                                 .padding(.vertical, 6)
                                 .padding(.horizontal, 10)
@@ -100,8 +99,7 @@ struct SelectYearView: View {
                         isAllSelect = true
                     } label: {
                         Text("모든 태그")
-                            .font(.system(size: 15))
-                            .fontWeight(.medium)
+                            .font(Font.body2Kor)
                             .lineLimit(1)
                             .padding(.vertical, 6)
                             .padding(.horizontal, 10)
@@ -142,7 +140,6 @@ struct SelectYearView: View {
             }
         } label: {
             Image(systemName: "chevron.up.chevron.down")
-//                .font(.system(size: 24))
                 .foregroundColor(Color.joyBlue)
                 .padding(.leading, 60)
         }
@@ -203,7 +200,7 @@ struct AlbumSubView: View {
                     .padding(.top, 13)
                 
                 Text("\(post.year)".replacingOccurrences(of: ",", with: ""))
-                    .font(.system(size: 20, weight: .semibold))
+                    .font(Font.title1)
                     .foregroundColor(Color.joyDarkG)
                     .padding(10)
             }
