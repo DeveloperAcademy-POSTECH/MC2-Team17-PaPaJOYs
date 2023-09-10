@@ -21,7 +21,7 @@ struct SelectYearView: View {
     
     private let descriptionForNil = "아직 저장된 추억이 없어요"
     private let imageForNil = "EmptyMemory"
-    private let imageForNilSize = 200.0
+    private let imageForNilSize = 200.0 * UIScreen.main.bounds.height / 844
     
     var body: some View {
         NavigationStack {
