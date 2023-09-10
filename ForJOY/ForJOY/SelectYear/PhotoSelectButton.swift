@@ -35,8 +35,7 @@ struct PhotoSelectButton: View {
                     }
                     .frame(maxWidth: .infinity)
                     .foregroundColor(Color.joyDarkG)
-                    .fontWeight(.bold)
-                    .font(.headline)
+                    .font(Font.body1Kor)
                     .padding(.vertical, 18)
                     .background {
                         RoundedRectangle(cornerRadius: 16)
