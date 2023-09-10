@@ -38,6 +38,7 @@
 		30C74FA52A0D06EB0099DC1B /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C74FA42A0D06EB0099DC1B /* InfoView.swift */; };
 		30C74FA72A0D06FE0099DC1B /* InfoTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C74FA62A0D06FE0099DC1B /* InfoTagView.swift */; };
 		5B08A50B2A147CB000496242 /* VoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08A50A2A147CB000496242 /* VoiceViewModel.swift */; };
+		5B6E154A2AADF7E90037598B /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6E15492AADF7E90037598B /* Font+.swift */; };
 		5BB7EF6C2A7FAAB6008E772A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7EF6B2A7FAAB6008E772A /* CoreDataManager.swift */; };
 		5BB7EF6F2A7FAACB008E772A /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7EF6D2A7FAACB008E772A /* DataModel.xcdatamodeld */; };
 		AA5154EE2A974B0900C4DC7D /* MicrophoneMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5154ED2A974B0900C4DC7D /* MicrophoneMonitor.swift */; };
@@ -92,6 +93,7 @@
 		30C74FA42A0D06EB0099DC1B /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		30C74FA62A0D06FE0099DC1B /* InfoTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTagView.swift; sourceTree = "<group>"; };
 		5B08A50A2A147CB000496242 /* VoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceViewModel.swift; sourceTree = "<group>"; };
+		5B6E15492AADF7E90037598B /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		5BB7EF6B2A7FAAB6008E772A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		5BB7EF6E2A7FAACB008E772A /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		5BB7EF702A834D0A008E772A /* ForJOYRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ForJOYRelease.entitlements; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				30B9FE382AA03B2B00205BB7 /* UIScreen+.swift */,
 				30B9FE3A2AA24A4E00205BB7 /* UINavigationController+.swift */,
 				0E641AB72AA2536E00FE69FE /* Color+.swift */,
+				5B6E15492AADF7E90037598B /* Font+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B6E154A2AADF7E90037598B /* Font+.swift in Sources */,
 				0E4E7DE22A111CDE00D72E66 /* Tag.swift in Sources */,
 				3063F2CC2A0E1BAA00C56EBA /* (null) in Sources */,
 				3063F2CE2A0E1BB500C56EBA /* (null) in Sources */,
