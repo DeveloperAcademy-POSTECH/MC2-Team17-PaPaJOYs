@@ -40,8 +40,7 @@ struct InfoTagView: View {
                                     action: {newTag = ""},
                                     label: {
                                         Image(systemName: "x.circle.fill")
-                                            .font(Font.system(size: 16, weight: .semibold))
-                                            .foregroundColor(.gray.opacity(0.5))
+                                            .foregroundColor(Color.joyGrey200)
                                     }
                                 )
                             }
@@ -62,7 +61,7 @@ struct InfoTagView: View {
                                         if tags[index].tagName == selectTag {
                                             Image(systemName: "checkmark")
                                                 .multilineTextAlignment(.trailing)
-                                                .font(Font.system(size: 17, weight: .semibold))
+                                                .font(Font.body1Kor)
                                                 .foregroundColor(Color.joyBlue)
                                         }
                                     }
@@ -79,7 +78,7 @@ struct InfoTagView: View {
                 .scrollContentBackground(.hidden)
             }
             .padding(8)
-            .background(Color.joyDarkG)
+            .background(Color.joyBlack)
             .foregroundColor(.black)
             .onDisappear() {
                 saveTags()
@@ -113,15 +112,14 @@ struct InfoTagView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbarColorScheme(.dark, for: .navigationBar)
-            .toolbarBackground(Color.joyDarkG)
+            .toolbarBackground(Color.joyBlack)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(
                         action: {showTagView.toggle()},
                         label: {
                             Image(systemName: "x.circle.fill")
-                                .font(Font.system(size: 16, weight: .semibold))
-                                .foregroundColor(.gray)
+                                .foregroundColor(Color.joyGrey200)
                         })
                 }
             }

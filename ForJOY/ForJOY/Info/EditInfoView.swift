@@ -73,7 +73,7 @@ struct EditInfoView: View {
                 .scrollContentBackground(.hidden)
                 .scrollDisabled(true)
             }
-            .background(Color.joyDarkG)
+            .background(Color.joyBlack)
             .foregroundColor(.black)
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: BackButton)

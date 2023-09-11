@@ -90,13 +90,9 @@ struct TimerView: View {
     // 뷰 본문 정의
     var body: some View {
         // 전체 뷰를 구성하는 UI 요소와 로직
-        // 배경색 설정, 녹음 진행도 표시, 버튼 동작, 애니메이션 등의 로직 포함
-        // 배경 색상과 중앙에 배치된 녹음 UI를 포함하는 ZStack
+        // 녹음 진행도 표시, 버튼 동작, 애니메이션 등의 로직 포함
+        // 중앙에 배치된 녹음 UI를 포함하는 ZStack
         ZStack{
-            // 전체 배경색을 설정
-            Color.joyDarkG
-                .ignoresSafeArea()
-            
             VStack{
                 // 녹음 진행도와 관련된 UI를 그룹화하는 ZStack
                 ZStack{
@@ -126,7 +122,7 @@ struct TimerView: View {
                             }, label: {
                                 Image(systemName: "stop.circle.fill")
                                     .font(.system(size: 48))
-                                    .foregroundColor(Color.joyWhite)
+                                    .foregroundColor(Color.joyGrey200)
                             })
                         }
                     }
@@ -159,12 +155,12 @@ struct TimerView: View {
                 // 타이머를 표시하는 Text 뷰 추가
                 if !(vm.isEndRecording) {
                     Text(timeString(from: remainingTime))
-                        .font(.system(size: 16))
-                        .foregroundColor(Color.joyWhite)
+                        .font(Font.body2)
+                        .foregroundColor(Color.joyGrey200)
                         .padding(.top, 8)
                 } else {
                     Text("")
-                        .font(.system(size: 16))
+                        .font(Font.body2)
                         .padding(.top, 8)
                 }
             }

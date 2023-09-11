@@ -67,9 +67,9 @@ struct CarouselView: View {
                     Spacer()
                     Spacer().frame(height: itemHeight + 90)
                     Text("\(relativeLoc() + 1) / \(views.count)")
-                        .font(.system(size: 14))
-                        .foregroundColor(Color.joyLightG)
-                        .background(Capsule().fill(Color.white).frame(width: 50, height: 30).opacity(0.1))
+                        .font(Font.body3)
+                        .foregroundColor(Color.joyWhite)
+                        .background(Capsule().fill(Color.joyGrey300).frame(width: 50, height: 30))
                     Spacer()
                 }
             }

@@ -21,12 +21,12 @@ struct SelectYearView: View {
     
     private let descriptionForNil = "첫 기록을 기다리고 있어요"
     private let imageForNil = "EmptyMemory"
-    private let imageForNilSize = 200.0 * UIScreen.main.bounds.height / 844
+    private let imageForNilSize = 200.0 * UIScreen.height / 844
     
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.joyDarkG
+                Color.joyBlack
                     .ignoresSafeArea()
 
                 if memories.count > 0 {
@@ -85,7 +85,7 @@ struct SelectYearView: View {
                                 .lineLimit(1)
                                 .padding(.vertical, 6)
                                 .padding(.horizontal, 10)
-                                .background(isAllSelect ? Color.joyDarkG : (selectedTag == i ? Color.joyBlue : Color.joyDarkG))
+                                .background(isAllSelect ? Color.joyBlack : (selectedTag == i ? Color.joyBlue : Color.joyBlack))
                                 .clipShape(RoundedRectangle(cornerRadius: 6))
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 6)
@@ -103,7 +103,7 @@ struct SelectYearView: View {
                             .lineLimit(1)
                             .padding(.vertical, 6)
                             .padding(.horizontal, 10)
-                            .background(isAllSelect ? Color.joyBlue : Color.joyDarkG)
+                            .background(isAllSelect ? Color.joyBlue : Color.joyBlack)
                             .clipShape(RoundedRectangle(cornerRadius: 6))
                             .overlay {
                                 RoundedRectangle(cornerRadius: 6)
@@ -199,9 +199,10 @@ struct AlbumSubView: View {
                     .cornerRadius(9)
                     .padding(.top, 13)
                 
-                Text("\(post.year)".replacingOccurrences(of: ",", with: ""))
+                Text("\(post.year)"
+                    .replacingOccurrences(of: ",", with: ""))
                     .font(Font.title1)
-                    .foregroundColor(Color.joyDarkG)
+                    .foregroundColor(Color.joyBlack)
                     .padding(10)
             }
             .padding(.horizontal, 13)

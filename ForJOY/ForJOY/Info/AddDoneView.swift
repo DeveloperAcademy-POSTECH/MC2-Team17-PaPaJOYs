@@ -13,7 +13,7 @@ struct AddDoneView: View {
     var body: some View {
         NavigationStack {
             ZStack{
-                Color.joyDarkG
+                Color.joyBlack
                     .ignoresSafeArea()
                 ZStack{
                     VStack{

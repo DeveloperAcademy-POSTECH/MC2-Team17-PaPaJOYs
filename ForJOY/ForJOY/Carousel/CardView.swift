@@ -19,7 +19,7 @@ struct CardView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color("JoyDarkG")
+                Color.joyBlack
                     .ignoresSafeArea()
                 
                 VStack {
@@ -66,7 +66,7 @@ struct CardView: View {
             dismiss()
         } label: {
             Image(systemName: "chevron.backward")
-                .foregroundColor(.joyBlueL)
+                .foregroundColor(Color.joyBlue)
         }
     }
     
@@ -82,7 +82,6 @@ struct CardView: View {
                                 Text("편집")
                                 Spacer(minLength: 0)
                                 Image(systemName: "square.and.pencil")
-                                    .font(.system(size: 17))
                             }
                         }
                     )}
@@ -97,13 +96,11 @@ struct CardView: View {
                         Text("삭제")
                         Spacer(minLength: 0)
                         Image(systemName: "trash")
-                            .font(.system(size: 17))
                     }
                 }
             )
         } label: {
             Image(systemName: "ellipsis")
-                .font(.system(size: 25))
                 .foregroundColor(Color.joyBlue)
         }
     }
@@ -158,16 +155,16 @@ struct CardContentView: View {
             ImageView(imageName: imageName)
             
             HStack(alignment: .center, spacing: 0) {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 4) {
                     Text(title)
-                        .font(.title3)
-                        .foregroundColor(Color.joyDarkG)
-                        .bold()
+                        .font(Font.body1Kor)
+                        .foregroundColor(Color.joyBlack)
                         .multilineTextAlignment(.leading)
                         .lineLimit(2)
                     
                     Text(date)
-                        .foregroundColor(Color.joyLightG)
+                        .font(Font.body2)
+                        .foregroundColor(Color.joyGrey200)
                 }
                 .padding(.leading, 27)
                 
@@ -187,7 +184,7 @@ struct CardContentView: View {
                 }) {
                     Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
                         .labelStyle(.iconOnly)
-                        .font(.system(size: 50))
+                        .font(.system(size: 48))
                         .foregroundColor(isPlaying ? Color.joyYellow : Color.joyBlue)
                 }
                 .padding(.trailing, 20)
@@ -207,8 +204,7 @@ struct ImageView: View {
     let imageName: String
     let imageWidth = UIScreen.width - 104
     var body: some View {
-        //TODO: 대체 이미지 ("house" 말고)
-        Image(uiImage: UIImage(data: Data(base64Encoded: imageName)!) ?? UIImage(systemName: "house")!)
+        Image(uiImage: UIImage(data: Data(base64Encoded: imageName)!) ?? UIImage(systemName: "EmptyMemory")!)
             .resizable()
             .aspectRatio(contentMode: .fill)
             .frame(width: imageWidth, height: imageWidth / 3 * 4)

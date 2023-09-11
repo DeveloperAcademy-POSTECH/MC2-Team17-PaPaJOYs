@@ -43,10 +43,10 @@ struct GalleryView: View {
                         .offset(self.offset)
                     }
                 }
-                .background(Color.joyDarkG)
+                .background(Color.joyBlack)
                 
                 VStack {
-                    Color.joyDarkG
+                    Color.joyBlack
                         .ignoresSafeArea()
                         .opacity(0.5)
                         .blur(radius: 10)
@@ -115,7 +115,7 @@ struct GalleryView: View {
             }
         } label: {
             Image(systemName: "chevron.up.chevron.down")
+                .foregroundColor(Color.joyBlue)
         }
-        .foregroundColor(Color.joyBlue)
     }
 }

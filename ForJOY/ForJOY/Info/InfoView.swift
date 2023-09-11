@@ -26,7 +26,7 @@ struct InfoView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.joyDarkG
+                Color.joyBlack
                     .ignoresSafeArea()
                 
                 VStack {
@@ -53,6 +53,7 @@ struct InfoView: View {
                                 .onChange(of: title) { newValue in
                                     title = String(newValue.prefix(20))
                                 }
+                                .tint(Color.joyBlue)
                                 .padding(.trailing, 4)
                         }
                         .listRowBackground(Color.joyWhite)
@@ -88,12 +89,11 @@ struct InfoView: View {
                         .tint(Color.joyBlue)
                         .listRowBackground(Color.joyWhite)
                     }
-//                    .frame(width: 390*padding)
                     .scrollContentBackground(.hidden)
                     .scrollDisabled(true)
                 }
-                .background(Color.joyDarkG)
-                .foregroundColor(.black)
+                .background(Color.joyBlack)
+                .foregroundColor(Color.joyBlack)
                 .navigationBarBackButtonHidden(true)
                 .navigationBarItems(leading: BackButton)
                 .navigationBarItems(trailing: DoneButton)
