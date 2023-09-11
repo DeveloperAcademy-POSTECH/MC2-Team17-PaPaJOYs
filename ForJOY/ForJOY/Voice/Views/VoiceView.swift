@@ -29,16 +29,16 @@ struct VoiceView: View {
     var body: some View {
         NavigationStack{
             ZStack {
-                Color.joyDarkG
+                Color.joyBlack
                     .ignoresSafeArea()
-               
+                
                 VStack {
                     // 중앙에 이미지 표시
                     if let image = selectedImage {
                         Image(uiImage: image)
                             .resizable()
                             .aspectRatio(CGSize(width: 3, height: 4), contentMode: .fill)
-                            .frame(width: 350*padding, height: 466*padding)
+                            .frame(width: 350 * padding, height: 466 * padding)
                             .clipped()
                             .cornerRadius(10)
                             .padding(.horizontal, 20)
@@ -46,15 +46,15 @@ struct VoiceView: View {
                     }
                     
                     SoundVisualizer()
-                        .frame(width: 217*padding, height: 35*padding)
+                        .frame(width: 217 * padding, height: 35 * padding)
                         .opacity(voiceViewModel.isRecording && !voiceViewModel.isEndRecording ? 1 : 0)
                         .offset(y: voiceViewModel.isRecording && !voiceViewModel.isEndRecording ? 0 : -50)
                         .animation(.easeInOut(duration: 0.5))
-                        .padding(.bottom, 20*padding)
+                        .padding(.bottom, 20 * padding)
                     
                     // 녹음 타이머 표시 뷰
                     TimerView(vm: voiceViewModel, recording: $recording, pageNumber: $pageNumber)
-                        .frame(width: 57*padding, height: 94*padding)
+                        .frame(width: 57 * padding, height: 94 * padding)
                     // 녹음 파일의 URL 값이 변경될 때, recording 변수에 저장
                         .onChange(of: voiceViewModel.recording) { newValue in
                             recording = newValue
@@ -71,7 +71,7 @@ struct VoiceView: View {
             dismiss()
         } label: {
             Text("작성 취소")
-                .foregroundColor(.joyBlueL)
+                .foregroundColor(Color.joyBlue)
         }
     }
 }
