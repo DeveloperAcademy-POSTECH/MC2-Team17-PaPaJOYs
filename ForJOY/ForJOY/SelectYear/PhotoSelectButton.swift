@@ -24,7 +24,7 @@ struct PhotoSelectButton: View {
     var body: some View {
         VStack(spacing: 0) {
             ZStack(alignment: .bottom) {
-                LinearGradient(colors: [Color.joyDarkG.opacity(0), Color.joyDarkG], startPoint: .top, endPoint: .bottom)
+                LinearGradient(colors: [Color.joyBlack.opacity(0), Color.joyBlack], startPoint: .top, endPoint: .bottom)
                 
                 Button {
                     isShowActionSheet = true
@@ -34,7 +34,7 @@ struct PhotoSelectButton: View {
                         Text("새로운 추억 기록하기")
                     }
                     .frame(maxWidth: .infinity)
-                    .foregroundColor(Color.joyDarkG)
+                    .foregroundColor(Color.joyBlack)
                     .font(Font.body1Kor)
                     .padding(.vertical, 18)
                     .background {
@@ -48,7 +48,6 @@ struct PhotoSelectButton: View {
                         isShowingCameraPicker = true
                     }, label: {
                         Text("사진 촬영")
-                            .foregroundColor(Color.joyBlue)
                     })
                     .background(Color.joyWhite)
 
@@ -56,13 +55,12 @@ struct PhotoSelectButton: View {
                         isShowingPhotoLibraryPicker = true
                     }, label: {
                         Text("사진 선택")
-                            .foregroundColor(Color.joyBlue)
                     })
                     .background(Color.joyWhite)
                     
                     Button(role: .cancel, action: {
                     }, label: {
-                        Text("Cancel")
+                        Text("취소")
                     })
                 }
                 .fullScreenCover(isPresented: $isShowingCameraPicker, onDismiss: { isChoosen.toggle() }) {
@@ -90,7 +88,7 @@ struct PhotoSelectButton: View {
             }
             
             Rectangle()
-                .foregroundColor(Color.joyDarkG)
+                .foregroundColor(Color.joyBlack)
                 .frame(height: UIScreen.height * 0.04)
         }
         .frame(height: UIScreen.height * 0.15)
