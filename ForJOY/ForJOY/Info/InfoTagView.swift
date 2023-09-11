@@ -61,7 +61,7 @@ struct InfoTagView: View {
                                         if tags[index].tagName == selectTag {
                                             Image(systemName: "checkmark")
                                                 .multilineTextAlignment(.trailing)
-                                                .font(Font.system(size: 17, weight: .semibold))
+                                                .font(Font.body1Kor)
                                                 .foregroundColor(Color.joyBlue)
                                         }
                                     }

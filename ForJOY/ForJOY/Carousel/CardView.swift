@@ -184,7 +184,7 @@ struct CardContentView: View {
                 }) {
                     Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
                         .labelStyle(.iconOnly)
-                        .font(.system(size: 50))
+                        .font(.system(size: 48))
                         .foregroundColor(isPlaying ? Color.joyYellow : Color.joyBlue)
                 }
                 .padding(.trailing, 20)
