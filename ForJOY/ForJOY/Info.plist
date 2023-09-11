@@ -16,7 +16,7 @@
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>
-		<string>JoyDarkG</string>
+		<string>JoyBlack</string>
 		<key>UIImageName</key>
 		<string>LaunchScreen</string>
 	</dict>
