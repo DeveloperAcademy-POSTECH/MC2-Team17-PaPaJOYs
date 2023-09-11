@@ -31,7 +31,6 @@
 		3063F2D62A0FEE4900C56EBA /* RecComplete2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3063F2D42A0FEE4900C56EBA /* RecComplete2.json */; };
 		30B9FE392AA03B2B00205BB7 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9FE382AA03B2B00205BB7 /* UIScreen+.swift */; };
 		30B9FE3B2AA24A4E00205BB7 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9FE3A2AA24A4E00205BB7 /* UINavigationController+.swift */; };
-		30BDADE62A034DB7000BDA8F /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADDA2A034DB7000BDA8F /* CircularProgressView.swift */; };
 		30BDADE92A034DB7000BDA8F /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADDF2A034DB7000BDA8F /* Date+.swift */; };
 		30BDADEC2A034DB7000BDA8F /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADE32A034DB7000BDA8F /* TimerView.swift */; };
 		30BDADEE2A034DB7000BDA8F /* VoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BDADE52A034DB7000BDA8F /* VoiceView.swift */; };
@@ -86,7 +85,6 @@
 		3063F2D42A0FEE4900C56EBA /* RecComplete2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RecComplete2.json; sourceTree = "<group>"; };
 		30B9FE382AA03B2B00205BB7 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		30B9FE3A2AA24A4E00205BB7 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
-		30BDADDA2A034DB7000BDA8F /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		30BDADDF2A034DB7000BDA8F /* Date+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		30BDADE32A034DB7000BDA8F /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		30BDADE52A034DB7000BDA8F /* VoiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceView.swift; sourceTree = "<group>"; };
@@ -240,7 +238,6 @@
 			isa = PBXGroup;
 			children = (
 				D92951632A0F643A00D7A7A7 /* LottieView.swift */,
-				30BDADDA2A034DB7000BDA8F /* CircularProgressView.swift */,
 				30BDADE32A034DB7000BDA8F /* TimerView.swift */,
 				30BDADE52A034DB7000BDA8F /* VoiceView.swift */,
 			);
@@ -402,7 +399,6 @@
 				30BDADEC2A034DB7000BDA8F /* TimerView.swift in Sources */,
 				0E8D85502AAA185E009F3E5D /* CustomImagePicker.swift in Sources */,
 				30BDADEE2A034DB7000BDA8F /* VoiceView.swift in Sources */,
-				30BDADE62A034DB7000BDA8F /* CircularProgressView.swift in Sources */,
 				0E484E292A515E96002F9C9A /* ImagePicker.swift in Sources */,
 				30B9FE3B2AA24A4E00205BB7 /* UINavigationController+.swift in Sources */,
 				301576B72A88B7D200BBA5A8 /* PhotoSelectButton.swift in Sources */,
