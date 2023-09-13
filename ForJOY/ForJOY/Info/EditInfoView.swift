@@ -55,7 +55,7 @@ struct EditInfoView: View {
                         Button(
                             action: {showTagView = true},
                             label: {
-                                Text(tag == nil ? selectedData.tag : tag ?? "")
+                                Text(tag ?? "없음")
                                     .frame(maxWidth: 250, alignment: .trailing)
                             }
                         )
@@ -94,9 +94,6 @@ struct EditInfoView: View {
             
             .sheet(isPresented: $showTagView) {
                 InfoTagView(selectTag: $tag, showTagView: $showTagView)
-                    .onChange(of: tag) { t in
-                        selectedData.tag = t ?? ""
-                    }
             }
         }
     }
