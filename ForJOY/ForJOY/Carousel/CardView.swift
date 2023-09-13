@@ -182,10 +182,13 @@ struct CardContentView: View {
                     }
                     isPlaying.toggle()
                 }) {
-                    Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
-                        .labelStyle(.iconOnly)
-                        .font(.system(size: 48))
-                        .foregroundColor(isPlaying ? Color.joyYellow : Color.joyBlue)
+                    Circle()
+                        .frame(width: 50)
+                        .foregroundColor(isPlaying ? Color.joyYellow : Color.joyGrey100)
+                        .overlay {
+                            Image(systemName: isPlaying ? "pause.fill" : "play.fill")
+                                .foregroundColor(isPlaying ? Color.joyWhite : Color.joyBlue)
+                        }
                 }
                 .padding(.trailing, 20)
                 .onAppear {
