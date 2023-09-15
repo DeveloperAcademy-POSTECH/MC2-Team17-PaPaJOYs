@@ -73,7 +73,7 @@ struct CardView: View {
     private var EditButton: some View {
         Menu {
             if filteredData.count > 0 {
-                NavigationLink(destination: EditInfoView(selectedData: filteredData[order%filteredData.count])) {
+                NavigationLink(destination: EditInfoView(selectedData: filteredData[order < 0 ? ((order * -1)%filteredData.count) : (order%filteredData.count)])) {
                     Button(
                         action: {
                             moveToInfoView = true
