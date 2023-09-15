@@ -159,7 +159,7 @@ struct AlbumView: View {
                 if selectedTag == "All" {
                     ForEach(Array(isNewest ? memories.keys.sorted(by: >) : memories.keys.sorted()), id: \.self) { key in
                         NavigationLink(destination: GalleryView(year: key, tagName: $selectedTag, album: memories[key]!)) {
-                                AlbumSubView(post: memories[key]!.first!)
+                                AlbumSubView(post: memories[key]!.last!)
                         }
                     }
                 } else {
@@ -172,7 +172,7 @@ struct AlbumView: View {
                     
                     ForEach(Array(isNewest ? filterMemories.keys.sorted(by: >) : filterMemories.keys.sorted()), id: \.self) { key in
                         NavigationLink(destination: GalleryView(year: key, tagName: $selectedTag, album: filterMemories[key]!)) {
-                                AlbumSubView(post: filterMemories[key]!.first!)
+                                AlbumSubView(post: filterMemories[key]!.last!)
                         }
                     }
                 }
