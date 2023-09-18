@@ -38,7 +38,7 @@ class CoreDataManager: ObservableObject {
     func getUniqueTags() -> [String] {
         let memories = readAllMemories()
         let distinctTags = Set(memories.compactMap { $0.tag })
-        let uniqueTags = Array(distinctTags)
+        let uniqueTags = Array(distinctTags.sorted().filter{$0 != "없음"})
         
         return uniqueTags
     }

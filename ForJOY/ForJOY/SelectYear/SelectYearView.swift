@@ -52,7 +52,6 @@ struct SelectYearView: View {
                 VStack() {
                     Spacer()
                     PhotoSelectButton(memories: $memories, tags: $tags)
-                        .padding(.bottom, 34)
                 }
             }
             .edgesIgnoringSafeArea([.bottom])
@@ -71,53 +70,86 @@ struct SelectYearView: View {
     }
     
     private var TagView: some View {
-        ScrollViewReader { proxy in
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 10) {
-                    
-                    ForEach( Array(tags.sorted().filter{$0 != "없음"}) , id: \.self) { i in
-                        Button {
-                            selectedTag = i
-                            isAllSelect = false
-                        } label: {
-                            Text("#" + i)
-                                .font(Font.body2Kor)
-                                .lineLimit(1)
-                                .padding(.vertical, 6)
-                                .padding(.horizontal, 10)
-                                .background(isAllSelect ? Color.joyBlack : (selectedTag == i ? Color.joyBlue : Color.joyBlack))
-                                .clipShape(RoundedRectangle(cornerRadius: 6))
-                                .overlay {
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .strokeBorder(isAllSelect ? Color.joyWhite : (selectedTag == i ? Color.joyBlue : Color.joyWhite))
-                                }
-                        }
-                    }
-
-                    Button {
-                        selectedTag = "All"
-                        isAllSelect = true
-                    } label: {
-                        Text("모든 태그")
-                            .font(Font.body2Kor)
-                            .lineLimit(1)
-                            .padding(.vertical, 6)
-                            .padding(.horizontal, 10)
-                            .background(isAllSelect ? Color.joyBlue : Color.joyBlack)
-                            .clipShape(RoundedRectangle(cornerRadius: 6))
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 6)
-                                    .strokeBorder(isAllSelect ? Color.joyBlue : Color.joyWhite, lineWidth: 1)
-                            }
-                            .id("all")
-                    }
-                }
-                .onAppear {
-                    proxy.scrollTo("all")
+        // 메뉴 버튼 버전
+        Menu {
+            Button {
+                selectedTag = "All"
+            } label: {
+                Text("모든 태그")
+            }
+            
+            ForEach(tags, id: \.self) { i in
+                Button {
+                    selectedTag = i
+                } label: {
+                    Text(i)
                 }
             }
-            .frame(width: UIScreen.width - 116)
+        } label: {
+            HStack(spacing: 5) {
+                Image(systemName: "tag.fill")
+                
+                Text(selectedTag == "All" ? "모든 태그" : selectedTag)
+                    .lineLimit(1)
+            }
+                .font(Font.body2Kor)
+                .padding(.vertical, 6)
+                .padding(.horizontal, 10)
+                .background(Color.joyBlue)
+                .clipShape(RoundedRectangle(cornerRadius: 6))
         }
+        .transaction { transaction in
+            transaction.animation = nil
+        }
+        
+        // 스크롤뷰 버전
+//        ScrollViewReader { proxy in
+//            ScrollView(.horizontal, showsIndicators: false) {
+//                HStack(spacing: 10) {
+//
+//                    ForEach( Array(tags.sorted().filter{$0 != "없음"}) , id: \.self) { i in
+//                        Button {
+//                            selectedTag = i
+//                            isAllSelect = false
+//                        } label: {
+//                            Text("#" + i)
+//                                .font(Font.body2Kor)
+//                                .lineLimit(1)
+//                                .padding(.vertical, 6)
+//                                .padding(.horizontal, 10)
+//                                .background(isAllSelect ? Color.joyBlack : (selectedTag == i ? Color.joyBlue : Color.joyBlack))
+//                                .clipShape(RoundedRectangle(cornerRadius: 6))
+//                                .overlay {
+//                                    RoundedRectangle(cornerRadius: 6)
+//                                        .strokeBorder(isAllSelect ? Color.joyWhite : (selectedTag == i ? Color.joyBlue : Color.joyWhite))
+//                                }
+//                        }
+//                    }
+//
+//                    Button {
+//                        selectedTag = "All"
+//                        isAllSelect = true
+//                    } label: {
+//                        Text("모든 태그")
+//                            .font(Font.body2Kor)
+//                            .lineLimit(1)
+//                            .padding(.vertical, 6)
+//                            .padding(.horizontal, 10)
+//                            .background(isAllSelect ? Color.joyBlue : Color.joyBlack)
+//                            .clipShape(RoundedRectangle(cornerRadius: 6))
+//                            .overlay {
+//                                RoundedRectangle(cornerRadius: 6)
+//                                    .strokeBorder(isAllSelect ? Color.joyBlue : Color.joyWhite, lineWidth: 1)
+//                            }
+//                            .id("all")
+//                    }
+//                }
+//                .onAppear {
+//                    proxy.scrollTo("all")
+//                }
+//            }
+//            .frame(width: UIScreen.width - 132)
+//        }
     }
     
     private var SortButton: some View {
@@ -159,7 +191,7 @@ struct AlbumView: View {
                 if selectedTag == "All" {
                     ForEach(Array(isNewest ? memories.keys.sorted(by: >) : memories.keys.sorted()), id: \.self) { key in
                         NavigationLink(destination: GalleryView(year: key, tagName: $selectedTag, album: memories[key]!)) {
-                                AlbumSubView(post: memories[key]!.first!)
+                                AlbumSubView(post: memories[key]!.last!)
                         }
                     }
                 } else {
@@ -172,7 +204,7 @@ struct AlbumView: View {
                     
                     ForEach(Array(isNewest ? filterMemories.keys.sorted(by: >) : filterMemories.keys.sorted()), id: \.self) { key in
                         NavigationLink(destination: GalleryView(year: key, tagName: $selectedTag, album: filterMemories[key]!)) {
-                                AlbumSubView(post: filterMemories[key]!.first!)
+                                AlbumSubView(post: filterMemories[key]!.last!)
                         }
                     }
                 }

@@ -41,6 +41,13 @@ struct GalleryView: View {
                             }
                         }
                         .offset(self.offset)
+                        .onAppear {
+                            if isNewest {
+                                album.sort{ $0.date > $1.date }
+                            } else {
+                                album.sort{ $0.date < $1.date }
+                            }
+                        }
                     }
                 }
                 .background(Color.joyBlack)
@@ -57,7 +64,7 @@ struct GalleryView: View {
                 
                 HStack {
                     VStack {
-                        Text(year.description)
+                        Text(tagName == "All" ? year.description : "\(tagName) \(year.description)")
                             .font(Font.largeTitle)
                             .foregroundColor(Color.joyWhite)
                         
@@ -93,7 +100,7 @@ struct GalleryView: View {
         Menu {
             Button(action: {
                 isNewest = true
-                album = album.sorted{ $0.date < $1.date }
+                album.sort{ $0.date > $1.date }
             }) {
                 HStack {
                     Text("최신 항목 순으로")
@@ -105,7 +112,7 @@ struct GalleryView: View {
             }
             Button(action: {
                 isNewest = false
-                album = album.sorted{ $0.date > $1.date }
+                album.sort{ $0.date < $1.date }
             }) {
                 Text("오래된 항목 순으로")
                 Spacer()
