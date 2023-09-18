@@ -72,6 +72,12 @@ struct SelectYearView: View {
     private var TagView: some View {
         // 메뉴 버튼 버전
         Menu {
+            Button {
+                selectedTag = "All"
+            } label: {
+                Text("모든 태그")
+            }
+            
             ForEach(tags, id: \.self) { i in
                 Button {
                     selectedTag = i
