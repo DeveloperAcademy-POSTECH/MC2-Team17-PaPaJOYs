@@ -98,6 +98,9 @@ struct SelectYearView: View {
                 .background(Color.joyBlue)
                 .clipShape(RoundedRectangle(cornerRadius: 6))
         }
+        .transaction { transaction in
+            transaction.animation = nil
+        }
         
         // 스크롤뷰 버전
 //        ScrollViewReader { proxy in
