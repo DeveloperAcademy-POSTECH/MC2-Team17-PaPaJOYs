@@ -64,7 +64,7 @@ struct GalleryView: View {
                 
                 HStack {
                     VStack {
-                        Text(year.description)
+                        Text(tagName == "All" ? year.description : "\(tagName) \(year.description)")
                             .font(Font.largeTitle)
                             .foregroundColor(Color.joyWhite)
                         
