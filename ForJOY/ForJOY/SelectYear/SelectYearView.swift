@@ -74,15 +74,33 @@ struct SelectYearView: View {
         Menu {
             Button {
                 selectedTag = "All"
+                isAllSelect = true
             } label: {
-                Text("모든 태그")
+                HStack {
+                    Text("모든 태그")
+                    
+                    Spacer()
+                    
+                    if isAllSelect {
+                        Image(systemName: "checkmark")
+                    }
+                }
             }
             
             ForEach(tags, id: \.self) { i in
                 Button {
                     selectedTag = i
+                    isAllSelect = false
                 } label: {
-                    Text(i)
+                    HStack {
+                        Text(i)
+                        
+                        Spacer()
+                        
+                        if i == selectedTag {
+                            Image(systemName: "checkmark")
+                        }
+                    }
                 }
             }
         } label: {
@@ -101,55 +119,6 @@ struct SelectYearView: View {
         .transaction { transaction in
             transaction.animation = nil
         }
-        
-        // 스크롤뷰 버전
-//        ScrollViewReader { proxy in
-//            ScrollView(.horizontal, showsIndicators: false) {
-//                HStack(spacing: 10) {
-//
-//                    ForEach( Array(tags.sorted().filter{$0 != "없음"}) , id: \.self) { i in
-//                        Button {
-//                            selectedTag = i
-//                            isAllSelect = false
-//                        } label: {
-//                            Text("#" + i)
-//                                .font(Font.body2Kor)
-//                                .lineLimit(1)
-//                                .padding(.vertical, 6)
-//                                .padding(.horizontal, 10)
-//                                .background(isAllSelect ? Color.joyBlack : (selectedTag == i ? Color.joyBlue : Color.joyBlack))
-//                                .clipShape(RoundedRectangle(cornerRadius: 6))
-//                                .overlay {
-//                                    RoundedRectangle(cornerRadius: 6)
-//                                        .strokeBorder(isAllSelect ? Color.joyWhite : (selectedTag == i ? Color.joyBlue : Color.joyWhite))
-//                                }
-//                        }
-//                    }
-//
-//                    Button {
-//                        selectedTag = "All"
-//                        isAllSelect = true
-//                    } label: {
-//                        Text("모든 태그")
-//                            .font(Font.body2Kor)
-//                            .lineLimit(1)
-//                            .padding(.vertical, 6)
-//                            .padding(.horizontal, 10)
-//                            .background(isAllSelect ? Color.joyBlue : Color.joyBlack)
-//                            .clipShape(RoundedRectangle(cornerRadius: 6))
-//                            .overlay {
-//                                RoundedRectangle(cornerRadius: 6)
-//                                    .strokeBorder(isAllSelect ? Color.joyBlue : Color.joyWhite, lineWidth: 1)
-//                            }
-//                            .id("all")
-//                    }
-//                }
-//                .onAppear {
-//                    proxy.scrollTo("all")
-//                }
-//            }
-//            .frame(width: UIScreen.width - 132)
-//        }
     }
     
     private var SortButton: some View {
@@ -164,10 +133,12 @@ struct SelectYearView: View {
                 }
             }
             Button(action: {isNewest = false}) {
-                Text("오래된 항목 순으로")
-                Spacer()
-                if !isNewest {
-                    Image(systemName: "checkmark")
+                HStack {
+                    Text("오래된 항목 순으로")
+                    Spacer()
+                    if !isNewest {
+                        Image(systemName: "checkmark")
+                    }
                 }
             }
         } label: {
